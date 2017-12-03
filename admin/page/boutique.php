@@ -104,6 +104,65 @@
 		</form>
 	</div>
 
+	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['createCoupon'] == true ) { ?>
+
+	<div class="col-md-12 text-center">
+		<h3>Création de coupon de réduction</h3>
+		<div class="alert alert-success">
+			<strong>Ici vous pouvez créez des coupons de réduction pour votre boutique. La valeur des coupons est en %age. Il ne peut y'avoir qu'un seul coupon utilisé par paiement, les coupons sont valable jusqu'a ce que vous les supprimiez, et ils sont réutilisable. Il vous suffit simplement de rentrer un code de maximum 8 lettres, un pourcentage ainsi qu'un titre pour décrire votre remise, il apparaitra dans la description du produit dans le panier. </strong>
+		</div>
+		<form action="?action=creerCoupon" method="POST">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<div class="form-group col-lg-6">
+						<label>Titre de la remise (description)</label>
+						<input type="text" class="form-control" name="titre" placeholder="Remise spécial CMW V1.6" require maxlength="60">
+					</div>
+					<div class="form-group col-lg-6">
+						<label> Pourcentage de remise </label>
+						<input type="number" name="pourcent" class="form-control" max="100" min="1" required >
+					</div>
+					<div class="form-group col-lg-6">
+						<label> Code de remise </label>
+						<input type="text" name="code" class="form-control" maxlength="8" placeholder="CMWV1.6">
+					</div>
+					<hr>
+					<div class="form-group col-lg-12">
+						<input type="submit" class="btn btn-success" value="Créer le code de remise">
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['ModifCoupon'] == true) { ?>
+
+	<div class="col-md-12 text-center">
+		<h3>Les coupons de réduction actuellement disponible</h3>
+		<div class="alert alert-success">
+			<strong>Voici le tableau contenant tout les coupons de réductions qui sont disponible. Vous pouvez les supprimez ici </strong>
+		</div>
+		<table class="table table-striped table-hover table-dark">
+			<tr>
+				<th>Titre / Description</th>
+				<th>Code de réduction</th>
+				<th>Pourcentage de réduction</th>
+				<th>Actions ...</th>
+			</tr>
+			<?php $coupons = getCouponsReduc($bddConnection);
+				for($i = 0; $i < count($coupons); $i++)
+				{
+					?><tr>
+						<td><?php echo $coupons[$i]['titre']; ?></td>
+						<td><?php echo $coupons[$i]['code_promo']; ?></td>
+						<td><?php echo $coupons[$i]['pourcent']; ?></td>
+						<td>A venir</td>
+					</tr><?php
+				}
+			?>
+		</table>
+	</div>
+
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['editCategorieOffre'] == true) { ?>
 
 	  <div class="col-md-12 text-center">
