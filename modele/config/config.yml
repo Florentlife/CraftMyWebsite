@@ -1,0 +1,28 @@
+Ce fichier contiens la config de base du serveur---
+installation: true
+licence: free-craftmywebsite.fr
+General: 
+    url: 
+    name: 
+    theme: default
+    themeOption: bootstrap
+    description: 
+    bgType: 0
+    permsPlugin: groupManager
+    permsWorld: world
+    ipTexte: 
+    ip: 
+    port: 
+DataBase: 
+    dbAdress:
+    dbName: 
+    dbUser:
+    dbPassword:
+    dbPort: 3306
+Payement: 
+    paypal: true
+    paypalUser: 
+    paypalPass: 
+    paypalSignature: 
+    paypalEmail: 
+    paypalMethodeAPI: 1

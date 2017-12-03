@@ -1,0 +1,121 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Raleway:600|Montserrat');
+/*
+*   2017 Minedev by Amjido & Florentlife
+*   Touts droits reservés
+*/
+
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+body,
+button,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+    font-family: "Raleway", sans-serif;
+}
+
+#page{
+    flex: 1;
+}
+
+section {
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+}
+
+.link:hover{
+    cursor:pointer;
+}
+
+.heading-mask {
+    height: 350px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.heading {
+    background-image: url('../img/heading.jpg');
+    background-position: center;
+}
+
+.heading-pagination {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: right;
+    background-image: url('../img/mineur_victorieux.jpg');
+    background-position: center;
+}
+
+.layout {
+    background-image: url('../img/texture.png');
+    width: 100%;
+}
+
+.layout-content {
+    padding: 10px;
+}
+
+.micro-blog {
+    display: flex;
+    align-items: center;
+    align-self: center;
+}
+
+.text-facebook {
+    color: #3C579A;
+    text-shadow: 2px 2px #2b3e6e;
+}
+
+.text-youtube {
+    color: #EE1C1B;
+    text-shadow: 2px 2px #be0e0e;
+}
+
+.text-twitter {
+    color: #1dcaff;
+    text-shadow: 2px 2px #009ccc;
+}
+
+.text-steam {
+    color: #231F20;
+    text-shadow: 2px 2px #363031;
+}
+
+.btn-colored{
+    background-color: #502c87;
+    border-color: #502c87;
+}
+
+.btn-colored:hover{
+    background-color: #6738ad;
+    border-color: #6738ad;
+    transition: 0.2s;
+}
+
+.btn-colored:active{
+    background-color: #8f65cd;
+    border-color: #8f65cd;
+    transition: 0.2s;
+}
+
+.btn-colored:focus{
+    background-color: #8f65cd;
+    border-color: #8f65cd;
+    transition: 0.2s;
+}
