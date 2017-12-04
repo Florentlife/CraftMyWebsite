@@ -78,7 +78,7 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 	<div class="row">
 		<div class="col-md-2">
 		<!-- Div de droite où on met le profil de l'auteur -->
-			<img class="profile-img" src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $topicd['pseudo']; ?>&s=128&v=front" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" />
+			<img class="rounded" src="https://minecraft-api.com/api/skins/128.php?player=<?php echo $topicd['pseudo']; ?>" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" />
 			<p class="username"> Pseudo : <?php echo $topicd['pseudo']; ?><br/>Grade :
 			<?php echo $_Forum_->gradeJoueur($topicd['pseudo']); ?> </p>
 		</div>
@@ -147,7 +147,7 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 		<div class="row">
 			<div class="col-md-2">
 				<div id="<?php echo $answerd[$i]['id']; ?>"> <!-- div de droite avec les infos joueurs -->
-					<img class="profile-img" src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $answerd[$i]['pseudo']; ?>&s=128&v=front" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" />
+					<img class="rounded" src="https://minecraft-api.com/api/skins/128.php?player=<?php echo $answerd[$i]['pseudo']; ?>" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" />
 					<p class="username">Pseudo : <?php echo $answerd[$i]['pseudo']; ?>
 						Grade : <?php echo $_Forum_->gradeJoueur($answerd[$i]['pseudo']); ?>
 					</p>
