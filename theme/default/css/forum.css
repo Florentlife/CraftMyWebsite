@@ -1,13 +1,13 @@
 .username .style16
 {
 	color: red;
-background-image: url('http://craftmywebsite.fr/img/etoile-anime.gif');
+background-image: url('../img/etoile-anime.gif');
 }
 
 .username .style5
 {
 	color: red;
-background-image: url('http://craftmywebsite.fr/img/spark-gold.gif');
+background-image: url('../img/spark-gold.gif');
 }
 
 .prefix

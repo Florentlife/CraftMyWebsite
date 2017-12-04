@@ -109,14 +109,14 @@ if(isset($_Joueur_))
 	?><script>
 setInterval(ajax_alerts, 10000);
 function ajax_alerts(){
-	var url = '<?php echo $_Serveur_['General']['url']; ?>?action=get_alerts';
+	var url = '?action=get_alerts';
 	$.post(url, function(data){
 		alerts.innerHTML = data;
 		ajax_new_alerts();
 });
 }
 function ajax_new_alerts(){
-	var url = '<?php echo $_Serveur_['General']['url']; ?>?action=new_alert';
+	var url = '?action=new_alert';
 	$.post(url, function(donnees){
 		if(donnees > 0)
 		{
@@ -158,7 +158,7 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
 	<script>
 	setInterval(ajax_signalement, 10000);
 	function ajax_signalement(){
-		var url = '<?php echo $_Serveur_['General']['url']; ?>?action=get_signalement';
+		var url = '?action=get_signalement';
 		$.post(url, function(signalement){
 			if(signalement > 0)
 			{
