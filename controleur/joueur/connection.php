@@ -16,7 +16,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo'])
 	}
 	else
 	{
-		if($donneesJoueur['mdp'] == $_POST['mdp'])
+		if(password_verify($_POST['mdp'], $donneesJoueur['mdp']))
 		{
 			require_once('modele/joueur/ScriptBySprik07/reqVerifMailBDD.class.php');
 			$req_verifMailBdd = new VerifMailBdd($get_Pseudo, $bddConnection);
