@@ -3,3 +3,6 @@ admin/actions/.htpasswd
 controleur/.htpasswd
 modele/.htpasswd
 *.yml
+modele/.htpasswd
+controleur/.htpasswd
+admin/actions/.htpasswd
