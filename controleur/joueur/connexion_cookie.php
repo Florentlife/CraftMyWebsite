@@ -7,7 +7,7 @@ $requete->execute(array(
 	'id' => $id
 	));
 $donnesJoueur = $requete->fetch();
-if($donnesJoueur['mdp'] == $pass)
+if(password_verify($pass, $donnesJoueur['mdp']))
 {
 	require_once('controleur/joueur/joueurcon.class.php');
 	$new_connexion = new JoueurCon($id, $donnesJoueur['pseudo'], $donnesJoueur['email'], $donnesJoueur['rang'], $donnesJoueur['tokens'], 1, $pass);
