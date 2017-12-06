@@ -19,8 +19,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 			} elseif($_POST['mdp'] != $_POST['mdpConfirm']) {
 				header('Location: ?&page=erreur&erreur=3');
 			} else {
-				$get_Mdp = $_POST['mdp'];
-				$_POST['mdp'] = md5(sha1($_POST['mdp']));
+				$get_Mdp = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
 				
 				$bddConnection = $base->getConnection();
 				require_once('modele/joueur/connection.class.php');
