@@ -34,9 +34,10 @@
     }
     if($ok == true)
     {    
+        $lucerno = password_hash($mdp, PASSWORD_DEFAULT);
         $req = $bddConnection->prepare('UPDATE cmw_users SET mdp = :mdp WHERE pseudo = :pseudo');
         $req->execute(array(
-            'mdp' => md5(sha1($mdp)),
+            'mdp' => $lucerno,
             'pseudo' => htmlspecialchars($_POST['pseudo'])));            
     }
 ?>
