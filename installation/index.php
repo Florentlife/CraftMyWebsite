@@ -62,6 +62,7 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 	</head>
 	<body class="container">
 		<?php
+		$extensionok = "false";
 		require_once('droits.php');
 		$return = VerifieChmod();
 		if($return != null) {
@@ -71,8 +72,22 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 			SetHtpasswd();
 			$chmodok = "true";
 		}
+
+		require_once('extension.php');
+		$retour = VerifieExtension();
+		if($retour != "") {
+			$extensionok = "false";
+		} else { 
+			$extensionok = "true";
+		}
 		?>
-		<?php if($chmodok == "true") { ?>
+		<?php 
+		if($chmodok == "true" && $extensionok != "true") { 
+		
+			echo AfficherExtension($retour);
+		
+		}elseif($chmodok == "true" && $extensionok == "true"){
+		?>
 		<div class="well well-install">
 			<h1 class="animated slideInLeft" style="font-family: material;text-align: center;margin-bottom: 25px;">CraftMyWebsite <?php echo $versioncms; ?></h1>
 			<div class="p-install">
