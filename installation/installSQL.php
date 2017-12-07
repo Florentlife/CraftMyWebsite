@@ -3,7 +3,7 @@ $sql->exec("CREATE TABLE IF NOT EXISTS `cmw_users`
 (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`pseudo` varchar(20) NOT NULL,
-	`mdp` varchar(200) NOT NULL,
+	`mdp` varchar(250) NOT NULL,
 	`email` varchar(32) NOT NULL,
 	`anciennete` int(11) NOT NULL,
 	`newsletter` int(1) NOT NULL,
