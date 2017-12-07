@@ -1,7 +1,6 @@
 <?php
 if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo']) AND !empty($_POST['mdp']))
 {
-	$_POST['mdp'] = md5(sha1($_POST['mdp']));
 	$get_Pseudo = $_POST['pseudo'];
 
 	$bddConnection = $base->getConnection();
@@ -16,7 +15,22 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo'])
 	}
 	else
 	{
-		if(password_verify($_POST['mdp'], $donneesJoueur['mdp']))
+		$compte_valide_pour_connection = false;
+		if(preg_match('/^[a-f0-9]{32}$/', $donneesJoueur['mdp'])){
+			if(md5(sha1($_POST['mdp'])) == $donneesJoueur['mdp']){
+				$req = $bddConnection->prepare('UPDATE cmw_users SET mdp = :mdp WHERE pseudo = :pseudo');
+				$req->execute(array(
+					'mdp' => password_hash($_POST['mdp'], PASSWORD_DEFAULT),
+					'pseudo' => htmlspecialchars($_POST['pseudo'])
+				)); 
+				$compte_valide_pour_connection = true;
+			}
+		}else{
+			if(password_verify($_POST['mdp'], $donneesJoueur['mdp'])){
+				$compte_valide_pour_connection = true;
+			}
+		}
+		if($compte_valide_pour_connection)
 		{
 			require_once('modele/joueur/ScriptBySprik07/reqVerifMailBDD.class.php');
 			$req_verifMailBdd = new VerifMailBdd($get_Pseudo, $bddConnection);
