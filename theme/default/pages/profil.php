@@ -140,7 +140,7 @@
 			</div>
 			<div class="col-md-6 unite-bloc">
 				<h3 class="header-bloc"><?php echo htmlspecialchars($getprofil); ?></h3>
-					<img src="http://api.craftmywebsite.fr/skin/skin.php?u=<?php echo htmlspecialchars($getprofil); ?>&s=1024" style="width: 100%;" alt="none" />
+					<img src="https://mc.frozenspace.net/api/skin/<?php echo htmlspecialchars($getprofil); ?>/1024" style="width: 100%;" alt="none" />
 				<div class="footer-bloc">
 				</div>
 			</div>
