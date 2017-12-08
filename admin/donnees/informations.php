@@ -14,9 +14,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $boutiquesStats[$i]['pseudo'] = $boutiquesStatsDonnees['pseudo'];
         $i++;
     }
-    ?>
-
-    <?php
     $lastOffreReq = $bddConnection->query('SELECT * FROM cmw_boutique_offres ORDER BY id DESC LIMIT 1;');
     $i = 0;
     while($lastOffreDonnees = $lastOffreReq->fetch())
@@ -27,9 +24,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastOffre[$i]['prix'] = $lastOffreDonnees['prix'];
         $i++;
     }
-    ?>
-
-    <?php
     $lastOffrePaypalReq = $bddConnection->query('SELECT * FROM cmw_jetons_paypal_offres ORDER BY id DESC LIMIT 1;');
     $i = 0;
     while($lastOffrePaypalDonnees = $lastOffrePaypalReq->fetch())
@@ -40,11 +34,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastOffrePaypal[$i]['jetons_donnes'] = $lastOffrePaypalDonnees['jetons_donnes'];
         $i++;
     }
-    ?>
-
-    <!-- Statistiques des membres -->
-
-    <?php
+    // <!-- Statistiques des membres -->
     $membresStatsReq = $bddConnection->query('SELECT * FROM cmw_users ORDER BY id DESC LIMIT 0, 8;');
     $i = 0;
     while($membresStatsDonnees = $membresStatsReq->fetch())
@@ -57,11 +47,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $membresStats[$i]['ValidationMail'] = $membresStatsDonnees['ValidationMail'];
         $i++;
     }
-    ?>
-
-    <!-- Statistiques du dernier inscrit -->
-
-    <?php
+// Statistiques du dernier inscrit
     $lastMembreReq = $bddConnection->query('SELECT * FROM cmw_users ORDER BY id DESC LIMIT 1;');
     $i = 0;
     while($lastMembreDonnees = $lastMembreReq->fetch())
@@ -71,11 +57,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastMembre[$i]['anciennete'] = $lastMembreDonnees['anciennete'];
         $i++;
     }
-    ?>
-
-    <!-- Statistiques du dernier Ticket -->
-
-    <?php
+// <!-- Statistiques du dernier Ticket -->
     $lastTicketReq = $bddConnection->query('SELECT * FROM cmw_support ORDER BY id DESC LIMIT 1;');
     $i = 0;
     while($lastTicketDonnees = $lastTicketReq->fetch())
@@ -87,11 +69,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastTicket[$i]['etat'] = $lastTicketDonnees['etat'];
         $i++;
     }
-    ?>
-
-    <!-- Statistiques du dernier Commentaire Support -->
-
-    <?php
+    // <!-- Statistiques du dernier Commentaire Support -->
     $lastCommentaireSuppReq = $bddConnection->query('SELECT * FROM cmw_support_commentaires ORDER BY id DESC LIMIT 1;');
     $i = 0;
     while($lastCommentaireDonneesSupp = $lastCommentaireSuppReq->fetch())
@@ -102,11 +80,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastCommentaireSupp[$i]['date_post'] = $lastCommentaireDonneesSupp['date_post'];
         $i++;
     }
-    ?>
-
-    <!-- Statistiques du dernier Commentaire nouveauté -->
-
-    <?php
     $lastCommentaireNewsReq = $bddConnection->query('SELECT * FROM cmw_news_commentaires ORDER BY id DESC LIMIT 1;');
     $i = 0;
     while($lastCommentaireDonneesNews = $lastCommentaireNewsReq->fetch())
@@ -117,11 +90,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastCommentaireNews[$i]['date_post'] = $lastCommentaireDonneesNews['date_post'];
         $i++;
     }
-    ?>
-
-    <!-- Statistiques de la dernière nouveauté -->
-
-    <?php
     $lastNewsReq = $bddConnection->query('SELECT * FROM cmw_news ORDER BY id DESC LIMIT 1;');
     $i = 0;
     while($lastNewsDonnees = $lastNewsReq->fetch())
@@ -132,11 +100,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastNews[$i]['date'] = $lastNewsDonnees['date'];
         $i++;
     }
-    ?>
-
-    <!-- Variable de nombre d'inscription par ip -->
-
-    <?php
     $nbrPerIPReq = $bddConnection->query('SELECT * FROM cmw_sysip ORDER BY idPerIP = 1');
     $i = 0;
     while($nbrPerIPDonnees = $nbrPerIPReq->fetch())
@@ -145,11 +108,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $nbrPerIP[$i]['idPerIP'] = $nbrPerIPDonnees['idPerIP'];
         $i++;
     }
-    ?>
-
-    <!-- "API" pour les mails à l'inscription -->
-
-    <?php
     $sysMailReq = $bddConnection->query('SELECT * FROM cmw_sysmail WHERE idMail = 1');
     $i = 0;
     while($sysMailDonnees = $sysMailReq->fetch())
@@ -162,11 +120,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $sysMail[$i]['etatMail'] = $sysMailDonnees['etatMail'];
         $i++;
     }
-    ?>
-
-    <!-- Dernier voteur -->
-
-    <?php
     $lastVoteReq = $bddConnection->query('SELECT * FROM cmw_votes ORDER BY date_dernier DESC LIMIT 1;');
     $i = 0;
     while($lastVoteDonnees = $lastVoteReq->fetch())
@@ -176,11 +129,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastVote[$i]['date_dernier'] = $lastVoteDonnees['date_dernier'];
         $i++;
     }
-    ?>
-
-    <!-- Dernière maintenance -->
-
-    <?php
     $lastMaintenanceReq = $bddConnection->query('SELECT maintenanceTime, maintenanceEtat FROM cmw_maintenance WHERE maintenanceId = 1');
     $i = 0;
     while($lastMaintenanceDonnees = $lastMaintenanceReq->fetch())
@@ -190,11 +138,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastMaintenance[$i]['maintenanceTime'] = $lastMaintenanceDonnees['maintenanceTime'];
         $i++;
     }
-    ?>
-
-    <!-- Dernière achat dedipass -->
-
-    <?php
     $lastAchatDedipassReq = $bddConnection->query('SELECT * FROM cmw_dedipass ORDER BY id DESC LIMIT 1;');
     $i = 0;
     while($lastAchatDedipassDonnees = $lastAchatDedipassReq->fetch())

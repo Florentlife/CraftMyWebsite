@@ -69,6 +69,8 @@ PermsPanel:
       addCategorie: 
       addOffre: 
       editCategorieOffre: 
+      createCoupon:
+      modifCoupon:
   payment:
     showPage: 
     actions:
