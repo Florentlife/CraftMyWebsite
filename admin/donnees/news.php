@@ -13,11 +13,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['news']['showPage'] == tru
 		$tableauNews[$i]['image'] = $donneesNews['image'];
 		$i++;
 	}
-	?>
-
-	<!-- Stats des News -->
-
-	<?php
 	$req_newsStats = $bddConnection->query('SELECT * FROM cmw_news ORDER BY id');
 
 	$i = 0;

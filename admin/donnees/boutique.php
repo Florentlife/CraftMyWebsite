@@ -15,6 +15,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 		$i = 0;
 		while($fetch = $req->fetch())
 		{
+			$coupons[$i]['id'] = $fetch['id'];
 			$coupons[$i]['titre'] = $fetch['titre'];
 			$coupons[$i]['code_promo'] = $fetch['code_promo'];
 			$coupons[$i]['pourcent'] = $fetch['pourcent'];

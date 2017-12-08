@@ -9,6 +9,14 @@
 		case 'commande': 
 		require_once('admin/actions/commande.php');
 		break;
+
+		case 'creerCoupon':
+			require_once('admin/actions/creerCoupon.php');
+		break;
+
+		case 'supprCoupon':
+			require_once('admin/actions/supprCoupon.php');
+		break;
 		
 		case 'general': 
 		require_once('admin/actions/general.php');

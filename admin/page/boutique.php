@@ -135,7 +135,7 @@
 		</form>
 	</div>
 
-	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['ModifCoupon'] == true) { ?>
+	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['modifCoupon'] == true) { ?>
 
 	<div class="col-md-12 text-center">
 		<h3>Les coupons de réduction actuellement disponible</h3>
@@ -155,8 +155,8 @@
 					?><tr>
 						<td><?php echo $coupons[$i]['titre']; ?></td>
 						<td><?php echo $coupons[$i]['code_promo']; ?></td>
-						<td><?php echo $coupons[$i]['pourcent']; ?></td>
-						<td>A venir</td>
+						<td><?php echo $coupons[$i]['pourcent']; ?>%</td>
+						<td><a href="?action=supprCoupon&id=<?php echo $coupons[$i]['id']; ?>" class="btn btn-danger" title="Supprimer le coupon">Supprimer le coupon</a></td>
 					</tr><?php
 				}
 			?>
