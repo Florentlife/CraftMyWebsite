@@ -17,6 +17,10 @@
 		case 'supprCoupon':
 			require_once('admin/actions/supprCoupon.php');
 		break;
+
+		case 'ajout_favicon':
+			require_once('admin/actions/ajout_favicon.php');
+		break;
 		
 		case 'general': 
 		require_once('admin/actions/general.php');

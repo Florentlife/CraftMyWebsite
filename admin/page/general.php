@@ -59,6 +59,26 @@
             <br/>
         </div>
     </div>
-</div>
+</form>
+<form action="?action=ajout_favicon" method="POST" enctype="multipart/form-data">
+    <div class="text-center">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col">
+                        <h3>Favicon du site</h3>
+
+                        <label class="control-label">Fichier favicon (le précédent sera écrasé)
+                        <input type="file" id="file" name="favicon" class="custom-file-input">
+                        <span class="custom-file-control"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" class="btn btn-danger" value="Envoyer le Favicon"/>
+            </div>
+        </div>
+    </div>
 </form>
 <?php } ?>
