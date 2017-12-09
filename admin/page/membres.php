@@ -14,27 +14,27 @@
         </ol>
         <hr>
         <?php if($_Joueur_['rang'] != 1 AND $_PGrades_['PermsPanel']['members']['actions']['editMember'] == false) { ?>
-            <div class="col-lg-6 col-lg-offset-3 text-center">
+            <div class="col-lg-12 text-center">
                 <div class="alert alert-danger">
                     <strong>Vous avez aucune permission pour accéder aux membres.</strong>
                 </div>
             </div>
         <?php } else { ?>
-            <div class="col-lg-6 col-lg-offset-3 text-center">
+            <div class="col-lg-12 text-center">
                 <div class="alert alert-success">
                     <strong>Modifiez ici les informations concernant les membres de votre site.</strong>
                 </div>
             </div>
         <?php } 
         if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['actions']['editMember'] == true) { ?>
-            <div class="col-lg-6 col-lg-offset-3 text-center">
+            <div class="col-lg-12 text-center">
                 <h3>Edition des membres</h3>
             </div>
             <form method="POST" action="?&action=modifierMembres">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-12 text-center">
                     <div class="panel panel-primary">
                         <div class="panel-body">
-                            <div class="col-lg-10 col-lg-offset-1">
+                            <div class="col-lg-12">
                                 <h3>Modifier des membres</h3>
                                 <div class="row">
                                     <table class="table table-striped">

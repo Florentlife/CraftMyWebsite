@@ -31,7 +31,11 @@
   <link href="./admin/assets/css/plugins/hover.css" rel="stylesheet">
   <link href="./admin/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="./admin/assets/css/admin-style.css" rel="stylesheet">
-
+  <?php if(file_exists('./favicon.ico'))
+  {
+    echo '<link rel="icon" type="image/x-icon" href="./favicon.ico"></link>';
+  }
+  ?>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
