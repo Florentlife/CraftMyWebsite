@@ -1,6 +1,7 @@
-Ce fichier contiens la config de base du serveur---
+# Ce fichier contiens la config de base du serveur
+
 installation: true
-licence: free-craftmywebsite.fr
+licence: "free-craftmywebsite.fr"
 General: 
     url: 
     name: 

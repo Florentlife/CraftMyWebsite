@@ -11,12 +11,14 @@
  * @since Alpha 5
  */
 class JSONAPI {
+
 	private $host;
 	private $port;
 	private $username;
 	private $password;
 	const URL_FORMAT = 'http://%s:%d/api/2/call?json=%s';
 	private $timeout;
+	
 	/**
 	 * Creates a new JSONAPI instance.
 	 */
@@ -99,6 +101,7 @@ class JSONAPI {
 			return file_get_contents($url, false, stream_context_create($opts));
 		}
 	}
+
 	private function constructCall($method, array $args) {
 		$json = array();
 		$json['name'] = $method;
@@ -107,6 +110,7 @@ class JSONAPI {
 		$json['username'] = $this->username;
 		return $json;
 	}
+
 	private function constructCalls(array $methods, array $args) {
 		$calls = array();
 		foreach ($methods as $key => $method) {
@@ -131,6 +135,7 @@ class JSONAPI {
 		$url = $this->makeURLMultiple($methods, $args);
 		return json_decode($this->curl($url), true);
 	}
+
 	/**
 	 * The default function called if no one matched for JSONAPI.
 	 * 
@@ -145,33 +150,36 @@ class JSONAPI {
             return $this->call($method, array($params));	
         }
 	}
+
 	/**
 	 * @return string
 	 */
 	public function getHost() {
 	    return $this->host;
 	}
-	
-	/**
-	 * @param string $newhost
-	 * @return JSONAPI This object, for method chaining
-	 */
+
+    /**
+     * @param $host
+     * @return JSONAPI This object, for method chaining
+     */
 	public function setHost($host) {
 	    $this->host = $host;
 	
 	    return $this;
 	}
+
 	/**
 	 * @return integer
 	 */
 	public function getPort() {
 	    return $this->port;
 	}
-	
-	/**
-	 * @param integer $newport
-	 * @return JSONAPI This object, for method chaining
-	 */
+
+    /**
+     * @param $port
+     * @return JSONAPI This object, for method chaining
+     * @throws Exception
+     */
 	public function setPort($port) {
 		$port = (int) $port;
 		if ($port < 1 || $port > 65535) {
@@ -181,22 +189,24 @@ class JSONAPI {
 	
 	    return $this;
 	}
+
 	/**
 	 * @return string
 	 */
 	public function getUsername() {
 	    return $this->username;
 	}
-	
-	/**
-	 * @param string $newusername
-	 * @return JSONAPI This object, for method chaining
-	 */
+
+    /**
+     * @param $username
+     * @return JSONAPI This object, for method chaining
+     */
 	public function setUsername($username) {
 	    $this->username = $username;
 	
 	    return $this;
 	}
+
 	/**
 	 * @return string
 	 */
@@ -205,25 +215,26 @@ class JSONAPI {
 	}
 	
 	/**
-	 * @param string $newpassword
+	 * @param string $password
 	 * @return JSONAPI This object, for method chaining
 	 */
-	public function setPassword($username) {
+	public function setPassword($password) {
 	    $this->password = $password;
 	
 	    return $this;
 	}
+
 	/**
 	 * @return integer
 	 */
 	public function getTimeout() {
 	    return $this->timeout;
 	}
-	
-	/**
-	 * @param integer $newtimeout
-	 * @return JSONAPI This object, for method chaining
-	 */
+
+    /**
+     * @param $timeout
+     * @return JSONAPI This object, for method chaining
+     */
 	public function setTimeout($timeout) {
 	    $this->timeout = (int) $timeout;
 	

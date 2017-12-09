@@ -1,4 +1,5 @@
-#Ce fichier contiens la config de base du serveur
+# Ce fichier contiens la config de base du serveur
+
 MenuTexte:
   - "[glyph]home[/glyph]Accueil"
   - "[glyph]signal[/glyph]Serveur"
