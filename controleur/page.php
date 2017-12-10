@@ -76,7 +76,6 @@ if(isset($_GET['page']))
 
 		
 		case 'token': 
-		    require_once('controleur/tokens/tokens.php');
 			include('theme/' .$_Serveur_['General']['theme']. '/pages/tokens.php');
 		break;
 		

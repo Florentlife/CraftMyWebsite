@@ -222,15 +222,11 @@ if(isset($_GET['action']))
 			header('Location: index.php');
 		break;
 		
-		// Appellé lorsqu'un code alloconv est validé.
-		case 'alloconv':
-			include('controleur/alloconv.php');
-		break;
-		
-		case 'monelib':
-			include('controleur/tokens/monelib.php');
+		/// Appellé lorsqu'un code dedipass est validé.
+		case 'dedipass':
+			include('controleur/dedipass.php');
 			// On redirige sur la page d'achat de token, le joueur vas surrement racheter un code(quoi !? Pas le droit de rêver?).
-			//header('Location: &page=token');
+			//header('Location: ?page=token&success=true');
 		break;
 		
 		// Appellé quand le joueur valide son vote. Action issue d'un formulaire. Les autres infos sont en POST et non en GET.

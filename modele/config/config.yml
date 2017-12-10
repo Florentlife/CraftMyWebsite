@@ -21,6 +21,9 @@ DataBase:
     dbPort: 3306
 Payement: 
     paypal: true
+    dedipass: true
+    dedipass_public:
+    dedipass_private:
     paypalUser: 
     paypalPass: 
     paypalSignature: 
