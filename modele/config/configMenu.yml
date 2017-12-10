@@ -1,12 +1,12 @@
 # Ce fichier contiens la config de base du serveur
 
 MenuTexte:
-  - "[glyph]home[/glyph]Accueil"
-  - "[glyph]signal[/glyph]Serveur"
-  - "[glyph]shopping-cart[/glyph]Boutique"
-  - "[glyph]envelope[/glyph]Support"
-  - "[glyph]thumbs-up[/glyph]Voter"
-  - "[glyph]bullhorn[/glyph]Forum"
+  - "Accueil"
+  - "Serveur"
+  - "Boutique"
+  - "Support"
+  - "Voter"
+  - "Forum"
   - "test"
 MenuLien:
   - "index.php"
@@ -17,8 +17,8 @@ MenuLien:
   - "?page=forum"
   - "http://bite.ftr"
 MenuListeDeroulante:
-  "[glyph]signal[/glyph]Serveur":
+  "Serveur":
     - "Ban-List"
 MenuListeDeroulanteLien:
-  "[glyph]signal[/glyph]Serveur":
+  "Serveur":
     - "?page=banlist"

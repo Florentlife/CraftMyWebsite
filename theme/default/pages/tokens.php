@@ -49,44 +49,11 @@
 		</div>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title text-center"><h3 style="color: white;">Paiement par AlloConv</br>
-				1 Code = <?php echo $microTokens['tokens']; ?> Jetons ! </h3></h3>
+				<h3 class="panel-title text-center"><h3 style="color: white;">Paiement par Dedippass</br>
 			</div>
-			<div class="panel-body">
-				<div class="alert alert-success">Vous pouvez payer par AlloConv, vous paierez ainsi avec votre forfait téléphonique, c'est donc un avantage important. D'un autre côté, vous serez déversé de moins de tokens qu'avec un payement paypal (qui sont beaucoup moins taxés).</div>
-				<?php 
-				if($microTokens['enabled'] == true) {
-					if($alloconv['statut'] == 'true') {
-						echo 
-						'
-						<form id="checkCode" action="?&action=alloconv" method="POST">
-						    <div class="row">
-						        <div class="panel-body">
-						            <ul>
-						                <li style="text-align: center;">
-						                    <div class="text-center"><h3>Paiement par '.$type[$alloconv['type_solution']].'</h3></div>';
-						                    if(urldecode($_GET['transactionStatus']) == 'false')
-						                    	echo '<div class="alert alert-error">Le/Les code(s) est invalide(s).</div>';
-						                    elseif(urldecode($_GET['transactionStatus']) == 'true')
-						                    	echo '<div class="alert alert-success">Vous avez acheté '.$microTokens['tokens'].' Jetons avec succès !</div>';
-						                    echo '
-						                    <strong>Appeler le numéro : </strong><B>'.$alloconv['numero_surtaxe'].'</B></br><small><strong>('.$alloconv['prix'].')</strong></small>
-						                    </li>
-						                    <li style="text-align: center;"><B>CODE :</B> <input class="form-control text-center" type="text" name="code" placeholder="XXXXXXXX" required maxlength="8" />
-						                    </li>
-						                    <li style="text-align: center;"><center><button id="validateCode" type="submit" class="btn btn-success">Valider le code !</button></center>
-						                    </li>
-						            </ul>
-						        </div>
-						    </div>
-						</form>
-						';
-					} else {
-					    	echo '<p><center><strong>Un problème est survenu, veuillez contacter un membre de l\'équipe.</br>Erreur: '.$alloconv['description_error'].'</strong></center></p>';
-					}
-				} else { 
-						echo '<p><center><strong>Le paiement par AlloConv est désactivé.</strong></center></p>';
-				} ?>
-			</div>
+			 <div class="panel-body">
+					<div class="alert alert-success">Vous pouvez payer par Dedipass, vous paierez ainsi avec votre forfait téléphonique, c'est donc un avantage important. D'un autre côté, vous serez déversé de moins de tokens qu'avec un payement paypal (qui sont beaucoup moins taxés).</div>
+							<div data-dedipass="<?php echo $_Serveur_['Payement']['dedipass_public']; ?>" data-dedipass-custom=""></div>	
+</div>
 		</div>
 	</div>
