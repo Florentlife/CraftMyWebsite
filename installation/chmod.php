@@ -1,5 +1,6 @@
-<?php 
+<?php
 chmod("../theme/upload/", 0777);
+chmod("../theme/upload/slider/", 0777);
 chmod("install.yml", 0777);
 chmod("../modele/config/accueil.yml", 0777);
 chmod("../modele/config/config.yml", 0777);
