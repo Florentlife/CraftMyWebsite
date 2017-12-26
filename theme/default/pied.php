@@ -8,25 +8,25 @@
                         <div class="col-sm-3 text-center wow fadeInLeft">
                             <a href="#" class="fa-stack fa-2x hvr-grow">
                                 <i class="fa fa-square fa-stack-2x text-facebook"></i>
-                                <i class="fa fa-facebook-official fa-stack-1x fa-inverse"></i>
+                                <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
                             </a>
                         </div>
                         <div class="col-sm-3 text-center wow fadeInLeft" data-wow-delay="0.3s">
                             <a href="#" class="fa-stack fa-2x hvr-grow">
                                 <i class="fa fa-square fa-stack-2x text-youtube"></i>
-                                <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
+                                <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
                             </a>
                         </div>
                         <div class="col-sm-3 text-center wow fadeInRight" data-wow-delay="0.4s">
                             <a href="#" class="fa-stack fa-2x hvr-grow">
-                                <i class="fa fa-square fa-stack-2x text-steam"></i>
-                                <i class="fa fa-steam fa-stack-1x fa-inverse"></i>
+                                <i class="fa fa-square fa-stack-2x text-discord"></i>
+                                <i class="fab fa-discord fa-stack-1x fa-inverse"></i>
                             </a>
                         </div>
                         <div class="col-sm-3 text-center wow fadeInRight" data-wow-delay="0.7s">
                             <a href="#" class="fa-stack fa-2x hvr-grow">
                                 <i class="fa fa-square fa-stack-2x text-twitter"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                             </a>
                         </div>
                     </div>
