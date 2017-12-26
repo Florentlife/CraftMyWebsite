@@ -1,11 +1,10 @@
 <?php 
 
-if(isset($_Joueur_) AND isset($_POST['nom']) AND isset($_POST['forum']) AND isset($_POST['desc']) AND strlen($_POST['nom']) <= 40 AND strlen($_POST['desc']) <= 300)
+if(isset($_Joueur_) AND isset($_POST['nom']) AND isset($_POST['forum']) AND strlen($_POST['nom']) <= 40 )
 {
 	if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['addCategorie'] == true)
 	{
 		$nom = htmlspecialchars($_POST['nom']);
-		$desc = htmlspecialchars($_POST['desc']);
 		$forum = htmlspecialchars($_POST['forum']);
 		if(!empty($_POST['img']) AND strlen($_POST['img']) <= 300)
 		{
@@ -15,12 +14,11 @@ if(isset($_Joueur_) AND isset($_POST['nom']) AND isset($_POST['forum']) AND isse
 		{
 			$img = NULL;
 		}
-		$insert = $bddConnection->prepare('INSERT INTO cmw_forum_categorie (nom, img, description, forum)
-		VALUES (:nom, :img, :desc, :forum) ');
+		$insert = $bddConnection->prepare('INSERT INTO cmw_forum_categorie (nom, img, forum)
+		VALUES (:nom, :img, :forum) ');
 		$insert->execute(array(	
 			'nom' => $nom,
 			'img' => $img,
-			'desc' => $desc,
 			'forum' => $forum
 		));
 		header('Location: index.php?page=forum');
