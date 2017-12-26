@@ -259,5 +259,13 @@ class Forum {
 		$return = '<span class="'.$fetch['span'].'">'.$fetch['nom'].'</span>';
 		return $return;
 	}
+
+	public function compteTopicsForum($id)
+	{
+		$req = $this->bdd->prepare('SELECT COUNT(id) AS count FROM cmw_forum_post WHERE id_categorie = :id');
+		$req->execute(array('id' => $id));
+		$fetch = $req->fetch();
+		return $fetch['count'];
+	}
 }
 ?>
