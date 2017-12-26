@@ -59,7 +59,7 @@
 							?>
 							<div class="<?php if(count($news) == 1) echo 'col-lg-12 col-md-12 col-sm-12'; elseif(count($news) == 2) echo 'col-lg-6 col-md-6 col-sm 6'; else echo 'col-lg-4 col-md-6 col-sm-12'; ?>">
 								<div class="card hvr-float-shadow <?php if(count($news) == 1) echo 'w-100'; elseif(count($news) == 2) echo 'w-50'; else echo 'w-25'; ?>" style="margin-bottom:15px;">
-									<h5 class="card-header text-uppercase bg-primary" style="color:white;"><?php echo $news[$i]['titre']; ?><small class="text-muted">#<?php echo $news[$i]['id']; ?></small></h5>
+									<h5 class="card-header text-uppercase bg-primary" style="color:white;"><?php echo $news[$i]['titre']; ?><small class="text-muted">#<?php echo $news[$i]['id']; ?></small></h5><br/>
 									<center>Auteur : <a href="?page=profil&profil=<?php echo $news[$i]['auteur']; ?>" alt="aller voir le profil de l'auteur"><img src="https://minecraft-api.com/api/skins/head.php?player=<?php echo $news[$i]['auteur']; ?>&size=24" alt="auteur"/> <?php echo $news[$i]['auteur']; ?></a></center>
 									<div class="card-block">
 										<p class="card-text"><?php echo $news[$i]['message']; ?></p>
@@ -145,14 +145,15 @@
 
 										<div class="container">
 											<div class="row">
-													<div class="col-md-6 col-lg-6 col-sm-12">
-														<img class="rounded float-left" src="https://minecraft-api.com/api/skins/head.php?player=<?php echo $newsComments['pseudo']; ?>&size=32" alt="Auteur" />
-														<footer class="blockquote-footer"><?php echo '<B> - '.$newsComments['pseudo'].'</B>'; ?></footer>
-														<p class="text-muted text-center"><?php echo '<B>Le '.date('d/m', $newsComments['date_post']).' à '.date('H:i:s', $newsComments['date_post']).'</B>'; ?></p>
+													<div class="col-md-4 col-lg-4 col-sm-12">
+														<img class="rounded" style="margin-left: auto; margin-right: auto; display: block;" src="https://minecraft-api.com/api/skins/head.php?player=<?php echo $newsComments['pseudo']; ?>&size=64" alt="Auteur" />
+														<p class="text-muted text-center username"><?php echo '<B> '.$newsComments['pseudo'].'</B>'; ?><br/>
+															<?php echo  '<b>'.gradeJoueur($newsComments['pseudo'], $bddConnection).'</b><br/>'; ?>
+															<?php echo '<B>Le '.date('d/m', $newsComments['date_post']).' à '.date('H:i:s', $newsComments['date_post']).'</B>'; ?></p>
 														<?php if(isset($_Joueur_)) { ?>
 															<span style="color: red;"><?php if($newsComments['nbrEdit'] != "0"){echo 'Nombre d\'édition: '.$newsComments['nbrEdit'].' | ';}if($countReportsVictimes != "0"){echo '<B>'.$countReportsVictimes.' Signalement</B> |';} ?></span>
 															<div class="dropdown">
-																<a type="button" class="btn btn-info collapsed" data-toggle="dropdown" style="font-size: 10px;">Action <b class="caret"></b></a>
+																<button class="btn btn-info" data-toggle="dropdown" style="font-size: 10px;">Action <b class="caret"></b></button>
 																<ul class="dropdown-menu">
 																	<?php if($newsComments['pseudo'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1) {
 																		echo '<li><a href="#" data-toggle="modal" data-target="#news'.$news[$i]['id'].'-'.$newsComments['id'].'-edit">Editer</a></li>';
@@ -169,7 +170,7 @@
 															</div> <!-- dropdown -->
 															<?php } ?>
 													</div>
-													<div class="col-md-4 col-lg-4 col-sm-12">
+													<div class="col-md-6 col-lg-6 col-sm-12">
 														<?php $com = espacement($newsComments['commentaire']); echo BBCode($com); ?>
 													</div>
 											</div> <!-- Ticket-Commentaire-->

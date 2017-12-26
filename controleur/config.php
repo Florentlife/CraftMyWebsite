@@ -20,8 +20,8 @@
 	for($i = 0; $i < count($_Menu_['MenuTexte']); $i++)
 	{
 		$_Menu_['MenuTexteBB'][$i] = $_Menu_['MenuTexte'][$i];
-		$_Menu_['MenuTexte'][$i] = str_replace('[glyph]', '<span class="glyphicon glyphicon-', $_Menu_['MenuTexte'][$i]);
-		$_Menu_['MenuTexte'][$i] = str_replace('[/glyph]', '"></span> ', $_Menu_['MenuTexte'][$i]);
+		$_Menu_['MenuTexte'][$i] = str_replace('<glyph>', '<span class="glyphicon glyphicon-', $_Menu_['MenuTexte'][$i]);
+		$_Menu_['MenuTexte'][$i] = str_replace('</glyph>', '"></span> ', $_Menu_['MenuTexte'][$i]);
 	}
 
 
@@ -45,4 +45,25 @@
 	require('modele/forum/miseEnPage.php'); 
 	require('modele/boutique/panier.class.php');
 	$_Panier_ = new Panier($bddConnection);
+
+	function gradeJoueur($pseudo, $bdd)
+	{
+		$req = $bdd->prepare('SELECT rang FROM cmw_users WHERE pseudo = :pseudo');
+		$req->execute(array('pseudo' => $pseudo ));
+		$joueurDonnees = $req->fetch();
+		if($joueurDonnees['rang'] == 0) {
+			$gradeSite = 'Joueur';
+		} elseif($joueurDonnees['rang'] == 1) {
+			$gradeSite = "<span class='style16'>Créateur</span>";
+		} elseif(fopen('./modele/grades/'.$joueurDonnees['rang'].'.yml', 'r')) {
+			$openGradeSite = new Lire('./modele/grades/'.$joueurDonnees['rang'].'.yml');
+			$readGradeSite = $openGradeSite->GetTableau();
+			$gradeSite = $readGradeSite['Grade'];
+			if(empty($readGradeSite['Grade']))
+				$gradeSite = 'Joueur';
+		} else {
+			$gradeSite = 'Joueur';
+		}
+		return $gradeSite;
+	}
 ?>
