@@ -20,8 +20,6 @@
 	for($i = 0; $i < count($_Menu_['MenuTexte']); $i++)
 	{
 		$_Menu_['MenuTexteBB'][$i] = $_Menu_['MenuTexte'][$i];
-		$_Menu_['MenuTexte'][$i] = str_replace('<glyph>', '<span class="glyphicon glyphicon-', $_Menu_['MenuTexte'][$i]);
-		$_Menu_['MenuTexte'][$i] = str_replace('</glyph>', '"></span> ', $_Menu_['MenuTexte'][$i]);
 	}
 
 
