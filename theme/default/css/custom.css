@@ -97,6 +97,11 @@ section {
     text-shadow: 2px 2px #363031;
 }
 
+.text-discord {
+    color: #7289DA;
+    text-shadow:  2px 2px #5b71bf;
+}
+
 .btn-colored{
     background-color: #502c87;
     border-color: #502c87;
