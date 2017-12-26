@@ -5,6 +5,7 @@ require('include/version.php');?>
 <html>
 <head>
 	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
 	<meta name="autor" content="CraftMyWebsite , TheTueurCiTy, <?php echo $_Serveur_['General']['name']; ?>" />
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/font-awesome.min.css" rel="stylesheet" type="text/css">
