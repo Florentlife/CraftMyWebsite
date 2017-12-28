@@ -6,3 +6,5 @@ modele/.htpasswd
 modele/.htpasswd
 controleur/.htpasswd
 admin/actions/.htpasswd
+*.xml
+*.iml

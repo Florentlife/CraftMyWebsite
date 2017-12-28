@@ -19,7 +19,7 @@ include './admin/include/header.php';
 
 				<div class="cmw-right-navbar">
 					<audio id="horn" src="./admin/assets/sound/horn.mp3"></audio>
-					<a onmouseover="document.getElementById('horn').play()" onmouseout="document.getElementById('horn').pause()" href="index.php?&page=profil&profil=<?php echo $_Joueur_['pseudo']; ?>" class="dropdown-toggle cmw-header-username hvr-buzz" data-toggle="dropdown"><img src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $_Joueur_['pseudo']; ?>&s=32&v=front" /> <?php echo $_Joueur_['pseudo']; ?></a> 
+					<a onmouseover="document.getElementById('horn').play()" onmouseout="document.getElementById('horn').pause()" href="index.php?&page=profil&profil=<?php echo $_Joueur_['pseudo']; ?>" class="dropdown-toggle cmw-header-username hvr-buzz" data-toggle="dropdown"><img src="https://mc.frozenspace.net/api/avatar/<?php echo $_Joueur_['pseudo']; ?>/32" /> <?php echo $_Joueur_['pseudo']; ?></a>
 					<a href="../index.php?&action=deco" class="cmw-nav-disconnect hvr-underline-reveal"><i class="fa fa-fw fa-power-off"></i> Déconnexion</a></div>
 				</div>
 
