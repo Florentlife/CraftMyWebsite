@@ -5,10 +5,9 @@ require('include/version.php');?>
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="x-ua-compatible" content="ie=edge" />
 	<meta name="autor" content="CraftMyWebsite , TheTueurCiTy, <?php echo $_Serveur_['General']['name']; ?>" />
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/ionicons.min.css" rel="stylesheet" type="text/css">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/animate.css" rel="stylesheet" type="text/css">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/hover.min.css" rel="stylesheet" type="text/css">
@@ -17,9 +16,11 @@ require('include/version.php');?>
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/toastr.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/snarl.min.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/forum.css">
-	<script src="//api.dedipass.com/v1/pay.js"></script>
-	<?php 
-		if(file_exists('favicon.ico'))
+	<?php if($_GET['page'] == 'post')
+	{
+		?><script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script><?php
+	}
+	if(file_exists('favicon.ico'))
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
 	?>
 	<title><?php echo $_Serveur_['General']['description'] ?></title>
@@ -64,6 +65,7 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <script>
 function insertAtCaret (textarea, icon)
 { 
+	var Editor = FCKeditorAPI.GetInstance('contenue');
 	if (document.getElementById(textarea).createTextRange && document.getElementById(textarea).caretPos)
 	{ 
 		var caretPos = document.getElementById(textarea).caretPos; 
@@ -79,7 +81,7 @@ function insertAtCaret (textarea, icon)
 	}
 	else
 	{
-		document.getElementById(textarea).value = document.getElementById(textarea).value + icon;
+		Editor.SetHTML(document.getElementById(textarea).value + icon);
 	}
 	
 	document.getElementById(textarea).focus(); 
@@ -228,4 +230,9 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
 
 });
 </script>
+<?php if($_GET['page'] == 'post')
+{
+	?><script> CKEDITOR.replace( 'contenue' );</script><?php
+}
+?>
 </body>

@@ -4,8 +4,6 @@
 if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['addSousForum'] == true) AND isset($_POST['nom']) AND strlen($_POST['nom']) <= 40 AND isset($_POST['id_categorie']))
 {
 	$nom = htmlspecialchars($_POST['nom']);
-	if(isset($_POST['desc']) AND strlen($_POST['desc']) <= 300)
-		$desc = htmlspecialchars($_POST['desc']);
 	$id = htmlspecialchars($_POST['id_categorie']);
 	if(!empty($_POST['img']) AND strlen($_POST['img']) <= 300 )
 	{
@@ -26,11 +24,10 @@ if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['gen
 		'sous-forum' => $sf,
 		'id' => $id
 	));
-	$insert = $bddConnection->prepare('INSERT INTO cmw_forum_sous_forum (id_categorie, nom, description, img) VALUES (:id, :nom, :desc, :img) ');
+	$insert = $bddConnection->prepare('INSERT INTO cmw_forum_sous_forum (id_categorie, nom, img) VALUES (:id, :nom, :img) ');
 	$insert->execute(array(
 		'id' => $id,
 		'nom' => $nom,
-		'desc' => $desc,
 		'img' => $img
 	));
 	header('Location: index.php?page=forum_categorie&id=' .$id. '');

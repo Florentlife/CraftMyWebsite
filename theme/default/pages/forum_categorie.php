@@ -4,9 +4,6 @@
 	$id = $_GET['id'];
 	if($_Forum_->exist($id))
 	{
-	?><section class="content-item">
-	<div class="container">
-	<?php
 		if(isset($_GET['id_sous_forum']))
 			$id_sous_forum = $_GET['id_sous_forum'];
 		$categoried = $_Forum_->infosCategorie($id);
@@ -15,26 +12,39 @@
 		else
 		$sousforumd = $_Forum_->infosSousForum($id, 0);
 			
-		?><ol class="breadcrumb" style="font-size: 30px;">
-		  <li><a href="/">Accueil</a></li>
-		  <li><a href="?page=forum">Forum</a></li>
-		  <li<?php if(isset($id_sous_forum)) { echo '><a href="?page=forum_categorie&id='.$id.'">'; } else { echo ' class="active">'; } echo $categoried['nom']; if(isset($id_sous_forum)) { echo '</a>'; } ?></li>
-		  <?php if(isset($id_sous_forum))
-				echo '<li class="active">'.$sousforumd['nom'].'</li>';
-			?>
-		</ol><?php
+		?><header class="heading-pagination">
+			<div class="container-fluid">
+				<h1 class="text-uppercase wow fadeInRight" style="color:white;">Forum: <?=$categoried['nom'];?></h1>
+			</div>
+		</header>
+		<section class="layout" id="page">
+		<div class="container">
+			<div class="alert alert-warning" role="alert">
+				<p style="margin-bottom: 0;" class="text-center">Vous êtes en Mode Joueur. Pour changer de mode, passer sur la page forum.</p>
+			</div>
+			<nav aria-label="breadcrumb" role="navigation">
+				<ol class="breadcrumb">
+				  <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+				  <li class="breadcrumb-item"><a href="?page=forum">Forum</a></li>
+				  <li<?php if(isset($id_sous_forum)) { echo ' class="breadcrumb-item"><a href="?page=forum_categorie&id='.$id.'">'; } else { echo ' class="breadcrumb-item active">'; } echo $categoried['nom']; if(isset($id_sous_forum)) { echo '</a>'; } ?></li>
+				  <?php if(isset($id_sous_forum))
+						echo '<li class="breadcrumb-item active">'.$sousforumd['nom'].'</li>';
+					?>
+				</ol>
+			</nav><?php
 		if(!empty($sousforumd['id']) && !isset($id_sous_forum))
 		{
 		?>
 		<h3>Les sous-Catégories de <?php echo $categoried['nom']; ?></h3>
 		<table class="table table-striped">
 			<tr>
-				<th></th>
-				<th>Nom</th>
-				<th>Description</th>
+				<th style="width: 5%"></th>
+				<th style="width: 65%">Nom</th>
+				<th style="width: 5%">Discussions</th>
+				<th style="width: 5%">Messages</th>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteSousForum'] == true) AND !$_SESSION['mode'])
 				{
-					?><th>Actions</th><?php 
+					?><th style="width:20%">Actions</th><?php 
 				} ?>
 			</tr>
 			<?php
@@ -46,7 +56,8 @@
 				<td><?php if($sousforumd[$a]['img'] == NULL) { ?><a href="?&page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><i class="material-icons">chat</i></a><?php }
 					else { ?><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><i class="material-icons"><?php echo $sousforumd[$a]['img']; ?></a><?php }?></td>
 				<td><a href="?&page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $sousforumd[$a]['nom']; ?></a></td>	
-				<td><?php if(isset($sousforumd[$a]['description']) AND $sousforumd[$a]['description'] != NULL) { ?><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $sousforumd[$a]['description']; ?></a><?php } ?></td>
+				<td><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $_Forum_->compteTopicsSF($sousforumd[$a]['id']); ?></a></td>
+				<td><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $_Forum_->compteAnswerSF($sousforumd[$a]['id']); ?></a></td>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteSousForum'] == true) AND !$_SESSION['mode'])
 				{
 					?><td><a href="?action=remove_sf&id_cat=<?php echo $id; ?>&id_sf=<?php echo $sousforumd[$a]['id']; ?>">Supprimer le Sous-Forum</a></td><?php 
@@ -159,13 +170,13 @@
 						}
 							echo $topicd[$i]['nom']; ?></a></td>
 						<td><p>Réponses : <?php echo $_Forum_->compteReponse($topicd[$i]['id']); ?></td>
-						<td><a href="?&page=post&id=<?php echo $topicd[$i]['id']; ?>"><?php echo $topicd[$i]['last_answer']; ?></td>
+						<td><a href="?&page=post&id=<?php echo $topicd[$i]['id']; ?>"><?php echo $_Forum_->conversionLastAnswer($topicd[$i]['last_answer']); ?></td>
 					</tr>
 					<?php 
 				}
 				?>
 			</table><br/>
-			<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['moderation']['addPrefix'] == 1 OR $_PGrades_['PermsForum']['moderation']['epingle'] == 1 OR $_PGrades_['PermsForum']['moderation']['closeTopic'] == 1 AND !$_SESSION['mode'])
+			<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['moderation']['addPrefix'] == 1 OR $_PGrades_['PermsForum']['moderation']['epingle'] == 1 OR $_PGrades_['PermsForum']['moderation']['closeTopic'] == 1) AND !$_SESSION['mode'])
 			{
 			?>
 			<div id="popover" class="hide"><hr/><form id="sel-form" method='POST' action='?action=selTopic' class="inline">
@@ -174,11 +185,12 @@
 				if($_PGrades_['PermsForum']['moderation']['addPrefix'] == true OR $_Joueur_['rang'] == 1)
 				{ ?> 
 				<label for='prefix'>Appliquer un préfix de discussion : </label><select name='prefix' id='prefix'>
-					<option value='1'><span class='prefix prefixRed'>Important</span></option>
-					<option value='2'><span class='prefix prefixOrange'>Refusée</span></option>
-					<option value='3'><span class='prefix prefixGreen'>Acceptée</span></option>
+					<option value="NULL">Ne pas changer le préfixe</option>
+					<option value='0'>Aucun</option>
 					<option value='4'>En attente</option>
-					<option value='0'><span class='prefix prefixGreen'>Aucun</span></option>
+					<option value='1'>Important</option>
+					<option value='2'>Refusée</option>
+					<option value='3'>Acceptée</option>
 				</select>
 				<?php } if($_PGrades_['PermsForum']['moderation']['epingle'] == true or $_Joueur_['rang'] == 1)
 				{ ?>
@@ -193,12 +205,11 @@
 			</div>
 			<?php 
 		}
-		?>
-			<nav>
+		?><nav aria-label="Page forum catégorie">
 				<ul class="pagination"><?php
 					for($i = 1; $i <= $count_topic_nbrOfPages2; $i++)
 					{
-						?><li><a href="?&page=forum_categorie&id=<?php echo $id; if(isset($id_sous_forum)) echo "&id_sous_forum=$id_sous_forum"; ?>&page_topic=<?php echo $i; ?>"><?php echo $i;
+						?><li class="page-item"><a class="page-link" href="?&page=forum_categorie&id=<?php echo $id; if(isset($id_sous_forum)) echo "&id_sous_forum=$id_sous_forum"; ?>&page_topic=<?php echo $i; ?>"><?php echo $i;
 						?></a></li><?php
 					} ?>    
 				</ul>
@@ -209,7 +220,7 @@
 		{
 			?>
 			<div class="alert alert-warning" role="alert">
-				Aucun sujet n'a été posté :( 
+				<p class="text-center" style="margin-bottom: 0;">Aucun sujet n'a été posté :( </p>
 			</div>
 			<?php
 		} 
@@ -226,12 +237,6 @@
 				<label for="nom" class="col-sm-2 form-control-label">Rentrez le nom de votre sujet/topic</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="nom" name="nom" placeholder="Le titre de votre topic ici" require />
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="description" class="col-sm-2 form-control-label">Insérez une description de votre topic ( 200 caractères max ! )</label>
-				<div class="col-sm-10">
-					<textarea id="description" name="description" max="200" min="0" class="form-control" require ></textarea>
 				</div>
 			</div>
 			<div class="form-group row">

@@ -81,6 +81,7 @@ function BBCode($contenue)
 	);
 	$contenue = str_ireplace($smiley, $replace , $contenue);
 	$contenue = preg_replace("#[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}#isU", "<a href='mailto:$0'>$0</a>", $contenue);
+	$contenue = htmlspecialchars_decode($contenue);
 	return $contenue;
 }
 ?>
