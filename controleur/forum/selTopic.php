@@ -5,7 +5,7 @@ if(isset($_Joueur_) && ($_PGrades_['PermsForum']['moderation']['selTopic'] == tr
 	{
 		$id = htmlspecialchars($value);
 		$idCat = htmlspecialchars($_POST['idCat']);
-		if(isset($_POST['prefix']) && ($_PGrades_['PermsForum']['moderation']['addPrefix'] == true OR $_Joueur_['rang'] == 1))
+		if(isset($_POST['prefix']) && ($_PGrades_['PermsForum']['moderation']['addPrefix'] == true OR $_Joueur_['rang'] == 1) && $_POST['prefix'] != 'NULL')
 		{
 			$prefix = htmlspecialchars($_POST['prefix']);
 			$req = $bddConnection->prepare('UPDATE cmw_forum_post SET prefix = :prefix WHERE id = :id');

@@ -33,7 +33,7 @@ if(isset($_Joueur_))
 		));
 		$add_answer = $bddConnection->prepare('UPDATE cmw_forum_post SET last_answer = :last_answer WHERE id = :id');
 		$add_answer->execute(array( 
-			'last_answer' => $_Joueur_['pseudo'],
+			'last_answer' => $_Joueur_['pseudo'].':'.time(),
 			'id' => $id
 		));
 		$topic_lu = $bddConnection->prepare('UPDATE cmw_forum_lu SET vu = 0 WHERE id_topic = :id AND pseudo != :pseudo');

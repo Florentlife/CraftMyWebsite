@@ -7,8 +7,12 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 	$topicd = $_Forum_->getTopic($id);
 	if(!empty($topicd['id']))
 	{
-?>
-	<section class="content-item">
+	?><header class="heading-pagination">
+		<div class="container-fluid">
+			<h1 class="text-uppercase wow fadeInRight" style="color:white;">Post: <?=$topicd['nom'];?></h1>
+		</div>
+	</header>
+	<section class="layout" id="page">
 	<div class="container">
 	<nav class="nav nav-pills nav-justified">
 		<?php if($_JoueurForum_->is_followed($id))
@@ -344,7 +348,7 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 					<label for="contenue" class="form-control-label">Contenue de votre réponse ( 10 000 caractères max ! ) : </label>
 				</div>
 			<div class="col-md-12">
-				<textarea class="form-control" name="contenue" id="contenue" max="10 000" min="1" rows="20" require ></textarea>
+				<textarea class="form-control tinymce" name="contenue" id="contenue" max="10 000" min="1" rows="20" require ></textarea>
 			</div>
 		</div>
 		<div class="form-group row">
