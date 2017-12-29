@@ -1,5 +1,10 @@
-<div class="container" style="background-color: white;margin-top: -20px;margin-bottom: -20px;border-left: 4px solid #e74c3c;border-right: 4px solid #e74c3c;">
-<h1 class="titre"><center>Voter</center></h1>
+<header class="heading-pagination">
+	<div class="container-fluid">
+		<h1 class="text-uppercase wow fadeInRight" style="color:white;">Voter</h1>
+	</div>
+</header>
+<section class="layout" id="page">
+<div class="container">
 				<?php
 				if(isset($_GET['erreur']))
 				{
@@ -20,7 +25,7 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title"><h4 style="color: white;"><center><?php echo $_Serveur_['General']['name']; ?> à besoin de vous !</center></h4></h3>
+    <h3 class="panel-title"><center><?php echo $_Serveur_['General']['name']; ?> à besoin de vous !</center></h3>
   </div>
   <div class="panel-body">
     <p><center><strong>
@@ -31,9 +36,9 @@
 </div>	
 
 			<h3 class="header-bloc">Voter pour votre serveur :</h3>
-			<div class="corp-bloc">
+			<div class="tabbable">
 				<form action="?&action=voter" method="post">
-				<ul class="nav nav-tabs">
+				<ul class="nav nav-tabs" style="margin-bottom:1vh;">
                 
 				<?php 
                 if(!isset($jsonCon) OR empty($jsonCon))
@@ -41,7 +46,7 @@
                 
                 for($i = 0; $i < count($jsonCon); $i++) { ?>
 					
-					<li <?php if($i == 0) echo 'class="active"'; ?>><a href="#voter<?php echo $i; ?>" data-toggle="tab"><?php echo $lecture['Json'][$i]['nom']; ?></a></li>
+					<li class="nav-item"><a href="#voter<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo ' active'; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></a></li>
 					
 				<?php } ?>
 				</ul>
@@ -50,18 +55,33 @@
 				<div class="tab-content">
 				<?php for($i = 0; $i < count($jsonCon); $i++) { ?>
 				
-					<div class="tab-pane<?php if($i == 0) echo ' active'; ?>" id="voter<?php echo $i; ?>">  
-					
+					<div id="voter<?php echo $i; ?>" class="tab-pane fade <?php if($i==0) echo 'in active show';?>" <?php if($i == 0) { echo 'aria-expanded="true"'; } else echo 'aria-expanded="false"'; ?>>  
+						<div class="panel-body">
+							<div class="alert alert-dismissable alert-success">
+							<button type="button" class="close" data-dismiss="alert">×</button>
+							<center>Bienvenue dans la catégorie de vote pour le serveur : <?=$lecture['Json'][$i]['nom'];?></center>
+							</div>
                     
-					<?php $k = 0; for($j = 0; $j < count($liensVotes); $j++) { if($i == $liensVotes[$j]['serveur']) {?>
-						<button type="submit" class="btn btn-primary bouton-vote" name="site" value="<?php echo $j + 1; ?>" onclick="window.open('<?php echo $liensVotes[$j]['lien']; ?>','Fiche','toolbar=no,status=no,width=1350 ,height=900,scrollbars=yes,location=no,resize=yes,menubar=yes')" >
-							<?php echo $liensVotes[$j]['titre']; ?>
-                        </button>					
-					<?php	} else{ $k++;	 } }
-                        if($k == $j)    echo '</br><p>Aucun lien de vote n\'est disponible pour ce serveur...</p>';
+					<?php  $req_vote->execute(array('serveur' => $i));
+							$count_req->execute(array('serveur' => $i));
+							$data_count = $count_req->fetch();
+							if($data_count['count'] > 0)
+							{
+								while($liensVotes = $req_vote->fetch())
+								{
+									?>
+										<button type="submit" class="btn btn-primary bouton-vote" name="site" value="<?php echo $liensVotes['id']; ?>" onclick="window.open('<?php echo $liensVotes['lien']; ?>','Fiche','toolbar=no,status=no,width=1350 ,height=900,scrollbars=yes,location=no,resize=yes,menubar=yes')" >
+											<?php echo $liensVotes['titre']; ?>
+				                        </button>					
+								<?php								
+								}
+							}
+							else
+								echo '</br><p>Aucun lien de vote n\'est disponible pour ce serveur...</p>';
                     ?>
 					
 					</div>
+				</div>
 				
 				<?php } ?>
 				</div>
@@ -70,8 +90,7 @@
 				</form>				
 				
 			</div>
-			<div class="footer-bloc">
-			</div>		
+			<br/>	
 
 			<h3 class="header-bloc">Top voteurs</h3>
 			<div class="corp-bloc">
@@ -88,4 +107,4 @@
 				</table>
 			</div>
 </div>
-
+</section>

@@ -43,11 +43,6 @@ foreach ($topVoteurs as $key => $row) {
 
 array_multisort($nbre_votes, SORT_DESC, $pseudo, SORT_ASC, $topVoteurs);
 
-
-
-
-$liensVotes = new Lire('modele/config/configVotes.yml');
-$liensVotes = $liensVotes->GetTableau();
-
-$liensVotes = $liensVotes['liens'];
+$req_vote = $bddConnection->prepare('SELECT id, lien, titre FROM cmw_votes_config WHERE serveur = :serveur');
+$count_req = $bddConnection->prepare('SELECT COUNT(id) as count FROM cmw_votes_config WHERE serveur = :serveur');
 ?>
