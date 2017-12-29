@@ -219,8 +219,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                 <button type="button" class="btn btn-success" onclick="window.location.replace('?&action=commandeRedemarrageServer')" disabled>Redémarrer le serveur</button>
               </div>
             </div>
-          </div>
           <?php }
+          ?></div><?php
         } ?>
       </div>
     </div>
