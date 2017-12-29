@@ -1,7 +1,7 @@
 <?php
 if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo']) AND !empty($_POST['mdp']))
 {
-	$_POST['mdp'] = md5(sha1($_POST['mdp']));
+	$_POST['mdp'] = htmlspecialchars_decode($_POST['mdp']);
 	$get_Pseudo = $_POST['pseudo'];
 
 	$bddConnection = $base->getConnection();

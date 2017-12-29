@@ -41,7 +41,7 @@
 			?>
 				  
 					<li class="nav-item">
-						<a href="#categorie-<?php echo $categories[$j]['titre']; ?>" data-toggle="tab" class="nav-link <?php if($j == 0) echo 'active'; ?>"><?php $categories[$j]['titre'] = str_replace('_', ' ', $categories[$j]['titre']); echo $categories[$j]['titre']; ?></a>
+						<a href="#categorie-<?php echo $j; ?>" data-toggle="tab" class="nav-link <?php if($j == 0) echo 'active'; ?>"><?php $categories[$j]['titre'] = str_replace('_', ' ', $categories[$j]['titre']); echo $categories[$j]['titre']; ?></a>
 					</li>
 			<?php $j++; } ?>
 			</ul>
@@ -53,7 +53,7 @@
 				$categories[$j]['titre'] = str_replace(' ', '_', $categories[$j]['titre']);
 				?>
 				
-				<div id="categorie-<?php echo $categories[$j]['titre']; ?>" class="tab-pane fade <?php if($j==0) echo 'in active show';?>" <?php if($j == 0) { echo 'aria-expanded="true"'; } else echo 'aria-expanded="false"'; ?>>
+				<div id="categorie-<?php echo $j; ?>" class="tab-pane fade <?php if($j==0) echo 'in active show';?>" <?php if($j == 0) { echo 'aria-expanded="true"'; } else echo 'aria-expanded="false"'; ?>>
 				<?php $categories[$j]['titre'] = str_replace('_', ' ', $categories[$j]['titre']); ?>
 						<div class="panel-body">
 							<?php if($categories[$j]['message'] == ""){ ?>
