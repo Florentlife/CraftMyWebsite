@@ -12,4 +12,12 @@ chmod("../modele/config/groups.yml", 0777);
 chmod("../modele/.htpasswd", 0777);
 chmod("../controleur/.htpasswd", 0777);
 chmod("../admin/actions/.htpasswd", 0777);
+chmod("../theme/upload/navRap/miniature-demo-1.jpg");
+chmod("../theme/upload/navRap/miniature-demo-2.png");
+chmod("../theme/upload/navRap/miniature-demo-3.png");
+chmod("../theme/upload/slider/slider1.png");
+chmod("../theme/upload/slider/slider2.png");
+chmod("../theme/upload/slider/slider3.png");
+chmod("../theme/upload/cross.png");
+chmod("../theme/upload/true.png");
 ?>
