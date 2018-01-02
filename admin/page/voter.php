@@ -3,13 +3,27 @@
 <div class="row">
 	<div class="col-lg-12">
         <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['vote']['actions']['editSettings'] == false AND $_PGrades_['PermsPanel']['vote']['actions']['addVote'] == false)) { ?>
-            <div class="col-lg-6 text-center">
+            <div class="col-lg-12 text-center">
                 <div class="alert alert-danger">
                     <strong>Vous avez aucune permission pour accéder aux votes.</strong>
                 </div>
             </div>
         <?php }
         if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['editSettings'] == true) { ?>
+        <div class="col-lg-12 text-justify">
+            <div class="alert alert-success">
+                <strong>Dans cette section vous pourrez configurez vos votes.</strong><br/>
+                Pour le message, vous pouvez utilisez les tags : <ul>
+                    <li> {JOUEUR} qui sera remplacé par le nom du joueur qui a voté</li>
+                    <li> {QUANTITE} qui sera remplacé par la quantité de jetons site, ou d'item IG give</li>
+                    <li> {ID} qui sera remplacé par l'id de l'item give IG </li>
+                </ul>
+                Pour la commande, vous pourrez utiliser : <ul>
+                    <li> {JOUEUR} qui correspond au nom du joueur qui vote. </li>
+                </ul>
+                Bonne configuration ! 
+            </div>
+        </div>
     </div>
     <form method="POST" action="?&action=creerLienVote">
         <div class="col-lg-12">

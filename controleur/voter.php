@@ -67,7 +67,7 @@ $succes = false;
 			}
 			elseif($action[0] == "jeton")
 			{
-				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], $lectureVotes['message']);
+				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $action[1], $lectureVotes['message']));
 				if($lectureVotes['methode'] == 2)
 				{
 					if($lectureVotes['display'] == 1)

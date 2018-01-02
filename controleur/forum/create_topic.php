@@ -10,25 +10,27 @@ if(isset($_Joueur_))
 		$pseudo = $_Joueur_['pseudo'];
 		if($sous_forum == 'NULL')
 		{
-			$createtopic = $bddConnection->prepare('INSERT INTO cmw_forum_post (id_categorie, nom, pseudo, contenue, date_creation, sous_forum, last_answer, etat) VALUES (:id_categorie, :nom, :pseudo, :contenue, NOW(), NULL, :last_answer, 0)');
+			$createtopic = $bddConnection->prepare('INSERT INTO cmw_forum_post (id_categorie, nom, pseudo, contenue, date_creation, sous_forum, last_answer, etat, last_answer_temps) VALUES (:id_categorie, :nom, :pseudo, :contenue, NOW(), NULL, :last_answer, 0, :last_answer_temps)');
 			$createtopic->execute(array(
 			'id_categorie' => $id_categorie,
 			'nom' => $nom,
 			'pseudo' => $pseudo,
 			'contenue' => $contenue,
-			'last_answer' => $pseudo
+			'last_answer' => $pseudo,
+			'last_answer_temps' => time()
 			));
 		}
 		else
 		{
-			$createtopic = $bddConnection->prepare('INSERT INTO cmw_forum_post (id_categorie, nom, pseudo, contenue, date_creation, sous_forum, last_answer, etat) VALUES (:id_categorie, :nom, :pseudo, :contenue, NOW(), :sous_forum, :last_answer, 0)');
+			$createtopic = $bddConnection->prepare('INSERT INTO cmw_forum_post (id_categorie, nom, pseudo, contenue, date_creation, sous_forum, last_answer, etat, last_answer_temps) VALUES (:id_categorie, :nom, :pseudo, :contenue, NOW(), :sous_forum, :last_answer, 0, :last_answer_temps)');
 			$createtopic->execute(array(
 			'id_categorie' => $id_categorie,
 			'nom' => $nom,
 			'pseudo' => $pseudo,
 			'contenue' => $contenue,
 			'sous_forum' => $sous_forum,
-			'last_answer' => $pseudo
+			'last_answer' => $pseudo,
+			'last_answer_temps' => time()
 		));
 		}
 		$return = $bddConnection->query('SELECT MAX(id) AS id FROM cmw_forum_post');

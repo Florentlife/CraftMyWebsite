@@ -51,6 +51,7 @@ if(isset($_Joueur_)) {
 				$editGrade['PermsPanel']['menus']['showPage'] = $_POST['permsPanelMenus'.$i];
 				$editGrade['PermsPanel']['vote']['showPage'] = $_POST['permsPanelVoter'.$i];
 				$editGrade['PermsPanel']['members']['showPage'] = $_POST['permsPanelMembres'.$i];
+				$editGrade['PermsPanel']['forum']['showPage'] = $_POST['permsPanelForum'.$i];
 				$editGrade['PermsPanel']['widgets']['showPage'] = $_POST['permsPanelWidgets'.$i];
 				$editGrade['PermsPanel']['support']['tickets']['showPage'] = $_POST['permsPanelTickets'.$i];
 				$editGrade['PermsPanel']['support']['maintenance']['showPage'] = $_POST['permsPanelMaintenance'.$i];
@@ -108,6 +109,9 @@ if(isset($_Joueur_)) {
 
 				$editGrade['PermsPanel']['members']['actions']['editMember'] = $_POST['permsPanelMembersActionsEditMember'.$i];
 
+				$editGrade['PermsPanel']['forum']['actions']['addSmiley'] = $_POST['permsPanelForumActionsAddSmiley'.$i];
+				$editGrade['PermsPanel']['forum']['actions']['seeSmileys'] = $_POST['permsPanelForumActionsSeeSmileys'.$i];
+
 				$editGrade['PermsPanel']['widgets']['actions']['addWidgets'] = $_POST['permsPanelWidgetsActionsAddWidgets'.$i];
 				$editGrade['PermsPanel']['widgets']['actions']['editWidgets'] = $_POST['permsPanelWidgetsActionsEditWidgets'.$i];
 
@@ -126,6 +130,7 @@ if(isset($_Joueur_)) {
 				$editGrade['PermsForum']['general']['addSousForum'] = $_POST['permsForumGeneralAddSousForum'.$i];
 				$editGrade['PermsForum']['general']['deleteSousForum'] = $_POST['permsForumGeneralDeleteSousForum'.$i];
 				$editGrade['PermsForum']['general']['modeJoueur'] = $_POST['permsForumGeneralModeJoueur'.$i];
+
 				$editGrade['PermsForum']['moderation']['editTopic'] = $_POST['permsForumModerationEditTopic'.$i];
 				$editGrade['PermsForum']['moderation']['deleteTopic'] = $_POST['permsForumModerationDeleteTopic'.$i];
 				$editGrade['PermsForum']['moderation']['editMessage'] = $_POST['permsForumModerationEditMessage'.$i];

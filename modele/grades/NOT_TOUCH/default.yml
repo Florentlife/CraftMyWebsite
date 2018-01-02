@@ -94,6 +94,11 @@ PermsPanel:
     showPage: 
     actions:
       editMember: 
+  forum:
+    showPage:
+    actions:
+      addSmiley:
+      seeSmileys:
   widgets:
     showPage: 
     actions:

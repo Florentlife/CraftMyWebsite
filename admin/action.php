@@ -10,6 +10,16 @@
 		require_once('admin/actions/commande.php');
 		break;
 
+		case 'addSmiley':
+			require_once('admin/actions/addSmiley.php');
+			$_SESSION['referrerAdmin'] = 'forum';
+		break;
+
+		case 'supprSmiley':
+			require_once('admin/actions/supprSmiley.php');
+			$_SESSION['referrerAdmin'] = 'forum';
+		break;
+
 		case 'creerCoupon':
 			require_once('admin/actions/creerCoupon.php');
 			$_SESSION['referrerAdmin'] = 'boutique';
