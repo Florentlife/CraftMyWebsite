@@ -219,6 +219,11 @@
                                                                                         <input type="checkbox" name="permsPanelMembres<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['members']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>membres</strong>
                                                                                     </label>
                                                                                 </div>
+                                                                                <div class="checkbox">
+                                                                                    <label>
+                                                                                        <input type="checkbox" name="permsPanelForum<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>forum</strong>
+                                                                                    </label>
+                                                                                </div>
                                                                             </div>
                                                                             <div class="col-lg-6 text-left">
                                                                                 <div class="checkbox">
@@ -686,6 +691,35 @@
                                                                                                                 <div class="checkbox">
                                                                                                                     <label>
                                                                                                                         <input type="checkbox" name="permsPanelMembersActionsEditMember<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['members']['actions']['editMember'] == true) echo 'checked'; ?> /> Edition des membres
+                                                                                                                    </label>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="panel panel-default">
+                                                                                        <div class="panel-heading" role="tab" id="headingPagesForum<?php echo $i; ?>">
+                                                                                            <h4 class="panel-title">
+                                                                                                <a role="button" data-toggle="collapse" data-parent="#accordionPages<?php echo $i; ?>" href="#collapsePagesForum<?php echo $i; ?>" aria-expanded="true" aria-controls="collapsePagesForum<?php echo $i; ?>"><strong>Forum</strong></a>
+                                                                                            </h4>
+                                                                                        </div>
+                                                                                        <div id="collapsePagesForum<?php echo $i; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPagesForum<?php echo $i; ?>">
+                                                                                            <div class="panel-body">
+                                                                                                <div class="col-lg-12 text-center">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-lg-12 col-lg-offset-3 text-left">
+                                                                                                            <div class="col-lg-8">
+                                                                                                                <div class="checkbox">
+                                                                                                                    <label>
+                                                                                                                        <input type="checkbox" name="permsPanelForumActionsAddSmiley<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['addSmiley'] == true) echo 'checked'; ?> /> Ajout de smileys
+                                                                                                                    </label>
+                                                                                                                </div>
+                                                                                                                <div class="checkbox">
+                                                                                                                    <label>
+                                                                                                                        <input type="checkbox" name="permsPanelForumActionsSeeSmileys<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['seeSmileys'] == true) echo 'checked'; ?> /> Voir/Supprimer les smileys
                                                                                                                     </label>
                                                                                                                 </div>
                                                                                                             </div>

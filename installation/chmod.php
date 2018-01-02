@@ -20,4 +20,6 @@ chmod("../theme/upload/slider/slider2.png", 0777);
 chmod("../theme/upload/slider/slider3.png", 0777);
 chmod("../theme/upload/cross.png", 0777);
 chmod("../theme/upload/true.png", 0777);
+chmod("../theme/upload/bg.png", 0777);
+chmod("../theme/smileys/", 0777);
 ?>

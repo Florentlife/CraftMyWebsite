@@ -70,8 +70,6 @@ PermsPanel:
             addCategorie: 
             addOffre: 
             editCategorieOffre: 
-            createCoupon:
-            modifCoupon:
     payment: 
         showPage: 
         actions: 
@@ -95,6 +93,11 @@ PermsPanel:
         showPage: 
         actions: 
             editMember: 
+    forum:
+        showPage:
+        actions:
+            addSmiley:
+            seeSmileys:
     widgets: 
         showPage: 
         actions: 
