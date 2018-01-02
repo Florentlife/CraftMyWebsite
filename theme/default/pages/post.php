@@ -90,7 +90,7 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 		<!-- Contenue du topic de l'auteur -->
 			<p><?php unset($contenue);
 			$contenue = espacement($topicd['contenue']);
-			$contenue = BBCode($contenue);
+			$contenue = BBCode($contenue, $bddConnection);
 			echo $contenue;
 			?></p><br/><div style="border-top: 0.5px grey solid;"></div>
 			<p class="text-right text-muted">Posté le <?php  echo $topicd['jour']; ?> <?php $mois = switch_date($topicd['mois']); echo $mois; ?> <?php echo $topicd['annee'];?>  <?php if($topicd['d_edition'] != NULL) { echo 'édité le '; $d_edition = explode('-', $topicd['d_edition']); echo $d_edition[2]; echo '/' .$d_edition[1]. '/' .$d_edition[0]. ''; } ?></p>
@@ -158,11 +158,11 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 				</div>
 			</div>
 			<div class="col-md-10"> <!-- contenue de la réponse -->
-				<p><?php $answere = $answerd[$i]['contenue'];
+				<div style="text-overflow: clip; word-wrap: break-word;"><?php $answere = $answerd[$i]['contenue'];
 				$answere = espacement($answere);
-				$answere = BBCode($answere);
+				$answere = BBCode($answere, $bddConnection);
 				echo $answere;
-				?></p>
+				?></div>
 				<br/><div style="border-top: 0.5px grey solid;"></div>
 				<p class="text-right text-muted"><?php echo $answerd[$i]['day']; ?> <?php $answerd[$i]['mois'] = switch_date($answerd[$i]['mois']); echo $answerd[$i]['mois']; ?> <?php echo $answerd[$i]['annee']; ?> <?php if($answerd[$i]['d_edition'] != NULL){ echo 'édité le '; $d_edition = explode('-', $answerd[$i]['d_edition']); echo '' .$d_edition[2]. '/' .$d_edition[1]. '/' .$d_edition[0]. ''; } ?> </p>
 			</div>
@@ -321,34 +321,37 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 		<input type='hidden' name="id_topic" value="<?php echo $id; ?>"/>
 		<div class="form-group row">
 			<div class="col-md-12 text-center">
-				<a href="javascript:insertAtCaret('contenue', ' :) ')"><img src="theme/smileys/1.gif" alt=":)" title=":)"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :D ')"><img src="theme/smileys/2.gif" alt=":D" title=":D"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' x) ')"><img src="theme/smileys/3.gif" alt="x)" title="x)"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' xD ')"><img src="theme/smileys/4.gif" alt="xD" title="xD"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :excited: ')"><img src="theme/smileys/5.gif" alt=":excited:" title=":excited:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' ;) ')"><img src="theme/smileys/6.gif" alt=";)" title=";)"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :embarrassed: ')"><img src="theme/smileys/11.gif" alt=":embarrassed:" title=":embarrassed:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' 8) ')"><img src="theme/smileys/13.gif" alt="8)" title="8)"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :o ')"><img src="theme/smileys/20.gif" alt=":o" title=":o"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :( ')"><img src="theme/smileys/23.gif" alt=":(" title=":("/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :/ ')"><img src="theme/smileys/24.gif" alt=":/" title=":/"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' <3 ')"><img src="theme/smileys/120.gif" alt="<3" title="<3"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :angel: ')"><img src="theme/smileys/36.gif" alt=":angel:" title=":angel:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :diable: ')"><img src="theme/smileys/37.gif" alt=":diable:" title=":diable:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :salut: ')"><img src="theme/smileys/48.gif" alt=":salut:" title=":salut:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :je sors: ')"><img src="theme/smileys/112.gif" alt=":je sors:" title=":je sors:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :tu sors: ')"><img src="theme/smileys/117.gif" alt=":tu sors:" title=":tu sors:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :vive moi: ')"><img src="theme/smileys/113.gif" alt=":vive moi:" title=":vive moi:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :caca: ')"><img src="theme/smileys/151.gif" alt=":caca:" title=":caca:"/></a>
-				<a href="javascript:insertAtCaret('contenue', ' :p ')"><img src="theme/smileys/131.gif" alt=":p" title=":p"/></a>
-				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en gras', 'ce texte sera en gras', 'b')" style="text-decoration: none;"><i class="fa fa-bold" aria-hidden="true"></i></a>
+				<?php 
+					$smileys = getDonnees($bddConnection);
+					for($i = 0; $i < count($smileys['symbole']); $i++)
+					{
+						echo '<a href="javascript:insertAtCaret(\'contenue\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
+					}
+				?>
+				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en gras', 'ce texte sera en gras', 'b')" style="text-decoration: none;" title="gras"><i class="fas fa-bold" aria-hidden="true"></i></a>
+				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en italique', 'ce texte sera en italique', 'i')" style="text-decoration: none;" title="italique"><i class="fas fa-italic"></i></a>
+				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en souligné', 'ce texte sera en souligné', 'u')" style="text-decoration: none;" title="souligné"><i class="fas fa-underline"></i></a>
+				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en barré', 'ce texte sera barré', 's')" style="text-decoration: none;" title="barré"><i class="fas fa-strikethrough"></i></a>
+				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en aligné à gauche', 'ce texte sera aligné à gauche', 'left')" style="text-decoration: none" title="aligné à gauche"><i class="fas fa-align-left"></i></a>
+				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en centré', 'ce texte sera centré', 'center')" style="text-decoration: none" title="centré"><i class="fas fa-align-center"></i></a>
+				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en aligné à droite', 'ce texte sera aligné à droite', 'right')" style="text-decoration: none" title="aligné à droite"><i class="fas fa-align-right"></i></a>
+				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en justifié', 'ce texte sera justifié', 'justify')" style="text-decoration: none" title="justifié"><i class="fas fa-align-justify"></i></a>
+				<div class="dropdown">
+				  	<a href="#" role="button" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				   	 <i class="fas fa-text-height"></i>
+				  	</a>
+					<div class="dropdown-menu" aria-labelledby="font">
+				   		<a class="dropdown-item" href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en taille 2', 'ce texte sera en taille 2', 'font=2')"><span style="font-size: 2em;">2</span></a>
+				   		<a class="dropdown-item" href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en taille 5', 'ce texte sera en taille 5', 'font=5')"><span style="font-size: 5em;">5</span></a>
+				  	</div>
+				</div>
 				<!--<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en rouge', 'ce texte sera en rouge', 'color=red')" class="redactor_color_link" style="background-color: rgb(255, 0, 0);"></a>-->
 			</div><br/>
 				<div class="col-md-12 text-center">
 					<label for="contenue" class="form-control-label">Contenue de votre réponse ( 10 000 caractères max ! ) : </label>
 				</div>
 			<div class="col-md-12">
-				<textarea class="form-control tinymce" name="contenue" id="contenue" max="10 000" min="1" rows="20" require ></textarea>
+				<textarea class="form-control" name="contenue" id="contenue" max="10 000" min="1" rows="20" require ></textarea>
 			</div>
 		</div>
 		<div class="form-group row">

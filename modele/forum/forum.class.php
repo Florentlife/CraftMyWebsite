@@ -98,7 +98,7 @@ class Forum {
 	//Récupération des topics 
 	public function infosTopics($id, $count)
 	{
-		$topic = $this->bdd->prepare('SELECT * FROM cmw_forum_post WHERE id_categorie = :id_categorie AND sous_forum IS NULL ORDER BY epingle DESC LIMIT '.$count.', 20');
+		$topic = $this->bdd->prepare('SELECT * FROM cmw_forum_post WHERE id_categorie = :id_categorie AND sous_forum IS NULL ORDER BY epingle DESC, last_answer_temps DESC LIMIT '.$count.', 20');
 		$topic->bindParam(':id_categorie', htmlspecialchars($id));
 		$topic->execute();
 		return $topic->fetchAll();
@@ -126,7 +126,7 @@ class Forum {
 	//InfosTopics pour les sous forum
 	public function infosSousForumTopics($id, $count)
 	{
-		$topic = $this->bdd->prepare('SELECT * FROM cmw_forum_post WHERE sous_forum LIKE :sous_forum ORDER BY epingle DESC LIMIT '.$count.', 20');
+		$topic = $this->bdd->prepare('SELECT * FROM cmw_forum_post WHERE sous_forum LIKE :sous_forum ORDER BY epingle DESC, last_answer_temps DESC LIMIT '.$count.', 20');
 		$topic->bindParam(':sous_forum', htmlspecialchars($id));
         $topic->execute();
 		return $topic->fetchAll();

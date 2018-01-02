@@ -16,10 +16,7 @@ require('include/version.php');?>
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/toastr.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/snarl.min.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/forum.css">
-	<?php if($_GET['page'] == 'post')
-	{
-		?><script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script><?php
-	}
+	<?php
 	if(file_exists('favicon.ico'))
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
 	?>
@@ -65,7 +62,6 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <script>
 function insertAtCaret (textarea, icon)
 { 
-	var Editor = FCKeditorAPI.GetInstance('contenue');
 	if (document.getElementById(textarea).createTextRange && document.getElementById(textarea).caretPos)
 	{ 
 		var caretPos = document.getElementById(textarea).caretPos; 
@@ -81,7 +77,7 @@ function insertAtCaret (textarea, icon)
 	}
 	else
 	{
-		Editor.SetHTML(document.getElementById(textarea).value + icon);
+		document.getElementById(textarea).value = document.getElementById(textarea).value + icon;
 	}
 	
 	document.getElementById(textarea).focus(); 
@@ -230,9 +226,4 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
 
 });
 </script>
-<?php if($_GET['page'] == 'post')
-{
-	?><script> CKEDITOR.replace( 'contenue' );</script><?php
-}
-?>
 </body>
