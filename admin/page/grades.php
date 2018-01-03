@@ -722,6 +722,16 @@
                                                                                                                         <input type="checkbox" name="permsPanelForumActionsSeeSmileys<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['seeSmileys'] == true) echo 'checked'; ?> /> Voir/Supprimer les smileys
                                                                                                                     </label>
                                                                                                                 </div>
+                                                                                                                <div class="checkbox">
+                                                                                                                    <label>
+                                                                                                                        <input type="checkbox" name="permsPanelForumActionsAddPrefix<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['addPrefix'] == true) echo 'checked'; ?> /> Ajouter des prefix de discussions
+                                                                                                                    </label>
+                                                                                                                </div>
+                                                                                                                <div class="checkbox">
+                                                                                                                    <label>
+                                                                                                                        <input type="checkbox" name="permsPanelForumActionsSeePrefix<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['seePrefix'] == true) echo 'checked'; ?> /> Voir/Supprimer les prefix de discussions
+                                                                                                                    </label>
+                                                                                                                </div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>

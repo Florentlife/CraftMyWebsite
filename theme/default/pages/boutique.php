@@ -17,8 +17,8 @@
 		<center>
 		<hr>
 			<font style="font-family: minecraftia;font-size: 20px;">Bonjour <?php echo $_Joueur_['pseudo']; ?></font>
-				<h4>Vous avez <strong><?php if(isset($_Joueur_['tokens'])) echo $_Joueur_['tokens'] . ' <img style="width: 25px;" src="./theme/default/img/jeton.png" />'; ?></h4></strong>
-				<a href="?page=panier" class="btn btn-primary btn-block">Votre panier contient <?php echo $_Panier_->compterArticle().($_Panier_->compterArticle()>1 ? ' articles' : ' article') ?></a>
+				<h4>Vous avez <strong><?php if(isset($_Joueur_['tokens'])) echo $_Joueur_['tokens'] . ' <i class="fas fa-gem"></i>'; ?></h4></strong>
+				<a href="?page=panier" class="btn btn-primary btn-block">Votre panier contient <?php echo $_Panier_->compterArticle().($_Panier_->compterArticle()>1 ? ' articles' : ' article') ?> </a>
 		</center>
 		<?php } else { ?>
 		<hr>
@@ -76,7 +76,7 @@
 									if($offresTableau[$i]['categorie'] == $categories[$j]['id'])
 									{
 										echo '
-										<div class="col-md-4 panel panel-default" style="margin-left: 10px;width: 30%;">
+										<div class="col-md-4 panel panel-default">
 											<div class="panel-body">
 													<h3 class="titre-offre"><center>'. $offresTableau[$i]['nom'] .'</center></h3>
 													<div class="offre-description">' .$offresTableau[$i]['description']. '</div>
@@ -84,9 +84,9 @@
 												';
 													if(isset($_Joueur_)) {
 														echo '<a href="?page=boutique&offre=' .$offresTableau[$i]['id']. '" class="btn btn-primary btn-block" title="Voir la fiche produit"><i class="fa fa-eye"></i></a>';
-													echo '<a href="?action=addOffrePanier&offre='. $offresTableau[$i]['id']. '&quantite=1" class="btn btn-info btn-block" title="Ajouter directement au panier une unité"><i class="fa fa-shopping-basket"></i></a>';}
+													echo '<a href="?action=addOffrePanier&offre='. $offresTableau[$i]['id']. '&quantite=1" class="btn btn-info btn-block" title="Ajouter directement au panier une unité"><i class="fa fa-cart-arrow-down"></i></a>';}
 													else { echo'<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-block" ><span class="glyphicon glyphicon-user"></span> Se connecter</a>'; }
-										echo '<button class="btn btn-success btn-block">Prix : ' .$offresTableau[$i]['prix']. ' <img style="width: 25 px;" src="./theme/default/img/jeton.png" /></button>
+										echo '<button class="btn btn-success btn-block">Prix : ' .$offresTableau[$i]['prix']. ' <i class="fas fa-gem"></i></button>
 													</br>
 													</button>
 												
@@ -159,18 +159,17 @@
 				</p>
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
 			<?php 	if(($enLigne AND $infosCategories['connection']) OR !$infosCategories['connection']) { ?>
-							<form action="index.php" method="GET">
+							<form action="index.php" method="GET" class="form-inline">
 								<input type="hidden" name="action" value="addOffrePanier"/>
 								<input type="hidden" name="offre" value="<?php echo $_GET['offre']; ?>"/>
-								<label for="quantite">Quantité à acheter : </label>
-								<input type="number" id="quantite" name="quantite" value="1" />
-								<button type="submit" class="btn btn-success">Ajouter au panier</button>
+								<label for="quantite" class="form-control mb-1 mr-sm-1">Quantité: </label>
+								<input type="number" class="form-control mb-1 mr-sm-1" id="quantite" name="quantite" value="1" />
+								<button type="submit" class="btn btn-success mb-2">Ajouter au panier</button>
 							</form><?php } else{ ?>
 							Connectez vous sur le serveur voulu... <?php } 
 					?>
-		  </div>
+		  </div><button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
 		</div>
 	  </div>
 	</div>

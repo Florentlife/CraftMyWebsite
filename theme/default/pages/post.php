@@ -88,11 +88,11 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 		</div>
 		<div class="col-md-10">
 		<!-- Contenue du topic de l'auteur -->
-			<p><?php unset($contenue);
+			<div style="text-overflow: clip; word-wrap: break-word;"><?php unset($contenue);
 			$contenue = espacement($topicd['contenue']);
 			$contenue = BBCode($contenue, $bddConnection);
 			echo $contenue;
-			?></p><br/><div style="border-top: 0.5px grey solid;"></div>
+			?></div><br/><div style="border-top: 0.5px grey solid;"></div>
 			<p class="text-right text-muted">Posté le <?php  echo $topicd['jour']; ?> <?php $mois = switch_date($topicd['mois']); echo $mois; ?> <?php echo $topicd['annee'];?>  <?php if($topicd['d_edition'] != NULL) { echo 'édité le '; $d_edition = explode('-', $topicd['d_edition']); echo $d_edition[2]; echo '/' .$d_edition[1]. '/' .$d_edition[0]. ''; } ?></p>
 		</div>
 	</div>

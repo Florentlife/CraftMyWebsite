@@ -111,6 +111,8 @@ if(isset($_Joueur_)) {
 
 				$editGrade['PermsPanel']['forum']['actions']['addSmiley'] = $_POST['permsPanelForumActionsAddSmiley'.$i];
 				$editGrade['PermsPanel']['forum']['actions']['seeSmileys'] = $_POST['permsPanelForumActionsSeeSmileys'.$i];
+				$editGrade['PermsPanel']['forum']['actions']['addPrefix'] = $_POST['permsPanelForumActionsAddPrefix'.$i];
+				$editGrade['PermsPanel']['forum']['actions']['seePrefix'] = $_POST['permsPanelForumActionsSeePrefix'.$i];
 
 				$editGrade['PermsPanel']['widgets']['actions']['addWidgets'] = $_POST['permsPanelWidgetsActionsAddWidgets'.$i];
 				$editGrade['PermsPanel']['widgets']['actions']['editWidgets'] = $_POST['permsPanelWidgetsActionsEditWidgets'.$i];

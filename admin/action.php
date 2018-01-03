@@ -10,6 +10,16 @@
 		require_once('admin/actions/commande.php');
 		break;
 
+		case 'addPrefix':
+			require_once('admin/actions/addPrefix.php');
+			$_SESSION['referrerAdmin'] = 'forum';
+		break;
+
+		case 'supprPrefix':
+			require_once('admin/actions/supprPrefix.php');
+			$_SESSION['referrerAdmin'] = 'forum';
+		break;
+
 		case 'configTheme':
 			require_once('theme/'.$_Serveur_['General']['theme'].'/config/configAdminTraitement.php');
 			$_SESSION['referrerAdmin'] = 'theme';

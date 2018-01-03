@@ -19,7 +19,7 @@
 	if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['forum']['actions']['addSmiley'] == true)
 	{
 		?><form method="POST" action="?action=addSmiley" enctype="multipart/form-data">
-			<div class="col-lg-12">
+			<div class="col-lg-6">
 				<div class="panel panel-default cmw-panel">
 					<div class="panel-heading cmw-panel-header">
 						<h3 class="panel-title"><strong>Ajout de Smiley</strong></h3>
@@ -46,9 +46,91 @@
 		    </div>
 		</form><?php
 	}
+	if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['forum']['actions']['addPrefix'])
+	{
+		?><form method="POST" action="?action=addPrefix">
+			<div class="col-lg-6">
+				<div class="panel panel-default cmw-panel">
+					<div class="panel-heading cmw-panel-header">
+						<h3 class="panel-title"><strong>Ajout de Préfix</strong></h3>
+					</div>
+					<div class="panel-body">
+						<div class="col-md-12">
+							<div class="row">
+								<label class="control-label">Nom du préfix (Important, Acceptée, Refusée, ...)</label>
+								<input type="text" name="nom" class="form-control" maxlength="40">
+							</div>
+							<div class="row">
+								<label>Couleur à utiliser :</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixPrimary" value="prefixPrimary" checked>
+								    <span class="prefix prefixPrimary" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixSecondary" value="prefixSecondary">
+								    <span class="prefix prefixSecondary" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixRed" value="prefixRed">
+								    <span class="prefix prefixRed" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixGreen" value="prefixGreen" >
+								    <span class="prefix prefixGreen" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixOlive" value="prefixOlive" >
+								    <span class="prefix prefixOlive" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixLightGreen" value="prefixLightGreen" >
+								    <span class="prefix prefixLightGreen" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixBlue" value="prefixBlue" >
+								    <span class="prefix prefixBlue" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixRoyalBlue" value="prefixRoyalBlue" >
+								    <span class="prefix prefixRoyalBlue" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixSkyBlue" value="prefixSkyBlue" >
+								    <span class="prefix prefixSkyBlue" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixGray" value="prefixGray" >
+								    <span class="prefix prefixGray" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixSilver" value="prefixSilver" >
+								    <span class="prefix prefixSilver" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixYellow" value="prefixYellow" >
+								    <span class="prefix prefixYellow" style="height: 10px; width: 5px;"></span>
+								</label>
+								<label class="checkbox-inline">
+								  <input class="form-check-input" type="radio" name="prefix" id="prefixOrange" value="prefixOrange" >
+								    <span class="prefix prefixOrange" style="height: 10px; width: 5px;"></span>
+								</label>
+		                   	</div>
+		                   	<hr/>
+		                   	<div class="row text-center">
+		                   		<input type="submit" class="btn btn-success" value="Ajouter le préfix !" />
+		                   	</div>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</form><?php
+	}
+	?></div>
+	<div class="row">
+	<?php
 	if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['forum']['actions']['seeSmileys'] == true)
 	{
-		?><div class="col-lg-12">
+		?><div class="col-md-6">
             <div class="panel panel-default cmw-panel">
                 <div class="panel-heading cmw-panel-header">
                     <h3 class="panel-title"><strong>Edition des Smileys</strong></h3>
@@ -79,8 +161,42 @@
                		</table>
                	</div>
             </div>
-        </div>
-		<?php
+        </div><?php
+	}
+	if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['forum']['actions']['seePrefix'] == true)
+	{
+		?><div class="col-md-6">
+            <div class="panel panel-default cmw-panel">
+                <div class="panel-heading cmw-panel-header">
+                    <h3 class="panel-title"><strong>Edition des Préfix</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <h3 class="text-center">Gestion des Préfix</h3>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <tr>
+                            <th>Nom</th>
+                            <th>Attributs</th>
+                            <th>Rendu</th>
+                            <th>Action</th>
+                        </tr>
+                    <?php 
+                    $reqPrefix = $bddConnection->query('SELECT id, span, nom FROM cmw_forum_prefix ORDER BY id ASC');
+                    while($data = $reqPrefix->fetch())
+                    {
+                    	?><tr>
+                    		<td><?=$data['nom'];?></td>
+                    		<td><span class="<?php echo $data['span'];?>" style="height: 10px; width: 20px;"></span></td>
+                    		<td><span class="<?=$data['span'];?>"><?=$data['nom'];?></span></td>
+                    		<td><a href="?action=supprPrefix&id=<?=$data['id'];?>" class="btn btn-danger">Supprimer</a></td>
+                    	</tr><?php
+                    }
+                    ?>
+               		</table>
+               	</div>
+            </div>
+        </div><?php
 	}
 	?>
 </div>

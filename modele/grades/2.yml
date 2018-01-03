@@ -98,6 +98,8 @@ PermsPanel:
         actions:
             addSmiley:
             seeSmileys:
+            addPrefix:
+            seePrefix:
     widgets: 
         showPage: 
         actions: 
