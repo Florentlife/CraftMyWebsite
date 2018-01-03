@@ -10,6 +10,11 @@
 		require_once('admin/actions/commande.php');
 		break;
 
+		case 'configTheme':
+			require_once('theme/'.$_Serveur_['General']['theme'].'/config/configAdminTraitement.php');
+			$_SESSION['referrerAdmin'] = 'theme';
+		break;
+
 		case 'addSmiley':
 			require_once('admin/actions/addSmiley.php');
 			$_SESSION['referrerAdmin'] = 'forum';
