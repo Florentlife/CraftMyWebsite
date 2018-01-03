@@ -40,7 +40,7 @@
 					{
 						for($z=0; $z < $_SESSION['panier']['quantite'][$a]; $z++)
 						{
-							SendCommand($jsonCon[$i], $donneesActions['methode'], $donneesActions['commande_valeur'], $donneesActions['duree']);
+							SendCommand($jsonCon[$i], $donneesActions['methode'], $donneesActions['commande_valeur'], $donneesActions['duree'], $bddConnection, $_Joueur_);
 						}
 					}
 				elseif($infosCategories['serveurId'] == -2)
@@ -49,13 +49,13 @@
 						for($z = 0; $z < $_SESSION['panier']['quantite'][$a]; $z++)
 						{
 							if($enligne[$i])
-								SendCommand($jsonCon[$i], $donneesActions['methode'], $donneesActions['commande_valeur'], $donneesActions['duree']);
+								SendCommand($jsonCon[$i], $donneesActions['methode'], $donneesActions['commande_valeur'], $donneesActions['duree'], $bddConnection, $_Joueur_['pseudo'], $_Joueur_);
 						}
 					}
 				else
 					for($z = 0; $z < $_SESSION['panier']['quantite'][$a]; $z++)
 					{
-						SendCommand($jsonCon[$infosCategories['serveurId']], $donneesActions['methode'], $donneesActions['commande_valeur'], $donneesActions['duree']);
+						SendCommand($jsonCon[$infosCategories['serveurId']], $donneesActions['methode'], $donneesActions['commande_valeur'], $donneesActions['duree'], $bddConnection, $_Joueur_);
 					}
 			}
 			require_once('modele/app/statistiques.class.php');
@@ -80,7 +80,7 @@
 	else
 		header('Location: ?page=erreur&erreur=18');
 
-function SendCommand($jsonCon, $methode, $valeur, $duree)
+function SendCommand($jsonCon, $methode, $valeur, $duree, $bdd, &$joueur)
 {
 	if($methode == 0)
 		$jsonCon->runConsoleCommand($valeur);
@@ -99,5 +99,14 @@ function SendCommand($jsonCon, $methode, $valeur, $duree)
 		
 	if($methode == 5)
 		$jsonCon->GivePlayerXp($valeur);
+	if($methode == 6)
+	{
+		$req = $bdd->prepare('UPDATE cmw_users SET rang = :rang WHERE id = :id');
+		$req->execute(array('rang' => $valeur,
+							'id' => $joueur['id']));
+		$joueur['rang'] = $valeur;
+		$_SESSION['Player']['rang'] = $valeur;
+
+	}
 }
 ?>
