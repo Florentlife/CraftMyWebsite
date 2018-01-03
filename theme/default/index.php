@@ -1,6 +1,7 @@
 <?php
 require('theme/'. $_Serveur_['General']['theme'] . '/preload.php'); 
-require('include/version.php');?>
+require('include/version.php');
+require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 <!DOCTYPE html>
 <html>
 <head>

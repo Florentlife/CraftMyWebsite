@@ -6,25 +6,25 @@
                     <h6 style="margin:0px;">&nbsp;</h6>
                     <div class="row">
                         <div class="col-sm-3 text-center wow fadeInLeft">
-                            <a href="#" class="fa-stack fa-2x hvr-grow">
+                            <a href="<?php echo $_Theme_['Pied']['facebook']; ?>" target="about_blank" class="fa-stack fa-2x hvr-grow">
                                 <i class="fa fa-square fa-stack-2x text-facebook"></i>
                                 <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
                             </a>
                         </div>
                         <div class="col-sm-3 text-center wow fadeInLeft" data-wow-delay="0.3s">
-                            <a href="#" class="fa-stack fa-2x hvr-grow">
+                            <a href="<?php echo $_Theme_['Pied']['youtube']; ?>" target="about_blank" class="fa-stack fa-2x hvr-grow">
                                 <i class="fa fa-square fa-stack-2x text-youtube"></i>
                                 <i class="fab fa-youtube fa-stack-1x fa-inverse"></i>
                             </a>
                         </div>
                         <div class="col-sm-3 text-center wow fadeInRight" data-wow-delay="0.4s">
-                            <a href="#" class="fa-stack fa-2x hvr-grow">
+                            <a href="<?php echo $_Theme_['Pied']['discord']; ?>" target="about_blank" class="fa-stack fa-2x hvr-grow">
                                 <i class="fa fa-square fa-stack-2x text-discord"></i>
                                 <i class="fab fa-discord fa-stack-1x fa-inverse"></i>
                             </a>
                         </div>
                         <div class="col-sm-3 text-center wow fadeInRight" data-wow-delay="0.7s">
-                            <a href="#" class="fa-stack fa-2x hvr-grow">
+                            <a href="<?php echo $_Theme_['Pied']['twitter']; ?>" target="about_blank" class="fa-stack fa-2x hvr-grow">
                                 <i class="fa fa-square fa-stack-2x text-twitter"></i>
                                 <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
                             </a>

@@ -49,7 +49,8 @@
 </form>
 </div>
 
-<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editBackground'] == true) { ?>
+<?php
+ } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editBackground'] == true) { ?>
 
 <div class="col-xs-12 col-md-4 text-center">
     <div class="alert alert-success" style="height: 100px;">
@@ -101,5 +102,8 @@
  </div>
 </form>
 </div>
-<?php } ?>
+<?php }
+if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editTheme'] == true) {
+  include('theme/'.$_Serveur_['General']['theme'].'/config/configAdminVue.php'); 
+}?>
 </div>
