@@ -83,8 +83,28 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 				$action[$i]['methodeTxt'] = 'Envoyer de l\'argent iConomy';
 			elseif($action[$i]['methode'] == 5)
 				$action[$i]['methodeTxt'] = 'Give d\'xp';
+			elseif($action[$i]['methode'] == 6)
+				$action[$i]['methodeTxt'] = 'Grade Site';
 
-			$action[$i]['commande_valeur'] = $donnees['commande_valeur'];
+			if($action[$i]['methode'] == 6)
+			{
+				if($donnees['commande_valeur'] == 0) {
+					$action[$i]['commande_valeur'] = 'Joueur';
+				} elseif($donnees['commande_valeur'] == 1) {
+					$action[$i]['commande_valeur'] = "Créateur";
+				} elseif(fopen('./modele/grades/'.$donnees['commande_valeur'].'.yml', 'r')) {
+					$openGradeSite = new Lire('./modele/grades/'.$donnees['commande_valeur'].'.yml');
+					$readGradeSite = $openGradeSite->GetTableau();
+					$action[$i]['commande_valeur'] = $readGradeSite['Grade'];
+					if(empty($readGradeSite['Grade']))
+						$action[$i]['commande_valeur'] = 'Joueur';
+				} else {
+					$action[$i]['commande_valeur'] = 'Joueur';
+				}
+				$action[$i]['grade'] = $donnees['commande_valeur'];
+			}
+			else
+				$action[$i]['commande_valeur'] = $donnees['commande_valeur'];
 			$action[$i]['id_offre'] = $donnees['id_offre'];
 			$i++;
 		}

@@ -269,6 +269,7 @@
 																		<option value="3">Give un item</option>
 																		<option value="4">Envoyer de l'argent iConomy</option>
 																		<option value="5">Give d'xp</option>
+																		<option value="6">Grade Site</option>
 																	</select>
 																</div>
 																<div class="form-group">
@@ -277,11 +278,24 @@
 																		<option value="1">1 mois</option>
 																		<option value="2">2 mois</option>
 																		<option value="3">3 mois</option>
-																		<option value="5">6 mois</option>
+																		<option value="6">6 mois</option>
 																		<option value="12">1 an</option>
 																		<option value="18">1 an et demi</option>
 																		<option value="24">2 ans</option>
 																		<option value="0">A vie</option>
+																	</select>
+																</div>
+																<div class="form-group">
+																	<label>Grade Site <small>Pour les grades site uniquement !</small></label>
+																	<select class="form-control" name="grade_site">
+																		<option value="0">Joueur</option>
+																		<?php require('./admin/donnees/grades.php'); 
+																		for($z = 2; $z <= end($lastGrade); $z++) {
+		                                                                    if(file_exists($dirGrades.$z.'.yml')) {
+		                                                                        if($idGrade[$z]['Grade']) { ?><option value="<?php echo $z; ?>" <?php echo '>'.$idGrade[$z]['Grade']; } ?></option>
+		                                                                    <?php } 
+		                                                                } ?>
+																		<option value="1">Créateur</option>
 																	</select>
 																</div>
 																<div class="form-group col-md-12">
@@ -301,32 +315,50 @@
 												<?php $k = 0; ?>
 
 												<form class="form-inline" role="form" method="post" action="?&action=editerAction">
-
+													<div class="row">
 													<?php 
 													while($k < count($actions)) {
 														if($actions[$k]['id_offre'] == $offres[$j]['id']) {
 															?>
-
-															<div class="form-group">
-																<input name="commandeValeur-<?php echo $actions[$k]['id']; ?>" class="form-control" value="<?php echo $actions[$k]['commande_valeur']; ?>"/>
-															</div>
-															<div class="form-group">
-																<select class="form-control" name="methode-<?php echo $actions[$k]['id']; ?>">
-																	<option value="<?php echo $actions[$k]['methode']; ?>"><?php echo $actions[$k]['methodeTxt']; 
+															<div class="col-md-12">
+																<div class="form-group">
+																	<?php if($actions[$k]['methode'] == 6)
+																	{
+																		?><select class="form-control" name="commandeValeur-<?php echo $actions[$k]['id']; ?>">
+																			<option value="0" <?php if($actions[$k]['grade'] == 0) echo 'selected'; ?>> Joueur </option>
+																			<?php 
+																			for($z = 2; $z <= end($lastGrade); $z++) {
+			                                                                    if(file_exists($dirGrades.$z.'.yml')) {
+			                                                                        if($idGrade[$z]['Grade']) { ?><option value="<?php echo $z; ?>" <?php if($actions[$k]['grade'] == $z) echo 'selected ';?>><?php echo $idGrade[$z]['Grade']; } ?></option>
+			                                                                    <?php } 
+		                                                               		 } ?>
+		                                                               		 <option value="1" <?php if($actions[$k]['grade'] == 1) echo 'selected'; ?>>Créateur</option>
+		                                                               		</select><?php 
+																	}
+																	else
+																	{
+																		?><input name="commandeValeur-<?php echo $actions[$k]['id']; ?>" class="form-control" value="<?php echo $actions[$k]['commande_valeur']; ?>"/>
+																	<?php }
+																	?>
+																</div>
+																<div class="form-group">
+																	<select class="form-control" name="methode-<?php echo $actions[$k]['id']; ?>">
+																		<option value="<?php echo $actions[$k]['methode']; ?>"><?php echo $actions[$k]['methodeTxt']; ?></option><?php
 																		if($actions[$k]['methode'] != 0) echo '<option value="0">Commande(sans /)</option>';
 																		if($actions[$k]['methode'] != 1) echo '<option value="1">Message Serveur</option>';
 																		if($actions[$k]['methode'] != 2) echo '<option value="2">Changer de grade</option>';
 																		if($actions[$k]['methode'] != 3) echo '<option value="3">Give un item</option>';
 																		if($actions[$k]['methode'] != 4) echo '<option value="4">Envoyer de l\'argent iConomy</option>';
-																		if($actions[$k]['methode'] != 5) echo '<option value="5">Give d\'xp</option>'; ?>
+																		if($actions[$k]['methode'] != 5) echo '<option value="5">Give d\'xp</option>'; 
+																		if($actions[$k]['methode'] != 6) echo '<option value="6">Grade site</option>'; ?>
 																	</select>
 																</div>
 																<div class="form-group">
 																	<a href="?action=supprAction&id=<?php echo $actions[$k]['id']; ?>" class="btn btn-danger">Supprimer</a>
 																</div>
-
+															</div>
 																<?php } $k++; } ?>
-
+																</div>
 																<hr>
 																<div class="row">
 																	<div class="form-group col-md-12">
@@ -349,7 +381,6 @@
 											</div>
 
 											<?php $j++; } ?>
-
 										</div>
 									</ul>
 								</div>
