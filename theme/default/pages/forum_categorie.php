@@ -19,9 +19,14 @@
 		</header>
 		<section class="layout" id="page">
 		<div class="container">
+			<?php if($_SESSION['mode'])
+			{
+				?>
 			<div class="alert alert-warning" role="alert">
 				<p style="margin-bottom: 0;" class="text-center">Vous êtes en Mode Joueur. Pour changer de mode, passer sur la page forum.</p>
-			</div>
+			</div><?php 
+			}
+			?>
 			<nav aria-label="breadcrumb" role="navigation">
 				<ol class="breadcrumb">
 				  <li class="breadcrumb-item"><a href="/">Accueil</a></li>
@@ -187,10 +192,13 @@
 				<label for='prefix'>Appliquer un préfix de discussion : </label><select name='prefix' id='prefix'>
 					<option value="NULL">Ne pas changer le préfixe</option>
 					<option value='0'>Aucun</option>
-					<option value='4'>En attente</option>
-					<option value='1'>Important</option>
-					<option value='2'>Refusée</option>
-					<option value='3'>Acceptée</option>
+					<?php 
+					$reqPrefix = $_Forum_->getPrefixModeration();
+					while($donnees_prefix = $reqPrefix->fetch())
+					{
+						?><option value="<?php echo $donnees_prefix['id']; ?>"><?=$donnees_prefix['nom'];?></option><?php 
+					}
+					?>
 				</select>
 				<?php } if($_PGrades_['PermsForum']['moderation']['epingle'] == true or $_Joueur_['rang'] == 1)
 				{ ?>

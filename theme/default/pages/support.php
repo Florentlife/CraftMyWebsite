@@ -101,12 +101,12 @@
 								</div>
 								
 								<div class="modal-body">
-									<p class="corp-ticket"><?php 
+									<p class="corp-ticket" style="text-overflow: clip; word-wrap: break-word;"><?php 
 									unset($message);
 									$message = espacement($tickets['message']);
-									$message = BBCode($message);
+									$message = BBCode($message, $bddConnection);
 									echo $message; ?></p>
-									<span class="badge pull-right">Ticket de : <img src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $tickets['auteur']; ?>&s=16&v=front" alt="none" /> <?php echo $tickets['auteur']; ?></span>
+									<p class="text-right">Ticket de : <img src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $tickets['auteur']; ?>&s=16&v=front" alt="none" /> <?php echo $tickets['auteur']; ?></p>
 									</br>
 									<hr>
 									
@@ -132,9 +132,8 @@
 													<span class="ticket-commentaire-auteur"><?php echo $ticketCommentaires[$tickets['id']][$i]['auteur']; ?></span>
 													<span class="ticket-commentaire-date"><?php echo 'Le ' .$ticketCommentaires[$tickets['id']][$i]['jour']. '/' .$ticketCommentaires[$tickets['id']][$i]['mois']. ' à ' .$ticketCommentaires[$tickets['id']][$i]['heure']. ':' .$ticketCommentaires[$tickets['id']][$i]['minute']; ?></span>
 													<?php if(isset($_Joueur_)) { ?>
-													    <span class="ticket-commentaire-action pull-right">
-							                                <div class="dropdown">
-								                                <a type="button" class="btn btn-info collapsed" data-toggle="dropdown" style="font-size: 10px;">Action <b class="caret"></b></a>
+							                             <span class="dropdown" style="padding-left: 40%">
+								                                <a type="button" class="btn btn-warning collapsed" data-toggle="dropdown">Action <b class="caret"></b></a>
 								                                <ul class="dropdown-menu">
 									                                <?php if($ticketCommentaires[$tickets['id']][$i]['auteur'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1 OR $_PGrades_['PermsDefault']['support']['deleteMemberComm'] == true) {
 										                                echo '<li><a href="?&action=delete_support_commentaire&id_comm='.$req_idComm['id'].'&id_ticket='.$tickets['id'].'&auteur='.$ticketCommentaires[$tickets['id']][$i]['auteur'].'">Supprimer</a></li>';
@@ -142,17 +141,16 @@
 									                                	echo '<li><a href="#editComm-'.$req_idComm['id'].'" data-toggle="modal" data-target="#editComm-'.$req_idComm['id'].'" >Editer</a></li>';
 									                                }?>
 								                                </ul>
-							                                </div>
-						                                </span>
+							                             </span>
 						                            <?php } ?>
 												</span>
 												
 											</div>
-											<div class="right-ticket-commentaire">
+											<div class="right-ticket-commentaire"><div style="text-overflow: clip; word-wrap: break-word;">
 												<?php unset($message);
 												$message = espacement($ticketCommentaires[$tickets['id']][$i]['message']);
-												$message = BBCode($message);
-												echo $message;  ?>
+												$message = BBCode($message, $bddConnection);
+												echo $message;  ?></div>
 											</div>
 										</div>
 										</div>
@@ -172,14 +170,38 @@
 								</div>
 								<?php
 								if($tickets['etat'] == "0"){
-									echo '<div class="modal-footer">
-											<form action="?&action=post_ticket_commentaire" method="post">
-												<input type="hidden" name="id" value="'.$tickets['id'].'" />
-												<textarea name="message" class="form-control" rows="3"></textarea>
-												</br>
-												<button type="submit" class="btn btn-primary">Commenter</button>
-											</form>
-										  </div>';
+									echo '<form action="?&action=post_ticket_commentaire" method="post"><div class="modal-footer">
+												<input type="hidden" name="id" value="'.$tickets['id'].'" /><div class="row">
+												<div class="col-md-12 text-center">';
+												$smileys = getDonnees($bddConnection);
+												for($y = 0; $y < count($smileys['symbole']); $y++)
+												{
+													echo '<a href="javascript:insertAtCaret(\'ticket'.$tickets['id'].'\',\' '.$smileys['symbole'][$y].' \')"><img src="'.$smileys['image'][$y].'" alt="'.$smileys['symbole'][$y].'" title="'.$smileys['symbole'][$y].'" /></a>';
+												}
+												echo'
+												<a href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en gras\', \'ce texte sera en gras\', \'b\')" style="text-decoration: none;" title="gras"><i class="fas fa-bold" aria-hidden="true"></i></a>
+												<a href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en italique\', \'ce texte sera en italique\', \'i\')" style="text-decoration: none;" title="italique"><i class="fas fa-italic"></i></a>
+												<a href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en souligné\', \'ce texte sera en souligné\', \'u\')" style="text-decoration: none;" title="souligné"><i class="fas fa-underline"></i></a>
+												<a href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en barré\', \'ce texte sera barré\', \'s\')" style="text-decoration: none;" title="barré"><i class="fas fa-strikethrough"></i></a>
+												<a href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en aligné à gauche\', \'ce texte sera aligné à gauche\', \'left\')" style="text-decoration: none" title="aligné à gauche"><i class="fas fa-align-left"></i></a>
+												<a href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en centré\', \'ce texte sera centré\', \'center\')" style="text-decoration: none" title="centré"><i class="fas fa-align-center"></i></a>
+												<a href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en aligné à droite\', \'ce texte sera aligné à droite\', \'right\')" style="text-decoration: none" title="aligné à droite"><i class="fas fa-align-right"></i></a>
+												<a href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en justifié\', \'ce texte sera justifié\', \'justify\')" style="text-decoration: none" title="justifié"><i class="fas fa-align-justify"></i></a>
+												<div class="dropdown">
+												  	<a href="#" role="button" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												   	 <i class="fas fa-text-height"></i>
+												  	</a>
+													<div class="dropdown-menu" aria-labelledby="font">
+												   		<a class="dropdown-item" href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en taille 2\', \'ce texte sera en taille 2\', \'font=2\')"><span style="font-size: 2em;">2</span></a>
+												   		<a class="dropdown-item" href="javascript:ajout_text(\'ticket'.$tickets['id'].'\', \'Ecrivez ici ce que vous voulez mettre en taille 5\', \'ce texte sera en taille 5\', \'font=5\')"><span style="font-size: 5em;">5</span></a>
+												  	</div>
+												</div>
+											</div><div class="col-md-12">
+												<textarea name="message" id="ticket'.$tickets['id'].'" class="form-control" rows="3" cols="60"></textarea>
+												</br></div></div>
+										  </div>
+										  <button type="submit" class="btn btn-primary">Commenter</button>
+											</form>';
 								} else {
 									echo '<div class="modal-footer">
 											<form action="" method="post">
@@ -253,7 +275,7 @@
 											<label class="control-label">Sujet</label>
 											<div class="form-group">
 												<div class="input-group">
-													<div class="input-group-addon"><i class="fa fa-pencil"></i></div>
+													<div class="input-group-addon"><i class="fas fa-eye"></i></div>
 													<input type="text" class="form-control" name="titre" placeholder="Sujet">
 												</div>
 											</div>
@@ -270,6 +292,33 @@
 									</div>
 								</div>
 								<div class="form-group">
+									<div class="col-md-12 text-center">
+									<?php 
+										$smileys = getDonnees($bddConnection);
+										for($i = 0; $i < count($smileys['symbole']); $i++)
+										{
+											echo '<a href="javascript:insertAtCaret(\'message\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
+										}
+									?>
+									<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en gras', 'ce texte sera en gras', 'b')" style="text-decoration: none;" title="gras"><i class="fas fa-bold" aria-hidden="true"></i></a>
+									<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en italique', 'ce texte sera en italique', 'i')" style="text-decoration: none;" title="italique"><i class="fas fa-italic"></i></a>
+									<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en souligné', 'ce texte sera en souligné', 'u')" style="text-decoration: none;" title="souligné"><i class="fas fa-underline"></i></a>
+									<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en barré', 'ce texte sera barré', 's')" style="text-decoration: none;" title="barré"><i class="fas fa-strikethrough"></i></a>
+									<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en aligné à gauche', 'ce texte sera aligné à gauche', 'left')" style="text-decoration: none" title="aligné à gauche"><i class="fas fa-align-left"></i></a>
+									<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en centré', 'ce texte sera centré', 'center')" style="text-decoration: none" title="centré"><i class="fas fa-align-center"></i></a>
+									<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en aligné à droite', 'ce texte sera aligné à droite', 'right')" style="text-decoration: none" title="aligné à droite"><i class="fas fa-align-right"></i></a>
+									<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en justifié', 'ce texte sera justifié', 'justify')" style="text-decoration: none" title="justifié"><i class="fas fa-align-justify"></i></a>
+									<div class="dropdown">
+									  	<a href="#" role="button" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									   	 <i class="fas fa-text-height"></i>
+									  	</a>
+										<div class="dropdown-menu" aria-labelledby="font">
+									   		<a class="dropdown-item" href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en taille 2', 'ce texte sera en taille 2', 'font=2')"><span style="font-size: 2em;">2</span></a>
+									   		<a class="dropdown-item" href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en taille 5', 'ce texte sera en taille 5', 'font=5')"><span style="font-size: 5em;">5</span></a>
+									  	</div>
+									</div>
+									<!--<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en rouge', 'ce texte sera en rouge', 'color=red')" class="redactor_color_link" style="background-color: rgb(255, 0, 0);"></a>-->
+								</div>
 									<label for="message">Description détaillée</label>
 									<textarea class="form-control" id="message" name="message" placeholder="Description détaillée de votre problème" rows="3"></textarea>
 								</div>

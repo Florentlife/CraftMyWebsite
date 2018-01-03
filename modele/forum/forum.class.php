@@ -289,6 +289,12 @@ class Forum {
 			return $last_answer;
 	}
 
+	public function getPrefixModeration()
+	{
+		$req = $this->bdd->query('SELECT id, nom FROM cmw_forum_prefix ORDER BY id ASC');
+		return $req;
+	}
+
 	private function switch_date($date)
 	{
 		switch($date)
