@@ -1,0 +1,10 @@
+/*
+*   PAGE DE MAINTENANCE
+*/
+
+body {
+    background: url('../img/texture.png');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
