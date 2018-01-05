@@ -16,6 +16,11 @@
   <script type="text/javascript" src="./admin/assets/js/Chart/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="./admin/assets/js/Chart/Chart.js"></script>
   <script type="text/javascript" src="./admin/assets/js/tinymce/tinymce.min.js"></script>
+  <?php if(file_exists('./favicon.ico'))
+   {
+     echo '<link rel="icon" type="image/x-icon" href="./favicon.ico"></link>';
+   }
+   ?>
   <script type="text/javascript">
     tinymce.init({
       plugins: "code",

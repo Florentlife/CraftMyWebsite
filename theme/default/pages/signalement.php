@@ -3,7 +3,12 @@
 if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_['rang'] == 1))
 {
 	$req = $bddConnection->query('SELECT * FROM cmw_forum_report WHERE vu = 0');
-	?><div class="container">
+	?><header class="heading-pagination">
+	<div class="container-fluid">
+		<h1 class="text-uppercase wow fadeInRight" style="color:white;">Signalement</h1>
+	</div>
+</header><section class="layout" id="page">
+	<div class="container">
 		<h4 class="title">Gestion des signalements</h4>
 	<table class="table table-striped">
 		<tr>
@@ -75,5 +80,5 @@ if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['moderation']['seeSignalement'
 		</tr><?php
 	}
 	?></table>
-	</div><?php 
+	</div></section><?php 
 }
