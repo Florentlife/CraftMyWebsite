@@ -58,7 +58,7 @@
 							$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
 							?>
 							<div class="<?php if(count($news) == 1) echo 'col-lg-12 col-md-12 col-sm-12'; elseif(count($news) == 2) echo 'col-lg-6 col-md-6 col-sm 6'; else echo 'col-lg-4 col-md-6 col-sm-12'; ?>">
-								<div class="card hvr-float-shadow <?php if(count($news) == 1) echo 'w-100'; elseif(count($news) == 2) echo 'w-50'; else echo 'w-25'; ?>" style="margin-bottom:15px;">
+								<div class="card hvr-float-shadow w-100" style="margin-bottom:15px;">
 									<h5 class="card-header text-uppercase bg-primary" style="color:white;"><?php echo $news[$i]['titre']; ?><small class="text-muted">#<?php echo $news[$i]['id']; ?></small></h5><br/>
 									<center>Auteur : <a href="?page=profil&profil=<?php echo $news[$i]['auteur']; ?>" alt="aller voir le profil de l'auteur"><img src="https://minecraft-api.com/api/skins/head.php?player=<?php echo $news[$i]['auteur']; ?>&size=24" alt="auteur"/> <?php echo $news[$i]['auteur']; ?></a></center>
 									<div class="card-block">
@@ -197,7 +197,7 @@
 									</div> <!-- Modal-Content -->
 						</div>
 
-							<?php } $i++; }
+							<?php }  }
 						}
 							else
 								echo '<div class="col-md-12 col-lg-12 col-sm-12"><div class="alert alert-warning"><p class="text-center">Aucune news n\'a été créé à ce jour...</p></div></div>'; ?>
