@@ -1,6 +1,12 @@
-<div class="container" style="background-color: white;margin-top: -20px;margin-bottom: -20px;border-left: 4px solid #e74c3c;border-right: 4px solid #e74c3c;">
+<?php	$getprofil = $_GET['profil'];
+?><header class="heading-pagination">
+	<div class="container-fluid">
+		<h1 class="text-uppercase wow fadeInRight" style="color:white;">Profil de <?php echo htmlspecialchars($getprofil); ?></h1>
+	</div>
+</header>
+<section class="layout" id="page">
+	<div class="container">
 	<?php
-	$getprofil = $_GET['profil'];
 	if(isset($_Joueur_) AND $_GET['profil'] == $_Joueur_['pseudo'])
 	{
 	?>	
@@ -152,4 +158,4 @@
     $('#modifProfil a:first').tab('show')
   })
 </script>
-</div>
+</div></section>

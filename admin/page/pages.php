@@ -19,16 +19,14 @@
     <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['pages']['actions']['addPage'] == true) { ?>
 
     <div class="col-xs-12 col-md-6 text-center">
-
-        <h3>Création d'une nouvelle page</h3>
-
-        <div class="alert alert-success">
-            <strong>Quand vous créez une page cette dernière ne contient qu'une section définie lors de la création, vous pourrez ensuite éditer votre page une fois créée et y ajouter jusqu'à 5 sections. Une section est constituée d'un sous titre et d'un bloc de texte. La page est constituée d'un titre et d'une ou plusieurs sections.</strong>
-        </div>
-        
-        <form method="POST" action="?&action=creerPage">
-
-            <div class="panel panel-default">
+        <div class="panel panel-default cmw-panel">
+            <div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Création d'une nouvelle page</strong></h3>
+                </div>
+            <div class="alert alert-success">
+                <strong>Quand vous créez une page cette dernière ne contient qu'une section définie lors de la création, vous pourrez ensuite éditer votre page une fois créée et y ajouter jusqu'à 5 sections. Une section est constituée d'un sous titre et d'un bloc de texte. La page est constituée d'un titre et d'une ou plusieurs sections.</strong>
+            </div>        
+            <form method="POST" action="?&action=creerPage">
                 <div class="panel-body">
 
                     <h3>Créer une page</h3>
@@ -46,14 +44,16 @@
                     
 
                 </div>
-            </div>
-
-        </form>
+            </form>
+        </div>
     </div>
 
     <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['pages']['actions']['editPage'] == true) { ?>
     <div class="col-xs-12 col-md-6 text-center">
-        <h3>Edition des pages</h3>
+        <div class="panel panel-default cmw-panel">
+            <div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Edition des pages</strong></h3>
+            </div>
         <?php if(empty($pages)) { ?>
         <div class="alert alert-warning">
             <strong>Aucune page est à modifier.</strong>
@@ -64,7 +64,6 @@
         </div>
         <?php } ?>
         <?php if(!empty($pages)) { ?>
-        <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
                     <ul class="nav nav-tabs">
@@ -150,9 +149,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <?php } } ?>
+    <?php } ?> </div><?php } ?>
 
     <script type="text/javascript">
         CKEDITOR.replace( 'page_1' );
