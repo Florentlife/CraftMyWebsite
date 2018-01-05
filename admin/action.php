@@ -10,6 +10,31 @@
 		require_once('admin/actions/commande.php');
 		break;
 
+		case 'addPrefix':
+			require_once('admin/actions/addPrefix.php');
+			$_SESSION['referrerAdmin'] = 'forum';
+		break;
+
+		case 'supprPrefix':
+			require_once('admin/actions/supprPrefix.php');
+			$_SESSION['referrerAdmin'] = 'forum';
+		break;
+
+		case 'configTheme':
+			require_once('theme/'.$_Serveur_['General']['theme'].'/config/configAdminTraitement.php');
+			$_SESSION['referrerAdmin'] = 'theme';
+		break;
+
+		case 'addSmiley':
+			require_once('admin/actions/addSmiley.php');
+			$_SESSION['referrerAdmin'] = 'forum';
+		break;
+
+		case 'supprSmiley':
+			require_once('admin/actions/supprSmiley.php');
+			$_SESSION['referrerAdmin'] = 'forum';
+		break;
+
 		case 'creerCoupon':
 			require_once('admin/actions/creerCoupon.php');
 		break;
