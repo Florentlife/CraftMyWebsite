@@ -1,38 +1,25 @@
-<!-- Page Heading -->
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header"> Tickets
-            <small>Gestionnaire des Tickets</small>
-        </h1>
-        <ol class="breadcrumb">
-            <li>
-                <i class="fa fa-dashboard"></i>  <a data-toggle="collapse" data-parent="#adminPanel" href="#informations">Informations</a>
-            </li>
-            <li class="active">
-                <i class="fa fa-file"></i> Tickets
-            </li>
-        </ol>
-        <hr>
-        <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['support']['tickets']['actions']['editEtatTicket'] == false AND $_PGrades_['PermsPanel']['support']['tickets']['actions']['deleteTicket'] == false)) { ?>
-            <div class="col-lg-6 col-lg-offset-3 text-center">
+<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérer vos tickets support</div>
+        <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['support']['tickets']['actions']['editEtatTicket'] == false AND $_PGrades_['PermsPanel']['support']['tickets']['actions']['deleteTicket'] == false)) { ?><div class="row">
+            <div class="ccol-md-12 text-center">
                 <div class="alert alert-danger">
                     <strong>Vous avez aucune permission pour accéder aux tickets.</strong>
                 </div>
-            </div>
+            </div></div>
         <?php } 
         if($_Joueur_['rang'] == 1 OR ($_PGrades_['PermsPanel']['support']['tickets']['actions']['editEtatTicket'] == true OR $_PGrades_['PermsPanel']['support']['tickets']['actions']['deleteTicket'] == true)) {
-            if($aucunTicket) { ?>
-                <div class="col-lg-6 col-lg-offset-3 text-center">
+            if($aucunTicket) { ?><div class="row">
+                <div class="col-md-12 text-center">
                     <div class="alert alert-warning">
                         <strong>Aucun ticket n'a été créé par les membres jusqu'à présent !</strong>
                     </div>
-                </div>
+                </div></div>
             <?php } else { ?>
-                <div class="col-lg-6 col-lg-offset-3 text-center">
-                    <h3>Edition des tickets</h3>
-                </div>
-                <div class="col-lg-6 col-lg-offset-3 text-center">
-                    <div class="panel panel-primary">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="panel panel-default cmw-panel">
+                        <div class="panel-heading cmw-panel-header">
+                            <h3 class="panel-title"><strong>Édition des tickets</strong></h3>
+                        </div>
                         <div class="panel-body">
                             <div class="row">
                                 <table class="table table-bordered">
@@ -65,7 +52,6 @@
                         </div>
                     </div>
                 </div>
+            </div>
         <?php }
         } ?>
-    </div>
-</div>

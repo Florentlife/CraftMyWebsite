@@ -2,13 +2,13 @@
 
 <div class="row">
     <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['payment']['actions']['editPayment'] == false AND $_PGrades_['PermsPanel']['payment']['actions']['editOffrePaypal'] == false AND $_PGrades_['PermsPanel']['payment']['actions']['addOffrePaypal'] == false)) { ?>
-    <div class="col-lg-6 col-lg-offset-3 text-center">
+    <div class="col-md-12 text-center">
         <div class="alert alert-danger">
             <strong>Vous avez aucune permission pour accéder aux réglages des paiements.</strong>
         </div>
     </div>
     <?php } else { ?>
-    <div class="col-lg-6 col-lg-offset-3 text-center">
+    <div class="col-md-12 text-center">
         <div class="alert alert-success">
             <strong>Les jetons sont la monnaie virtuelle du site. Les joueurs achètent des jetons avec leurs dons, et les utilisent dans la boutique.</strong>
         </div>
@@ -17,88 +17,84 @@
     if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['actions']['editPayment'] == true) { ?>
 
     <div class="col-xs-12 col-md-6 text-center">
-        <div class="row">
-            <h3>Dedipass/Paypal ID</h3>
-        </div>
-        <div class="row">
+        <div class="panel panel-default cmw-panel">
+            <div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Dédipass/Paypal ID</strong></h3>
+            </div>
+        <div class="panel-body">
             <div class="alert alert-success">
                 <strong>Vous trouverez ces informations sur le site officiel de votre méthode de paiement ! <br/>
-                    Pour dedipass, voici un tuto : <a href="http://craftmywebsite.fr/forum/index.php?threads/1-5-0-tuto-configurer-le-paiement-par-d%C3%A9dipass.3184/" target="_blank" title="Tuto dedipass">Tuto dédipass</a></strong>
+                    Pour dedipass, voici un tuto : <a href="http://craftmywebsite.fr/forum/index.php?threads/1-5-0-tuto-configurer-le-paiement-par-d%C3%A9dipass.3184/" title="Tuto dedipass">Tuto dédipass</a></strong>
             </div>
-        </div>
-        <form method="POST" action="?&action=editPayement">
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    <div class="col-lg-6 col-lg-offset-3">
-                        <h3>Status des paiements</h3>
-                        <div class="row">
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="paypal" <?php if($lectureP['paypal'] == true) echo 'checked'; ?>/> Paypal
-                            </label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" name="dedipass" <?php if($lectureP['dedipass'] == true) echo 'checked'; ?>> Dedipass
-                            </label>
-                        </div>
-                        <h3>Dedipass</h3>
-                        <div class="row">
-                            <label class="control-label">Dedipass PublicKey</label>
-                             <input type="text" name="dedipass_public" class="form-control" value="<?php echo $lectureP['dedipass_public']; ?>" placeholder="Trouvez le sur votre panel dedipass..." >
-                        </div>
-                        <div class="row">
-                            <label class="control-label">Dedipass PrivateKey</label>
-                             <input type="text" name="dedipass_private" class="form-control" value="<?php echo $lectureP['dedipass_private']; ?>" placeholder="Egalement sur votre panel dedipass" >
-                        </div>
-                        <h3>PayPal</h3>
-                        <div class="row">
-                            <label class="control-label">
-                                <input type="radio" name="paypalMethodeAPI" value="1"<?php if($lectureP['paypalMethodeAPI'] == 1) echo ' checked'; ?>/>Utiliser mon email pour être payé par paypal.
-                            </label>
-                        </div>
-                        <div class="row">
-                            <label class="control-label">Email paypal</label>
-                            <input type="text" name="paypalEmail" class="form-control" value="<?php echo $lectureP['paypalEmail']; ?>" placeholder="L'email lié à votre compte paypal."/>
-                        </div>
-                        <div class="row">
-                            <label>
-                                <input type="radio" name="paypalMethodeAPI" value="2"<?php if($lectureP['paypalMethodeAPI'] == 2) echo ' checked'; ?>/>Utiliser mon compte buisness paypal pour être payé.
-                            </label>
-                        </div>
-                        <div class="row">
-                            <label class="control-label">User Paypal</label>
-                            <input type="text" name="paypalUser" class="form-control" value="<?php echo $lectureP['paypalUser']; ?>" placeholder="Demmandez une signature API pour connaitre cette donnée"/>
-                        </div>
-                        <div class="row">
-                            <label class="control-label">Mot de passe Paypal</label>
-                            <input type="text" name="paypalPass" class="form-control" value="<?php echo $lectureP['paypalPass']; ?>"/>
-                        </div>
-                        <div class="row">
-                            <label class="control-label">Signature API Paypal</label>
-                            <input type="text" name="paypalSignature" class="form-control" value="<?php echo $lectureP['paypalSignature']; ?>"/>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <input type="submit" class="btn btn-success" value="Valider les changements !"/>
-                        </div>
+            <form method="POST" action="?&action=editPayement">
+                <div class="col-md-12">
+                    <h3>Status des paiements</h3>
+                    <div class="row">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="paypal" <?php if($lectureP['paypal'] == true) echo 'checked'; ?>/> Paypal
+                        </label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="dedipass" <?php if($lectureP['dedipass'] == true) echo 'checked'; ?>> Dedipass
+                        </label>
+                    </div>
+                    <h3>Dedipass</h3>
+                    <div class="row">
+                        <label class="control-label">Dedipass PublicKey</label>
+                         <input type="text" name="dedipass_public" class="form-control" value="<?php echo $lectureP['dedipass_public']; ?>" placeholder="Trouvez le sur votre panel dedipass..." >
+                    </div>
+                    <div class="row">
+                        <label class="control-label">Dedipass PrivateKey</label>
+                         <input type="text" name="dedipass_private" class="form-control" value="<?php echo $lectureP['dedipass_private']; ?>" placeholder="Egalement sur votre panel dedipass" >
+                    </div>
+                    <h3>PayPal</h3>
+                    <div class="row">
+                        <label class="control-label">
+                            <input type="radio" name="paypalMethodeAPI" value="1"<?php if($lectureP['paypalMethodeAPI'] == 1) echo ' checked'; ?>/>Utiliser mon email pour être payé par paypal.
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label class="control-label">Email paypal</label>
+                        <input type="text" name="paypalEmail" class="form-control" value="<?php echo $lectureP['paypalEmail']; ?>" placeholder="L'email lié à votre compte paypal."/>
+                    </div>
+                    <div class="row">
+                        <label>
+                            <input type="radio" name="paypalMethodeAPI" value="2"<?php if($lectureP['paypalMethodeAPI'] == 2) echo ' checked'; ?>/>Utiliser mon compte buisness paypal pour être payé.
+                        </label>
+                    </div>
+                    <div class="row">
+                        <label class="control-label">User Paypal</label>
+                        <input type="text" name="paypalUser" class="form-control" value="<?php echo $lectureP['paypalUser']; ?>" placeholder="Demmandez une signature API pour connaitre cette donnée"/>
+                    </div>
+                    <div class="row">
+                        <label class="control-label">Mot de passe Paypal</label>
+                        <input type="text" name="paypalPass" class="form-control" value="<?php echo $lectureP['paypalPass']; ?>"/>
+                    </div>
+                    <div class="row">
+                        <label class="control-label">Signature API Paypal</label>
+                        <input type="text" name="paypalSignature" class="form-control" value="<?php echo $lectureP['paypalSignature']; ?>"/>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <input type="submit" class="btn btn-success" value="Valider les changements !"/>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
+</div>
     <?php }
     if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['actions']['addOffrePaypal'] == true) { ?>
     <div class="col-xs-12 col-md-6 text-center">
-        <div class="row">
-            <h3>Création d'une offre PayPal</h3>
-        </div>
-        <div class="row">
-            <div class="alert alert-success">
-                <strong>Une fois votre compte paypal configuré, vous allez devoir créer une offre paypal pour que les joueurs puissent l'acheter !</strong>
+        <div class="panel panel-default cmw-panel">
+            <div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Création d'une offre Paypal</strong></h3>
             </div>
-        </div>         
-        <form method="POST" action="?&action=creerOffrePaypal">
-            <div class="panel panel-primary">
-                <div class="panel-body">
-                    <div class="col-lg-6 col-lg-offset-3">
+            <div class="panel-body">
+                <div class="alert alert-success">
+                    <strong>Une fois votre compte paypal configuré, vous allez devoir créer une offre paypal pour que les joueurs puissent l'acheter !</strong>
+                </div>      
+                <form method="POST" action="?&action=creerOffrePaypal">
+                    <div class="col-md-12">
                         <h3>Créer une offre</h3>
                         <div class="row">
                             <label class="control-label">Titre de l'offre</label>
@@ -121,35 +117,29 @@
                             <input type="submit" class="btn btn-success" value="Créer l'offre !" />
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </form>
+    </div>
     <?php }
     if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['actions']['editOffrePaypal'] == true) { ?>
-    <div class="col-lg-6 col-lg-offset-3 text-center">
-        <div class="row">
-            <h3>Mes offres PayPal</h3>
-        </div>
+    <div class="col-md-12 text-center">
+        <div class="panel panel-default cmw-panel">
+            <div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Mes offres PayPal</strong></h3>
+            </div>
+        <div class="panel-body">
         <?php if(!isset($paypalOffres) AND empty($paypalOffres)) { ?>
-        <div class="row">
             <div class="alert alert-warning">
                 <strong>Vous devez créer une offre paypal !</strong>
             </div>
-        </div>
         <?php } else { ?>
-        <div class="row">
             <div class="alert alert-success">
                 <strong>Vous pouvez avoir une multitude d'offres paypal, vous pourrez gérer ces offres en les modifiants ou les supprimant !</strong>
             </div>
-        </div>
         <?php } ?>
-    </div>
     <?php if(isset($paypalOffres) AND !empty($paypalOffres)) { ?>
-    <div class="col-lg-6 col-lg-offset-3 text-center">
-        <div class="panel panel-primary">
-            <div class="panel-body">
-                <div class="col-lg-6 col-lg-offset-3">
+                <div class="col-md-12">
                     <ul class="nav nav-tabs">
                         <?php for($i = 0; $i < count($paypalOffres) ; $i++)   { ?>
                         <li <?php if($i == 0) echo 'class="active"'; ?>><a href="#payementPaypal<?php echo $i; ?>" data-toggle="tab">Offre #<?php echo $i; ?></a></li>

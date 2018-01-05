@@ -18,61 +18,65 @@
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['addCategorie'] == true) { ?>
 
 	<div class="col-xs-12 col-md-6 text-center">
-		<h3>Créer une catégorie</h3>
+		<div class="panel panel-default cmw-panel">
+			<div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Créer une catégorie</strong></h3>
+            </div>
 		<div class="alert alert-success">
 			<strong>Avant de créez une catégorie sachez d'abord à quoi servent ces catégories, en effet en plus de permettre de ne pas tout mettre en vrac et d'avoir un minimum d'organisation, les catégories vous permettent de gérer le multiserveur! Vous avez trois choix pour le serveur d'action d'une catégorie: tous les serveurs(la commande est envoyée sur tous les serveurs), le serveur où le joueur est en ligne(par exemple pour un give d'item) ou un serveur spécifique que vous choisissez à l'avance. L'ordre de la catégorie est l'ordre d'affichage, il ne sert qu'à titre d'organisation.</strong>
 		</div>
 
 		<form action="?&action=creerCategorie" method="POST">
-			<div class="panel panel-primary">
-				<div class="panel-body">
-					<div class="form-group col-lg-6">
-						<label>Titre de la catégorie</label>
-						<input type="text" class="form-control" name="titre" placeholder="ex: Grades pas chers !">
-					</div>
-					<div class="form-group col-lg-6">
-						<label>Ordre d'affichage</label>
-						<input type="number" class="form-control" name="ordre" value="<?php echo $categorieNum; ?>" placeholder="L'ordre dans lequel va s'afficher la catégorie !"> 
-					</div>
-					<div class="form-group col-lg-6">
-						<label>Connexion In-Game</label>
-						<select name="connection"class="form-control">
-							<option value="0">Désactivé</option>
-							<option value="1">Activé</option>
-						</select>
-					</div>
-					<div class="form-group col-lg-6">
-						<label>Serveurs d'action</label>
-						<select name="serveur" class="form-control">
-							<option value="-1">Tous</option>
-							<option value="-2">Au choix (Le joueur se connecte sur le serveur voulu)</option>
-							<?php for($i = 0; $i < count($lecture['Json']); $i++) { ?>
-							<option value="<?php echo $i; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></option>
-							<?php } ?>
-						</select>
-					</div>
-					<div class="form-group col-lg-12">
-						<label>Description de la catégorie</label>
-						<textarea class="form-control" name="message"></textarea>
-					</div>
-					<hr>
-					<div class="form-group col-lg-12">
-						<button class="btn btn-success" type="submit">Créer la catégorie !</button>
-					</div>
+			<div class="panel-body">
+				<div class="form-group col-lg-6">
+					<label>Titre de la catégorie</label>
+					<input type="text" class="form-control" name="titre" placeholder="ex: Grades pas chers !">
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Ordre d'affichage</label>
+					<input type="number" class="form-control" name="ordre" value="<?php echo $categorieNum; ?>" placeholder="L'ordre dans lequel va s'afficher la catégorie !"> 
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Connexion In-Game</label>
+					<select name="connection"class="form-control">
+						<option value="0">Désactivé</option>
+						<option value="1">Activé</option>
+					</select>
+				</div>
+				<div class="form-group col-lg-6">
+					<label>Serveurs d'action</label>
+					<select name="serveur" class="form-control">
+						<option value="-1">Tous</option>
+						<option value="-2">Au choix (Le joueur se connecte sur le serveur voulu)</option>
+						<?php for($i = 0; $i < count($lecture['Json']); $i++) { ?>
+						<option value="<?php echo $i; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></option>
+						<?php } ?>
+					</select>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Description de la catégorie</label>
+					<textarea class="form-control" name="message"></textarea>
+				</div>
+				<hr>
+				<div class="form-group col-lg-12">
+					<button class="btn btn-success" type="submit">Créer la catégorie !</button>
 				</div>
 			</div>
 		</form>
 	</div>
+</div>
 
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['addOffre'] == true) { ?>
 
 	  <div class="col-xs-12 col-md-6 text-center">
-		<h3>Créer une offre</h3>
+	  	<div class="panel panel-default cmw-panel">
+	  		<div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Créer une offre</strong></h3>
+            </div>
 		<div class="alert alert-success">
 			<strong>Après avoir créé une catégorie, vous pouvez y insérer une offre. L'offre est dans un première temps composée d'un titre, d'un message(ou image) et appartiens à une catégorie, vous pourrez par la suite attribuer à une offre une "action"(=commande). Pour mettre une image, rien de plus simple, vous pouvez le faire via le code suivant: </strong></br><strong><?php echo htmlspecialchars('<img src="http://lien_vers_mon_image.fr/" alt="Image Boutique" />'); ?></strong>
 		</div>
 		<form action="?&action=creerOffre" method="POST">
-			<div class="panel panel-primary">
 				<div class="panel-body">
 					<div class="form-group col-lg-6">
 						<label>Titre de l'offre</label>
@@ -100,19 +104,21 @@
 						<input class="btn btn-success" type="submit" value="Créer l'offre !"/>
 					</div>
 				</div>
-			</div>
 		</form>
 	</div>
+</div>
 
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['createCoupon'] == true ) { ?>
 
 	<div class="col-md-12 text-center">
-		<h3>Création de coupon de réduction</h3>
+		<div class="panel panel-default cmw-panel">
+			<div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Création de coupon de réduction</strong></h3>
+            </div>
 		<div class="alert alert-success">
 			<strong>Ici vous pouvez créez des coupons de réduction pour votre boutique. La valeur des coupons est en %age. Il ne peut y'avoir qu'un seul coupon utilisé par paiement, les coupons sont valable jusqu'a ce que vous les supprimiez, et ils sont réutilisable. Il vous suffit simplement de rentrer un code de maximum 8 lettres, un pourcentage ainsi qu'un titre pour décrire votre remise, il apparaitra dans la description du produit dans le panier. </strong>
 		</div>
 		<form action="?action=creerCoupon" method="POST">
-			<div class="panel panel-primary">
 				<div class="panel-body">
 					<div class="form-group col-lg-6">
 						<label>Titre de la remise (description)</label>
@@ -131,50 +137,55 @@
 						<input type="submit" class="btn btn-success" value="Créer le code de remise">
 					</div>
 				</div>
-			</div>
 		</form>
 	</div>
+</div>
 
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['modifCoupon'] == true) { ?>
 
 	<div class="col-md-12 text-center">
-		<h3>Les coupons de réduction actuellement disponible</h3>
-		<div class="alert alert-success">
-			<strong>Voici le tableau contenant tout les coupons de réductions qui sont disponible. Vous pouvez les supprimez ici </strong>
+		<div class="panel panel-default cmw-panel">
+			<div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Les coupons de réduction actuellement disponible</strong></h3>
+            </div>
+            <div class="panel-body">
+				<div class="alert alert-success">
+					<strong>Voici le tableau contenant tout les coupons de réductions qui sont disponible. Vous pouvez les supprimez ici </strong>
+				</div>
+				<table class="table table-striped table-hover table-dark">
+					<tr>
+						<th>Titre / Description</th>
+						<th>Code de réduction</th>
+						<th>Pourcentage de réduction</th>
+						<th>Actions ...</th>
+					</tr>
+					<?php $coupons = getCouponsReduc($bddConnection);
+						for($i = 0; $i < count($coupons); $i++)
+						{
+							?><tr>
+								<td><?php echo $coupons[$i]['titre']; ?></td>
+								<td><?php echo $coupons[$i]['code_promo']; ?></td>
+								<td><?php echo $coupons[$i]['pourcent']; ?>%</td>
+								<td><a href="?action=supprCoupon&id=<?php echo $coupons[$i]['id']; ?>" class="btn btn-danger" title="Supprimer le coupon">Supprimer le coupon</a></td>
+							</tr><?php
+						}
+					?>
+				</table>
+			</div>
 		</div>
-		<table class="table table-striped table-hover table-dark">
-			<tr>
-				<th>Titre / Description</th>
-				<th>Code de réduction</th>
-				<th>Pourcentage de réduction</th>
-				<th>Actions ...</th>
-			</tr>
-			<?php $coupons = getCouponsReduc($bddConnection);
-				for($i = 0; $i < count($coupons); $i++)
-				{
-					?><tr>
-						<td><?php echo $coupons[$i]['titre']; ?></td>
-						<td><?php echo $coupons[$i]['code_promo']; ?></td>
-						<td><?php echo $coupons[$i]['pourcent']; ?>%</td>
-						<td><a href="?action=supprCoupon&id=<?php echo $coupons[$i]['id']; ?>" class="btn btn-danger" title="Supprimer le coupon">Supprimer le coupon</a></td>
-					</tr><?php
-				}
-			?>
-		</table>
 	</div>
 
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['editCategorieOffre'] == true) { ?>
 
 	  <div class="col-md-12 text-center">
-		<h3>Edition des offres/catégories</h3>
-		<div class="alert alert-success">
-			<strong>Une fois votre offre créée, vous pouvez la modifier mais avant tout lui ajouter une action, pour cela cliquez sur le bouton "action" de l'offre à modifier, la fenêtre qui s'ouvre vous propose différents types d'actions, ainsi que la "Valeur de l'action / Commande" qu'il faut y attribuer. Vous pouvez très bien ajouter plusieurs actions à votre offre, par exemple faire une offre qui ajoute le joueur à un grade, envoie un message public et lui donne 15 diamants est tout à fait possible.</strong>
-		</div>
-	</div>
-
-	<div class="col-lg-12 text-center">
-		<div class="panel panel-primary">
-			<div class="panel-body">
+	  	<div class="panel panel-default cmw-panel">
+	  		<div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Edition des offres/catégories</strong></h3>
+            </div>
+            <div class="panel-body">
+				<div class="alert alert-success">
+					<strong>Une fois votre offre créée, vous pouvez la modifier mais avant tout lui ajouter une action, pour cela cliquez sur le bouton "action" de l'offre à modifier, la fenêtre qui s'ouvre vous propose différents types d'actions, ainsi que la "Valeur de l'action / Commande" qu'il faut y attribuer. Vous pouvez très bien ajouter plusieurs actions à votre offre, par exemple faire une offre qui ajoute le joueur à un grade, envoie un message public et lui donne 15 diamants est tout à fait possible.</strong>
+				</div>
 				<ul class="nav nav-tabs">
 					<?php $i = 0;
 					while($i < count($categories)) { ?>
@@ -386,6 +397,5 @@
 								</div>
 							</div>
 						</div>
-					</div>
 					<?php } ?>
 				</div>
