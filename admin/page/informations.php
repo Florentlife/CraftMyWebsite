@@ -219,8 +219,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                 <button type="button" class="btn btn-success" onclick="window.location.replace('?&action=commandeRedemarrageServer')" disabled>Redémarrer le serveur</button>
               </div>
             </div>
+          </div>
           <?php }
-          ?></div><?php
         } ?>
       </div>
     </div>
@@ -535,7 +535,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 
 <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['visitors']['showTable'] == true) { ?>
 <div class="row">
-  <div class="col-lg-12">
+  <div class="col-lg-8">
     <div class="panel panel-default cmw-panel">
       <div class="panel-heading cmw-panel-header">
         <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Statistiques des visiteurs
@@ -609,6 +609,37 @@ for($j = 0; $j < count($lecture['Json']); $j++)
       </div>
     </div>
   </div>
+
+  <!-- Debut code post-it (par cercus) -->
+
+  <div class="col-lg-4">
+    <div class="panel panel-default cmw-panel">
+      <div class="panel-heading cmw-panel-header">
+        <h3 class="panel-title"><i class=" fa fa-pencil-square-o"></i> Post-it (Pour ne rien oublier)
+        </h3>
+      </div>
+      <div class="panel-body" style="height: 155px; width: 100%;">
+        <?php 
+        $all_message_postit = $bddConnection->query('SELECT id, auteur, message FROM cmw_postit ORDER BY id DESC LIMIT 0, 4');
+        while ($message_postit = $all_message_postit->fetch()) { ?>
+        	<p><strong>[<?php echo $message_postit['auteur']; ?>] </strong> <?php echo $message_postit['message']; ?>&nbsp;&nbsp; <a href="?&action=supprPostit&id=<?php echo $message_postit['id']; ?>"><img src="../admin/assets/img/suppr.jpg" width="10px" height="10px" title="Supprimer" alt="Supprimer" /></a></p>
+       <?php } ?>
+
+      </div>
+      <div class="panel-footer">
+        <form method="POST" action="?&action=creerPostit">
+          <span class="pull-left"><input type="text" name="post-it_message" placeholder="Message (max 50 caractères)" maxlength="50"></span>
+          <span class="pull-right"><button type="submit">Envoyer !</button></span>
+        </form>
+      <div class="clearfix"></div>
+    </div>
+    </div>
+  </div>
+
+
+  <!-- Fin code post-it -->
+
+
 </div>
 <?php } ?>
 
