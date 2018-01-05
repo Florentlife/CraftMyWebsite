@@ -8,16 +8,20 @@ if(isset($_Joueur_) AND isset($_POST['id_topic']))
 		'id' => $id
 	));
 	$donnee = $req->fetch();
-	?><form action="?action=edit_topic" method="POST">
+	?>
+	<header class="heading-pagination">
+	<div class="container-fluid">
+		<h1 class="text-uppercase wow fadeInRight" style="color:white;">Edition du topic :<?php echo $donnee['nom']; ?></h1>
+	</div>
+</header><section class="layout" id="page"><form action="?action=edit_topic" method="POST">
 	<div class="container">
-        <h4 class="title">Edition du topic : <?php echo $donnee['nom']; ?></h4>
         <input type="hidden" name="id_topic" value="<?php echo $id; ?>"/>
         <label for="contenue" class="control-label">Editez votre contenu</label><br/>
         <textarea name="contenue" maxlength="10000" class="form-control" id="contenue"><?php echo $donnee['contenue']; ?></textarea>
         <hr>
         <button type="submit" class="btn btn-primary pull-right">Envoyer</button>
       </div>
-	  </form>
+	  </form></section>
       <?php 
 }
 else

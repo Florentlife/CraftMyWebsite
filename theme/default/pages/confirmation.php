@@ -1,4 +1,8 @@
-<div class="container"><!-- Titre page--><h3>Page de confirmation des actions de modérations</h3><br/>
+<header class="heading-pagination">
+	<div class="container-fluid">
+		<h1 class="text-uppercase wow fadeInRight" style="color:white;">Confirmation de votre action de modération</h1>
+	</div>
+</header><section class="layout" id="page"><div class="container"><br/>
 
 <?php 
 if(isset($_GET['choix']))
@@ -33,9 +37,12 @@ if(isset($_GET['choix']))
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-offset-2 col-sm-10">
+							<div class="col-sm-10">
 								<button type="submit" class="btn btn-primary">Supprimer ce topic :(</button>
 							</div>
+							<div class="col-sm-2">
+					<a href="index.php" class="btn btn-warning">Annuler</a>
+				</div>
 						</div>
 					</form><?php
 					}
@@ -83,9 +90,12 @@ if(isset($_GET['choix']))
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-offset-2 col-sm-10">
+							<div class="col-sm-10">
 								<button type="submit" class="btn btn-primary">Déplacer la discussion </button>
 							</div>
+							<div class="col-sm-2">
+					<a href="index.php" class="btn btn-warning">Annuler</a>
+				</div>
 						</div>
 					</form>
 					<?php
@@ -108,9 +118,12 @@ if(isset($_GET['choix']))
 				</div>
 				<input type="hidden" name="id_answer" value="<?php echo $_GET['id']; ?>" />
 				<div class="row">
-					<div class="col-sm-offset-2 col-sm-10">
+					<div class="col-sm-10">
 						<button class="btn btn-primary" type="submit">Signaler ! </button>
 					</div>
+					<div class="col-sm-2">
+					<a href="index.php" class="btn btn-warning">Annuler</a>
+				</div>
 				</div>
 			</form>
 			<?php 
@@ -128,8 +141,11 @@ if(isset($_GET['choix']))
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="col-sm-10">
 					<button type="submit" class="btn btn-primary">Signaler ce topic !</button>
+				</div>
+				<div class="col-sm-2">
+					<a href="index.php" class="btn btn-warning">Annuler</a>
 				</div>
 			</div>
 		</form>
@@ -140,4 +156,4 @@ else
 {
 	header('Location: ?page=erreur&erreur=7');
 }
-?></div>
+?></div></section>
