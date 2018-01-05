@@ -6,12 +6,14 @@
                     <strong>Vous avez aucune permission pour accéder aux nouveautés.</strong>
                 </div>
             </div>
+        </div><div class="row" style="padding-top: 5px;">
         <?php } else { ?>
             <div class="col-md-12 text-center">
                 <div class="alert-success">
                     <strong>Les news sont visibles sur l'accueil, elles informent vos joueurs des nouveautées relatives à votre communautée, pensez à rédiger des news souvent cela prouve votre activité, ça fait toujours plaisir à un joueur de voir un nouveau message!</strong>
                 </div>
             </div>
+        </div><div class="row" style="padding-top: 5px;">
         <?php }
         if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['news']['actions']['addNews'] == true) { ?>
             <div class="col-md-6">
@@ -91,7 +93,7 @@
                                                         <a href="?action=supprNews&newsId=<?php echo $tableauNews[$i]['id']; ?>" class="btn btn-danger form-control">Supprimer la News</a>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row" style="padding-top: 5px;">
                                                     <?php echo '<textarea id="news_' . $tableauNews[$i]['id'] . 'C" name="message" style="height: 275px; margin: 0px; width: 50%;">' . $tableauNews[$i]['message'] . '</textarea>';?>
                                                     <?php echo '<script type ="text/javascript"> CKEDITOR.replace( \'news_' . $tableauNews[$i]['id'] . 'C\' ); </script>';?>
                                                 </div>
