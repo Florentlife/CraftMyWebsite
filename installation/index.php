@@ -175,8 +175,20 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 					<div class="form-group col-md-6">
 						<label>Une petite description</label>
 						<input type="text" name="description" class="form-control form-install" placeholder="Exemple: CraftMyStory est un serveur full vanilla survival."/>
-					</div>		
+					</div>
 					<div class="form-group col-md-6">
+						<label>Ip de votre serveur Minecraft (sous forme chiffré sans port)</label>
+						<input type="text" name="ip" class="form-control form-install" placeholder="172.16.254.1">
+					</div>
+					<div class="form-group col-md-5">
+						<label>Ip de votre serveur Minecraft (sous forme textuel)</label>
+						<input type="text" name="ipTexte" class="form-control form-install" placeholder="cmw.minesr.com">
+					</div>
+					<div class="form-group col-md-3">
+						<label>Port de votre serveur Minecraft</label>
+						<input type="number" name="port" class="form-control form-install" placeholder="25565">
+					</div>		
+					<div class="form-group col-md-4">
 						<input type="submit" class="btn btn-success btn-installation btn-valider"/>
 					</div>	
 
@@ -211,7 +223,7 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 					?>
 					<h4 style="font-family: material;text-align: center;margin-top: 30px;">
 						L'installation de CraftMyWebsite est maintenant terminée.<br/>
-						Vous pouvez aller sur votre site en cliquant ici: <a href="../">Aller voir mon site</a>
+						Vous pouvez aller sur votre site en cliquant ici: <a href="../index.php?action=supprInstall">Aller voir mon site</a>
 					</h4>
 					<?php } ?>
 				</div>

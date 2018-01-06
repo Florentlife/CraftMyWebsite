@@ -15,6 +15,10 @@ if(isset($_GET['action']))
 			header('Location: index.php');
 		break;
 		
+		case 'supprInstall':
+			include('controleur/supprInstall.php');
+		break;
+		
 		// Appellée lors d'une action pour le forum  
 		case 'selTopic':
 			include('controleur/forum/selTopic.php');
