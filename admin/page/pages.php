@@ -1,33 +1,29 @@
 <div class="cmw-page-content-header"><strong>Pages personnalisées</strong> - Gérez les pages personnalisées de votre site</div>
 
-
-<div class="row">
-
     <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['pages']['actions']['addPage'] == false AND $_PGrades_['PermsPanel']['pages']['actions']['editPage'] == false)) { ?>
 
-
-    <div class="alert alert-danger">
-        <strong>Vous avez aucune permission pour accéder aux réglages des pages.</strong>
+    <div class="row">
+        <div class="alert alert-danger">
+            <strong>Vous avez aucune permission pour accéder aux réglages des pages.</strong>
+        </div>
     </div>
-
     <?php } else { ?>
-
-    <div class="alert alert-success">
-        <strong>En plus des pages de base du CMS, vous pouvez créer des pages personnalisées, ces pages peuvent être découpées en plusieurs "sections". Une fois la page créée vous pouvez faire un lien vers cette dernière dans la section "menus" de votre panel.</strong>
+    <div class="row">
+        <div class="alert alert-success">
+            <strong>En plus des pages de base du CMS, vous pouvez créer des pages personnalisées, ces pages peuvent être découpées en plusieurs "sections". Une fois la page créée vous pouvez faire un lien vers cette dernière dans la section "menus" de votre panel.</strong>
+        </div>
     </div>
-
-    <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['pages']['actions']['addPage'] == true) { ?>
-
+    <?php } ?> <div class="row"> <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['pages']['actions']['addPage'] == true) { ?>
     <div class="col-xs-12 col-md-6 text-center">
         <div class="panel panel-default cmw-panel">
             <div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Création d'une nouvelle page</strong></h3>
                 </div>
+            <div class="panel-body">
             <div class="alert alert-success">
                 <strong>Quand vous créez une page cette dernière ne contient qu'une section définie lors de la création, vous pourrez ensuite éditer votre page une fois créée et y ajouter jusqu'à 5 sections. Une section est constituée d'un sous titre et d'un bloc de texte. La page est constituée d'un titre et d'une ou plusieurs sections.</strong>
             </div>        
             <form method="POST" action="?&action=creerPage">
-                <div class="panel-body">
 
                     <h3>Créer une page</h3>
                     <label class="control-label">Titre de la page</label>
@@ -41,10 +37,8 @@
 
                     <br/>
                     <input type="submit" class="btn btn-success" value="Ajouter la page !"/>
-                    
-
-                </div>
             </form>
+        </div>
         </div>
     </div>
 
@@ -54,6 +48,7 @@
             <div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Edition des pages</strong></h3>
             </div>
+            <div class="panel-body">
         <?php if(empty($pages)) { ?>
         <div class="alert alert-warning">
             <strong>Aucune page est à modifier.</strong>
@@ -64,7 +59,6 @@
         </div>
         <?php } ?>
         <?php if(!empty($pages)) { ?>
-            <div class="panel-body">
                 <div class="row">
                     <ul class="nav nav-tabs">
 
@@ -155,5 +149,4 @@
     <script type="text/javascript">
         CKEDITOR.replace( 'page_1' );
     </script>
-
 </div>
