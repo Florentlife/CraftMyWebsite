@@ -25,6 +25,9 @@
 
 	$configLecture = new Lire('modele/config/configWidgets.yml');
 	$_Widgets_ = $configLecture->GetTableau();
+	
+	$configLecture = new Lire('modele/config/accueil.yml');
+	$_Accueil_ = $configLecture->GetTableau();
 
     if($_Serveur_['General']['bgType'] == 0)
         $bgType = 'background: url(\'theme/upload/bg.png\') no-repeat fixed 0% 0% / 100% 100% transparent;';
