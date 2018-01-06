@@ -1,5 +1,5 @@
 <?php
-if($_Joueur['rang'] == 1 OR $_PGrades_['PermsPanel']['news']['actions']['editNews'] == true) { 
+if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['news']['actions']['editNews'] == true) { 
 	$req = $bddConnection->prepare('DELETE FROM cmw_news WHERE id = :id');
 	$req->bindParam(':id', $_GET['newsId']);
 	$req->execute();
