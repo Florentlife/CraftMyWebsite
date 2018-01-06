@@ -1,5 +1,5 @@
 <!--Header-->
-    <header class="heading">
+    <header class="heading" style="background-image: url(''theme/upload/slider/<?php echo $_Accueil_['Slider']['image']; ?>');">
         <div class="heading-mask">
             <div class="container" style="text-align:center;">
                 <h1 class="text-primary text-uppercase wow zoomInDown" data-wow-delay="0.6s"><?php echo $_Serveur_['General']['name']; ?></h1>

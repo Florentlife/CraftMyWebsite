@@ -33,47 +33,23 @@
                         <input type="submit" class="btn btn-success">
                     </div>
                 </form>
-            </div>
-        </div>
 
         <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['actions']['editSlider'] == true) { ?>
 
 
         <h3>Configuration de votre slider</h3>
-        <div class="panel panel-default">
-            <div class="panel-body">
                 <form method="POST" action="?&action=changeSlider">
-                    
-                        <label class="control-label">Titre au dessus du slider</label>
-                        <input class="form-control text-center" type="text" placeholder="Sliders">
-                        <ul class="nav nav-tabs">
-                            <?php for($i = 0;$i < count($lectureAccueil['Slider']);$i++) { ?>
-                            <li <?php if($i == 0) echo 'class="active"'; ?>><a href="#slider<?php echo $i; ?>" data-toggle="tab">Image <?php echo $i + 1; ?></a></li>
-                            <?php }
-                            if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['actions']['addSlider'] == true) { ?>
-                            <li><a href="#newSlider" data-toggle="modal"><span class="glyphicon glyphicon-plus"></span></a></li>
-                            <?php } ?>
-                        </ul>
-
-                    
-                        <div class="tab-content">
-                            <?php for($i = 0;$i < count($lectureAccueil['Slider']);$i++) { ?>
-                            <div class="tab-pane well <?php if($i == 0) echo 'active"'; ?>" id="slider<?php echo $i; ?>">
-                                <label class="control-label">Message de l'image</label>
-                                <a href="?action=supprSlider&id=<?php echo $i; ?>" class="btn btn-danger btn-xs">Supprimer</a>
-                                <input type="text" class="form-control text-center" name="message<?php echo $i; ?>" value="<?php echo $lectureAccueil['Slider'][$i]['message']; ?>">
-                                <select class="form-control text-center" name="image<?php echo $i; ?>">
-                                    <option value="<?php echo $lectureAccueil['Slider'][$i]['image']; ?>"><?php echo $lectureAccueil['Slider'][$i]['image']; ?></option>
-                                    <?php for($j = 2;$j < count($imagesSlider);$j++) {
-                                        if($lectureAccueil['Slider'][$i]['image'] != $imagesSlider[$j])  echo '<option value="' .$imagesSlider[$j]. '">' .$imagesSlider[$j]. '</option>';
-                                    } ?>
-                                </select>
-                            </div>
-                            <?php } ?>
-                            <input type="submit" class="btn btn-success" value="Modifier le slider"/>
-                        </div>
-                    
-                </form>
+                        
+                        <label class="control-label">Choisissez votre slider</label>
+                        <select class="form-control text-center" name="image">
+                            <option value="<?php echo $lectureAccueil['Slider']['image']; ?>"><?php echo $lectureAccueil['Slider']['image']; ?></option>
+                            <?php for($j = 2;$j < count($imagesSlider);$j++) {
+                                if($lectureAccueil['Slider']['image'] != $imagesSlider[$j])  echo '<option value="' .$imagesSlider[$j]. '">' .$imagesSlider[$j]. '</option>';
+                            } ?>
+                        </select>
+                            <input style="margin-top: 5px;" type="submit" class="btn btn-success" value="Modifier le slider"/>
+                        
+                    </form>
             </div>
         </div>
     </div>

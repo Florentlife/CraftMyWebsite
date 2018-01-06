@@ -28,7 +28,7 @@
                           <label class="control-label">Thèmes</label>
                           <select class="form-control text-center" name="theme">
                             <option value="<?php echo $_Serveur_['General']['theme']; ?>"><?php echo $_Serveur_['General']['theme']; ?></option>
-                            <?php foreach($themes as $element){ if($element != 'upload' AND $element != $_Serveur_['General']['theme'] AND $element != '..') { ?>
+                            <?php foreach($themes as $element){ if($element != 'upload' AND $element != $_Serveur_['General']['theme'] AND $element != '..' AND $element != 'smileys') { ?>
                             <option value="<?php echo $element; ?>"><?php echo $element; ?></option><?php } } ?>
                         </select>
                     </div>
