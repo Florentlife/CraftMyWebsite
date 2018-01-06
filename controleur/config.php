@@ -38,11 +38,6 @@
 	
 	$playeronline = file_get_contents('https://minecraft-api.com/api/ping/playeronline.php?ip='.$_Serveur_['General']['ip'].'&port='.$_Serveur_['General']['port']);
 	$maxPlayers = file_get_contents('https://minecraft-api.com/api/ping/maxplayer.php?ip='.$_Serveur_['General']['ip'].'&port='.$_Serveur_['General']['port']);
-	// On charge la connection à la base MySQL via l'extention PDO.
-	require_once ('controleur/connection_base.php');
-	require('modele/forum/miseEnPage.php'); 
-	require('modele/boutique/panier.class.php');
-	$_Panier_ = new Panier($bddConnection);
 
 	function gradeJoueur($pseudo, $bdd)
 	{

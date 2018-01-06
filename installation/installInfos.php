@@ -5,6 +5,9 @@ $config = $config->GetTableau();
 $config['General']['url'] = $_POST['adresse'];
 $config['General']['name'] = $_POST['nom'];
 $config['General']['description'] = $_POST['description'];
+$config['General']['ipTexte'] = $_POST['ipTexte'];
+$config['General']['ip'] = $_POST['ip'];
+$config['General']['port'] = $_POST['port'];
 
 $config = new Ecrire('../modele/config/config.yml', $config);
 

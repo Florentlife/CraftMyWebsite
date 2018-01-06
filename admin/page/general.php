@@ -20,10 +20,7 @@
 
 <form method="POST" action="?&action=general">
     <div class="text-center">
-        <div class="panel panel-default cmw-panel">
-            <div class="panel-heading cmw-panel-header">
-                <h3 class="panel-title"><strong>Configuration des données de base</strong></h3>
-            </div>
+        <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
                   <div class="col-xs-12 col-md-6" style="padding: 10px;">
@@ -65,10 +62,7 @@
 </form>
 <form action="?action=ajout_favicon" method="POST" enctype="multipart/form-data">
     <div class="text-center">
-        <div class="panel panel-default cmw-panel">
-            <div class="panel-heading cmw-panel-header">
-                <h3 class="panel-title"><strong>Configuration du favicon</strong></h3>
-            </div>
+        <div class="panel panel-default">
             <div class="panel-body">
                 <div class="row">
                     <div class="col">

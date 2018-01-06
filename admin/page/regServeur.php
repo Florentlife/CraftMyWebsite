@@ -17,10 +17,10 @@
             <div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Création d'un serveur JSONAPI</strong></h3>
             </div>
-            <div class="alert alert-success">
-                <strong>Vous pouvez ajouter autant de serveurs minecraft que vous le souhaitez. La connexion au(x) serveur(s) est essentiel !</strong>
-            </div>
             <div class="panel-body">
+                <div class="alert alert-success">
+                    <strong>Vous pouvez ajouter autant de serveurs minecraft que vous le souhaitez. La connexion au(x) serveur(s) est essentiel !</strong>
+                </div>
                 <form method="POST" action="?&action=serveurJsonNew">
                     <h3>Ajout d'un serveur</h3>
 
@@ -54,7 +54,7 @@
             <div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Edition du/des serveurs</strong></h3>
             </div>
-        
+            <div class="panel-body">
         <?php if(count($lecture['Json']) == 0) { ?>
 
             <div class="alert alert-warning">
@@ -70,7 +70,6 @@
         <?php } if(!count($lecture['Json']) == 0) { ?>
 
         <form method="POST" action="?&action=serveurConfig">
-            <div class="panel-body">
                 <div class="row">
                     <ul class="nav nav-tabs">
                         <?php for($i = 0; $i < count($lecture['Json']); $i++) { ?>
@@ -106,9 +105,9 @@
                         <?php } ?>
                     </div>
                 </div>
-            </div>
         </form>
     <?php } ?>
+</div>
 </div>
 </div>
 <?php } ?>

@@ -22,12 +22,12 @@
 			<div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Créer une catégorie</strong></h3>
             </div>
+            <div class="panel-body">
 		<div class="alert alert-success">
 			<strong>Avant de créez une catégorie sachez d'abord à quoi servent ces catégories, en effet en plus de permettre de ne pas tout mettre en vrac et d'avoir un minimum d'organisation, les catégories vous permettent de gérer le multiserveur! Vous avez trois choix pour le serveur d'action d'une catégorie: tous les serveurs(la commande est envoyée sur tous les serveurs), le serveur où le joueur est en ligne(par exemple pour un give d'item) ou un serveur spécifique que vous choisissez à l'avance. L'ordre de la catégorie est l'ordre d'affichage, il ne sert qu'à titre d'organisation.</strong>
 		</div>
 
 		<form action="?&action=creerCategorie" method="POST">
-			<div class="panel-body">
 				<div class="form-group col-lg-6">
 					<label>Titre de la catégorie</label>
 					<input type="text" class="form-control" name="titre" placeholder="ex: Grades pas chers !">
@@ -61,8 +61,8 @@
 				<div class="form-group col-lg-12">
 					<button class="btn btn-success" type="submit">Créer la catégorie !</button>
 				</div>
-			</div>
 		</form>
+	</div>
 	</div>
 </div>
 
@@ -73,11 +73,11 @@
 	  		<div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Créer une offre</strong></h3>
             </div>
+            <div class="panel-body">
 		<div class="alert alert-success">
 			<strong>Après avoir créé une catégorie, vous pouvez y insérer une offre. L'offre est dans un première temps composée d'un titre, d'un message(ou image) et appartiens à une catégorie, vous pourrez par la suite attribuer à une offre une "action"(=commande). Pour mettre une image, rien de plus simple, vous pouvez le faire via le code suivant: </strong></br><strong><?php echo htmlspecialchars('<img src="http://lien_vers_mon_image.fr/" alt="Image Boutique" />'); ?></strong>
 		</div>
 		<form action="?&action=creerOffre" method="POST">
-				<div class="panel-body">
 					<div class="form-group col-lg-6">
 						<label>Titre de l'offre</label>
 						<input type="text" class="form-control" name="nom" placeholder="ex: 64 x Diamants">
@@ -103,8 +103,8 @@
 					<div class="form-group col-lg-12">
 						<input class="btn btn-success" type="submit" value="Créer l'offre !"/>
 					</div>
-				</div>
 		</form>
+	</div>
 	</div>
 </div>
 
@@ -115,11 +115,11 @@
 			<div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Création de coupon de réduction</strong></h3>
             </div>
+            <div class="panel-body">
 		<div class="alert alert-success">
 			<strong>Ici vous pouvez créez des coupons de réduction pour votre boutique. La valeur des coupons est en %age. Il ne peut y'avoir qu'un seul coupon utilisé par paiement, les coupons sont valable jusqu'a ce que vous les supprimiez, et ils sont réutilisable. Il vous suffit simplement de rentrer un code de maximum 8 lettres, un pourcentage ainsi qu'un titre pour décrire votre remise, il apparaitra dans la description du produit dans le panier. </strong>
 		</div>
 		<form action="?action=creerCoupon" method="POST">
-				<div class="panel-body">
 					<div class="form-group col-lg-6">
 						<label>Titre de la remise (description)</label>
 						<input type="text" class="form-control" name="titre" placeholder="Remise spécial CMW V1.6" require maxlength="60">
@@ -136,8 +136,8 @@
 					<div class="form-group col-lg-12">
 						<input type="submit" class="btn btn-success" value="Créer le code de remise">
 					</div>
-				</div>
 		</form>
+	</div>
 	</div>
 </div>
 

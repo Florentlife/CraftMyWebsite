@@ -20,12 +20,11 @@ function VerifieChmod() {
     $dirR[2] = '../modele/config/config.yml';
     $dirR[3] = '../modele/config/configMenu.yml';
     $dirR[4] = '../modele/config/configServeur.yml';
-    $dirR[5] = '../modele/config/configVotes.yml';
-    $dirR[6] = '../modele/config/configWidgets.yml';
-    $dirR[7] = '../modele/config/groups.yml';
-    $dirR[8] = '../modele/.htpasswd';
-    $dirR[9] = '../controleur/.htpasswd';
-    $dirR[10] = '../admin/actions/.htpasswd';
+    $dirR[5] = '../modele/config/configWidgets.yml';
+    $dirR[6] = '../modele/config/groups.yml';
+    $dirR[7] = '../modele/.htpasswd';
+    $dirR[8] = '../controleur/.htpasswd';
+    $dirR[9] = '../admin/actions/.htpasswd';
 
 
     $dir[0] = 'installation/install.yml';
@@ -33,14 +32,14 @@ function VerifieChmod() {
     $dir[2] = 'modele/config/config.yml';
     $dir[3] = 'modele/config/configMenu.yml';
     $dir[4] = 'modele/config/configServeur.yml';
-    $dir[5] = 'modele/config/configVotes.yml';
-    $dir[6] = 'modele/config/configWidgets.yml';
-    $dir[7] = 'modele/config/groups.yml';
-    $dir[8] = 'modele/.htpasswd';
-    $dir[9] = 'controleur/.htpasswd';
-    $dir[10] = 'admin/actions/.htpasswd';
+    $dir[5] = 'modele/config/configWidgets.yml';
+    $dir[6] = 'modele/config/groups.yml';
+    $dir[7] = 'modele/.htpasswd';
+    $dir[8] = 'controleur/.htpasswd';
+    $dir[9] = 'admin/actions/.htpasswd';
 
-    $dirDossier[0] = array('theme/upload/', '../theme/upload/', '../theme/upload/slider/', 'theme/upload/slider/', 'theme/smileys', '../theme/smileys');
+    $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/');
+    $dirDossier[1] = array('../theme/smileys/');
 
     $err = null;
     for($i = 0; $i < count($dir); $i++)
@@ -63,7 +62,7 @@ function VerifieChmod() {
     for($i = 0; $i < count($dirDossier); $i++)
     {
         $compte[$i] = false;
-        for($j = 1; $j < count($dirDossier[$i]); $j++)
+        for($j = 0; $j < count($dirDossier[$i]); $j++)
         {
             $chmodDossier[$i][$j] = substr(sprintf('%o', fileperms($dirDossier[$i][$j])), -3);
 
@@ -166,7 +165,7 @@ function DrawChmod($return)
 <center><a href="index.php" class="btn btn-primary btn-installation">Relancer la vérification</a></center><br/>
 <center><a onclick="ajax_chmod();" class="btn btn-primary btn-installation">Tenter de modifier les chmod automatiquement</a></center>
 </div>
-<script src="../theme/default/js/jquery.js"></script>
+<script src="../theme/default/js/jquery.min.js"></script>
 <script src="../theme/default/js/bootstrap.min.js"></script>
 <script>
 	function ajax_chmod(){
