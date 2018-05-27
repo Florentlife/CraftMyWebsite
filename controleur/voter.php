@@ -5,11 +5,7 @@ require_once('modele/joueur/maj.class.php');
 include('controleur/topVoteurs.php');
 $joueurMaj = new Maj($_Joueur_['pseudo'], $bddConnection);
 $playerData = $joueurMaj->getReponseConnection();
-$playerData = $playerData->fetch();
-
-if(!ExistPost($id, $liensVotes))
-	header('Location: ?&page=voter&erreur=3');
-	
+$playerData = $playerData->fetch();	
 	
 if(isset($_Joueur_['pseudo']) && $_POST['site'] > 0)
 {
@@ -41,21 +37,21 @@ $succes = false;
 				$action = explode(':', $action[1]);
 				$id = $action[1];
 				$quantite = $action[3];
-				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, $lectureVotes['message'])));
+				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, str_replace('&amp;', '§', $lectureVotes['message']))));
 				if($lectureVotes['methode'] == 2)
 				{
 					if(!empty($lectureVotes['message']))
 					{
-						$jsonCon[$liensVotes['serveur']]->SendBroadcast($message);
+						$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
 					}
-					$jsonCon[$liensVotes['serveur']]->GivePlayerItem($id . ' ' .$quantite);
+					$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($id . ' ' .$quantite);
 					header('Location: ?&page=voter&success=true');
 				}
 				else
 				{
 					for($j =0; $j < count($jsonCon); $j++)
 					{
-						if($lectureVotes['display'] == 1)
+						if(!empty($lectureVotes['message']))
 						{
 
 							$jsonCon[$j]->SendBroadcast($message);
@@ -67,12 +63,12 @@ $succes = false;
 			}
 			elseif($action[0] == "jeton")
 			{
-				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $action[1], $lectureVotes['message']));
+				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $action[1], str_replace('&amp;', '§', $lectureVotes['message'])));
 				if($lectureVotes['methode'] == 2)
 				{
-					if($lectureVotes['display'] == 1)
+					if(!empty($lectureVotes['message']))
 					{
-						$jsonCon[$liensVotes['serveur']]->SendBroadcast($message);
+						$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
 					}
 					ajouterTokens($action[1]);
 					header('Location: ?&page=voter&success=true');
@@ -81,7 +77,7 @@ $succes = false;
 				{
 					for($j =0; $j < count($jsonCon); $j++)
 					{
-						if($lectureVotes['display'] == 1)
+						if(!empty($lectureVotes['message']))
 						{
 							$jsonCon[$j]->SendBroadcast($message);
 						}
@@ -93,21 +89,21 @@ $succes = false;
 			else
 			{
 				$cmd = str_replace('{JOUEUR}', $_Joueur_['pseudo'], $action[1]);
-				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{CMD}', $cmd, $lectureVotes['message']));
+				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{CMD}', $cmd, str_replace('&amp;', '§', $lectureVotes['message'])));
 				if($lectureVotes['methode'] == 2)
 				{
-					if($lectureVotes['display'] == 1)
+					if(!empty($lectureVotes['message']))
 					{
-						$jsonCon[$liensVotes['serveur']]->SendBroadcast($message);
+						$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
 					}
-					$jsonCon[$liensVotes['serveur']]->runConsoleCommand($cmd);
+					$jsonCon[$lectureVotes['serveur']]->runConsoleCommand($cmd);
 				header('Location: ?&page=voter&success=true');
 				}
 				else
 				{
 					for($j = 0; $j < count($jsonCon); $j++)
 					{
-						if($lectureVotes['display'] == 1 )
+						if(!empty($lectureVotes['message']))
 						{
 							$jsonCon[$j]->SendBroadcast($message);
 						}
@@ -130,13 +126,6 @@ $succes = false;
 		$joueurMaj->setNouvellesDonneesTokens($playerData);
 		$_Joueur_['tokens'] = $_Joueur_['tokens'] + $number;
 		$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
-	}
-	
-	function ExistPost($id, $votesLiens)
-	{
-		if(isset($votesLiens[$id]))
-			return true;
-		else return false;
 	}
 
 	function RecupJoueur($pseudo, $id, $bddConnection)

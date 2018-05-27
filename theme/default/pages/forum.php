@@ -18,26 +18,48 @@
  	}
 $fofo = $_Forum_->affichageForum();
 for($i = 0; $i < count($fofo); $i++)
-{ ?>
+{ 
+	if($_PGrades_['PermsDefault']['forum']['perms'] >= $fofo[$i]['perms'] OR ($_Joueur_['rang'] == 1 AND !$_SESSION['mode']) OR $fofo[$i]['perms'] == 0)
+	{
+	?>
 		</br><br/>
 		<table class="table table-striped">
-		<div class="row"><div class="col-md-9"><center><h3><?php echo ucfirst($fofo[$i]['nom']); ?></h3></center></div><?php if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['general']['deleteForum'] == true OR $_Joueur_['rang'] == 1) AND !$_SESSION['mode']){ ?><div class="col-md-3" style="text-align: right;"><a href="?action=remove_forum&id=<?php echo $fofo[$i]['id']; ?>" class="btn btn-danger" style="text-align: right;">Supprimer</a></div><?php } ?></div>
+		<div class="row"><?php if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['general']['deleteForum'] == true OR $_Joueur_['rang'] == 1) AND !$_SESSION['mode']){ ?>
+		<div class="col-md-6 offset-md-6" style="text-align: right;">
+			<div class="dropdown" style="display: inline;">
+			  <button class="btn btn-info dropdown-toggle" type="button" id="ordreforum<?=$fofo[$i]['id']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    Modifier l'ordre
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="?action=ordreForum&ordre=<?=$fofo[$i]['ordre']; ?>&id=<?=$fofo[$i]['id']; ?>&modif=monter"><i class="fas fa-arrow-up"></i> Monter d'un cran</a>
+			    <a class="dropdown-item" href="?action=ordreForum&ordre=<?=$fofo[$i]['ordre']; ?>&id=<?=$fofo[$i]['id']; ?>&modif=descendre"><i class="fas fa-arrow-down"></i> Descendre d'un cran</a>
+			  </div>
+			<a href="?action=remove_forum&id=<?php echo $fofo[$i]['id']; ?>" class="btn btn-danger" style="text-align: right;">Supprimer</a>
+			</div>
+			<div class="dropdown" style="display: inline;">
+				<button class="btn btn-info dropdown-toggle" type="button" id="perms<?=$fofo[$i]['id']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Modifier les Permissions
+				</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<form action="?action=modifPermsForum" method="POST">
+						<input type="hidden" name="id" value="<?=$fofo[$i]['id'];?>" />
+						<a class="dropdown-item"><input type="number" name="perms" value="<?=$fofo[$i]['perms'];?>" class="form-control"></a>
+						<button type="submit" class="dropdown-item"><center>Modifier</center></button>
+					</form>
+				</div>
+			</div>
+		</div><?php } ?></div>
 		<thead>
 			<tr>
-				<th></th>
-				<th>Nom</th>
-				<th>Sous-Forum</th>
-				<th>Dernière réponse</th>
-				<th>Nombre de discussions</th>
+				<th colspan="5" style="width: <?=(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode']) ? '87%;' : '100%';?>;"><center><h3><?php echo ucfirst($fofo[$i]['nom']); ?></h3></center></th>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode'])
 				{
 					?><th>Actions</th>
-					<th></th><?php
+					<?php
 				}
 				?>
 			</tr>
 		</thead>
-
 <?php
 $categorie = $_Forum_->infosForum($fofo[$i]['id']);
 ?>
@@ -46,57 +68,81 @@ $categorie = $_Forum_->infosForum($fofo[$i]['id']);
 <?php   for($j = 0; $j < count($categorie); $j++) { 
 			
 			$derniereReponse = $_Forum_->derniereReponseForum($categorie[$j]['id']);
+			if(($_Joueur_['rang'] == 1 AND !$_SESSION['mode']) OR $_PGrades_['Permsdefault']['forum']['perms'] >= $categorie[$j]['perms'] OR $categorie[$j]['perms'] == 0)
+			{
 			?>
             <tr>
 
-				<td><?php if($categorie[$j]['img'] == NULL) { ?><a href="<?php echo $_Serveur_['General']['url']; ?>?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><i class="material-icons">chat</i></a><?php }
-					else { ?><a href="<?php echo $_Serveur_['General']['url']; ?>?page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><i class="material-icons"><?php echo $categorie[$j]['img']; ?></a><?php }?></td>
-				<td><a href="<?php echo $_Serveur_['General']['url']; ?>?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><?php echo $categorie[$j]['nom']; ?></a></td>
-				<td><?php 	$sousforum = $bddConnection->prepare('SELECT * FROM cmw_forum_sous_forum WHERE id_categorie = :id_categorie');
+				<td style="width: 3%;"><?php if($categorie[$j]['img'] == NULL) { ?><a href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><i class="material-icons">chat</i></a><?php }
+					else { ?><a href="?page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><i class="material-icons"><?php echo $categorie[$j]['img']; ?></a><?php }?></td>
+				<td style="width: 32%;"><a href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><?php echo $categorie[$j]['nom']; ?></a>
+				<?php 	if($_Joueur_['rang'] == 1 AND !$_SESSION['mode'])
+							$perms = 100;
+						elseif($_PGrades_['PermsDefault']['forum']['perms'] > 0)
+							$perms = $_PGrades_['PermsDefault']['forum']['perms'];
+						else
+							$perms = 0;
+
+				$sousforum = $bddConnection->prepare('SELECT * FROM cmw_forum_sous_forum WHERE id_categorie = :id_categorie AND perms <= :perms');
 							$sousforum->execute(array(
-								'id_categorie' => $categorie[$j]['id']
+								'id_categorie' => $categorie[$j]['id'],
+								'perms' => $perms
 							));
 							$sousforum = $sousforum->fetchAll(); 
 							if(count($sousforum) != 0)
-							{ ?>
+							{ ?><br/><small>
 						<div class="dropdown">
-						<button class="btn btn-default dropdown-toggle" type="button" id="sous-forum<?php echo $categorie[$j]['id']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 99.5%;">
-						Il y à <?php echo count($sousforum); ?> sous-forum <?php if(count($sousforum) != "0") { ?><span class="caret"></span><?php } ?>
-						</button>
+						<a class="dropdown-toggle" href="sous-forum<?php echo $categorie[$j]['id']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width: 99.5%;">
+						Sous-forum  :<?php echo count($sousforum); ?>
+						</a>
 						<?php if(count($sousforum) != "0") { ?>
-						<ul class="dropdown-menu" aria-labelledby="sous-forum<?php echo $categorie[$j]['id']; ?>">
+						<div class="dropdown-menu" aria-labelledby="sous-forum<?php echo $categorie[$j]['id']; ?>">
 							<?php for($s = 0; $s < count($sousforum); $s++) {
-								?><li><a href="<?php echo $_Serveur_['General']['url']; ?>?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>&id_sous_forum=<?php echo $sousforum[$s]['id']; ?>"><?php echo $sousforum[$s]['nom']; ?></a></li>
+								?><a class="dropdown-item" href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>&id_sous_forum=<?php echo $sousforum[$s]['id']; ?>"><?php echo $sousforum[$s]['nom']; ?></a>
 							<?php } ?>
-						</ul>
-						<?php } ?>
 						</div>
-				<?php }	else { ?>
-				Il n'y a pas de sous-forum
+						<?php } ?>
+						</div></small>
 				<?php } ?>
 				</td>
-				<td><?php if($derniereReponse != false) { ?> 
+			<td><center><a href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><?php echo $CountTopics = $_Forum_->compteTopicsForum($categorie[$j]['id']); ?><br/><span class="text-uppercase">Discussions</span></a></center></td>
+			<td><center><a href="?page=forum_categorie&id=<?=$categorie[$j]['id']; ?>"><?=$_Forum_->compteMessages($categorie[$j]['id']) + $CountTopics; ?><br/><span class="text-uppercase">Messages</span></a></center></td>
+			<td><center><?php if($derniereReponse != false) { ?> 
 					<a href="?page=post&id=<?php echo $derniereReponse['id']; ?>" title="<?=$derniereReponse['titre'];?>">Dernier: <?php $taille = strlen($derniereReponse['titre']);
 					echo substr($derniereReponse['titre'], 0, 15);
 					if(strlen($taille > 15)){ echo '...'; } ?><br/><?=$derniereReponse['pseudo'];?>, Le <?php $date = explode('-', $derniereReponse['date_post']); echo '' .$date[2]. '/' .$date[1]. '/' .$date[0]. ''; ?></a>
 			<?php
 				}
 				else { ?><p> Il n'y a pas de sujet dans ce forum </p> <?php } 
-				?></td>
-			<td><p class="text-right"><a href="<?php echo $_Serveur_['General']['url']; ?>?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><?php echo $_Forum_->compteTopicsForum($categorie[$j]['id']); ?></a></p></td><?php
+				?></center></td>
+			<?php
 				if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode'])
 				{
-					?><td><a href="?action=remove_cat&id=<?php echo $categorie[$j]['id']; ?>">Supprimer la catégorie</a></td>
-					<td><a href=<?php if($categorie[$j]['close'] == 0) { ?>"?action=lock_cat&id=<?=$categorie[$j]['id'];?>&lock=1" title="Fermer le forum"><i class="fa fa-unlock-alt"<?php } else { ?>"?action=unlock_cat&id=<?=$categorie[$j]['id'];?>&lock=0" title="Ouvrir le forum"><i class="fa fa-lock"<?php } ?> aria-hidden="true"></i></a></td><?php
+					?><td><a href="?action=remove_cat&id=<?php echo $categorie[$j]['id']; ?>" style="text-align: left;"><i class="fas fa-trash-alt"></i></a>
+					<div class="dropdown" style="display: inline; text-align: center;">
+							<button type="button" class="btn btn-info dropdown-toggle" id="Perms<?=$categorie[$j]['id'];?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-edit"></i>
+							</button>
+							<div class="dropdown-menu">
+								<form action="?action=modifPermsCategorie" method="POST">
+									<input type="hidden" name="id" value="<?=$categorie[$j]['id'];?>" />
+									<a class="dropdown-item"><input type="number" name="perms" value="<?=$categorie[$j]['perms'];?>" class="form-control"></a>
+									<button type="submit" class="dropdown-item"><center>Modifier</center></button>
+								</form>
+							</div>
+						</div>
+					<a href=<?php if($categorie[$j]['close'] == 0) { ?>"?action=lock_cat&id=<?=$categorie[$j]['id'];?>&lock=1" title="Fermer le forum"><i class="fa fa-unlock-alt"<?php } else { ?>"?action=unlock_cat&id=<?=$categorie[$j]['id'];?>&lock=0" title="Ouvrir le forum"><i class="fa fa-lock"<?php } ?> aria-hidden="true"></i></a></td><?php
 				}
 ?>
 			</tr>
-			<?php } ?>
+			<?php }
+			} ?>
 	</tbody>
-</table><br/><br/><br/><hr/>
+</table><hr/>
 <?php
+	}
 }
-if($_PGrades_['PermsForum']['general']['addForum'] == true OR $_Joueur_['rang'] == 1)
+if($_PGrades_['PermsForum']['general']['addForum'] == true OR $_Joueur_['rang'] == 1 AND !$_SESSION['mode'])
 {
 	?><a class="btn btn-primary btn-xs btn-block" role="button" data-toggle="collapse" href="#add_forum" aria-expanded="false" aria-controls="add_forum">
 Ajouter une Catégorie

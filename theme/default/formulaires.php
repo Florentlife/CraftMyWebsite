@@ -75,7 +75,7 @@
   </div>
 </div>
 <div class="modal fade" id="InscriptionSlide" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Inscription</h5>
@@ -101,13 +101,23 @@
 		<div class="form-group row">
 			<label for="MdpInscriptionForm" class="col-md-2 col-form-label">Mot de passe</label>
 			<div class="col-md-8">
-				<input type="password" name="mdp" class="form-control" id="MdpInscriptionForm" placeholder="Votre mot de passe">
+				<input type="password" name="mdp" class="form-control" onKeyUp="securPass();" id="MdpInscriptionForm" placeholder="Votre mot de passe">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="MdpConfirmInscriptionForm" class="col-md-2 col-form-label">Mot de passe</label>
 			<div class="col-md-8">
-				<input type="password" name="mdpConfirm" class="form-control" id="MdpConfirmInscriptionForm" placeholder="Confirmez-le">
+				<input type="password" name="mdpConfirm" onKeyUp="securPass();" class="form-control" id="MdpConfirmInscriptionForm" placeholder="Confirmez-le">
+			</div>
+		</div>
+		<div class="form-group row d-none" id="progress">
+			<div class="col-md-8">
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped progress-bar-animated" id="progressbar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<p id="correspondance"></p>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -134,7 +144,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-        <button type="submit" class="btn btn-primary">S'inscrire</button>
+        <button type="submit" class="btn btn-primary" id="InscriptionBtn" disabled>S'inscrire</button>
       </div>
 	  </form>
     </div>

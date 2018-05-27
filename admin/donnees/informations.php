@@ -105,7 +105,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
     while($nbrPerIPDonnees = $nbrPerIPReq->fetch())
     {
         $nbrPerIP[$i]['nbrPerIP'] = $nbrPerIPDonnees['nbrPerIP'];
-        $nbrPerIP[$i]['idPerIP'] = $nbrPerIPDonnees['idPerIP'];
+        $nbrPerIP[$i]['id'] = $nbrPerIPDonnees['idPerIP'];
         $i++;
     }
     $sysMailReq = $bddConnection->query('SELECT * FROM cmw_sysmail WHERE idMail = 1');
@@ -138,14 +138,14 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastMaintenance[$i]['maintenanceTime'] = $lastMaintenanceDonnees['maintenanceTime'];
         $i++;
     }
-    $lastAchatDedipassReq = $bddConnection->query('SELECT * FROM cmw_dedipass ORDER BY id DESC LIMIT 1;');
+    $lastAchatmcgpassReq = $bddConnection->query('SELECT * FROM cmw_mcgpass ORDER BY id DESC LIMIT 1;');
     $i = 0;
-    while($lastAchatDedipassDonnees = $lastAchatDedipassReq->fetch())
+    while($lastAchatmcgpassDonnees = $lastAchatmcgpassReq->fetch())
     {
-        $lastAchatDedipass[$i]['id'] = $lastAchatDedipassDonnees['id'];
-        $lastAchatDedipass[$i]['pseudo'] = $lastAchatDedipassDonnees['pseudo'];
-        $lastAchatDedipass[$i]['date_achat'] = $lastAchatDedipassDonnees['date_achat'];
-        $lastAchatDedipass[$i]['payout'] = $lastAchatDedipassDonnees['payout'];
+        $lastAchatmcgpass[$i]['id'] = $lastAchatmcgpassDonnees['id'];
+        $lastAchatmcgpass[$i]['pseudo'] = $lastAchatmcgpassDonnees['pseudo'];
+        $lastAchatmcgpass[$i]['date_achat'] = $lastAchatmcgpassDonnees['date_achat'];
+        $lastAchatmcgpass[$i]['payout'] = $lastAchatmcgpassDonnees['payout'];
         $i++;
     }
 

@@ -6,8 +6,8 @@ $donneesActions = $recupOpffresPaypal->fetch();
 include("controleur/paypal/fonction_api.php");
 $requete = construit_url_paypal($_Serveur_['Payement']['paypalUser'], $_Serveur_['Payement']['paypalPass'], $_Serveur_['Payement']['paypalSignature']);
 $requete = $requete."&METHOD=SetExpressCheckout".
-			"&CANCELURL=".urlencode("http://undergard.fr/controleur/paypal/cancel.php").
-			"&RETURNURL=".urlencode("http://undergard.fr/?&action=achatPaypalReturn&offre=") . $_GET['offer'] .
+			"&CANCELURL=".urlencode("http://{$_SERVER['HTTP_HOST']}/?page=token&erreur=cancel").
+			"&RETURNURL=".urlencode("http://{$_SERVER['HTPP_HOST']}/?&action=achatPaypalReturn&offre=") . $_GET['offer'] .
 			"&AMT=" . $donneesActions['prix'] .
 			"&CURRENCYCODE=EUR".
 			"&DESC=".urlencode("Vous pouvez faire un don pour le serveur qui server à payer les hébergements et à acheter des grades ou items.").

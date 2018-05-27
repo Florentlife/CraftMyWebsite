@@ -12,7 +12,7 @@
 	<?php } else { ?>
 
 	<div class="alert alert-success">
-		<strong>Sur cette section, créez des catégories d'achats boutiques, choisissez le/les serveur(s) d'action, créez vos offres et attribuez des actions(commandes) à vos offres. Réglez toute la partie "Boutique In-Game", pour ce qui est de l'achat de jetons(monnaie de la boutique), veuillez vous reporter à la section "payement"</strong>
+		<strong>Dans cette section, créez des catégories d'achat boutique, choisissez le/les serveur(s) d'action, créez vos offres et attribuez des actions(commandes) à vos offres. Réglez toute la partie "Boutique In-Game", pour ce qui est de l'achat de jetons(monnaie de la boutique), veuillez vous reporter à la section "paiement"</strong>
 	</div>
 
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['addCategorie'] == true) { ?>
@@ -75,7 +75,7 @@
             </div>
             <div class="panel-body">
 		<div class="alert alert-success">
-			<strong>Après avoir créé une catégorie, vous pouvez y insérer une offre. L'offre est dans un première temps composée d'un titre, d'un message(ou image) et appartiens à une catégorie, vous pourrez par la suite attribuer à une offre une "action"(=commande). Pour mettre une image, rien de plus simple, vous pouvez le faire via le code suivant: </strong></br><strong><?php echo htmlspecialchars('<img src="http://lien_vers_mon_image.fr/" alt="Image Boutique" />'); ?></strong>
+			<strong>Après avoir créé une catégorie, vous pouvez y insérer une offre. L'offre est dans un premier temps composée d'un titre, d'un message(ou image) et appartient à une catégorie, vous pourrez par la suite attribuer à une offre une "action"(=commande). Pour mettre une image rien de plus simple, vous pouvez le faire via le code suivant: </strong></br><strong><?php echo htmlspecialchars('<img src="http://lien_vers_mon_image.fr/" alt="Image Boutique" />'); ?></strong>
 		</div>
 		<form action="?&action=creerOffre" method="POST">
 					<div class="form-group col-lg-6">
@@ -110,14 +110,14 @@
 
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['createCoupon'] == true ) { ?>
 
-	<div class="col-md-12 text-center">
+	<div class="col-xs-12 text-center">
 		<div class="panel panel-default cmw-panel">
 			<div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Création de coupon de réduction</strong></h3>
             </div>
             <div class="panel-body">
 		<div class="alert alert-success">
-			<strong>Ici vous pouvez créez des coupons de réduction pour votre boutique. La valeur des coupons est en %age. Il ne peut y'avoir qu'un seul coupon utilisé par paiement, les coupons sont valable jusqu'a ce que vous les supprimiez, et ils sont réutilisable. Il vous suffit simplement de rentrer un code de maximum 8 lettres, un pourcentage ainsi qu'un titre pour décrire votre remise, il apparaitra dans la description du produit dans le panier. </strong>
+			<strong>Ici vous pouvez créer des coupons de réduction pour votre boutique. La valeur des coupons est en %age. Il ne peut y avoir qu'un seul coupon utilisé par paiement, les coupons sont valables jusqu'à ce que vous les supprimiez et ils sont réutilisables. Il vous suffit simplement de rentrer un code de maximum 8 lettres, un pourcentage ainsi qu'un titre pour décrire votre remise, il apparaîtra dans la description du produit dans le panier.</strong>
 		</div>
 		<form action="?action=creerCoupon" method="POST">
 					<div class="form-group col-lg-6">
@@ -143,14 +143,14 @@
 
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['modifCoupon'] == true) { ?>
 
-	<div class="col-md-12 text-center">
+	<div class="col-xs-12 text-center">
 		<div class="panel panel-default cmw-panel">
 			<div class="panel-heading cmw-panel-header">
-                <h3 class="panel-title"><strong>Les coupons de réduction actuellement disponible</strong></h3>
+                <h3 class="panel-title"><strong>Les coupons de réduction actuellement disponibles</strong></h3>
             </div>
             <div class="panel-body">
 				<div class="alert alert-success">
-					<strong>Voici le tableau contenant tout les coupons de réductions qui sont disponible. Vous pouvez les supprimez ici </strong>
+					<strong>Voici le tableau contenant tous les coupons de réduction qui sont disponibles. Vous pouvez les supprimer ici.</strong>
 				</div>
 				<table class="table table-striped table-hover table-dark">
 					<tr>
@@ -177,14 +177,14 @@
 
 	<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['editCategorieOffre'] == true) { ?>
 
-	  <div class="col-md-12 text-center">
+	  <div class="col-xs-12 text-center">
 	  	<div class="panel panel-default cmw-panel">
 	  		<div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Edition des offres/catégories</strong></h3>
             </div>
             <div class="panel-body">
 				<div class="alert alert-success">
-					<strong>Une fois votre offre créée, vous pouvez la modifier mais avant tout lui ajouter une action, pour cela cliquez sur le bouton "action" de l'offre à modifier, la fenêtre qui s'ouvre vous propose différents types d'actions, ainsi que la "Valeur de l'action / Commande" qu'il faut y attribuer. Vous pouvez très bien ajouter plusieurs actions à votre offre, par exemple faire une offre qui ajoute le joueur à un grade, envoie un message public et lui donne 15 diamants est tout à fait possible.</strong>
+					<strong>Une fois votre offre créée, vous pouvez la modifier mais avant tout lui ajouter une action, pour cela cliquez sur le bouton "action" de l'offre à modifier, la fenêtre qui s'ouvre vous propose différents types d'actions, ainsi que la "Valeur de l'action / Commande" qu'il faut y attribuer. Vous pouvez ajouter plusieurs actions à votre offre, par exemple faire une offre qui ajoute le joueur à un grade puis envoie un message public et lui donne 15 diamants est tout à fait possible.</strong>
 				</div>
 				<ul class="nav nav-tabs">
 					<?php $i = 0;

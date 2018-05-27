@@ -9,6 +9,12 @@
             <h4 class="text-primary"><i class="fa fa-shopping-basket"></i> Panier</h4>
             <p>Achetez plusieurs items en déboursant une seule fois</p>
         </div>
+        <?php
+            if(isset($_GET['success']) && $_GET['success'] == 'true')
+            {
+                echo '<div class="alert alert-success"><center><strong>Votre achat a été effectué !</strong></center></div>';
+            }
+            ?>
         <table class="table table-striped table-bordered">
             <thead class="thead-inverse">
                 <tr>
@@ -36,7 +42,7 @@
 		                    <td><?php echo htmlspecialchars($_SESSION['panier']['quantite'][$i]); ?></td>
 		                    <td class="w-25 text-center"><?php echo htmlspecialchars($_SESSION['panier']['prix'][$i]); ?> <i class="fa fa-diamond"></i></td>
 		                    <td class="w-25 text-center"><?php $precedent += htmlspecialchars($_SESSION['panier']['prix'][$i])*htmlspecialchars($_SESSION['panier']['quantite'][$i]);
-		                    echo $precedent; ?> <i class="fa fa-diamond"></i></td>
+		                    echo $precedent; ?> <i class="fas fa-gem"></i></td>
                             <td><a href="?action=supprItemPanier&id=<?php echo htmlspecialchars($_SESSION['panier']['id'][$i]); ?>" class="btn btn-danger link" title="supprimer l'item du panier"><i class="fa fa-trash"></i></a></td>
 		                </tr>
 		               <?php
@@ -49,7 +55,7 @@
 		        ?>
 		        <tr>
 		        	<td>Total:</td>
-		        	<td class="w-25 text-center" colspan="5"><?php echo number_format($_Panier_->montantGlobal(), 0, ',', ' '); ?> <i class="fa fa-diamond"></i></td>
+		        	<td class="w-25 text-center" colspan="5"><?php echo number_format($_Panier_->montantGlobal(), 0, ',', ' '); ?> <i class="fas fa-gem"></i></td>
 		        </tr>
             </tbody>
         </table>

@@ -1,4 +1,4 @@
-<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérer la maintenance</div>
+<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérez la maintenance</div>
     <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['support']['maintenance']['actions']['editDefaultMessage'] == false AND $_PGrades_['PermsPanel']['support']['maintenance']['actions']['editAdminMessage'] == false AND $_PGrades_['PermsPanel']['support']['maintenance']['actions']['editEtatMaintenance'] == false AND $_PGrades_['PermsPanel']['support']['maintenance']['actions']['switchRedirectMode'] == false)) { ?>
     <div class="row">
         <div class="col-md-12 text-center">
@@ -61,7 +61,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-default cmw-panel">
                         <div class="panel-heading cmw-panel-header">
-                            <h3 class="panel-title"><strong>Status & régalges</strong></h3>
+                            <h3 class="panel-title"><strong>Status & réglages</strong></h3>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -69,9 +69,9 @@
                                     <div class="col-md-12">
                                         <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['actions']['editEtatMaintenance'] == true) { ?>
                                             <?php if($maintenance[$i]['maintenanceEtat'] == 1) { ?> 
-                                                <button class="btn btn-block" style="background: #18bc9c;color: white;" disabled><strong>INFO :</strong> Maintenance activé</button>
+                                                <button class="btn btn-block" style="background: #18bc9c;color: white;" disabled><strong>INFO :</strong> Maintenance activée</button>
                                             <?php } else { ?>
-                                                <button class="btn btn-block" style="background: #e74c3c;color: white;" disabled><strong>INFO :</strong> Maintenance  désactivé</button>
+                                                <button class="btn btn-block" style="background: #e74c3c;color: white;" disabled><strong>INFO :</strong> Maintenance  désactivée</button>
                                             <?php } ?>
                                         <?php } ?>
                                     </div>
@@ -93,7 +93,7 @@
                                             <div class="panel-heading">
                                                 <h3 class="panel-title">Activer/désactiver la maintenance</h3>
                                             </div>
-                                            <center>Vous souhaitez rendre le site accésible uniquement aux administrateurs ? Il vous suffie d'appuyer sur le bouton ci-dessous. Les visiteurs seront redirigé vers la page de maintenance.</center>
+                                            <center>Vous souhaitez rendre le site accessible uniquement aux administrateurs ? Il vous suffit d'appuyer sur le bouton ci-dessous. Les visiteurs seront redirigés vers la page de maintenance.</center>
                                             <div class="panel-body">
                                                 <form method="post" action="?&action=switchMaintenance&maintenanceId=<?php echo $maintenance[$i]['maintenanceId']; ?>">
                                                     <?php if($maintenance[$i]['maintenanceEtat'] == 1) { 
@@ -112,7 +112,7 @@
                                             <div class="panel-heading">
                                                 <h3 class="panel-title">Changer le type de redirection</h3>
                                             </div>
-                                            <center>Grâce a cette option , si la maintenance est activé vous pouvez choisir si les administrateurs peuvent accéder au panel + le site ou uniquement le panel.</center>
+                                            <center>Grâce à cette option, si la maintenance est activée vous pouvez choisir si les administrateurs peuvent accéder au panel + le site ou uniquement le panel.</center>
                                             <div class="panel-body">
                                                 <form method="post" action="?&action=switchPreference&maintenanceId=<?php echo $maintenance[$i]['maintenanceId']; ?>">
                                                     <?php if($maintenance[$i]['maintenancePref'] == 1) { 

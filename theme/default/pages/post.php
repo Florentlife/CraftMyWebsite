@@ -7,6 +7,8 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 	$topicd = $_Forum_->getTopic($id);
 	if(!empty($topicd['id']))
 	{
+		if(($_Joueur_['rang'] == 1 AND !$_SESSION['mode']) OR ($_PGrades_['PermsDefault']['forum']['perms'] >= $topicd['perms'] AND $_PGrades_['PermsDefault']['forum']['perms'] >= $topicd['permsCat']) OR ($topicd['perms'] == 0 AND $topicd['permsCat'] == 0))
+		{
 	?><header class="heading-pagination">
 		<div class="container-fluid">
 			<h1 class="text-uppercase wow fadeInRight" style="color:white;">Post: <?=$topicd['nom'];?></h1>
@@ -40,49 +42,69 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 			<li class="breadcrumb-item active" aria-current="page"><?php echo $topicd['nom']; ?></li>
 		</ol>
 	</nav>		
-	<center><?php if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['moderation']['closeTopic'] == true OR $_PGrades_['PermsForum']['moderation']['deleteTopic'] == true OR $_PGrades_['PermsForum']['moderation']['mooveTopic'] == true OR $_Joueur_['rang'] == 1) AND !$_SESSION['mode']) { ?>
+	<?php if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['moderation']['closeTopic'] == true OR $_PGrades_['PermsForum']['moderation']['deleteTopic'] == true OR $_PGrades_['PermsForum']['moderation']['mooveTopic'] == true OR $_Joueur_['rang'] == 1) AND !$_SESSION['mode']) { ?>
 	<div class="row">
-		<div class="col-lg-8">
+		<div class="col-md-4 offset-md-2">
 			<div class="dropdown">
 				<button class="btn btn-danger dropdown-toggle" type="button" id="Actions-Modération" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 					Actions de Modération .... <span class="caret"></span>
 				</button>
-				<ul class="dropdown-menu list-inline" aria-labeledby="Actions-Modérations">
+				<div class="dropdown-menu list-inline" aria-labeledby="Actions-Modérations">
 				<?php 
 				if($_PGrades_['PermsForum']['moderation']['closeTopic'] == true OR $_Joueur_['rang'] == 1)
 				{
 					if($topicd['etat'] == 1)
 					{
-						?><li> <a href="?&action=forum_moderation&id_topic=<?php echo $id; ?>&choix=4">Ouvrir la discussion</a></li><?php
+						?><a class="dropdown-item" href="?&action=forum_moderation&id_topic=<?php echo $id; ?>&choix=4">Ouvrir la discussion</a><?php
 					}
 					else
 					{
-						?><li><a href="?&action=forum_moderation&id_topic=<?php echo $id; ?>&choix=1">Fermer la discussion</a></li>
+						?><a class="dropdown-item" href="?&action=forum_moderation&id_topic=<?php echo $id; ?>&choix=1">Fermer la discussion</a>
 					<?php 
 					}
 				}
 				if($_PGrades_['PermsForum']['moderation']['deleteTopic'] == true OR $_Joueur_['rang'] == 1)
 				{
 					?>
-					<li><a href="?&action=forum_moderation&id_topic=<?php echo $id; ?>&choix=2">Supprimer le topic</a></li>
+					<a class="dropdown-item" href="?&action=forum_moderation&id_topic=<?php echo $id; ?>&choix=2">Supprimer le topic</a>
 					<?php 
 				}
 				if($_PGrades_['PermsForum']['moderation']['mooveTopic'] == true OR $_Joueur_['rang'] == 1)
 				{
 					?>
-					<li><a href="?&action=forum_moderation&id_topic=<?php echo $id; ?>&choix=3">Déplacer la discussion</a></li>
+					<a class="dropdown-item" href="?&action=forum_moderation&id_topic=<?php echo $id; ?>&choix=3">Déplacer la discussion</a>
 					<?php 
 				}
 				?>
-				</ul>
+				</div>
 			</div>
 		</div>
-		</div><?php } ?></center>
+		<div class="col-md-4">
+			<div class="dropdown">
+				<button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					Niveau d'accès
+				</button>
+				<div class="dropdown-menu">
+					<form class="px-4 py-3" action="?action=modifPermsTopics" method="POST">
+					    <div class="form-group">
+					      <label>Niveau de permission</label>
+					      <input type="hidden" name="id" value="<?=$id;?>">
+					      <input type="number" min="0" max="100" class="form-control" name="perms" value="<?=$topicd['perms'];?>">
+					    </div>
+					    <button type="submit" class="btn btn-primary">Modifier</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div><?php } ?>
 	<h3>Sujet : <?php echo $topicd['nom']; ?></h3><br/>
 	<div class="row">
 		<div class="col-md-2">
 		<!-- Div de droite où on met le profil de l'auteur -->
-			<img class="rounded" src="https://minecraft-api.com/api/skins/128.php?player=<?php echo $topicd['pseudo']; ?>" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" />
+		<?php
+			$Img = new ImgProfil($topicd['pseudo'], 'pseudo');
+			?>
+			<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" />
 			<p class="username"> Pseudo : <?php echo $topicd['pseudo']; ?><br/>Grade :
 			<?php echo $_Forum_->gradeJoueur($topicd['pseudo']); ?> </p>
 		</div>
@@ -151,8 +173,11 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 		<div class="row">
 			<div class="col-md-2">
 				<div id="<?php echo $answerd[$i]['id']; ?>"> <!-- div de droite avec les infos joueurs -->
-					<img class="rounded" src="https://minecraft-api.com/api/skins/128.php?player=<?php echo $answerd[$i]['pseudo']; ?>" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" />
-					<p class="username">Pseudo : <?php echo $answerd[$i]['pseudo']; ?>
+					<?php 
+					$Img = new ImgProfil($answerd[$i]['pseudo'], 'pseudo');
+					?>
+					<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" />
+					<p class="username">Pseudo : <?php echo $answerd[$i]['pseudo']; ?><br/>
 						Grade : <?php echo $_Forum_->gradeJoueur($answerd[$i]['pseudo']); ?>
 					</p>
 				</div>
@@ -248,12 +273,12 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 				<form class="form-inline" action="?&action=like" method="post">
 					<input type="hidden" name="choix" value="1" />
 					<input type="hidden" name="id_answer" value="<?php echo $answerd[$i]['id']; ?>" />
-					<button type="submit" class="btn btn-primary" title="J'aime" ><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+					<button type="submit" class="btn btn-primary" title="J'aime" ><i class="far fa-thumbs-up"></i></button>
 				</form></div><div class="col-md-1">
 				<form class="form-inline" action="?&action=like" method="post">
 					<input type="hidden" name="choix" value="2" />
 					<input type="hidden" name="id_answer" value="<?php echo $answerd[$i]['id']; ?>" />
-					<button type="submit" class="btn btn-primary" title="Je n'aime pas"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
+					<button type="submit" class="btn btn-primary" title="Je n'aime pas"><i class="far fa-thumbs-down"></i></button>
 				</form></div>
 				<?php
 			}
@@ -336,6 +361,10 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en centré', 'ce texte sera centré', 'center')" style="text-decoration: none" title="centré"><i class="fas fa-align-center"></i></a>
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en aligné à droite', 'ce texte sera aligné à droite', 'right')" style="text-decoration: none" title="aligné à droite"><i class="fas fa-align-right"></i></a>
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en justifié', 'ce texte sera justifié', 'justify')" style="text-decoration: none" title="justifié"><i class="fas fa-align-justify"></i></a>
+				<a href="javascript:ajout_text_complement('contenue', 'Ecrivez ici l\'adresse de votre lien', 'https://craftmywebsite.fr/forum', 'url', 'Entrez le titre de votre lien', 'CraftMyWebsite')" style="text-decoration: none" title="lien"><i class="fas fa-link"></i></a>
+				<a href="javascript:ajout_text_complement('contenue', 'Ecrivez ici l\'adresse de votre image', 'https://craftmywebsite.fr/img/cat6.png', 'img', 'Entrez ici le titre de votre image (laisser vide si vous ne voulez pas compléter', 'Titre')" style="text-decoration: none" title="image"><i class="fas fa-image"></i></a>
+				<a href="javascript:ajout_text_complement('contenue', 'Ecrivez ici votre texte en couleur', 'Ce texte sera coloré', 'color', 'Entrer le nom de la couleur en anglais ou en hexaécimal avec le  # : http://www.code-couleur.com/', 'red ou #40A497')" style="text-decoration: none" title="couleur"><i class="fas fa-font"></i></a>
+				<a href="javascript:ajout_text_complement('contenue', 'Ecrivez ici votre message caché', 'contenue du spoiler', 'spoiler', 'Entrer le titre du message caché (si la case est vide le titre sera \'Spoiler\'', 'Spoiler')" style="text-decoration: none" title="spoiler"><i class="fas fa-flag"></i></a>
 				<div class="dropdown">
 				  	<a href="#" role="button" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				   	 <i class="fas fa-text-height"></i>
@@ -368,6 +397,9 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 	 	</div>
 </section>
 <?php
+		}
+		else
+			header('Location: ?page=erreur&erreur=7');
 	}
 	else
 	{

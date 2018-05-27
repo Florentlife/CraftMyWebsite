@@ -35,14 +35,14 @@
         </div>
         <div class="card card-inverse card-inverse text-xs-center bg-inverse">
             <div class="card-block container">
-                Tous droits réservés, site créé pour le serveur <?php echo $_Serveur_['General']['name']; ?> avec <a href="http://craftmywebsite.fr">CraftMyWebsite.fr</a><br/>
-				Version de CraftMyWebsite: CE <?php echo $versioncms; ?>
+                <div style="display:inline-block;">Tous droits réservés, site créé pour le serveur <?php echo $_Serveur_['General']['name']; ?></div><br/>
+                <small style="display:inline-block;"><a href="http://craftmywebsite.fr">CraftMyWebsite.fr</a>#<?php echo $versioncms; ?></small>
                 <div style="display:inline-block;float:right;">
-                    <a href="#"><span class="badge badge-primary"><?php 
-					echo $playeronline; ?></span> Joueurs connectés au serveur</a> / <a href="#"><span class="badge badge-secondary"><?php $req = $bddConnection->query('SELECT COUNT(id) AS count 
-					FROM cmw_users');
-					$fetch = $req->fetch();
-					echo $fetch['count']; ?></span> Membres inscrits</a>
+                    <span class="badge badge-primary" style="font-size: 100%;"><?php 
+                    echo $playeronline; ?></span> Joueurs connectés au serveur / <span class="badge badge-secondary" style="font-size: 100%;"><?php $req = $bddConnection->query('SELECT COUNT(id) AS count 
+                    FROM cmw_users');
+                    $fetch = $req->fetch();
+                    echo $fetch['count']; ?></span> Membres inscrits
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@
             </div>
             <div class="panel-body">
                 <div class="alert alert-success">
-                    <strong>Vous pouvez ajouter autant de serveurs minecraft que vous le souhaitez. La connexion au(x) serveur(s) est essentiel !</strong>
+                    <strong>Vous pouvez ajouter autant de serveurs minecraft que vous souhaitez. La connexion au(x) serveur(s) est essentielle !</strong>
                 </div>
                 <form method="POST" action="?&action=serveurJsonNew">
                     <h3>Ajout d'un serveur</h3>
@@ -27,10 +27,10 @@
                     <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Nom du serveur</label>
                     <input type="text" name="JsonNom" class="form-control" placeholder="Exemple: CraftMyCube"/>
                     
-                    <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Ip du serveur</label>
+                    <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">IP du serveur</label>
                     <input type="text" name="JsonAddr" placeholder="Exemple: play.craftmycube.fr ou 188.165.190.180" class="form-control"/>
                     
-                    <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port JsonAPI</label>
+                    <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port JSONAPI</label>
                     <input type="text" name="JsonPort" class="form-control" placeholder="Exemple: 12548"/>
                     
                     <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">User JSONAPI</label>

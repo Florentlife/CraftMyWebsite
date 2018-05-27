@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="alert alert-success">
-        <strong>L'accueil de votre site, la vitrine de votre serveur, ne négligez jamais cette page, ajoutez de belles images de slider ou encore des liens de navigations rapides le plus ergonomiques possibles !</strong>
+        <strong>Ici configurez l'accueil de votre site, la vitrine de votre serveur, ne négligez jamais cette page, ajoutez de belles images, des sliders ou encore des liens de navigation rapide le plus ergonomiquement possible!</strong>
     </div>
     <div class="col-xs-12 col-md-6 text-center">
         <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['home']['actions']['uploadSlider'] == false AND $_PGrades_['PermsPanel']['home']['actions']['editSlider'] == false AND $_PGrades_['PermsPanel']['home']['actions']['uploadMiniature'] == false AND $_PGrades_['PermsPanel']['home']['actions']['editMiniature'] == false)) { ?>
@@ -25,12 +25,14 @@
             </div>
             <div class="panel-body">
                 <form method="POST" action="?&action=postSlider" enctype="multipart/form-data">
-                    <div class="form-group col-md-7">
-                        <input type="file" name="img">
-                        <p class="help-block">Image slider (1400 x 500)</p>
-                    </div>
-                    <div class="form-group col-md-5">
-                        <input type="submit" class="btn btn-success">
+                    <div class="row">
+                        <div class="form-group col-md-7">
+                            <input type="file" name="img">
+                            <p class="help-block">Image slider (1400 x 500)</p>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <input type="submit" class="btn btn-success">
+                        </div>
                     </div>
                 </form>
 
@@ -50,10 +52,9 @@
                             <input style="margin-top: 5px;" type="submit" class="btn btn-success" value="Modifier le slider"/>
                         
                     </form>
+                </div>
             </div>
         </div>
-    </div>
-
 
     <?php } if($_Joueur_['rang'] == 1 OR ($_PGrades_['PermsPanel']['home']['actions']['uploadMiniature'] == true OR $_PGrades_['PermsPanel']['home']['actions']['editMiniature'] == true)) { ?>
 
@@ -198,8 +199,6 @@
                 </div>
             </div>
         </div>
-
         <?php } ?>
-
-
+    </div>
     </div>

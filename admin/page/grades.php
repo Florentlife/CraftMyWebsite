@@ -1,4 +1,4 @@
-<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérer vos rangs</div>
+<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérez vos rangs</div>
 
 <div class="row">
         <?php if($_Joueur_['rang'] != 1) { ?>
@@ -11,7 +11,7 @@
             <div class="col-md-12 text-center">
                 <div class="row">
                     <div class="alert alert-success">
-                        <strong>Vous pouvez ajouter autant de grade que vous le souhaitez pour votre site. Grâce à une toute nouvelle fonctionnalité, vous pouvez dorénavant modifier/ajouter des permissions à tout vos grades créés. Cependant, les grades par défaut (Créateur et Joueur) ne peuvent pas être modifiés par sécurité.</br>L'accès à cette fonctionnalité est réservée seulement aux Créateurs.</strong>
+                        <strong>Vous pouvez ajouter autant de grades que vous le souhaitez pour votre site. Grâce à une toute nouvelle fonctionnalité vous pouvez dorénavant modifier/ajouter des permissions à tous vos grades créés. Cependant, les grades par défaut (Créateur et Joueur) ne peuvent pas être modifiés par sécurité.</br>L'accès à cette fonctionnalité est réservée aux Créateurs.</strong>
                     </div>
                 </div>
                 <div class="row">
@@ -45,6 +45,29 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="panel panel-default cmw-panel">
+                <div class="panel-heading cmw-panel-header">
+                    <h3 class="panel-title"><strong>Changer le nom du grade Créateur</strong></h3>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form method="POST" action="?action=changeNom">
+                    <div class="col-md-12">
+                        <h3>Changer le nom</h3>
+                        <div class="row">
+                            <label class="control-label">Nom</label>
+                            <input type="text" name="nom" class="form-control" style="text-align: center;" value="<?php echo $_Serveur_['General']['createur']; ?>" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-center" style="margin-top: 5px;">
+                                <input type="submit" class="btn btn-success" value="Changer le nom !">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
         <?php } 
         if($_Joueur_['rang'] == 1 AND end($lastGrade) >= 2) { ?>
         <div class="col-md-12">
@@ -70,13 +93,75 @@
                                             <input type="hidden" name="oldGradeName-<?php echo $i; ?>" value="<?php echo $idGrade[$i]['Grade']; ?>"/>
                                             <label class="control-label">Nom du grade</label>
                                             <input class="form-control" name="gradeName<?php echo $i; ?>" type="text" style="text-align: center;" value="<?php echo $idGrade[$i]['Grade']; ?>" placeholder="Modérateur"/>
+                                            <label class="control-label">Couleur du Grade</label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixPrimary" value="prefixPrimary" <?=($idGrade[$i]['prefix'] == "prefixPrimary") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixPrimary" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixSecondary" value="prefixSecondary" <?=($idGrade[$i]['prefix'] == "prefixSecondary") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixSecondary" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixRed" value="prefixRed" <?=($idGrade[$i]['prefix'] == "prefixRed") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixRed" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixGreen" value="prefixGreen" <?=($idGrade[$i]['prefix'] == "prefixGreen") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixGreen" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixOlive" value="prefixOlive"<?=($idGrade[$i]['prefix'] == "prefixOlive") ? 'checked' : ''; ?> >
+                                                <span class="prefix prefixOlive" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixLightGreen" value="prefixLightGreen" <?=($idGrade[$i]['prefix'] == "prefixLightGreen") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixLightGreen" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixBlue" value="prefixBlue" <?=($idGrade[$i]['prefix'] == "prefixBlue") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixBlue" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixRoyalBlue" value="prefixRoyalBlue" <?=($idGrade[$i]['prefix'] == "prefixRoyalBlue") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixRoyalBlue" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixSkyBlue" value="prefixSkyBlue" <?=($idGrade[$i]['prefix'] == "prefixSkyBlue") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixSkyBlue" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixGray" value="prefixGray" <?=($idGrade[$i]['prefix'] == "prefixGray") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixGray" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixSilver" value="prefixSilver" <?=($idGrade[$i]['prefix'] == "prefixSilver") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixSilver" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixYellow" value="prefixYellow" <?=($idGrade[$i]['prefix'] == "prefixYellow") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixYellow" style="height: 10px; width: 5px;"></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixOrange" value="prefixOrange" <?=($idGrade[$i]['prefix'] == "prefixOrange") ? 'checked' : ''; ?>>
+                                                <span class="prefix prefixOrange" style="height: 10px; width: 5px;"></span>
+                                            </label><br/>
+                                            <label class="control-label">Effets</label>
+                                            <label class="checkbox-inline">
+                                                <input class="form-check-input" type="radio" name="effet<?php echo $i; ?>" id="spark" value="style5" <?=($idGrade[$i]['effets'] == "style5") ? 'checked' : ''; ?>>
+                                                    <span class="username"><span class="style5">Test</span></span>
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input class="form-check-input" type="radio" name="effet<?php echo $i; ?>" id="etoile" value="style16" <?=($idGrade[$i]['effets'] == "style16") ? 'checked' : ''; ?>>
+                                                    <span class="username"><span class="style16">Test</span></span>
+                                            </label>
                                         </div>
                                         <div class="row">
                                             <div class="panel-group" id="accordion<?php echo $i; ?>" role="tablist" aria-multiselectable="true">
                                                 <div class="panel panel-default">
                                                     <div class="panel-heading" role="tab" id="headingOne<?php echo $i; ?>">
                                                         <h4 class="panel-title text-center">
-                                                            <a role="button" data-toggle="collapse" data-parent="#accordion<?php echo $i; ?>" href="#collapseOne<?php echo $i; ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $i; ?>"><strong>Permissions Généraux</strong></a>
+                                                            <a role="button" data-toggle="collapse" data-parent="#accordion<?php echo $i; ?>" href="#collapseOne<?php echo $i; ?>" aria-expanded="true" aria-controls="collapseOne<?php echo $i; ?>"><strong>Permissions générales</strong></a>
                                                         </h4>
                                                     </div>
                                                     <div id="collapseOne<?php echo $i; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne<?php echo $i; ?>">
@@ -113,6 +198,16 @@
                                                                             <label>
                                                                                 <input type="checkbox" name="permsDefaultSupportDisplayTicket<?php echo $i; ?>" <?php if($idGrade[$i]['PermsDefault']['support']['displayTicket'] == true) echo 'checked'; ?> /> Voir les tickets
                                                                                 privés dans le support
+                                                                            </label>
+                                                                       </div>
+                                                                        <div class="checkbox">
+                                                                            <label>
+                                                                                <input type="checkbox" name="permsDefaultChatColor<?php echo $i; ?>" <?php if($idGrade[$i]['PermsDefault']['chat']['color'] == true) echo 'checked'; ?> /> Écrire en couleur sur le chat 
+                                                                            </label>
+                                                                       </div>
+                                                                       <div class="checkbox">
+                                                                            <label>
+                                                                                <input type="number" class="form-control" min="0" max="100" name="permsDefaultForumPerms<?php echo $i; ?>" value="<?=$idGrade[$i]['PermsDefault']['forum']['perms'];?>" /> Niveau de permissions (forum, categories, sous-forum et topics). Aura a accès à tous ce qui est inférieur ou égal a son niveau de permission. 
                                                                             </label>
                                                                        </div>
                                                                     </div>
@@ -247,7 +342,7 @@
                                                                     <div class="col-lg-10 col-lg-offset-1">
                                                                         <div class="panel-group" id="accordionPages<?php echo $i; ?>" role="tablist" aria-multiselectable="true">
                                                                             <div class="alert alert-success">
-                                                                                <strong>Avant de vous attaquer dans cette liste, veuillez activer l'accès au panel et aux pages que vous souhaitiez pour que la liste ci-dessous prenne effet. En cas que vous ne vouliez pas que ce grade accède aux menus, alors ignorer la liste.</strong>
+                                                                                <strong>Avant de vous attaquer à cette liste, veuillez activer l'accès au panel et aux pages que vous souhaitiez pour que la liste ci-dessous prenne effet. Si vous ne voulez pas que le grade accède aux menus, ignorez la liste.</strong>
                                                                             </div>
                                                                             <div class="panel panel-default">
                                                                                 <div class="panel-heading" role="tab" id="headingPagesInfo<?php echo $i; ?>">
@@ -711,12 +806,12 @@
                                                                                                         </div>
                                                                                                         <div class="checkbox">
                                                                                                             <label>
-                                                                                                                <input type="checkbox" name="permsPanelForumActionsAddPrefix<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['addPrefix'] == true) echo 'checked'; ?> /> Ajouter des prefix de discussions
+                                                                                                                <input type="checkbox" name="permsPanelForumActionsAddPrefix<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['addPrefix'] == true) echo 'checked'; ?> /> Ajouter des prefixes de discussion
                                                                                                             </label>
                                                                                                         </div>
                                                                                                         <div class="checkbox">
                                                                                                             <label>
-                                                                                                                <input type="checkbox" name="permsPanelForumActionsSeePrefix<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['seePrefix'] == true) echo 'checked'; ?> /> Voir/Supprimer les prefix de discussions
+                                                                                                                <input type="checkbox" name="permsPanelForumActionsSeePrefix<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['actions']['seePrefix'] == true) echo 'checked'; ?> /> Voir/supprimer les prefixes de discussion
                                                                                                             </label>
                                                                                                         </div>
                                                                                                     </div>
@@ -961,8 +1056,27 @@
 																											</label>
 																										</div>
 																										<div class="checkbox">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" name="permsForumModerationSeeSignalement<?php echo $i; ?>" <?php if($idGrade[$i]['PermsForum']['moderation']['seeSignalement'] == true) echo 'checked'; ?> /> 
+                                                                                                                    Voir les topics/messages signalés
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                        <div class="checkbox">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" name="permsForumModerationAddPrefix<?php echo $i; ?>" <?php if($idGrade[$i]['PermsForum']['moderation']['addprefix'] == true) echo 'checked'; ?> /> 
+                                                                                                                    Ajouter/Enlever des préfixes de discussions
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                        <div class="checkbox">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" name="permsForumModerationEpingle<?php echo $i; ?>" <?php if($idGrade[$i]['PermsForum']['moderation']['epingle'] == true) echo 'checked'; ?> /> 
+                                                                                                                    Epingler des topics
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                        <div class="checkbox">
 																											<label>
-																												<input type="checkbox" name="permsForumModerationSeeSignalement<?php echo $i; ?>" <?php if($idGrade[$i]['PermsForum']['moderation']['seeSignalement'] == true) echo 'checked'; ?> /> Voir les topics/messages signalé 
+																												<input type="checkbox" name="permsForumModerationSelTopic<?php echo $i; ?>" <?php if($idGrade[$i]['PermsForum']['moderation']['selTopic'] == true) echo 'checked'; ?> /> 
+                                                                                                                    Peut sélectionner des topics (les deux précédentes permissions sont inutiles sans celle-ci)
 																											</label>
 																										</div>
 																									</div>

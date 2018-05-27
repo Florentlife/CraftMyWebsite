@@ -122,6 +122,12 @@ function get_erreur($erreur, &$type, &$titre, &$contenue)
 			$titre = "Solde insuffisant";
 			$contenue = "Votre solde n'est pas suffisant pour acheter ces items. <br/> Merci de renouvelle votre solde ici : <a href='?page=token' class='btn btn-primary link'>Acheter des jetons</a>";
 		break;
+
+		case '19':
+			$type = htmlspecialchars($_GET['type']);
+			$titre = htmlspecialchars($_GET['titre']);
+			$contenue = htmlspecialchars($_GET['contenue']);
+		break;
 		
 		default:
 			$type = '404 Not Found';

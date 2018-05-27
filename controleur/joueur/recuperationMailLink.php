@@ -16,18 +16,13 @@ else
 	require_once('modele/joueur/maj.class.php');
 	$ChToken = new Maj($donneesJoueur['pseudo'], $bddConnection);  
 	$ChToken->setNouvellesDonneesResetToken(null);
-	
-	function genMdp(){
-		$caracAllows = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        return substr(str_shuffle($caracAllows), 0, 7);
-    }   
             
     $mdp = uniqid();
     
     $mdp = genMdp();
 	
     $chMdp = new Maj($donneesJoueur['pseudo'], $bddConnection);  
-	$chMdp->setNouvellesDonneesMdp(md5(sha1($mdp)));
+	$chMdp->setNouvellesDonneesMdp(password_hash($mdp, PASSWORD_DEFAULT));
 	
 	$retourligne = "\r\n";
 	
@@ -43,9 +38,10 @@ else
 			.$retourligne
 			.'Cordialement, '.$_Serveur_['General']['name'].'.';
 	mail($to,$subject,$txt);
-
-	setTempMess("<script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'Votre nouveau mot de passe vous a été envoyé par mail !', icon: '<span class=\'glyphicon glyphicon-ok\'></span>});});</script>");
-	header('Location : index.php');	
+	header('Location : index.php?setTemp=1');	
 }
-
+function genMdp(){
+	$caracAllows = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    return substr(str_shuffle($caracAllows), 0, 7);
+}  
 ?>

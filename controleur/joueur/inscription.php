@@ -73,7 +73,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 								}
 								
 								require_once('modele/joueur/inscription.class.php');
-								$userInscription = new Inscription($_POST['pseudo'], $_POST['mdp'], $_POST['email'], time(), 1, 0, $getIp, $bddConnection);
+								$userInscription = new Inscription($_POST['pseudo'], $get_Mdp, $_POST['email'], time(), 1, 0, $getIp, $bddConnection);
 
 								require_once('modele/joueur/ScriptBySprik07/inscriptionCleUnique.class.php');
 								$userInsertIP = new InsertCleUnique($get_CleUnique, $get_Pseudo, $bddConnection);
@@ -109,7 +109,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 							} else {
 
 								require_once('modele/joueur/inscription.class.php');
-								$userInscription = new Inscription($_POST['pseudo'], $_POST['mdp'], $_POST['email'], time(), 1, 0, $getIp, $bddConnection);
+								$userInscription = new Inscription($_POST['pseudo'], $get_Mdp, $_POST['email'], time(), 1, 0, $getIp, $bddConnection);
 
 								require_once('modele/joueur/ScriptBySprik07/inscriptionValidateMail.class.php');
 								$userValidateMail = new UserValidateMail($get_Pseudo, $bddConnection);
@@ -147,7 +147,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 	}
 	else
 	{
-		header('Location: ?&page=erreur&erreur=0');
+		header('Location: ?&page=erreur&erreur=010');
 	}
 }
 else

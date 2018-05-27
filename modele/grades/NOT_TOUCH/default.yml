@@ -1,4 +1,6 @@
 Grade: 
+prefix:
+effets:
 PermsDefault:
   news:
     deleteMemberComm: 
@@ -7,7 +9,11 @@ PermsDefault:
     closeTicket: 
     deleteMemberComm: 
     editMemberComm: 
-    displayTicket: 
+    displayTicket:
+  chat:
+    color:
+  forum:
+    perms:
 PermsPanel:
   access: 
   info:
@@ -139,3 +145,6 @@ PermsForum:
       closeTopic: 
       mooveTopic: 
       seeSignalement: 
+      addPrefix:
+      epingle: 
+      selTopic:

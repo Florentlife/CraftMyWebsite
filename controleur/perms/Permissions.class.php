@@ -22,17 +22,7 @@ class Permissions
         $this->plugin = $plugin;
         $this->world = $world;
         $this->manager = new PermissionsManager($json);
-    } 
-
-    public function readGroupsLocal()
-    {
-        $i = 0;
-        foreach($this->perms as $cle => $element)
-        {/*
-            $groups[$i] = $cle; */
-        }
-        $i++;
-    }   
+    }    
 
     public function readGroupsServer()
     {

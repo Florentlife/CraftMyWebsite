@@ -164,7 +164,7 @@
 								<input type="hidden" name="action" value="addOffrePanier"/>
 								<input type="hidden" name="offre" value="<?php echo $_GET['offre']; ?>"/>
 								<label for="quantite" class="form-control mb-1 mr-sm-1">Quantité: </label>
-								<input type="number" class="form-control mb-1 mr-sm-1" id="quantite" name="quantite" value="1" />
+								<input type="number" class="form-control mb-1 mr-sm-1" id="quantite" name="quantite" min="0" value="1" />
 								<button type="submit" class="btn btn-success mb-2">Ajouter au panier</button>
 							</form><?php } else{ ?>
 							Connectez vous sur le serveur voulu... <?php } 

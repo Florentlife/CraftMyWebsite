@@ -17,7 +17,7 @@ if(isset($_Joueur_) AND isset($_POST['id_topic']))
 	<div class="container">
         <input type="hidden" name="id_topic" value="<?php echo $id; ?>"/>
         <label for="contenue" class="control-label">Editez votre contenu</label><br/>
-        <textarea name="contenue" maxlength="10000" class="form-control" id="contenue"><?php echo $donnee['contenue']; ?></textarea>
+        <textarea name="contenue" maxlength="10000" class="form-control" id="contenue" rows="20"><?php echo $donnee['contenue']; ?></textarea>
         <hr>
         <button type="submit" class="btn btn-primary pull-right">Envoyer</button>
       </div>

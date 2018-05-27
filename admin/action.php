@@ -10,6 +10,21 @@
 		require_once('admin/actions/commande.php');
 		break;
 
+		case 'changeNom':
+			require_once('admin/actions/nom.php');
+			$_SESSION['referrerAdmin'] = 'grade';
+		break;
+
+		case 'modifierVote':
+			require_once('admin/actions/modifierVote.php');
+			$_SESSION['referrerAdmin'] = 'voter';
+		break;
+
+		case 'supprAllTickets':
+			require_once('admin/actions/supprAllTickets.php');
+			$_SESSION['referrerAdmin'] = 'support';
+		break;
+
 		case 'addPrefix':
 			require_once('admin/actions/addPrefix.php');
 			$_SESSION['referrerAdmin'] = 'forum';
@@ -57,12 +72,12 @@
 
 		case 'ajout_favicon':
 			require_once('admin/actions/ajout_favicon.php');
-			$_SESSION['referrerAdmin'] = 'general';
+			$_SESSION['referrerAdmin'] = 'configsite';
 		break;
 		
 		case 'general': 
 		require_once('admin/actions/general.php');
-		$_SESSION['referrerAdmin'] = 'general';
+			$_SESSION['referrerAdmin'] = 'configsite';
 		break;
 		
 		case 'editTheme': 
@@ -122,7 +137,7 @@
 		
 		case 'supprJson': 
 		require_once('admin/actions/serveurJsonSuppr.php');
-		$_SESSION['referrerAdmin'] = 'regserv';
+		$_SESSION['referrerAdmin'] = 'reglagejsonapi';
 		break;
 		
 		case 'newLienMenu': 
@@ -132,7 +147,7 @@
 		
 		case 'editPayement': 
 		require_once('admin/actions/editPayement.php');
-		$_SESSION['referrerAdmin'] = 'payement';
+		$_SESSION['referrerAdmin'] = 'paiement';
 		break;
 		
 		case 'creerOffrePaypal': 
@@ -187,7 +202,7 @@
 		
 		case 'postNavRap': 
 		require_once('admin/actions/postNavRap.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'slidemini';
 		break;
 
 		case 'postNews': 
@@ -217,27 +232,27 @@
 		
 		case 'editRapNav': 
 		require_once('admin/actions/editRapNav.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'slidemini';
 		break;
 		
 		case 'newSlider':
 		require_once('admin/actions/newSlider.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'slidemini';
 		break;
 		
 		case 'changeSlider':
 		require_once('admin/actions/changeSlider.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'slidemini';
 		break;
 		
 		case 'postSlider':
 		require_once('admin/actions/postSlider.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'slidemini';
 		break; 
 		
 		case 'supprSlider':
 		require_once('admin/actions/supprSlider.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'slidemini';
 		break; 
 		
 		case 'postBG':
@@ -250,18 +265,13 @@
 		$_SESSION['referrerAdmin'] = 'theme';
 		break; 
 		
-		case 'modifierVotesGen':
-		require_once('admin/actions/modifierVotesGen.php');
-		$_SESSION['referrerAdmin'] = 'voter';
-		break;
-		
 		case 'creerLienVote':
 		require_once('admin/actions/creerLienVote.php');
 		$_SESSION['referrerAdmin'] = 'voter';
 		break;
 		
-		case 'supprLienVote':
-		require_once('admin/actions/supprLienVote.php');
+		case 'supprVote':
+		require_once('admin/actions/supprVote.php');
 		$_SESSION['referrerAdmin'] = 'voter';
 		break;
 		
@@ -396,5 +406,8 @@
 		header('Location: admin.php');
 	}
 }
-header('Location: admin.php?page='.$_SESSION['referrerAdmin']);
+if(isset($_SESSION['referrerAdmin']))
+	header('Location: admin.php?page='.$_SESSION['referrerAdmin']);
+else
+	header('Location: admin.php');
 ?>

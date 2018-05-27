@@ -20,7 +20,10 @@
 
 <form method="POST" action="?&action=general">
     <div class="text-center">
-        <div class="panel panel-default">
+        <div class="panel panel-default cmw-panel">
+			<div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Configuration des données de base</strong></h3>
+            </div>
             <div class="panel-body">
                 <div class="row">
                   <div class="col-xs-12 col-md-6" style="padding: 10px;">
@@ -34,6 +37,15 @@
 
                         <label class="control-label">Description</label>
                         <input type="text" name="description" class="form-control text-center" placeholder="Mon super serveur minecraft !" value="<?php echo $lecture['General']['description']; ?>">
+
+                        <label class="control-label">Adresse de votre serveur Minecraft (textuel)</label>
+                        <input type="text" name="ipTexte" class="form-control text-center" placeholder="cmw.minesr.com" value="<?php echo $lecture['General']['ipTexte']; ?>">
+
+                        <label class="control-label">Adresse de votre serveur Minecraft (sous forme d'IP, sans le port !)</label>
+                        <input type="text" name="ip" class="form-control text-center" placeholder="172.16.254.1" value="<?php echo $lecture['General']['ip']; ?>">
+
+                        <label class="control-label">Port de votre serveur Minecraft</label>
+                        <input type="number" name="port" class="form-control text-center" placeholder="25565" value="<?php echo $lecture['General']['port']; ?>">
                 </div>
 
                 <div class="col-xs-12 col-md-6" style="padding: 10px;">
@@ -62,7 +74,10 @@
 </form>
 <form action="?action=ajout_favicon" method="POST" enctype="multipart/form-data">
     <div class="text-center">
-        <div class="panel panel-default">
+        <div class="panel panel-default cmw-panel">
+           <div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Configuration du favicon</strong></h3>
+            </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col">

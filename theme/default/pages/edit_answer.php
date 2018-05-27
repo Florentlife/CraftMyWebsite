@@ -17,7 +17,7 @@ if(isset($_Joueur_) AND isset($_POST['id_answer']))
 		<h4 class="title">Edition d'une réponse</h4>
 		<input type="hidden" name="id_answer" value="<?php echo $id; ?>"/>
 		<label for="contenue" class="control-label">Editez votre réponse</label><br/>
-		<textarea name="contenue" maxlength="10000" class="form-control" id="contenue"><?php echo $donnee['contenue']; ?></textarea>
+		<textarea name="contenue" maxlength="10000" class="form-control" id="contenue" rows="20"><?php echo $donnee['contenue']; ?></textarea>
 		<button type="submit" class="btn btn-primary pull-right">Envoyer</button>
       </div>
 	  </form></section>

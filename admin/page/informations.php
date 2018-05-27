@@ -1,5 +1,5 @@
 <link href="/admin/assets/css/page/style-accueil.css" rel="stylesheet">
-<div class="cmw-page-content-header"><strong>Accueil</strong> - Statistiques général et informations diverse de votre site</div>
+<div class="cmw-page-content-header"><strong>Accueil</strong> - Statistiques et informations générales de votre site</div>
 
 <!-- /.row -->
 <div class="row">
@@ -16,7 +16,7 @@
      </div>
    </div>
  </div>
- <a data-toggle="collapse" data-parent="#adminPanel" href="admin.php?page=news">
+ <a href="admin.php?page=news">
    <div class="panel-footer">
     <span class="pull-left">Voir détails</span>
     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -219,8 +219,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                 <button type="button" class="btn btn-success" onclick="window.location.replace('?&action=commandeRedemarrageServer')" disabled>Redémarrer le serveur</button>
               </div>
             </div>
-          </div>
           <?php }
+          ?></div><?php
         } ?>
       </div>
     </div>
@@ -499,7 +499,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         </div>
       </div>
     </div>
-    <a data-toggle="collapse" data-parent="#adminPanel" href="admin.php?page=boutique">
+    <a href="admin.php?page=boutique">
       <div class="panel-footer">
         <span class="pull-left">Voir détails</span>
         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -521,7 +521,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         </div>
       </div>
     </div>
-    <a data-toggle="collapse" data-parent="#adminPanel" href="admin.php?page=support">
+    <a href="admin.php?page=support">
     <div class="panel-footer">
         <span class="pull-left">Voir détails</span>
         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -610,7 +610,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
     </div>
   </div>
 
-  <!-- Debut code post-it (par cercus) -->
+  <!-- Debut code post-it -->
 
   <div class="col-lg-4">
     <div class="panel panel-default cmw-panel">
@@ -622,14 +622,14 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         <?php 
         $all_message_postit = $bddConnection->query('SELECT id, auteur, message FROM cmw_postit ORDER BY id DESC LIMIT 0, 4');
         while ($message_postit = $all_message_postit->fetch()) { ?>
-        	<p><strong>[<?php echo $message_postit['auteur']; ?>] </strong> <?php echo $message_postit['message']; ?>&nbsp;&nbsp; <a href="?&action=supprPostit&id=<?php echo $message_postit['id']; ?>"><img src="../admin/assets/img/suppr.jpg" width="10px" height="10px" title="Supprimer" alt="Supprimer" /></a></p>
+        	<p><strong>[<?php echo $message_postit['auteur']; ?>] </strong> <?php echo $message_postit['message']; ?>&nbsp;&nbsp; <a href="?&action=supprPostit&id=<?php echo $message_postit['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
        <?php } ?>
 
       </div>
       <div class="panel-footer">
         <form method="POST" action="?&action=creerPostit">
-          <span class="pull-left"><input type="text" name="post-it_message" placeholder="Message (max 50 caractères)" maxlength="50"></span>
-          <span class="pull-right"><button type="submit">Envoyer !</button></span>
+          <span class="pull-left"><input type="text" name="post-it_message" placeholder="Message (max 50 caractères)" class="form-control" maxlength="50"></span>
+          <span class="pull-right"><button type="submit" class="btn btn-success pull-right">Envoyer !</button></span>
         </form>
       <div class="clearfix"></div>
     </div>
@@ -925,11 +925,11 @@ for($j = 0; $j < count($lecture['Json']); $j++)
   <?php }
 } ?>
 
-<?php for($i = 0; $i < count($lastAchatDedipass); $i++) {
-  if(!empty($lastAchatDedipass[$i]['date_achat'])) { ?>
+<?php for($i = 0; $i < count($lastAchatmcgpass); $i++) {
+  if(!empty($lastAchatmcgpass[$i]['date_achat'])) { ?>
   <a href="#" class="list-group-item">
-    <span class="badge"><?php echo $lastAchatDedipass[$i]['date_achat'].' ??:??:??'; ?></span>
-    <i class="fa fa-fw fa-mobile"></i> Dernier achat sur dedipass par : <strong><?php echo $lastAchatDedipass[$i]['pseudo'].'</strong> au prix de <strong>'.$lastAchatDedipass[$i]['payout'].'€</strong>'; ?>
+    <span class="badge"><?php echo $lastAchatmcgpass[$i]['date_achat'].' ??:??:??'; ?></span>
+    <i class="fa fa-fw fa-mobile"></i> Dernier achat sur mcgpass par : <strong><?php echo $lastAchatmcgpass[$i]['pseudo'].'</strong> au prix de <strong>'.$lastAchatmcgpass[$i]['payout'].'€</strong>'; ?>
   </a>
   <?php }
 } ?>
@@ -994,8 +994,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
       <td><?php echo $boutiquesStats[$i]['pseudo']; ?></td>
       <td><?php echo $boutiquesStats[$i]['date_achat']; ?></td>
       <?php $NameOffre = $boutiquesStats[$i]['offre_id'];
-      $req_NameOffre = $bddConnection->prepare("SELECT nom FROM cmw_boutique_offres WHERE id LIKE :offre_id");
-      $req_NameOffre->execute();
+      $req_NameOffre = $bddConnection->prepare("SELECT nom FROM cmw_boutique_offres WHERE id = :offre_id");
+      $req_NameOffre->execute(array('offre_id' => $NameOffre));
       $get_NameOffre = $req_NameOffre->fetch();
       $inverse_NameOffre = $get_NameOffre['nom']; ?>
       <td><?php if(!empty($inverse_NameOffre)){echo $inverse_NameOffre;}else{echo 'Offre supprimée';} ?></td>
