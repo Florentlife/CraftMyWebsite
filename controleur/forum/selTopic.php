@@ -33,12 +33,19 @@ if(isset($_Joueur_) && ($_PGrades_['PermsForum']['moderation']['selTopic'] == tr
 				'id' => $id
 				));
 		}
-		if(isset($_POST['idSF']))
+		if(isset($_POST['remove']) && $_POST['remove'] == 1 && ($_PGrades_['PermsForum']['moderation']['deleteTopic'] == true OR $_Joueur_['rang'] == 1))
 		{
-			$sf = htmlspecialchars($_POST['idSF']);
-			header('Location: ?page=forum_categorie&id='.$idCat.'&id_sous_forum='.$sf);
+			$req = $bddConnection->prepare('DELETE FROM cmw_forum_post WHERE id = :id');
+			$req->execute(array(
+				'id' => $id
+			));
 		}
-		else
-			header('Location: ?page=forum_categorie&id='.$idCat);
 	}
+	if(isset($_POST['idSF']))
+	{
+		$sf = htmlspecialchars($_POST['idSF']);
+		header('Location: ?page=forum_categorie&id='.$idCat.'&id_sous_forum='.$sf);
+	}
+	else
+		header('Location: ?page=forum_categorie&id='.$idCat);
 }

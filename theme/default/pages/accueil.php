@@ -1,9 +1,17 @@
 <!--Header-->
-    <header class="heading" style="background-image: url(''theme/upload/slider/<?php echo $_Accueil_['Slider']['image']; ?>');">
+    <header class="heading" style="background-image: url('theme/upload/slider/<?php echo $_Accueil_['Slider']['image']; ?>');">
         <div class="heading-mask">
             <div class="container" style="text-align:center;">
                 <h1 class="text-primary text-uppercase wow zoomInDown" data-wow-delay="0.6s"><?php echo $_Serveur_['General']['name']; ?></h1>
-                <p class="h6 wow fadeInUp" data-wow-delay="0.9s">En ligne : <?php echo $playeronline.' / '.$maxPlayers;?></p>
+                <p class="h6 wow fadeInUp" data-wow-delay="0.9s"><?php if($modeEnLigne == 0)
+                {
+                	echo '<span class="badge badge-danger">Hors-Ligne</span>'; 
+                }
+                else
+                {
+                	echo '<span class="badge badge-success">En Ligne</span> : '.$playeronline.' / '.$maxPlayers;
+                }
+                ?></p>
                 <p class="wow fadeInUp" data-wow-delay="1s"><?php echo $_Serveur_['General']['description']; ?></p>
             </div>
         </div>
@@ -36,7 +44,7 @@
         <div class="container">
             <div class="text-center">
                 <h4 class="text-primary">Informations</h4>
-                <p>Suivez notre fil d'actualités</p>
+                <p>Suivez notre fil d'actualité</p>
                 <hr>
             </div>
             <div class="row">
@@ -59,8 +67,7 @@
 							?>
 							<div class="<?php if(count($news) == 1) echo 'col-lg-12 col-md-12 col-sm-12'; elseif(count($news) >= 2) echo 'col-lg-6 col-md-6 col-sm 6'; ?>">
 								<div class="card hvr-float-shadow w-100" style="margin-bottom:15px;">
-									<h5 class="card-header text-uppercase bg-primary" style="color:white;"><?php echo $news[$i]['titre']; ?><small class="text-muted">#<?php echo $news[$i]['id']; ?></small></h5><br/>
-									<center>Auteur : <a href="?page=profil&profil=<?php echo $news[$i]['auteur']; ?>" alt="aller voir le profil de l'auteur"><img src="https://minecraft-api.com/api/skins/head.php?player=<?php echo $news[$i]['auteur']; ?>&size=24" alt="auteur"/> <?php echo $news[$i]['auteur']; ?></a></center>
+									<h5 class="card-header text-uppercase bg-primary" style="color:white;"><small class="text-muted">#<?php echo $news[$i]['id']; ?></small> <?php echo $news[$i]['titre']; ?></h5><br/>
 									<div class="card-block">
 										<p class="card-text"><?php echo $news[$i]['message']; ?></p>
 										<!--<a href="news.html" class="card-link btn btn-primary">Lire plus</a>-->
@@ -85,14 +92,19 @@
 												//}
 												echo '</a>';
 											}
+											unset($Img);
+											$Img = new ImgProfil($news[$i]['auteur'], 'pseudo');
 											?>
 									</div>
-									<div class="card-footer text-muted text-center">
-										<?php echo 'Posté le '.date('d/m/Y', $news[$i]['date']).' &agrave; '.date('H:i:s', $news[$i]['date']); ?>
+									<div class="card-footer text-muted" style="height: 41px;">
+										<div style="float: left;"><?php echo 'Posté le '.date('d/m/Y', $news[$i]['date']).' &agrave; '.date('H:i:s', $news[$i]['date']); ?></div>
+											<div style="float: right;">Auteur : <a href="?page=profil&profil=<?php echo $news[$i]['auteur']; ?>" alt="aller voir le profil de l'auteur"><img src="<?=$Img->getImgToSize(24, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="auteur"/> <?php echo $news[$i]['auteur']; ?></a></div>
 									</div>
 								</div>
 							</div>
-							<?php if(isset($_Joueur_)) {
+							<?php 
+							unset($Img);
+							if(isset($_Joueur_)) {
 								$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
 								while($newsComments = $getNewsCommentaires->fetch()) {
 									$reqEditCommentaire = $accueilNews->editCommentaire($newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);
@@ -141,12 +153,14 @@
 											$getCountReportsVictimes = $accueilNews->countReportsVictimes($newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);
 											$countReportsVictimes = $getCountReportsVictimes->rowCount();
 										}
+										unset($Img);
+										$Img = new ImgProfil($newsComments['pseudo'], 'pseudo');
 										?>
 
 										<div class="container">
 											<div class="row">
 													<div class="col-md-4 col-lg-4 col-sm-12">
-														<img class="rounded" style="margin-left: auto; margin-right: auto; display: block;" src="https://minecraft-api.com/api/skins/head.php?player=<?php echo $newsComments['pseudo']; ?>&size=64" alt="Auteur" />
+														<img class="rounded" src="<?=$Img->getImgToSize(64, $width, $height);?>" style="margin-left: auto; margin-right: auto; display: block; width: <?=$width;?>px; height: <?=$height;?>px;" alt="Auteur" />
 														<p class="text-muted text-center username"><?php echo '<B> '.$newsComments['pseudo'].'</B>'; ?><br/>
 															<?php echo  '<b>'.gradeJoueur($newsComments['pseudo'], $bddConnection).'</b><br/>'; ?>
 															<?php echo '<B>Le '.date('d/m', $newsComments['date_post']).' à '.date('H:i:s', $newsComments['date_post']).'</B>'; ?></p>
@@ -171,7 +185,7 @@
 															<?php } ?>
 													</div>
 													<div class="col-md-6 col-lg-6 col-sm-12">
-														<?php $com = espacement($newsComments['commentaire']); echo BBCode($com); ?>
+														<?php $com = espacement($newsComments['commentaire']); echo BBCode($com, $bddConnection); ?>
 													</div>
 											</div> <!-- Ticket-Commentaire-->
 										</div> <!-- Panel Panel-Default -->
@@ -187,20 +201,20 @@
 												<center><button type="submit" class="btn btn-primary btn-block">Commenter</button></center>
 												</form>
 											</div>
-									</div> <!-- Modal-Footer -->
 									<?php } else { ?>
 										<div class="modal-footer">
 											<center><div class="alert alert-danger">Veuillez-vous connecter pour mettre un commentaire.</div></center>
 											<center><a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning">Connexion</a></center>
 										</div> <!-- Modal-Footer -->
 										<?php } ?>
+									</div><!-- Modal-Footer -->
 									</div> <!-- Modal-Content -->
 						</div>
 
 							<?php }  }
 						}
 							else
-								echo '<div class="col-md-12 col-lg-12 col-sm-12"><div class="alert alert-warning"><p class="text-center">Aucune news n\'a été créé à ce jour...</p></div></div>'; ?>
+								echo '<div class="col-md-12 col-lg-12 col-sm-12"><div class="alert alert-warning"><p class="text-center">Aucune news n\'a été créée à ce jour...</p></div></div>'; ?>
             </div>
             <?php // if(count($news) > 3 ) echo '<a href="?page=blog" class="btn btn-primary btn-block">Afficher plus</a>'; ?>
         </div>

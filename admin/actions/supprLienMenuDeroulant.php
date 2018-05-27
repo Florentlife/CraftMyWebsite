@@ -1,5 +1,5 @@
 <?php 
-if($_Joueur['rang'] == 1 OR $_PGrades_['PermsPanel']['menus']['actions']['editDropAndLinkMenu'] == true) {
+if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['menus']['actions']['editDropAndLinkMenu'] == true) {
 	$id = $_GET['id'];
 	$id2 = $_GET['id2'];
 

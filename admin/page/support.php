@@ -1,4 +1,4 @@
-<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérer vos tickets support</div>
+<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérez vos tickets support</div>
         <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['support']['tickets']['actions']['editEtatTicket'] == false AND $_PGrades_['PermsPanel']['support']['tickets']['actions']['deleteTicket'] == false)) { ?><div class="row">
             <div class="ccol-md-12 text-center">
                 <div class="alert alert-danger">
@@ -22,6 +22,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <a class="btn btn-danger" href="?action=supprAllTickets">Tout supprimer</a><br/><br/>
                                 <table class="table table-bordered">
                                     <tr>
                                         <th style="text-align: center;">Titre</th>

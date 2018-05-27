@@ -12,13 +12,13 @@
         if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['editSettings'] == true) { ?>
         <div class="col-lg-12 text-justify">
             <div class="alert alert-success">
-                <strong>Dans cette section vous pourrez configurez vos votes.</strong><br/>
-                Pour le message, vous pouvez utilisez les tags : <ul>
+                <strong>Dans cette section vous pourrez configurer vos votes.</strong><br/>
+                Pour le message vous pouvez utiliser les tags:<ul>
                     <li> {JOUEUR} qui sera remplacé par le nom du joueur qui a voté</li>
                     <li> {QUANTITE} qui sera remplacé par la quantité de jetons site, ou d'item IG give</li>
                     <li> {ID} qui sera remplacé par l'id de l'item give IG </li>
                 </ul>
-                Pour la commande, vous pourrez utiliser : <ul>
+                Pour la commande vous pourrez utiliser : <ul>
                     <li> {JOUEUR} qui correspond au nom du joueur qui vote. </li>
                 </ul>
                 Bonne configuration ! 
@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-md-offset-1 col-md-6">
                         <div class="row">
-                            <label class="control-label">Quantité de l'item à donné <strong>OU</strong> quantité de jeton à donner</label>
+                            <label class="control-label">Quantité de l'item à donner <strong>OU</strong> quantité de jetons à donner</label>
                             <input type="text" name="quantite" class="form-control" value="4" />
                         </div>
                         <div class="row">
@@ -121,46 +121,57 @@
                         <div class="row">
                             <h3 class="text-center">Gestion des votes</h3>
                         </div>
+                        <form action="?action=modifierVote" method="post">
                         <table class="table table-striped table-hover">
                             <tr>
                                 <th>Titre</th>
                                 <th>Lien de vote</th>
                                 <th>Catégorie</th>
                                 <th>Récompense donnée sur</th>
-                                <th>Récompense</th>
+                                <th>Action</th>
+                                <th>Quantité</th>
+                                <th>Commande</th>
+                                <th>Id de l'item</th>
                                 <th>Message</th>
                                 <th>Temps entre chaque vote</th>
                                 <th>Action</th>
                             </tr>
-                        <?php while($donnees = $req_donnees->fetch())
+                        <?php $donnees = $req_donnees->fetchAll();
+                        for($o=0; $o < count($donnees); $o++)
                         {
                             ?><tr>
-                                <td><?=$donnees['titre'];?></td>
-                                <td><a href="<?=$donnees['lien'];?>" class="badge badge-primary"><?=$donnees['lien'];?></a></td>
-                                <td><?php 
-                                    $serv = intval($donnees['serveur']);
-                                    echo $lectureServs[$serv]['nom'];
-                                ?></td>
-                                <td><?php echo ($donnees['methode'] == 1) ? 'Le serveur où le joueur est en ligne lors du vote' : 'Le serveur : '.$lectureServs[$donnees['serveur']]['nom']; ?></td>
-                                <td><?php $action = explode(':', $donnees['action'], 2);
-                                    if($action[0] == 'cmd')
-                                        echo 'Commande : '.$action[1];
-                                    elseif($action[0] == 'jeton')
-                                        echo 'Give de '.$action[1].' jetons sur le site';
-                                    else
-                                    {
-                                        $action = explode(':', $action[1]);
-                                        echo 'Give de '.$action[3].' item : '.$action[1];
-                                    }
-                                    ?>
-                                </td>
-                                <td><?php echo (empty($donnees['message'])) ? 'Pas de message' : $donnees['message']; ?></td>
-                                <td><?=$donnees['temps'];?></td>
-                                <td><a href="?action=supprVote&id=<?=$donnees['id'];?>" class="btn btn-danger">Supprimer</a></td>
-                            </tr><?php 
+                                <td><input type="text" class="form-control" name="titre<?=$o;?>" value="<?=$donnees[$o]['titre'];?>" /></td>
+                                <td><input type="url" value="<?=$donnees[$o]['lien'];?>" class="form-control" name="lien<?=$o;?>" /></td>
+                                <td><select name="serveur<?=$o;?>" class="form-control">        
+                                <?php for($i = 0; $i < count($lectureServs); $i++) {        ?>
+                                    <option value="<?php echo $i ?>" <?=($lectureServs[$i]['nom'] == $lectureServs[intval($donnees[$o]['serveur'])]['nom']) ? 'selected' : ''; ?>> <?php echo $lectureServs[$i]['nom']; ?> </option>
+                                <?php } ?>
+                                </select></td>
+                                <td><select name="methode<?=$o;?>" class="form-control">     
+                                    <option value="1" <?=($donnees[$o]['methode'] == 1) ? 'selected' : '';?>> Le serveur où il est en ligne </option>
+                                    <option value="2" <?=($donnees[$o]['methode'] == 2) ? 'selected' : '';?>> Le serveur de la catégorie </option>
+                                </select></td><?php $action = explode(':', $donnees[$o]['action'], 2); ?>
+                                <td><select name="action<?=$o;?>" class="form-control">
+                                    <option value="1" <?=($action[0] == 'cmd') ? 'selected' : '';?>> Executer une commande </option>
+                                    <option value="2" <?=($action[0] == 'give') ? 'selected' : '';?>> Give d'item </option>
+                                    <option value="3" <?=($action[0] == 'jeton') ? 'selected' : '';?>> Give de jetons site</option>
+                                </select></td><?php if($action[0] == "give")
+                                    $item = explode(':', $action[1]);
+                                ?>
+                                <td><input type="text" name="quantite<?=$o;?>" class="form-control" value="<?=($action[0] == 'jeton') ? $action[1] : $item[3];?>" /></td>
+                                <td><input type="text" name="cmd<?=$o;?>" class="form-control" value="<?=($action[0] == 'cmd') ? $action[1] : '';?>" /></td>
+                                <td><input type="text" name="id<?=$o;?>" class="form-control" value="<?=($action[0] == "give") ? $item[1] : '';?>" /></td>
+                                <td><input type="text" name="message<?=$o;?>" class="form-control" value="<?=$donnees[$o]['message'];?>" /></td>
+                                <td><input type="number" name="temps<?=$o;?>" class="form-control" value="<?=$donnees[$o]['temps'];?>" /></td>
+                                <td><a href="?action=supprVote&id=<?=$donnees[$o]['id'];?>" class="btn btn-danger">Supprimer</a></td></tr>
+                                <?php 
                         }
                         ?>
                         </table>
+                        <div class="row text-center">
+                            <button type="submit" class="btn btn-success">Valider les changements</button>
+                        </div>
+                    </form>
                     <?php } ?>
                 </div>
             </div>

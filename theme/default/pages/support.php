@@ -39,7 +39,10 @@
 							<?php } ?>
 
 							<td class="text-center align-middle">
-								<a href="index.php?&page=profil&profil=<?php echo $tickets['auteur'] ?>"><img class="icon-player-topbar" src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $tickets['auteur']; ?>&s=32&v=front" /> <?php echo $tickets['auteur'] ?></a>
+								<?php 
+								$Img = new ImgProfil($tickets['auteur'], 'pseudo');
+								?>
+								<a href="index.php?&page=profil&profil=<?php echo $tickets['auteur'] ?>"><img class="icon-player-topbar" src="<?=$Img->getImgToSize(32, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" /> <?php echo $tickets['auteur'] ?></a>
 							</td>
 						
 							<td class="text-center align-middle">
@@ -105,8 +108,10 @@
 									unset($message);
 									$message = espacement($tickets['message']);
 									$message = BBCode($message, $bddConnection);
-									echo $message; ?></p>
-									<p class="text-right">Ticket de : <img src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $tickets['auteur']; ?>&s=16&v=front" alt="none" /> <?php echo $tickets['auteur']; ?></p>
+									echo $message; 
+									$Img = new ImgProfil($tickets['auteur'], 'pseudo');
+									?></p>
+									<p class="text-right">Ticket de : <img src="<?=$Img->getImgToSize(16, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /> <?php echo $tickets['auteur']; ?></p>
 									</br>
 									<hr>
 									
@@ -127,11 +132,14 @@
 										<div class="panel-body">
     										<div class="ticket-commentaire">
 											<div class="left-ticket-commentaire">
-												<span class="img-ticket-commentaire"><img src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $ticketCommentaires[$tickets['id']][$i]['auteur']; ?>&s=32&v=front" alt="none" /></span>
+												<?php 
+													$Img = new ImgProfil($ticketCommentaires[$tickets['id']][$i]['auteur'], 'pseudo');
+													?>
+												<span class="img-ticket-commentaire"><img src="<?=$Img->getImgToSize(32, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /></span>
 												<span class="desc-ticket-commentaire">
 													<span class="ticket-commentaire-auteur"><?php echo $ticketCommentaires[$tickets['id']][$i]['auteur']; ?></span>
 													<span class="ticket-commentaire-date"><?php echo 'Le ' .$ticketCommentaires[$tickets['id']][$i]['jour']. '/' .$ticketCommentaires[$tickets['id']][$i]['mois']. ' à ' .$ticketCommentaires[$tickets['id']][$i]['heure']. ':' .$ticketCommentaires[$tickets['id']][$i]['minute']; ?></span>
-													<?php if(isset($_Joueur_)) { ?>
+													<?php if(isset($_Joueur_) && (($ticketCommentaires[$tickets['id']][$i]['auteur'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1 OR $_PGrades_['PermsDefault']['support']['deleteMemberComm'] == true) OR ($ticketCommentaires[$tickets['id']][$i]['auteur'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1 OR $_PGrades_['PermsDefault']['support']['editMemberComm'] == true))) { ?>
 							                             <span class="dropdown" style="padding-left: 40%">
 								                                <a type="button" class="btn btn-warning collapsed" data-toggle="dropdown">Action <b class="caret"></b></a>
 								                                <ul class="dropdown-menu">
@@ -267,7 +275,7 @@
 
 				<div class="collapse" id="ticketCree">
 					<div class="card">
-						<form action="?&action=post_ticket" method="post">
+						<form action="" method="post" onSubmit="envoie_ticket();">
 							<div class="card-block">
 								<div class="row">
 									<div class="col-sm-8">
@@ -276,7 +284,7 @@
 											<div class="form-group">
 												<div class="input-group">
 													<div class="input-group-addon"><i class="fas fa-eye"></i></div>
-													<input type="text" class="form-control" name="titre" placeholder="Sujet">
+													<input type="text" id="titre_ticket" class="form-control" name="titre" placeholder="Sujet">
 												</div>
 											</div>
 										</div>
@@ -284,7 +292,7 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<label for="exampleSelect1">Visibilité</label>
-											<select class="form-control" name="ticketDisplay">
+											<select class="form-control" id="vu_ticket" name="ticketDisplay">
 												<option value="0">Publique</option>
 												<option value="1">Privée</option>
 											</select>
@@ -319,8 +327,8 @@
 									</div>
 									<!--<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en rouge', 'ce texte sera en rouge', 'color=red')" class="redactor_color_link" style="background-color: rgb(255, 0, 0);"></a>-->
 								</div>
-									<label for="message">Description détaillée</label>
-									<textarea class="form-control" id="message" name="message" placeholder="Description détaillée de votre problème" rows="3"></textarea>
+									<label for="message_ticket">Description détaillée</label>
+									<textarea class="form-control" id="message_ticket" name="message" placeholder="Description détaillée de votre problème" rows="3"></textarea>
 								</div>
 							</div>
 							<div class="card-footer">
@@ -332,3 +340,25 @@
 				<?php } ?>
 	</div>
 </section>
+<script>
+var nbEnvoie = 0
+	function envoie_ticket()
+	{
+		if(nbEnvoie>0)
+			return false;
+		else
+		{
+			var data_titre = document.getElementById("titre_ticket").value;
+			var data_message = document.getElementById("message_ticket").value;
+			var data_vu = document.getElementById("vu_ticket").value;
+			$.ajax({
+				url  : 'index.php?action=post_ticket',
+				type : 'POST',
+				data : 'titre=' + data_titre + '&message=' + data_message + '&ticketDisplay=' + data_vu,
+				dataType: 'html'
+			});
+			nbEnvoie++;
+			return true;
+		}
+	}
+</script>

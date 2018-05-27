@@ -17,6 +17,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/toastr.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/snarl.min.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/forum.css">
+	<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/form.js"></script>
 	<?php
 	if(file_exists('favicon.ico'))
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
@@ -36,17 +37,23 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		<?php
 		$check_installation_dossier = "installation";
 		if (is_dir($check_installation_dossier)) { ?>
-			<div class="container" style="background-color: white;margin-top: -20px;margin-bottom: -20px;border-left: 4px solid #e74c3c;border-right: 4px solid #e74c3c;">
+		<header class="heading-pagination">
+			<div class="container-fluid">
+				<h1 class="text-uppercase wow fadeInRight" style="color:white;">Vérification d'installation</h1>
+			</div>
+		</header>
+		<section id="page" class="layout">
+			<div class="container">
 			</br>
 			<div class="alert alert-danger">
 				<center><strong>Erreur :</strong> Vous devez absolument effacer le dossier "installation" à la racine de votre site pour commencer à utiliser votre site.</br>
-					Rafraichissez la page ou appuyez sur le bouton si dessous pour vérifier.
+					Rafraîchissez la page ou appuyez sur le bouton ci-dessous pour revérifier.
 				</center>
 			</div>
 			<center><a href="index.php" class="btn btn-warning btn-lg btn-block">Refaire une vérification</a></center>
 		</br>
 	</br>
-</div>
+</div></section>
 <?php } else { include('controleur/page.php'); } 
 include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <!-- Les formulaires pop-up -->
@@ -59,7 +66,92 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/custom.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/toastr.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/snarl.min.js"></script>
-<script src="//api.dedipass.com/v1/pay.js"></script>
+<script src="//api.mcgpass.com/v1/pay.js"></script>
+<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
+<script>
+function securPass()
+{
+	$("#progress").removeClass("d-none");
+	result = zxcvbn($("#MdpInscriptionForm").val());
+	if (result['score'] == 0)
+	{
+		$("#progressbar").addClass("bg-danger");
+		$("#progressbar").css('width', '0%');
+		$("#progressbar").attr('aria-valuenow', '0');
+	}
+	else if (result['score'] == 1)
+	{
+		if ($("#progressbar").hasClass("bg-warning"))
+			$("#progressbar").removeClass("bg-warning");
+		else if ($("#progressbar").hasClass("bg-success"))
+			$("#progressbar").removeClass("bg-success");
+		$("#progressbar").addClass("bg-danger");
+		$("#progressbar").css("width", "25%");
+		$("#progressbar").attr("aria-valuenow", "25");
+	}
+	else if (result['score'] == 2)
+	{
+		if ($("#progressbar").hasClass("bg-success"))
+			$("#progressbar").removeClass("bg-success");
+		else if ($("#progressbar").hasClass("bg-danger"))
+			$("#progressbar").removeClass("bg-danger");
+		$("#progressbar").addClass("bg-warning");
+		$("#progressbar").css("width", "50%");
+		$("#progressbar").attr("aria-valuenow", "50");
+	}
+	else if (result['score'] == 3)
+	{
+		if ($("#progressbar").hasClass("bg-warning"))
+			$("#progressbar").removeClass("bg-warning");
+		else if ($("#progressbar").hasClass("bg-danger"))
+			$("#progressbar").removeClass("bg-danger");
+		$("#progressbar").addClass("bg-success");
+		$("#progressbar").css("width", "75%");
+		$("#progressbar").attr("aria-valuenow", "75");
+	}
+	else if (result['score'] == 4)
+	{
+		if ($("#progressbar").hasClass("bg-warning"))
+			$("#progressbar").removeClass("bg-warning");
+		else if ($("#progressbar").hasClass("bg-danger"))
+			$("#progressbar").removeClass("bg-danger");
+		$("#progressbar").addClass("bg-success");
+		$("#progressbar").css("width", "100%");
+		$("#progressbar").attr("aria-valuenow", "100");
+	}
+	if($("#MdpInscriptionForm").val() != '' && $("#MdpConfirmInscriptionForm").val() != '')
+	{
+		if($("#MdpInscriptionForm").val() == $("#MdpConfirmInscriptionForm").val())
+		{
+			$("#correspondance").addClass("text-success");
+			if($("#correspondance").hasClass("text-danger"))
+				$("#correspondance").removeClass("text-danger");
+			$("#correspondance").html("Les mots de passes rentrés correspondent !!!");
+		}
+		else
+		{
+			$("#correspondance").addClass("text-danger");
+			if($("#correspondance").hasClass("text-success"))
+				$("#correspondance").removeClass("text-success");
+			$("#correspondance").html("Les mots de passes rentrés ne correspondent pas !!!");
+		}
+		if($("#MdpInscriptionForm").val() == $("#MdpConfirmInscriptionForm").val() && result['score'] == 4)
+		{
+			$("#InscriptionBtn").removeAttr("disabled");
+		}
+		else
+		{
+			$("#InscriptionBtn").attr("disabled", true);
+		}
+	}
+	else
+	{
+		$("#InscriptionBtn").attr("disabled", true);
+		$("#correspondance").html("");
+	}
+}
+
+</script>
 <script>
 function insertAtCaret (textarea, icon)
 { 
@@ -104,6 +196,72 @@ function ajout_text(textarea, entertext, tapetext, balise)
 	{
 		VarTxt = window.prompt(entertext,tapetext);
 		if ((VarTxt != null) && (VarTxt != '')) insertAtCaret(textarea, '['+balise+']'+VarTxt+'[/'+balise+']');
+	}
+}
+
+function ajout_text_complement(textarea, entertext, tapetext, balise, complementTxt, complementtape)
+{
+	if(balise == 'url')
+	{	
+		if (document.selection && document.selection.createRange().text != '')
+		{
+			complement = window.prompt(entertext, tapetext);
+			document.getElementById(textarea).focus();
+			VarTxt = document.selection.createRange().text;
+			if(complement != null && complement != '')
+				document.selection.createRange().text = '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']';
+			else
+				document.selection.createRange().text = '['+balise+']'+VarTxt+'[/'+balise+']';
+		}
+		else if (document.getElementById(textarea).selectionEnd && (document.getElementById(textarea).selectionEnd - document.getElementById(textarea).selectionStart > 0))
+		{
+			complement = window.prompt(entertext, tapetext);
+			valeurDeb = document.getElementById(textarea).value.substring( 0 , document.getElementById(textarea).selectionStart );
+			valeurFin = document.getElementById(textarea).value.substring( document.getElementById(textarea).selectionEnd , document.getElementById(textarea).textLength );
+			objectSelected = document.getElementById(textarea).value.substring( document.getElementById(textarea).selectionStart , document.getElementById(textarea).selectionEnd );
+			if(complement != null && complement != '')
+				document.getElementById(textarea).value = valeurDeb+'['+balise+'='+complement+']'+objectSelected+'[/'+balise+']'+valeurFin;
+			else
+				document.getElementById(textarea).value = valeurDeb+'['+balise+']'+objectSelected+'[/'+balise+']'+valeurFin;
+		}
+		else
+		{
+			VarTxt = window.prompt(complementTxt,complementtape);
+			complement = window.prompt(entertext, tapetext);
+			if ((VarTxt != null) && (VarTxt != '') && complement != null && complement != '') insertAtCaret(textarea, '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']');
+			else insertAtCaret(textarea, '['+balise+']'+VarTxt+'[/'+balise+']'); 
+		}
+	}
+	else
+	{
+		if (document.selection && document.selection.createRange().text != '')
+		{
+			complement = window.prompt(complementTxt, complementtape);
+			document.getElementById(textarea).focus();
+			VarTxt = document.selection.createRange().text;
+			if(complement != null && complement != '')
+				document.selection.createRange().text = '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']';
+			else
+				document.selection.createRange().text = '['+balise+']'+VarTxt+'[/'+balise+']';
+		}
+		else if (document.getElementById(textarea).selectionEnd && (document.getElementById(textarea).selectionEnd - document.getElementById(textarea).selectionStart > 0))
+		{
+			complement = window.prompt(complementTxt, complementtape);
+			valeurDeb = document.getElementById(textarea).value.substring( 0 , document.getElementById(textarea).selectionStart );
+			valeurFin = document.getElementById(textarea).value.substring( document.getElementById(textarea).selectionEnd , document.getElementById(textarea).textLength );
+			objectSelected = document.getElementById(textarea).value.substring( document.getElementById(textarea).selectionStart , document.getElementById(textarea).selectionEnd );
+			if(complement != null && complement != '')
+				document.getElementById(textarea).value = valeurDeb+'['+balise+'='+complement+']'+objectSelected+'[/'+balise+']'+valeurFin;
+			else
+				document.getElementById(textarea).value = valeurDeb+'['+balise+']'+objectSelected+'[/'+balise+']'+valeurFin;
+		}
+		else
+		{
+			complement = window.prompt(complementTxt,complementtape);
+			VarTxt = window.prompt(entertext, tapetext);
+			if ((VarTxt != null) && (VarTxt != '') && complement != null && complement != '') insertAtCaret(textarea, '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']');
+			else insertAtCaret(textarea, '['+balise+']'+VarTxt+'[/'+balise+']');
+		}
 	}
 }
 </script>
@@ -227,4 +385,10 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
 
 });
 </script>
+<?php 
+if(isset($_GET['setTemp']) && $_GET['setTemp'] == 1)
+{
+	?><script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'Votre nouveau mot de passe vous a été envoyé par mail !', icon: '<span class=\'glyphicon glyphicon-ok\'></span>});});</script>;<?php
+}
+?>
 </body>

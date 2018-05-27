@@ -16,6 +16,22 @@ else
 
 
 $ecriture = new Ecrire('modele/config/configMenu.yml', $lectureMenu);
-
+$bugMoche = fopen('modele/config/configMenu.yml', 'r+');
+	if($bugMoche)
+	{
+		$i = 0;
+		while (($buffer = fgets($bugMoche, 4096)) !== false) {
+			$lectureFichier[$i] = $buffer;
+			$i++;
+		}
+		$ecriture = implode('', $lectureFichier);
+		$ecriture = preg_replace('#[0-9]+\:#U', '-', $ecriture);
+		fclose($bugMoche);
+		$bugMoche2 = fopen('modele/config/configMenu.yml', 'w');
+		fwrite($bugMoche2, $ecriture);
+		fclose($bugMoche2);
+	}
+	else
+		fclose($bugMoche);
 }
 ?>

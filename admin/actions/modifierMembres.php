@@ -34,7 +34,7 @@ function ValiderChangement($pseudo, $email, $rang, $jetons, $id, $bdd)
 
 function ChangerMdp($mdp, $id, $bdd)
 {
-	$mdp = md5(sha1($mdp));
+	$mdp = password_hash($mdp, PASSWORD_DEFAULT);
 	$reqChangeMdp = $bdd->prepare('UPDATE cmw_users SET mdp = :mdp WHERE id = :id');
 	$reqChangeMdp->execute( Array(
 		'mdp' => $mdp,

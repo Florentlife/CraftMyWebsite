@@ -1,12 +1,10 @@
-.username .style16
+.prefix.style16
 {
-	color: red;
 background-image: url('../img/etoile-anime.gif');
 }
 
-.username .style5
+.prefix.style5
 {
-	color: red;
 background-image: url('../img/spark-gold.gif');
 }
 

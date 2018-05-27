@@ -1,14 +1,14 @@
-<div class="cmw-page-content-header"><strong>Réglages boutique</strong> - Paramétrez votre boutique</div>
+<div class="cmw-page-content-header"><strong>Réglages Paiement</strong> - Paramétrez les modes de paiement</div>
 
 <div class="row">
     <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['payment']['actions']['editPayment'] == false AND $_PGrades_['PermsPanel']['payment']['actions']['editOffrePaypal'] == false AND $_PGrades_['PermsPanel']['payment']['actions']['addOffrePaypal'] == false)) { ?>
-    <div class="col-md-12 text-center">
+    <div class="col-xs-12 text-center">
         <div class="alert alert-danger">
             <strong>Vous avez aucune permission pour accéder aux réglages des paiements.</strong>
         </div>
     </div>
     <?php } else { ?>
-    <div class="col-md-12 text-center">
+    <div class="col-xs-12 text-center">
         <div class="alert alert-success">
             <strong>Les jetons sont la monnaie virtuelle du site. Les joueurs achètent des jetons avec leurs dons, et les utilisent dans la boutique.</strong>
         </div>
@@ -19,32 +19,33 @@
     <div class="col-xs-12 col-md-6 text-center">
         <div class="panel panel-default cmw-panel">
             <div class="panel-heading cmw-panel-header">
-                <h3 class="panel-title"><strong>Dédipass/Paypal ID</strong></h3>
+                <h3 class="panel-title"><strong>MCGPass/Paypal ID</strong></h3>
             </div>
         <div class="panel-body">
             <div class="alert alert-success">
                 <strong>Vous trouverez ces informations sur le site officiel de votre méthode de paiement ! <br/>
-                    Pour dedipass, voici un tuto : <a href="http://craftmywebsite.fr/forum/index.php?threads/1-5-0-tuto-configurer-le-paiement-par-d%C3%A9dipass.3184/" title="Tuto dedipass">Tuto dédipass</a></strong>
+                    Pour MCGPass, voici un tuto : <a href="http://craftmywebsite.fr/forum/index.php?threads/installer-mcgpass-sur-craftmywebsite.4047/" title="Tuto MCGPass">Tuto MCGPass</a><br>
+                    Inscrivez-vous sur MCGPass avec ce lien pour gagner 2 centimes supplémentaires sur <strong>chaques transactions</strong> ! <a href="https://www.mcgpass.com/?p=CraftMyWebsite">https://mcgpass.com</a></strong>
             </div>
             <form method="POST" action="?&action=editPayement">
                 <div class="col-md-12">
-                    <h3>Status des paiements</h3>
+                    <h3>Statut des paiements</h3>
                     <div class="row">
                         <label class="checkbox-inline">
                             <input type="checkbox" name="paypal" <?php if($lectureP['paypal'] == true) echo 'checked'; ?>/> Paypal
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="dedipass" <?php if($lectureP['dedipass'] == true) echo 'checked'; ?>> Dedipass
+                            <input type="checkbox" name="mcgpass" <?php if($lectureP['mcgpass'] == true) echo 'checked'; ?>> MCGPass
                         </label>
                     </div>
-                    <h3>Dedipass</h3>
+                    <h3>MCGPass</h3>
                     <div class="row">
-                        <label class="control-label">Dedipass PublicKey</label>
-                         <input type="text" name="dedipass_public" class="form-control" value="<?php echo $lectureP['dedipass_public']; ?>" placeholder="Trouvez le sur votre panel dedipass..." >
+                        <label class="control-label">MCGPass ID client</label>
+                         <input type="text" name="mcgpass_id" class="form-control" value="<?php echo $lectureP['mcgpass_id']; ?>" placeholder="Trouvez le sur votre panel MCGPass..." >
                     </div>
                     <div class="row">
-                        <label class="control-label">Dedipass PrivateKey</label>
-                         <input type="text" name="dedipass_private" class="form-control" value="<?php echo $lectureP['dedipass_private']; ?>" placeholder="Egalement sur votre panel dedipass" >
+                        <label class="control-label">MCGPass ID du script</label>
+                         <input type="text" name="mcgpass_idSite" class="form-control" value="<?php echo $lectureP['mcgpass_idSite']; ?>" placeholder="Egalement sur votre panel MCGPass" >
                     </div>
                     <h3>PayPal</h3>
                     <div class="row">
@@ -106,7 +107,7 @@
                         </div>
                         <div class="row">
                             <label class="control-label">Prix de l'offre</label>
-                            <input type="number" name="prix" class="form-control" placeholder="ex: 5" >
+                            <input type="number" step="0.01" name="prix" class="form-control" placeholder="ex: 5" >
                         </div>
                         <div class="row">
                             <label class="control-label">Jetons donnés</label>
@@ -123,7 +124,7 @@
     </div>
     <?php }
     if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['actions']['editOffrePaypal'] == true) { ?>
-    <div class="col-md-12 text-center">
+    <div class="col-xs-12 text-center">
         <div class="panel panel-default cmw-panel">
             <div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Mes offres PayPal</strong></h3>
@@ -135,7 +136,7 @@
             </div>
         <?php } else { ?>
             <div class="alert alert-success">
-                <strong>Vous pouvez avoir une multitude d'offres paypal, vous pourrez gérer ces offres en les modifiants ou les supprimant !</strong>
+                <strong>Vous pouvez avoir une multitude d'offres PayPal, vous pourrez gérer ces offres en les modifiant ou les supprimant !</strong>
             </div>
         <?php } ?>
     <?php if(isset($paypalOffres) AND !empty($paypalOffres)) { ?>

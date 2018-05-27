@@ -1,4 +1,4 @@
-<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérer vos Widgets</div>
+<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérez vos Widgets</div>
         <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['widgets']['actions']['addWidgets'] == false AND $_PGrades_['PermsPanel']['widgets']['actions']['editWidgets'] == false)) { ?>
             <div class="row">
             <div class="col-md-12 text-center">
@@ -10,7 +10,7 @@
         <?php } else { ?>
             <div class="col-md-12 text-center">
                 <div class="alert alert-success">
-                    <strong>Les Widgets sont disponible sur certains thèmes</strong>
+                    <strong>Les widgets sont disponibles uniquement sur certains thèmes</strong>
                 </div>
             </div>
         <?php }
@@ -42,7 +42,7 @@
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="control-label">Message du Widget<small> Uniquement pour les "Champ Texte"</small></label>
+                                <label class="control-label">Message du widget<small> uniquement pour les "champs texte"</small></label>
                                 <textarea class="form-control" name="message"></textarea>
                             </div>
                         </div>

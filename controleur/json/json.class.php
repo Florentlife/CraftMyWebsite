@@ -34,10 +34,16 @@ class JsonCon
 		$message = str_replace('&', '§', $message);
 		$this->api->call("chat.broadcast", array($message));
 	}
+
+	public function sendChat($donnees)
+	{
+		$data = $this->api->call("chat.broadcast", array($donnees));
+		return $data;
+	}
 	
 	public function GetChat($donnees)
 	{
-		$c = $this->api->call("streams.formatted_chat.latest", $donnees);
+		$c = $this->api->call("streams.chat.latest", $donnees);
 		return $c;
 	}
 

@@ -17,7 +17,7 @@ class Ecrire
 		ftruncate($fichier,0);
 		
 		// On insère dans le fichier l'array réorganisé en YAML.
-		fputs($fichier, 'Ce fichier contiens la config de base du serveur' . $ymlFormat);
+		fputs($fichier, '#Ce fichier contiens la config de base du serveur' . $ymlFormat);
 		
 		// On met à jours la variable référante à l'objet pour les getters.
 		$this->ymlFormat = $ymlFormat;

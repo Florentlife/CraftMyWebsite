@@ -1,4 +1,4 @@
-<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérer vos nouveautés</div>
+<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérez vos nouveautés</div>
 <div class="row">
         <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['news']['actions']['addNews'] == false AND $_PGrades_['PermsPanel']['news']['actions']['editNews'] == false)) { ?>
             <div class="col-md-12 text-center">
@@ -10,7 +10,7 @@
         <?php } else { ?>
             <div class="col-md-12 text-center">
                 <div class="alert-success">
-                    <strong>Les news sont visibles sur l'accueil, elles informent vos joueurs des nouveautées relatives à votre communautée, pensez à rédiger des news souvent cela prouve votre activité, ça fait toujours plaisir à un joueur de voir un nouveau message!</strong>
+                    <strong>Les news sont visibles sur l'accueil, elles informent vos joueurs des nouveautés relatives à votre communauté, pensez à rédiger des news souvent, cela prouve votre activité, ça fait toujours plaisir à un joueur de voir un nouveau message!</strong>
                 </div>
             </div>
         </div><div class="row" style="padding-top: 5px;">
@@ -23,7 +23,7 @@
                     </div>
                 <div class="panel-body">
                     <div class="alert alert-success">
-                        <strong>Pour ajouter une news, rien de plus simple, il suffit en effet de lui attribuer un titre, et... Un message !</strong>
+                        <strong>Pour ajouter une news il suffit de lui attribuer un titre, et... Un message !</strong>
                     </div>
                     <form method="POST" action="?&action=postNews">
                         <div class="row">

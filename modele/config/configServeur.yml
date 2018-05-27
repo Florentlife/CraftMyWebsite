@@ -1,3 +1,18 @@
-# Ce fichier contiens la config de base du serveur
-
-Json: 
+#Ce fichier contiens la config de base du serveur---
+Json:
+    - 
+        adresse: 5.196.124.141
+        localhost: false
+        port: "65530"
+        utilisateur: ENGsurvie
+        mdp: nounousse
+        salt: ""
+        nom: survie
+    - 
+        adresse: engskyblock.omgcraft.fr
+        localhost: false
+        port: "40574"
+        utilisateur: ENGskyblock
+        mdp: nounousse
+        salt: ""
+        nom: test2

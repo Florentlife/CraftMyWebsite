@@ -20,7 +20,7 @@
             </div>
             <div class="panel-body">
                <div class="alert alert-success" style="height: 100px;">
-                     <strong>Si vous souhaitez modifier un thème, modifiez une copie de l'original en créant un nouveau thème. Cela vous évitera de perdre votre thème lors d'une mise à jours !</strong>
+                     <strong>Si vous souhaitez modifier un thème, modifiez une copie de l'original en créant un nouveau thème. Cela vous évitera de perdre votre thème lors d'une mise à jour !</strong>
                  </div>
                  <form method="POST" action="?&action=editTheme">
                      <h3>Choisir un thème</h3>
@@ -62,7 +62,7 @@
       </div>
       <div class="panel-body">
         <div class="alert alert-success" style="height: 100px;">
-           <strong>Si vous voulez mettre une image, l'image doit être en 1920*1080 minimum pour s'adapater aux ecran et pour avoir une qualité optimal ! Vous pouvez aussi mettre une petite image qui se répettera !</strong>
+           <strong>Si vous voulez mettre une image, l'image doit être en 1920*1080 minimum pour s'adapter aux écrans et pour avoir une qualité optimale ! Vous pouvez aussi mettre une petite image qui se répètera !</strong>
        </div>
        <form method="POST" action="?&action=postBG" enctype="multipart/form-data">
           <h3>Choisir une image</h3>
@@ -89,7 +89,7 @@
     </div>
     <div class="panel-body">
       <div class="alert alert-success" style="height: 100px;">
-       <strong>Choisissez si vous préférez utiliser une grande image en fond de site ou une répétition de petits images !</strong>
+       <strong>Choisissez si vous préférez utiliser une grande image en fond de site ou une répétition de petites images !</strong>
     </div>
     <form method="POST" action="?&action=typeBG">
         <h3>Choisir le type</h3>

@@ -52,7 +52,7 @@
 			<div class="col-lg-6">
 				<div class="panel panel-default cmw-panel">
 					<div class="panel-heading cmw-panel-header">
-						<h3 class="panel-title"><strong>Ajout de Préfix</strong></h3>
+						<h3 class="panel-title"><strong>Ajout de préfixe</strong></h3>
 					</div>
 					<div class="panel-body">
 						<div class="col-md-12">
@@ -168,11 +168,11 @@
 		?><div class="col-md-6">
             <div class="panel panel-default cmw-panel">
                 <div class="panel-heading cmw-panel-header">
-                    <h3 class="panel-title"><strong>Edition des Préfix</strong></h3>
+                    <h3 class="panel-title"><strong>Edition des préfixes</strong></h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <h3 class="text-center">Gestion des Préfix</h3>
+                        <h3 class="text-center">Gestion des préfixes</h3>
                     </div>
                     <table class="table table-striped table-hover">
                         <tr>

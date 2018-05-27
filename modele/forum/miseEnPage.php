@@ -18,13 +18,22 @@ function BBCode($contenue, $bdd)
 	$contenue = preg_replace('#\[right\](.+)\[/right\]#isU', '<p class="text-right" style="margin-bottom: 1px">$1</p>', $contenue);
 	$contenue = preg_replace('#\[left\](.+)\[/left\]#isU', '<p class="text-left" style="margin-bottom: 1px">$1</p>', $contenue);
 	$contenue = preg_replace('#\[justify\](.+)\[/justify\]#isU', '<p class="text-justify" style="margin-bottom: 1px">$1</p>', $contenue);
+	$contenue = preg_replace('#\[img\](.+)\[/img\]#isU', '<img class="img-fluid" src="$1"/>', $contenue);
+	$contenue = preg_replace('#\[img=(.+)\](.+)\[/img\]#isU', '<img class="img-fluid" src="$1" title="$2"/>', $contenue);
+	while(preg_match('#\[spoiler(.*)\](.+)\[/spoiler\]#isU', $contenue))
+	{
+		$uniqueId = uniqid();
+		$contenue = preg_replace('#\[spoiler=(.+)\](.+)\[/spoiler\]#isU', '<a class="btn btn-primary" data-toggle="collapse" href="#spoiler'.$uniqueId.'" role="button" aria-expanded="false" aria-controls="spoiler'.$uniqueId.'">$1</a><div class="collapse" id="spoiler'.$uniqueId.'"><div class="card card-body">$2</div></div>', $contenue, 1);
+		$uniqueId = uniqid();
+		$contenue = preg_replace('#\[spoiler\](.+)\[/spoiler\]#isU', '<a class="btn btn-primary" data-toggle="collapse" href="#spoiler'.$uniqueId.'" role="button" aria-expanded="false" aria-controls="spoiler'.$uniqueId.'">Spoiler</a><div class="collapse" id="spoiler'.$uniqueId.'"><div class="card card-body">$1</div></div>', $contenue, 1);
+	}
 	if(preg_match("#\[url\](.+)\[/url\]#isU", $contenue))
 	{
 		$contenue = preg_replace("#\[url\](.+)\[/url\]#isU", "<a href='$1' target='_blank'>$1</a>", $contenue);
 	}
 	if(preg_match("#\[url=(.+)\](.+)\[/url\]#isU", $contenue))
 	{
-		$contenue = preg_replace('#\[url=[\'"](.+)[\'"]\](.+)\[/url\]#isU', "<a href='$1' target='_blank'>$2</a>", $contenue);
+		$contenue = preg_replace('#\[url=(.+)\](.+)\[/url\]#isU', "<a href='$1' target='_blank'>$2</a>", $contenue);
 	}
 	$contenue = preg_replace("#[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}#isU", "<a href='mailto:$0'>$0</a>", $contenue);
 	$req = $bdd->query('SELECT symbole, image FROM cmw_forum_smileys ORDER BY priorite DESC');

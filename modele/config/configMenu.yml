@@ -7,7 +7,6 @@ MenuTexte:
   - "Support"
   - "Voter"
   - "Forum"
-  - "test"
 MenuLien:
   - "index.php"
   - "#"
@@ -15,10 +14,11 @@ MenuLien:
   - "?&page=support"
   - "?&page=voter"
   - "?page=forum"
-  - "http://bite.ftr"
 MenuListeDeroulante:
   "Serveur":
     - "Ban-List"
+    - "Chat"
 MenuListeDeroulanteLien:
   "Serveur":
     - "?page=banlist"
+    - "?page=chat"

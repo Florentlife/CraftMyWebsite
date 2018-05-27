@@ -36,11 +36,30 @@
 
     require_once('controleur/perms/Permissions.class.php');
     require_once('modele/perms/PermissionsManager.class.php');
+    require('modele/joueur/imgProfil.class.php');
 	
 	require_once('controleur/tempMess.class.php');
 	
-	$playeronline = file_get_contents('https://minecraft-api.com/api/ping/playeronline.php?ip='.$_Serveur_['General']['ip'].'&port='.$_Serveur_['General']['port']);
-	$maxPlayers = file_get_contents('https://minecraft-api.com/api/ping/maxplayer.php?ip='.$_Serveur_['General']['ip'].'&port='.$_Serveur_['General']['port']);
+	if(isset($_COOKIE['playeronline'], $_COOKIE['maxPlayers']))
+	{
+		$playeronline = htmlspecialchars($_COOKIE['playeronline']);
+		$maxPlayers = htmlspecialchars($_COOKIE['maxPlayers']);
+	}
+	else
+	{
+		$playeronline = file_get_contents('https://minecraft-api.com/api/ping/playeronline.php?ip='.$_Serveur_['General']['ip'].'&port='.$_Serveur_['General']['port']);
+		$maxPlayers = file_get_contents('https://minecraft-api.com/api/ping/maxplayer.php?ip='.$_Serveur_['General']['ip'].'&port='.$_Serveur_['General']['port']);
+		setcookie('playeronline', $playeronline, time() + 300);
+		setcookie('maxPlayers', $maxPlayers, time() + 300);
+	}
+	if(empty($playeronline) AND empty($maxPlayers))
+	{
+		$modeEnLigne = 0;
+	}
+	else
+	{
+		$modeEnLigne = 1;
+	}
 
 	function gradeJoueur($pseudo, $bdd)
 	{
@@ -50,7 +69,7 @@
 		if($joueurDonnees['rang'] == 0) {
 			$gradeSite = 'Joueur';
 		} elseif($joueurDonnees['rang'] == 1) {
-			$gradeSite = "<span class='style16'>Créateur</span>";
+			$gradeSite = "<p class='username' style='margin-bottom: 0px;'><span class='style16'>".$_Serveur_['General']['createur']."</span></p>";
 		} elseif(fopen('./modele/grades/'.$joueurDonnees['rang'].'.yml', 'r')) {
 			$openGradeSite = new Lire('./modele/grades/'.$joueurDonnees['rang'].'.yml');
 			$readGradeSite = $openGradeSite->GetTableau();

@@ -13,5 +13,4 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['creerC
 							'titre' => $titre ));
 		header('Location: ?page=boutique');
 	}
-
 }

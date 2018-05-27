@@ -13,6 +13,15 @@ if(isset($_GET['page']))
 		case 'profil':
 			include('controleur/profil/index.php');	
 		break;	
+
+		case 'chat':
+			require('modele/app/chat.class.php');
+			include('theme/'.$_Serveur_['General']['theme']. '/pages/chat.php');
+		break;
+
+		case 'membre':
+			include('theme/'.$_Serveur_['General']['theme']. '/pages/membres.php');
+		break;
 		
 		// Par exemple, lorsque le get[page] vaut boutique, on inclut la page boutique... Logique non?
 		case 'boutique':  

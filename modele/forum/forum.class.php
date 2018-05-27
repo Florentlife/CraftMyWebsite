@@ -3,7 +3,7 @@
 class Forum {
 	
 	//Mise en mémoire de l'Objet permettant l'accès à la Base de donnée
-	private $bdd;
+	protected $bdd;
 	
 	//Constructeur
 	public function __construct($bdd)
@@ -14,7 +14,7 @@ class Forum {
 	//Fonction d'affichage des Forums
 	public function affichageForum() 
 	{
-		$forum = $this->bdd->query('SELECT * FROM cmw_forum');
+		$forum = $this->bdd->query('SELECT * FROM cmw_forum ORDER BY ordre ASC');
 		$donnees = $forum->fetchAll();
 		return $donnees;
 	}
@@ -75,7 +75,7 @@ class Forum {
 	//Récupération sousForum
 	public function infosSousForum($id, $fetch)
 	{
-		$sousForum = $this->bdd->prepare('SELECT * FROM cmw_forum_sous_forum WHERE id_categorie = :id_categorie');
+		$sousForum = $this->bdd->prepare('SELECT * FROM cmw_forum_sous_forum WHERE id_categorie = :id_categorie ORDER BY ordre ASC');
 		$sousForum->execute(array(
 			'id_categorie' => htmlspecialchars($id)
 			));
@@ -135,7 +135,7 @@ class Forum {
 	//Page post.php récupération du topic
 	public function getTopic($id)
 	{
-		$topic = $this->bdd->prepare('SELECT cmw_forum_post.nom AS nom, d_edition, pseudo, contenue, DAY(date_creation) AS jour, MONTH(date_creation) AS mois, YEAR(date_creation) AS annee, id_categorie, sous_forum, last_answer, etat, cmw_forum_post.id AS id, cmw_forum_categorie.nom AS nom_categorie 
+		$topic = $this->bdd->prepare('SELECT cmw_forum_post.nom AS nom, d_edition, pseudo, contenue, DAY(date_creation) AS jour, MONTH(date_creation) AS mois, YEAR(date_creation) AS annee, id_categorie, sous_forum, last_answer, etat, cmw_forum_post.id AS id, cmw_forum_categorie.nom AS nom_categorie, cmw_forum_post.perms AS perms, cmw_forum_categorie.perms AS permsCat 
 		FROM cmw_forum_post 
 			INNER JOIN cmw_forum_categorie 
 				ON cmw_forum_post.id_categorie = cmw_forum_categorie.id
@@ -231,17 +231,18 @@ class Forum {
 	//Renvoie le grade du joueur
 	public function gradeJoueur($pseudo)
 	{
+		global $_Serveur_;
 		$req = $this->bdd->prepare('SELECT rang FROM cmw_users WHERE pseudo = :pseudo');
 		$req->execute(array('pseudo' => $pseudo ));
 		$joueurDonnees = $req->fetch();
 		if($joueurDonnees['rang'] == 0) {
 			$gradeSite = 'Joueur';
 		} elseif($joueurDonnees['rang'] == 1) {
-			$gradeSite = "<span class='style16'>Créateur</span>";
+			$gradeSite = "<span class='prefix style16' style='color: red;'>".$_Serveur_['General']['createur']."</span>";
 		} elseif(fopen('./modele/grades/'.$joueurDonnees['rang'].'.yml', 'r')) {
 			$openGradeSite = new Lire('./modele/grades/'.$joueurDonnees['rang'].'.yml');
 			$readGradeSite = $openGradeSite->GetTableau();
-			$gradeSite = $readGradeSite['Grade'];
+			$gradeSite = "<span class='prefix ".$readGradeSite['prefix']." ".$readGradeSite['effets']."'>".$readGradeSite['Grade']."</span>";
 			if(empty($readGradeSite['Grade']))
 				$gradeSite = 'Joueur';
 		} else {
@@ -295,7 +296,27 @@ class Forum {
 		return $req;
 	}
 
-	private function switch_date($date)
+	public function compteMessages($id)
+	{
+		$req = $this->bdd->prepare('SELECT COUNT(cmw_forum_answer.id) AS count FROM cmw_forum_answer 
+			INNER JOIN cmw_forum_post 
+				ON cmw_forum_answer.id_topic = cmw_forum_post.id
+			WHERE cmw_forum_post.id_categorie = :id;');
+		$req->execute(array('id' => $id));
+		$data = $req->fetch();
+		return $data['count'];
+	}
+
+	public function getDateConvert($date)
+	{
+		$explode = explode('-', $date);
+		$jours = $explode[2];
+		$mois = $this->switch_date($explode[1]);
+		$annee = $explode[0];
+		return $jours.' '.$mois.' '.$annee;
+	}
+
+	protected function switch_date($date)
 	{
 		switch($date)
 		{

@@ -14,14 +14,72 @@ if(isset($_GET['action']))
 			setcookie('pass', 0, time(), '/', null, false, false);
 			header('Location: index.php');
 		break;
-		
+
+		case 'modifPermsForum':
+			require('modele/forum/adminForum.class.php');
+			$entite = 1; //Forum
+			include('controleur/forum/modifPerms.php');
+		break;
+
+		case 'modifPermsCategorie':
+			require('modele/forum/adminForum.class.php');
+			$entite = 2; //Categorie
+			include('controleur/forum/modifPerms.php');
+		break;
+
+		case 'modifPermsSousForum':
+			require('modele/forum/adminForum.class.php');
+			$entite = 3; //Sous-Forum
+			include('controleur/forum/modifPerms.php');
+		break;
+
+		case 'modifPermsTopics':
+			require('modele/forum/adminForum.class.php');
+			$entite = 4; //Sous-Forum
+			include('controleur/forum/modifPerms.php');
+		break;
+
+		case 'modifShowEmail':
+			include('controleur/joueur/modifShowEmail.php');
+		break;
+
+		case 'chatActu':
+			require('modele/app/chat.class.php');
+			include('controleur/chat/actu.php');
+		break;
+
+		case 'sendChat':
+			require('modele/app/chat.class.php');
+			include('controleur/chat/send.php');
+		break;
+
+		case 'modifImgProfil':
+			include('controleur/joueur/modifImgProfil.php');
+		break;
+
+		case 'removeImgProfil':
+			include('controleur/joueur/removeImgProfil.php');
+		break;
+				
 		case 'supprInstall':
 			include('controleur/supprInstall.php');
+		break;
+		
+		case 'give_jetons':
+			include('controleur/profil/give_jetons.php');
 		break;
 		
 		// Appellée lors d'une action pour le forum  
 		case 'selTopic':
 			include('controleur/forum/selTopic.php');
+		break;
+
+		case 'ordreForum':
+			include('controleur/forum/ordre.php');
+		break;
+
+		case 'ordreSousForum':
+			include('controleur/forum/ordreSF.php');
 		break;
 
 		case 'lock_cat':
@@ -30,6 +88,14 @@ if(isset($_GET['action']))
 		
 		case 'unlock_cat':
 			include('controleur/forum/lock_cat.php');
+		break;
+
+		case 'lock_sf':
+			include('controleur/forum/lock_sf.php');
+		break;
+		
+		case 'unlock_sf':
+			include('controleur/forum/lock_sf.php');
 		break;
 		
 		case 'get_alerts':
@@ -226,9 +292,9 @@ if(isset($_GET['action']))
 			header('Location: index.php');
 		break;
 		
-		/// Appellé lorsqu'un code dedipass est validé.
-		case 'dedipass':
-			include('controleur/dedipass.php');
+		/// Appellé lorsqu'un code mcgpass est validé.
+		case 'mcgpass':
+			include('controleur/mcgpass.php');
 			// On redirige sur la page d'achat de token, le joueur vas surrement racheter un code(quoi !? Pas le droit de rêver?).
 			//header('Location: ?page=token&success=true');
 		break;

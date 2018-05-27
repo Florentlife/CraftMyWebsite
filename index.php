@@ -1,7 +1,8 @@
 <?php // On appelle les classes du controleur qui instancies les objets principaux (BDD, config, JSONAPI...).
 ob_start();
 session_start();
-error_reporting(0);
+//error_reporting(0);
+//ini_set('display_errors', 1);
 require_once ('controleur/config.php');
 // On vérifie si le CMS n'a pas été installé, si il ne l'est pas, on redirige vers les fichiers d'installation...
 if (!$_Serveur_['installation']) header('Location: installation/');
@@ -21,12 +22,18 @@ if (isset($_SESSION['Player']['pseudo']) OR isset($_COOKIE['id'], $_COOKIE['pass
      sur toutes les pages grâce au système de GET sur l'index.*/
 	if(!isset($_SESSION['Player']['pseudo']))
 		require_once('controleur/joueur/connexion_cookie.php');
-	
-    require_once ('controleur/joueur/joueur.class.php');
-    $globalJoueur = new Joueur();
-    // Cette variable contiens toutes les informations du joueur.
-    $_Joueur_ = $globalJoueur->getArrayDonneesUtilisateur();
-    $connection = true;
+    else
+        $suite = true;
+    if($suite == true)
+    {	
+        require_once ('controleur/joueur/joueur.class.php');
+        $globalJoueur = new Joueur();
+        // Cette variable contiens toutes les informations du joueur.
+        $_Joueur_ = $globalJoueur->getArrayDonneesUtilisateur();
+        $connection = true;
+    }
+    else
+        $connection = false;
 }  else $connection = false;
 require_once ('controleur/json/json.php');
 // Système des permissions pour les nouveaux grades rajoutés dans le CMS
@@ -37,6 +44,12 @@ require_once ('controleur/grades/grades.php');
 // Les actions n'affichent aucun code html alors que les pages sont dans la theme.
 // Ici une condition pour vérifier si il faut charger le fichier controleur des actions. Ce fichier effectue l'action qu'il faut en
 // faisant appel au bon fichier en fonction de la valeur du get
+if(!isset($_Serveur_['General']['createur']))
+{
+    $tmp = $_Serveur_;
+    $tmp['General']['createur'] = 'Créateur';
+    $ecriture = new Ecrire('modele/config/config.yml', $tmp);
+}
 if (isset($_GET['action'])) {
     require_once ('controleur/action.php');
 } elseif (isset($_GET['redirection']) AND $_GET['redirection'] == 'maintenance') {

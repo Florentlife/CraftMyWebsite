@@ -8,6 +8,9 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['general']['actions']['edi
 		$lecture['General']['url'] = $_POST['adresseWeb'];
 		$lecture['General']['name'] = $_POST['nom'];
 		$lecture['General']['description'] = $_POST['description'];
+		$lecture['General']['ipTexte'] = $_POST['ipTexte'];
+		$lecture['General']['ip'] = $_POST['ip'];
+		$lecture['General']['port'] = $_POST['port'];
 
 		$lecture['DataBase']['dbAdress'] = $_POST['adresse'];
 		$lecture['DataBase']['dbName'] = $_POST['dbNom'];

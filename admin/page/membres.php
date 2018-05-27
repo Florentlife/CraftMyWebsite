@@ -1,4 +1,4 @@
-<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérer vos Membres</div>
+<div class="cmw-page-content-header"><strong>Gestion</strong> - Gérez vos Membres</div>
 <div class="row">
         <?php if($_Joueur_['rang'] != 1 AND $_PGrades_['PermsPanel']['members']['actions']['editMember'] == false) { ?>
             <div class="col-md-12 text-center">

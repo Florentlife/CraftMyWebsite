@@ -1,6 +1,6 @@
 <?php include('theme/'.$_Serveur_['General']['theme'].'/config/configTheme.php');
 ?>
-<div class="col-md-12 text-center">
+<div class="col-xs-12 text-center">
     <div class="panel panel-default cmw-panel">
         <div class="panel-heading cmw-panel-header">
             <h3 class="panel-title"><strong>Configuration du thème</strong></h3>
@@ -15,7 +15,7 @@
                     <input type="text" class="form-control" name="facebook" value="<?php echo $_Theme_['Pied']['facebook']; ?>">
                 </div>
                 <div class="row">
-                    <label class="control-label">Twitter (URL de votre page Twitter)</label>
+                    <label class="control-label">Twitter (URL de votre compte Twitter)</label>
                     <input type="text" class="form-control" name="twitter" value="<?php echo $_Theme_['Pied']['twitter']; ?>">
                 </div>
                 <div class="row">
@@ -23,7 +23,7 @@
                     <input type="text" class="form-control" name="youtube" value="<?php echo $_Theme_['Pied']['youtube']; ?>">
                 </div>
                 <div class="row">
-                    <label class="control-label">Discord (URL de votre page Discord)</label>
+                    <label class="control-label">Discord (URL de votre serveur Discord)</label>
                     <input type="text" class="form-control" name="discord" value="<?php echo $_Theme_['Pied']['discord']; ?>">
                 </div>
                 <div class="form-group text-center">

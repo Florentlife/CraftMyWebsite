@@ -10,7 +10,7 @@ if($email == 2 OR $mdpNouveau == 2 OR $mdpAncien == 2 OR $mdpConfirme == 2)
 	header('Location: ?&page=profil&profil=' .$_Joueur_['pseudo']. '&erreur=2');
 	
 if(VerifieMdp($mdpAncien, $mdpNouveau, $mdpConfirme, $_Joueur_['pseudo'], $bddConnection))
-	ChangeMdp($mdpNouveau, $_Joueur_['pseudo'], $bddConnection);
+	ChangeMdp(password_hash($mdpNouveau, PASSWORD_DEFAULT), $_Joueur_['pseudo'], $bddConnection);
 else
 	header('Location: ?&page=profil&profil=' .$_Joueur_['pseudo']. '&erreur=3');
 	
@@ -19,15 +19,15 @@ if($mdpNouveau == 1 OR $mdpAncien == 1 OR $mdpConfirme == 1)
 	ValideChangement($email, $_Joueur_['pseudo'], $bddConnection);
 	
 $_SESSION['Player']['email'] = $email;
-$_Joueur_['pseudo'] = $email;	
-	
+$_Joueur_['email'] = $email;	
+header('Location: ?page=profil&profil='.$_Joueur_['pseudo'].'&success=true');
 function VerifieMdp($mdp, $mdpNew, $mdpConfirm, $pseudo, $bddConnection)
 {
 	require_once('modele/joueur/maj.class.php');
 	$maj = new Maj($pseudo, $bddConnection);
 	$maj = $maj->getReponseConnection();
 	$maj = $maj->fetch();
-	if($maj['mdp'] == $mdp)
+	if(password_verify($mdp, $maj['mdp']))
 		return true;
 	else
 		return false;
@@ -37,7 +37,7 @@ function VerifieDonnee($donnee)
 {	
 	if(!isset($donnee) OR empty($donnee))
 		return 1;
-	if(strlen($donnee) < 6)
+	if(strlen($donnee) < 4)
 		return 2;
 	$donnee = str_replace(' ', '_', $donnee);
 	$donnee = htmlspecialchars($donnee);

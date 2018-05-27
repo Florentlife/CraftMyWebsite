@@ -20,9 +20,8 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['menus']['actions']['editD
 		}	
 	}
 	$ecriture = new Ecrire('modele/config/configMenu.yml', $menuLecture);
-
-
-	function GetTableau($post)
+}
+function GetTableau($post)
 	{
 		$i = 0;
 		foreach($post as $cle => $element)
@@ -62,5 +61,4 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['menus']['actions']['editD
 		}
 		return $menuData;
 	}
-}
 ?>

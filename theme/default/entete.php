@@ -1,4 +1,3 @@
-<header>
 	<nav class="navbar navbar-toggleable-md navbar-inverse bg-primary">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,9 +51,11 @@
 						{
 							// Cette variable contient la valeur du lien de la puce(on enlève donc ?&page= en le remplaçant par '' et on garde que la fin.
 							$quellePage = str_replace('index.php?&page=', '', $_Menu_['MenuLien'][$i]);
+							$quellePage1 = str_replace('?&page=', '', $_Menu_['MenuLien'][$i]);
+							$quellePage2 = str_replace('?page=', '', $_Menu_['MenuLien'][$i]);
 							
 							// Si le Get actuel est égal à la variable de la ligne précédente, la puce est active.
-							if(isset($_GET['page']) AND $quellePage == $_GET['page']) 
+							if(isset($_GET['page']) AND ($quellePage == $_GET['page'] OR $quellePage1 == $_GET['page'] OR $quellePage2 == $_GET['page'])) 
 								$active = ' active';
 							
 							// Si il n'y a pas de get(on est donc sur l'index) et qu'on est au premier tour de boucle --> le premier lien(souvent un lien vers l'accueil justement) est actif (foncé).
@@ -70,9 +71,10 @@
 					}
 					if(isset($_Joueur_))
 					{
+						$Img = new ImgProfil($_Joueur_['id']);
 					?>
 					<div class="btn-group" role="group" aria-label="Dropdown Membres">
-                        <a href="?page=profil&profil=<?php echo $_Joueur_['pseudo']; ?>"><button type="button" class="btn btn-primary wow fadeInDown link btn-colored" data-wow-delay="<?php echo ($i+1)/10;?>s"><img src="https://minecraft-api.com/api/skins/16.php?player=<?php echo $_Joueur_['pseudo']; ?>"> <?php echo $_Joueur_['pseudo']; ?></button></a>
+                        <a href="?page=profil&profil=<?php echo $_Joueur_['pseudo']; ?>"><button type="button" class="btn btn-primary wow fadeInDown link btn-colored" data-wow-delay="<?php echo ($i+1)/10;?>s"><img src="<?=$Img->getImgToSize(20, $width, $height); ?>" style="margin-left: -10px; width: <?=$width;?>px; height: <?=$height;?>px;"> <?php echo $_Joueur_['pseudo']; ?></button></a>
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop3" type="button" class="btn btn-primary dropdown-toggle wow fadeInDown link btn-colored" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-wow-delay="<?php echo ($i+1)/10; ?>s"></button>
                             <div class="dropdown-menu  dropdown-menu-right animated fadeIn" aria-labelledby="btnGroupDrop3">
@@ -104,8 +106,8 @@
 											$alerte++;
 										}
 									}
-									if($_PGrades_['PermsPanel']['access'] == 1 OR $_Joueur_['rang'] == 1)
-										echo '<a href="admin.php" class="dropdown-item text-success"><i class="fa fa-tachometer"></i> Administration</a>';
+									if($_PGrades_['PermsPanel']['access'] == "on" OR $_Joueur_['rang'] == 1)
+										echo '<a href="admin.php" class="dropdown-item text-success"><i class="fas fa-tachometer-alt"></i> Administration</a>';
 									if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_['rang'] == 1)
 									{
 										$req_report = $bddConnection->query('SELECT id FROM cmw_forum_report WHERE vu = 0');
@@ -115,7 +117,7 @@
 								?>
                                 <a class="dropdown-item" href="?page=alert"><i class="fa fa-envelope"></i> Alertes :  <span class="badge badge-pill badge-primary" id="alerts"><?php echo $alerte; ?></span></a>
                                 <a class="dropdown-item" href="?page=token"><i class="ion-cash"></i> Mon solde : <?php if(isset($_Joueur_['tokens'])) echo $_Joueur_['tokens'] . ' '; ?></a>
-                                <a class="dropdown-item text-danger" href="?action=deco"><i class="fa fa-sign-out"></i> Se déconnecter</a>
+                                <a class="dropdown-item text-danger" href="?action=deco"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
                             </div>
                         </div>
                     </div>
@@ -129,7 +131,7 @@
 						         <i class="fa fa-user"></i> Compte
 						    </a>
 						    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						        <a class="dropdown-item hvr-forward" href="#" data-toggle="modal" data-target="#ConnectionSlide"><i class="fa fa-sign-in"></i> Connexion</a>
+						        <a class="dropdown-item hvr-forward" href="#" data-toggle="modal" data-target="#ConnectionSlide"><i class="fas fa-sign-in-alt"></i> Connexion</a>
 						        <a class="dropdown-item hvr-forward" href="#" data-toggle="modal" data-target="#InscriptionSlide"><i class="fa fa-user-plus"></i> Inscription</a>
 						    </div>
 						</li>
@@ -140,4 +142,3 @@
             </div>
         </div>
     </nav>
-</header>

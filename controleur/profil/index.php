@@ -27,11 +27,11 @@ if(empty($joueurDonnees['tokens']))
 if($joueurDonnees['rang'] == 0) {
 	$gradeSite = 'Joueur';
 } elseif($joueurDonnees['rang'] == 1) {
-	$gradeSite = "Créateur";
+	$gradeSite = "<span class='prefix style16' style='color: red;'>".$_Serveur_['General']['createur']."</span>";
 } elseif(fopen('./modele/grades/'.$joueurDonnees['rang'].'.yml', 'r')) {
 	$openGradeSite = new Lire('./modele/grades/'.$joueurDonnees['rang'].'.yml');
 	$readGradeSite = $openGradeSite->GetTableau();
-	$gradeSite = $readGradeSite['Grade'];
+	$gradeSite = "<span class='prefix ".$readGradeSite['prefix']." ". $readGradeSite['effets']. "'>".$readGradeSite['Grade']."</span>";
 	if(empty($readGradeSite['Grade']))
 		$gradeSite = 'Joueur';
 } else {

@@ -3,7 +3,7 @@ require_once('controleur/connection_base.php');
 $recupOpffresPaypal = $bddConnection->prepare('SELECT * FROM cmw_jetons_paypal_offres WHERE id = :id');
 $recupOpffresPaypal->execute(array('id' => $_GET['offre']));
 $donneesActions = $recupOpffresPaypal->fetch();
-include("fonction_api.php"); // On importe la page créée précédemment
+include("controleur/paypal/fonction_api.php"); // On importe la page créée précédemment
 $requete = construit_url_paypal($_Serveur_['Payement']['paypalUser'], $_Serveur_['Payement']['paypalPass'], $_Serveur_['Payement']['paypalSignature']);
 
 // On ajoute le reste des options

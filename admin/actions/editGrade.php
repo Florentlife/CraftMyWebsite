@@ -30,12 +30,17 @@ if(isset($_Joueur_)) {
 					$editGrade['Grade'] = htmlspecialchars($_POST['gradeName'.$i]);
 				$editGradeName = true;
 
+				$editGrade['prefix'] = $_POST['prefix'.$i];
+				$editGrade['effets'] = $_POST['effet'.$i];
+
 				$editGrade['PermsDefault']['news']['deleteMemberComm'] = $_POST['permsDefaultNewsDeleteMemberComm'.$i];
 				$editGrade['PermsDefault']['news']['editMemberComm'] = $_POST['permsDefaultNewsEditMemberComm'.$i];
 				$editGrade['PermsDefault']['support']['deleteMemberComm'] = $_POST['permsDefaultSupportDeleteMemberComm'.$i];
 				$editGrade['PermsDefault']['support']['editMemberComm'] = $_POST['permsDefaultSupportEditMemberComm'.$i];
 				$editGrade['PermsDefault']['support']['closeTicket'] = $_POST['permsDefaultSupportCloseTicket'.$i];
 				$editGrade['PermsDefault']['support']['displayTicket'] = $_POST['permsDefaultSupportDisplayTicket'.$i];
+				$editGrade['PermsDefault']['chat']['color'] = $_POST['permsDefaultChatColor'.$i];
+				$editGrade['PermsDefault']['forum']['perms'] = $_POST['permsDefaultForumPerms'.$i];
 
 				$editGrade['PermsPanel']['access'] = $_POST['permsPanelAccess'.$i];
 
@@ -140,6 +145,9 @@ if(isset($_Joueur_)) {
 				$editGrade['PermsForum']['moderation']['closeTopic'] = $_POST['permsForumModerationCloseTopic'.$i];
 				$editGrade['PermsForum']['moderation']['mooveTopic'] = $_POST['permsForumModerationMooveTopic'.$i];
 				$editGrade['PermsForum']['moderation']['seeSignalement'] = $_POST['permsForumModerationSeeSignalement'.$i];
+				$editGrade['PermsForum']['moderation']['addPrefix'] = $_POST['permsForumModerationAddPrefix'.$i];
+				$editGrade['PermsForum']['moderation']['epingle'] = $_POST['permsForumModerationEpingle'.$i];
+				$editGrade['PermsForum']['moderation']['selTopic'] = $_POST['permsForumModerationSelTopic'.$i];
 				
 				$updateGrade = new Ecrire($grade, $editGrade);
 			} 

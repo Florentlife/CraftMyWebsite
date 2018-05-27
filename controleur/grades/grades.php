@@ -1,5 +1,4 @@
 <?php
-header('content-type: text/html; charset=utf-8');
 require_once('./modele/config/yml.class.php');
 $directoryGrades = './modele/grades/';
 if($_SERVER['PHP_SELF'] == '/admin.php') {
@@ -17,5 +16,7 @@ if($_SERVER['PHP_SELF'] == '/admin.php') {
 		$gradeLecture = new Lire($grade);
 		$_PGrades_ = $gradeLecture->GetTableau();
 	}
+	else
+		$_PGrades_ = false;
 }
 ?>

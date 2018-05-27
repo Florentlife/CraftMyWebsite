@@ -25,7 +25,7 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title"><center><?php echo $_Serveur_['General']['name']; ?> à besoin de vous !</center></h3>
+    <h3 class="panel-title"><center><?php echo $_Serveur_['General']['name']; ?> a besoin de vous !</center></h3>
   </div>
   <div class="panel-body">
     <p><center><strong>
@@ -42,7 +42,7 @@
                 
 				<?php 
                 if(!isset($jsonCon) OR empty($jsonCon))
-                    echo '<p>Veuillez relier votre serveur à votre site avec JsonAPI depuis le panel pour avoir les liens de votes !</p>';
+                    echo '<p>Veuillez relier votre serveur à votre site avec JsonAPI depuis le panel pour avoir les liens de vote !</p>';
                 
                 for($i = 0; $i < count($jsonCon); $i++) { ?>
 					
@@ -51,7 +51,8 @@
 				<?php } ?>
 				</ul>
 				
-				
+				<?php if(isset($_Joueur_))
+				{ ?>
 				<div class="tab-content">
 				<?php for($i = 0; $i < count($jsonCon); $i++) { ?>
 				
@@ -85,8 +86,15 @@
 				
 				<?php } ?>
 				</div>
-				
-				
+				<?php
+			}
+			else
+				{
+					?><center>
+		<h4>Veuillez vous connecter pour accéder à la boutique:</h4>
+		<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-user"></span> Connexion</a>
+		</center><?php
+				} ?>				
 				</form>				
 				
 			</div>
@@ -101,8 +109,10 @@
 						<tr><th>#</th><th>Pseudo</th><th>Votes</th></tr>
 					</thead>
 				
-						<?php for($i = 0; $i < count($topVoteurs) AND $i < 10; $i++) { ?>
-						<tr><td><?php echo $i ?></td><td><img src="http://api.craftmywebsite.fr/skin/face.php?u=<?php echo $topVoteurs[$i]['pseudo']; ?>&s=30&v=front" alt="none" /> <strong><?php echo $topVoteurs[$i]['pseudo']; ?></strong></td><td><?php echo $topVoteurs[$i]['nbre_votes']; ?></td></tr>
+						<?php for($i = 0; $i < count($topVoteurs) AND $i < 10; $i++) {
+							$Img = new ImgProfil($topVoteurs[$i]['pseudo'], 'pseudo');
+						 ?>
+						<tr><td><?php echo $i+1 ?></td><td><img src="<?=$Img->getImgToSize(30, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /> <strong><?php echo $topVoteurs[$i]['pseudo']; ?></strong></td><td><?php echo $topVoteurs[$i]['nbre_votes']; ?></td></tr>
 						<?php }?>
 				</table>
 			</div>

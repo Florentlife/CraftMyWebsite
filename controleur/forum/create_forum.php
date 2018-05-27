@@ -3,9 +3,13 @@ if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['gen
 {
 	//Creation forum 
 	$nom = htmlspecialchars($_POST['nom']);
-	$create = $bddConnection->prepare('INSERT INTO cmw_forum (nom) VALUES (:nom)');
+	$ordreReq = $bddConnection->query('SELECT MAX(ordre) AS ordre FROM cmw_forum');
+	$ordreData = $ordreReq->fetch();
+	$ordre = $ordreData['ordre'];
+	$create = $bddConnection->prepare('INSERT INTO cmw_forum (nom, ordre) VALUES (:nom, :ordre)');
 	$create->execute(array(
-		'nom' => $nom
+		'nom' => $nom,
+		'ordre' => $ordre+1
 	));
 	header('Location: ?page=forum');
 }
