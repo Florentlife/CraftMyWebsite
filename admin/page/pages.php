@@ -89,7 +89,7 @@
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
                                                     <a data-toggle="collapse" class="btn btn-success" data-parent="#sections<?php echo $pages[$i]['id']; ?>" href="#section<?php echo $i . $j; ?>" style="color: white;">Editer section <strong>"<?php echo $pageContenu[$i][$j][0]; ?>"</strong> De la page <strong><?php echo $pages[$i]['titre']; ?></strong>.</a>
-                                                    <a href="?&action=supprSection&page=<?php echo $pages[$i]['id']; ?>&id=<?php echo $j; ?>" class="btn btn-danger btn-sm pull-right"/>Supprimer la section</a>
+                                                    <a href="?&action=supprSection&page=<?php echo $pages[$i]['id']; ?>&id=<?php echo $j; ?>" class="btn btn-danger btn-sm pull-right">Supprimer la section</a>
                                                 </h4>
                                             </div>
                                             <div id="section<?php echo $i . $j; ?>" class="panel-collapse collapse">
@@ -120,7 +120,7 @@
                                 </div>
                             </form>
                             <form method="POST" action="?&action=creerSection&id=<?php echo $pages[$i]['id']; ?>" class="well">
-                                <h4>Créer une section sur la page "<?php echo $pages[$i]['titre']; ?></a>"</h4>
+                                <h4>Créer une section sur la page "<?php echo $pages[$i]['titre']; ?>"</h4>
                                 <div class="row">
                                     <label class="control-label">Sous-titre</label>
                                     <input type="text" class="form-control" name="sousTitre">

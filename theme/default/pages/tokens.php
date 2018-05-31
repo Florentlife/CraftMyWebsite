@@ -16,7 +16,7 @@
 			?>
 	<div class="panel panel-primary">
 		<div class="panel-heading">
-			<h3 class="panel-title"><h3>Payement par PayPal</h3></h3>
+			<h3 class="panel-title">Payement par PayPal</h3>
 		</div>
 		<div class="panel-body">
 			<div class="alert alert-success">Deux possibilités s'offrent à vous pour les dons, vous pouvez payer par PayPal, soit avec votre compte PayPal soit avec votre Carte Bleu de manière sécurisée depuis le site PayPal (le payement ne s'effectue donc pas sur notre serveur/site). L'avantage de PayPal est que le joueur reçoit plus de Jetons qu'avec un payement téléphonique (qui sont surtaxés).</div>
@@ -62,7 +62,7 @@
 			?>
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				<h3 class="panel-title text-center">Paiement par MCGPass</br> </h3>
+				<h3 class="panel-title text-center">Paiement par MCGPass</h3>
 			</div>
 			 <div class="panel-body">
 					<div class="alert alert-success">Vous pouvez payer par MCGPass, vous paierez ainsi avec votre forfait téléphonique, c'est donc un avantage important. D'un autre côté, vous serez déversé de moins de tokens qu'avec un payement paypal (qui sont beaucoup moins taxés).</div>

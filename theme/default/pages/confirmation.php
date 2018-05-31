@@ -33,7 +33,7 @@ if(isset($_GET['choix']))
 						<div class="form-group row">
 							<label for="reason" class="col-sm-2 form-control-label">Raison de la suppression</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="reason" name="reason" placeholder="Votre raison" require />
+								<input type="text" class="form-control" id="reason" name="reason" placeholder="Votre raison" required />
 							</div>
 						</div>
 						<div class="form-group row">
@@ -60,7 +60,7 @@ if(isset($_GET['choix']))
 						<div class="form-group row">
 							<label for="emplacement" class="col-sm-2 form-control-label">Déplacez la discussion vers : </label>
 							<div class="col-sm-10">
-								<select class="c-select" name="emplacement" id="emplacement" require >
+								<select class="c-select" name="emplacement" id="emplacement" required >
 									<?php 
 									$emplacement = $bddConnection->query('SELECT * FROM cmw_forum_categorie');
 									while($emplacementd = $emplacement->fetch())
@@ -114,7 +114,7 @@ if(isset($_GET['choix']))
 			<form action="?&action=signalement&confirmation=true" method="post">
 				<div class="row">
 					<label for="reason" class="form-control-label col-sm-2">Indiquez une raison</label>
-					<input type="text" class="form-control col-sm-10" name="reason" id="reason" placeholder="Indiquez une raison" require />
+					<input type="text" class="form-control col-sm-10" name="reason" id="reason" placeholder="Indiquez une raison" required />
 				</div>
 				<input type="hidden" name="id_answer" value="<?php echo $_GET['id']; ?>" />
 				<div class="row">
@@ -136,7 +136,7 @@ if(isset($_GET['choix']))
 			<div class="form-group row">
 				<label for="reason" class="col-sm-2 form-control-label">Indiquez une raison ! </label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="reason" id="reason" placeholder="Indiquez une raison" require />
+					<input type="text" class="form-control" name="reason" id="reason" placeholder="Indiquez une raison" required />
 					<input type="hidden" name="id_topic2" value='<?php echo $id; ?>' />
 				</div>
 			</div>

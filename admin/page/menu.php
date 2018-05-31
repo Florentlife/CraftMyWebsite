@@ -182,12 +182,11 @@
                                 <div class="tab-pane <?php if($j == 0) echo 'active'; ?>" id="editLiensDeroul<?php echo $i; ?>">
                                     <h4>Menu déroulant: #<?php echo $lectureMenu['MenuTexte'][$i]; ?></h4>
                                     <form role="form" method="POST" action="?&action=editMenuListe">
-                                        <div class="row">
-                                            <div class="col-md-12">
+                                            <div>
                                                 <label class="control-label">Titre de la liste déroulante</label>
                                                 <input type="text" class="form-control" placeholder="Le nom de la liste déroulante" name="titreListe" value="<?php echo $lectureMenu['MenuTexte'][$i]; ?>" />
                                             </div>
-                                            <div class="col-md-12">
+                                            <div>
                                             <?php if($lectureMenu['MenuListeDeroulante'][$lectureMenu['MenuTexte'][$i]]['0'] != "LastLinkDontDelete") {
                                                 for($j = 0; $j < count($lectureMenu['MenuListeDeroulante'][$lectureMenu['MenuTexte'][$i]]); $j++) { 
                                                     if(preg_match("#\?&page=#", $lectureMenu['MenuListeDeroulanteLien'][$lectureMenu['MenuTexte'][$i]][$j]))
@@ -241,11 +240,8 @@
                                                     </div>
                                                 </div>
                                             <?php } ?>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center" style="margin-top: 5px;">
-                                                <input type="submit" class="btn btn-success" value="Valider les changements !"/>
-                                            </div>
+                                        <div class="text-center" style="margin-top: 5px;">
+                                            <input type="submit" class="btn btn-success" value="Valider les changements !"/>
                                         </div>
                                     </form>
                                 </div>

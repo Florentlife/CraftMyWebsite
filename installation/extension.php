@@ -31,7 +31,7 @@ function AfficherExtension($retour)
         <h1 class="animated slideInLeft" style="font-family: material;text-align: center;">CraftMyWebsite <?php echo $versioncms; ?></h1>
         <br/>
         <h2 style="font-family: material;text-align: center;">Il manque des extensions ! <small> Veuillez les installer !</small></h2>
-    </br>
+    <br>
     <div class="alert alert-success alert-chmod">Il vous manques des extensions pour que ce cms fonctionne sur votre site web, il faut les installer.
 	Si vous ne savez pas comment, n'hésitez pas à venir sur le formum présent <a href="http//craftmywebsite.fr/forum">ici</a>
     </div>

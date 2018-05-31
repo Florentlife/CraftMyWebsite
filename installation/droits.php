@@ -115,9 +115,9 @@ function DrawChmod($return)
         <h1 class="animated slideInLeft" style="font-family: material;text-align: center;">CraftMyWebsite <?php echo $versioncms; ?></h1>
         <br/>
         <h2 style="font-family: material;text-align: center;">Droits d'accès insuffisant! <small> Veuillez les changer avant d'installer !</small></h2>
-    </br>
+    <br>
     <div class="alert alert-success alert-chmod">Vos chmod ne sont pas réglés correctements ! Si vous ne les changez pas, votre CMS ne pourra marcher  
-        normalement !</br>Le chmod correspond aux droits d'accès de vos fichier, il faut que votre serveur web aie le droit de modifier
+        normalement !<br>Le chmod correspond aux droits d'accès de vos fichier, il faut que votre serveur web aie le droit de modifier
         certains fichiers (les fichiers de configurations).
     </div>
     <div class="alert alert-success alert-chmod">
@@ -162,8 +162,8 @@ function DrawChmod($return)
     <?php } ?>
 </table>
 <?php } ?>
-<center><a href="index.php" class="btn btn-primary btn-installation">Relancer la vérification</a></center><br/>
-<center><a onclick="ajax_chmod();" class="btn btn-primary btn-installation">Tenter de modifier les chmod automatiquement</a></center>
+<center><a href="index.php" class="btn btn-primary btn-installation">Relancer la vérification</a><br/>
+<a onclick="ajax_chmod();" class="btn btn-primary btn-installation">Tenter de modifier les chmod automatiquement</a></center>
 </div>
 <script src="../theme/default/js/jquery.min.js"></script>
 <script src="../theme/default/js/bootstrap.min.js"></script>
