@@ -107,7 +107,7 @@ $categorie = $_Forum_->infosForum($fofo[$i]['id']);
 				</td>
 			<td><center><a href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><?php echo $CountTopics = $_Forum_->compteTopicsForum($categorie[$j]['id']); ?><br/><span class="text-uppercase">Discussions</span></a></center></td>
 			<td><center><a href="?page=forum_categorie&id=<?=$categorie[$j]['id']; ?>"><?=$_Forum_->compteMessages($categorie[$j]['id']) + $CountTopics; ?><br/><span class="text-uppercase">Messages</span></a></center></td>
-			<td><center><?php if($derniereReponse != false) { ?> 
+			<td><center><?php if($derniereReponse) { ?> 
 					<a href="?page=post&id=<?php echo $derniereReponse['id']; ?>" title="<?=$derniereReponse['titre'];?>">Dernier: <?php $taille = strlen($derniereReponse['titre']);
 					echo substr($derniereReponse['titre'], 0, 15);
 					if(strlen($taille > 15)){ echo '...'; } ?><br/><?=$derniereReponse['pseudo'];?>, Le <?php $date = explode('-', $derniereReponse['date_post']); echo '' .$date[2]. '/' .$date[1]. '/' .$date[0]. ''; ?></a>
@@ -150,11 +150,9 @@ Ajouter une Catégorie
 <div class="collapse" id="add_forum">
 	<div class="well">
 		<form action="?action=create_forum" method="post">
-			<div class="row">
-				<div class="col-md-12"><br>
-					<p class="text-center"><label class="control-label" for="nomFo">Nom de la catégorie</label></p>
-					<input type="text" name="nom" id="nomFo" maxlength="80" class="form-control" require="">
-				</div>
+			<div>
+				<p class="text-center"><label class="control-label" for="nomFo">Nom de la catégorie</label></p>
+				<input type="text" name="nom" id="nomFo" maxlength="80" class="form-control" required>
 			</div>
 			<br/>
 			<p class="text-right">
@@ -173,7 +171,7 @@ if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['gen
 				<div class="from-group row">
 						<label class="col-md-6 col-form-label" for="nomCat">Nom du Forum : </label>
 						<div class="col-md-6">
-							<input type="text" name="nom" id="nomCat" maxlength="40" class="form-control" require />
+							<input type="text" name="nom" id="nomCat" maxlength="40" class="form-control" required />
 						</div>
 				</div><br>
 				<div class="froum-group row">
@@ -185,7 +183,7 @@ if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['gen
 				<div class="form-group row">
 						<label class="col-md-6 col-form-label">Catégorie : </label>
 						<div class="col-md-6">
-							<select name="forum" class="form-control" require>
+							<select name="forum" class="form-control" required>
 								<?php
 								for($z = 0; $z < count($fofo); $z++)
 								{
