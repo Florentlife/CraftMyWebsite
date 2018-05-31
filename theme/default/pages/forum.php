@@ -22,7 +22,7 @@ for($i = 0; $i < count($fofo); $i++)
 	if($_PGrades_['PermsDefault']['forum']['perms'] >= $fofo[$i]['perms'] OR ($_Joueur_['rang'] == 1 AND !$_SESSION['mode']) OR $fofo[$i]['perms'] == 0)
 	{
 	?>
-		</br><br/>
+		<br><br/>
 		<table class="table table-striped">
 		<div class="row"><?php if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['general']['deleteForum'] == true OR $_Joueur_['rang'] == 1) AND !$_SESSION['mode']){ ?>
 		<div class="col-md-6 offset-md-6" style="text-align: right;">
@@ -44,14 +44,14 @@ for($i = 0; $i < count($fofo); $i++)
 					<form action="?action=modifPermsForum" method="POST">
 						<input type="hidden" name="id" value="<?=$fofo[$i]['id'];?>" />
 						<a class="dropdown-item"><input type="number" name="perms" value="<?=$fofo[$i]['perms'];?>" class="form-control"></a>
-						<button type="submit" class="dropdown-item"><center>Modifier</center></button>
+						<button type="submit" class="dropdown-item text-center">Modifier</button>
 					</form>
 				</div>
 			</div>
 		</div><?php } ?></div>
 		<thead>
 			<tr>
-				<th colspan="5" style="width: <?=(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode']) ? '87%;' : '100%';?>;"><center><h3><?php echo ucfirst($fofo[$i]['nom']); ?></h3></center></th>
+				<th colspan="5" style="width: <?=(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode']) ? '87%;' : '100%';?>;"><h3 class="text-center"><?php echo ucfirst($fofo[$i]['nom']); ?></h3></th>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode'])
 				{
 					?><th>Actions</th>
@@ -74,7 +74,7 @@ $categorie = $_Forum_->infosForum($fofo[$i]['id']);
             <tr>
 
 				<td style="width: 3%;"><?php if($categorie[$j]['img'] == NULL) { ?><a href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><i class="material-icons">chat</i></a><?php }
-					else { ?><a href="?page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><i class="material-icons"><?php echo $categorie[$j]['img']; ?></a><?php }?></td>
+					else { ?><a href="?page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><i class="material-icons"><?php echo $categorie[$j]['img']; ?></i></a><?php }?></td>
 				<td style="width: 32%;"><a href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><?php echo $categorie[$j]['nom']; ?></a>
 				<?php 	if($_Joueur_['rang'] == 1 AND !$_SESSION['mode'])
 							$perms = 100;
@@ -105,16 +105,16 @@ $categorie = $_Forum_->infosForum($fofo[$i]['id']);
 						</div></small>
 				<?php } ?>
 				</td>
-			<td><center><a href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><?php echo $CountTopics = $_Forum_->compteTopicsForum($categorie[$j]['id']); ?><br/><span class="text-uppercase">Discussions</span></a></center></td>
-			<td><center><a href="?page=forum_categorie&id=<?=$categorie[$j]['id']; ?>"><?=$_Forum_->compteMessages($categorie[$j]['id']) + $CountTopics; ?><br/><span class="text-uppercase">Messages</span></a></center></td>
-			<td><center><?php if($derniereReponse) { ?> 
+			<td class="text-center"><a href="?&page=forum_categorie&id=<?php echo $categorie[$j]['id']; ?>"><?php echo $CountTopics = $_Forum_->compteTopicsForum($categorie[$j]['id']); ?><br/><span class="text-uppercase">Discussions</span></a></td>
+			<td class="text-center"><a href="?page=forum_categorie&id=<?=$categorie[$j]['id']; ?>"><?=$_Forum_->compteMessages($categorie[$j]['id']) + $CountTopics; ?><br/><span class="text-uppercase">Messages</span></a></td>
+			<td class="text-center"><?php if($derniereReponse) { ?> 
 					<a href="?page=post&id=<?php echo $derniereReponse['id']; ?>" title="<?=$derniereReponse['titre'];?>">Dernier: <?php $taille = strlen($derniereReponse['titre']);
 					echo substr($derniereReponse['titre'], 0, 15);
 					if(strlen($taille > 15)){ echo '...'; } ?><br/><?=$derniereReponse['pseudo'];?>, Le <?php $date = explode('-', $derniereReponse['date_post']); echo '' .$date[2]. '/' .$date[1]. '/' .$date[0]. ''; ?></a>
 			<?php
 				}
 				else { ?><p> Il n'y a pas de sujet dans ce forum </p> <?php } 
-				?></center></td>
+				?></td>
 			<?php
 				if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode'])
 				{
@@ -127,7 +127,7 @@ $categorie = $_Forum_->infosForum($fofo[$i]['id']);
 								<form action="?action=modifPermsCategorie" method="POST">
 									<input type="hidden" name="id" value="<?=$categorie[$j]['id'];?>" />
 									<a class="dropdown-item"><input type="number" name="perms" value="<?=$categorie[$j]['perms'];?>" class="form-control"></a>
-									<button type="submit" class="dropdown-item"><center>Modifier</center></button>
+									<button type="submit" class="dropdown-item text-center">Modifier</button>
 								</form>
 							</div>
 						</div>

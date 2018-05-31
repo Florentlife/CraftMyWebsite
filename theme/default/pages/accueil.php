@@ -122,9 +122,9 @@
 														<div class="modal-body">
 															<textarea name="edit_commentaire" class="form-control" rows="3" style="resize: none;" maxlength="255" required><?php echo $editCommentaire; ?></textarea>
 														</div>
-														<div class="modal-footer">
-															<center><h4><B>Minimum de 6 caractères<br>Maximum de 255 caractères</B></h4></center></br>
-															<center><button type="submit" class="btn btn-primary btn-block">Valider la modification</button></center>
+														<div class="modal-footer text-center">
+															<h4><b>Minimum de 6 caractères<br>Maximum de 255 caractères</b></h4><br>
+															<button type="submit" class="btn btn-primary btn-block">Valider la modification</button>
 														</div>
 													</form>
 												</div>
@@ -141,7 +141,7 @@
 										<center><h4 class="modal-title" id="myModalLabel"><B><?php echo $news[$i]['titre']; ?></B></h4></center>
 									</div> <!-- Modal-Header -->
 									<div class="modal-body">
-									</br>
+									<br>
 									<?php
 									$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
 									while($newsComments = $getNewsCommentaires->fetch()) {
@@ -196,15 +196,15 @@
 											<div class="modal-footer w-100">
 												<form action="?&action=post_news_commentaire&id_news=<?php echo $news[$i]['id']; ?>" method="post" class="w-100">
 													<textarea name="commentaire" class="form-control w-100" required></textarea>
-													<center><h4><B>Minimum de 6 caractères<br>Maximum de 255 caractères</B></h4></center>
-												</br>
+													<h4 class="text-center"><b>Minimum de 6 caractères<br>Maximum de 255 caractères</b></h4>
+												<br>
 												<center><button type="submit" class="btn btn-primary btn-block">Commenter</button></center>
 												</form>
 											</div>
 									<?php } else { ?>
-										<div class="modal-footer">
-											<center><div class="alert alert-danger">Veuillez-vous connecter pour mettre un commentaire.</div></center>
-											<center><a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning">Connexion</a></center>
+										<div class="modal-footer text-center">
+											<div class="alert alert-danger">Veuillez-vous connecter pour mettre un commentaire.</div>
+											<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning">Connexion</a>
 										</div> <!-- Modal-Footer -->
 										<?php } ?>
 									</div><!-- Modal-Footer -->

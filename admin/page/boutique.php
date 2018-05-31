@@ -75,7 +75,7 @@
             </div>
             <div class="panel-body">
 		<div class="alert alert-success">
-			<strong>Après avoir créé une catégorie, vous pouvez y insérer une offre. L'offre est dans un premier temps composée d'un titre, d'un message(ou image) et appartient à une catégorie, vous pourrez par la suite attribuer à une offre une "action"(=commande). Pour mettre une image rien de plus simple, vous pouvez le faire via le code suivant: </strong></br><strong><?php echo htmlspecialchars('<img src="http://lien_vers_mon_image.fr/" alt="Image Boutique" />'); ?></strong>
+			<strong>Après avoir créé une catégorie, vous pouvez y insérer une offre. L'offre est dans un premier temps composée d'un titre, d'un message(ou image) et appartient à une catégorie, vous pourrez par la suite attribuer à une offre une "action"(=commande). Pour mettre une image rien de plus simple, vous pouvez le faire via le code suivant: </strong><br><strong><?php echo htmlspecialchars('<img src="http://lien_vers_mon_image.fr/" alt="Image Boutique" />'); ?></strong>
 		</div>
 		<form action="?&action=creerOffre" method="POST">
 					<div class="form-group col-lg-6">
@@ -122,7 +122,7 @@
 		<form action="?action=creerCoupon" method="POST">
 					<div class="form-group col-lg-6">
 						<label>Titre de la remise (description)</label>
-						<input type="text" class="form-control" name="titre" placeholder="Remise spécial CMW V1.6" require maxlength="60">
+						<input type="text" class="form-control" name="titre" placeholder="Remise spécial CMW V1.6" required maxlength="60">
 					</div>
 					<div class="form-group col-lg-6">
 						<label> Pourcentage de remise </label>
@@ -130,7 +130,7 @@
 					</div>
 					<div class="form-group col-lg-6">
 						<label> Code de remise </label>
-						<input type="text" name="code" class="form-control" maxlength="8" placeholder="CMWV1.6">
+						<input type="text" name="code" class="form-control" maxlength="8" placeholder="CMWV1.7">
 					</div>
 					<hr>
 					<div class="form-group col-lg-12">
@@ -191,7 +191,7 @@
 					while($i < count($categories)) { ?>
 					<li <?php if($i == 0) echo 'class="active"'; ?>><a href="#categoriesSwitch<?php echo $categories[$i]['id']; ?>" data-toggle="tab"><?php echo $categories[$i]['titre']; ?></a></li>
 					<?php $i++; } ?>
-					<div class="col-lg-13 text-center">
+					<div class="text-center">
 						<div class="tab-content well">
 							<?php $i = 0;
 							while($i < count($categories)) { ?>
@@ -302,9 +302,8 @@
 																		<option value="0">Joueur</option>
 																		<?php require('./admin/donnees/grades.php'); 
 																		for($z = 2; $z <= end($lastGrade); $z++) {
-		                                                                    if(file_exists($dirGrades.$z.'.yml')) {
-		                                                                        if($idGrade[$z]['Grade']) { ?><option value="<?php echo $z; ?>" <?php echo '>'.$idGrade[$z]['Grade']; } ?></option>
-		                                                                    <?php } 
+		                                                                    if(file_exists($dirGrades.$z.'.yml') && $idGrade[$z]['Grade']) { ?>
+		                                                                        <option value="<?php echo $z; ?>"><?= $idGrade[$z]['Grade']?></option>
 		                                                                } ?>
 																		<option value="1">Créateur</option>
 																	</select>

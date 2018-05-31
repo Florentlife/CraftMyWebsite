@@ -11,12 +11,12 @@
             <div class="col-md-12 text-center">
                 <div class="row">
                     <div class="alert alert-success">
-                        <strong>Vous pouvez ajouter autant de grades que vous le souhaitez pour votre site. Grâce à une toute nouvelle fonctionnalité vous pouvez dorénavant modifier/ajouter des permissions à tous vos grades créés. Cependant, les grades par défaut (Créateur et Joueur) ne peuvent pas être modifiés par sécurité.</br>L'accès à cette fonctionnalité est réservée aux Créateurs.</strong>
+                        <strong>Vous pouvez ajouter autant de grades que vous le souhaitez pour votre site. Grâce à une toute nouvelle fonctionnalité vous pouvez dorénavant modifier/ajouter des permissions à tous vos grades créés. Cependant, les grades par défaut (Créateur et Joueur) ne peuvent pas être modifiés par sécurité.<br>L'accès à cette fonctionnalité est réservée aux Créateurs.</strong>
                     </div>
                 </div>
                 <div class="row">
                     <div class="alert alert-warning">
-                        <strong>ATTENTION</br>Certains hébergeurs bloquent la création automatique des grades.</strong>
+                        <strong>ATTENTION<br>Certains hébergeurs bloquent la création automatique des grades.</strong>
                     </div>
                 </div>
             </div>

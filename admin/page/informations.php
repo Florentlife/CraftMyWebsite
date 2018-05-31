@@ -150,11 +150,11 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                   <button id="sendCommand" class="btn btn-info">Exécuter la commande</button>
                 </form>
               </div>
-              <div hidden="hidden" aria-hidden="true" style="display: none;" alt="Pour une prochaine maj">
-                <div class="row">
+              <div aria-hidden="true" style="display: none;" alt="Pour une prochaine maj">
+                <div>
                   <button data-toggle="modal" data-target="#taskAuto" class="btn btn-warning" disabled>Tâches Automatique</button>
                 </div>
-                <div class="row">
+                <div>
                   <button data-toggle="modal" data-target="#giveSpec" class="btn btn-danger" disabled>Spécial Item</button>
                 </div>
               </div>
@@ -166,8 +166,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                   <button class="cmw-spoiler" title="Afficher les plugins" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Dérouler la liste des plugins</button>
                 </div>
                 <div class="panel-body">
-                  <div id="spoiler" style="display:none">
-                    <center>
+                  <div id="spoiler" style="display:none" class="text-center">
                       <div style="width: 100%" class="from-group">
                        <table class="table table-bordered">
                          <thead>
@@ -188,7 +187,6 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                        </tbody>
                      </table>
                    </div>
-                 </center>
                </div>
              </div>
            </div>
@@ -212,7 +210,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
               </div>
               <div class="col-md-4 text-center">
                 <form method="post" action="?&action=commandeConsole">
-                  <button id="commandeConsole" name="commandeConsole" type="submit" class="btn btn-danger" value="stop"/>Arrêter le serveur</button>
+                  <button id="commandeConsole" name="commandeConsole" type="submit" class="btn btn-danger" value="stop">Arrêter le serveur</button>
                 </form>
               </div>
               <div class="col-md-4 text-center" style="margin-left: -4.5%">
@@ -244,10 +242,9 @@ for($j = 0; $j < count($lecture['Json']); $j++)
   <div class="modal-content">
    <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-    <center><h4 class="modal-title" id="myModalLabel"><B> Give Item Spécial </B></h4></center>
+    <h4 class="modal-title text-center" id="myModalLabel"><B> Give Item Spécial </B></h4>
   </div>
   <div class="modal-body">
-    <center>
      <div style="width: 100%;" class="from-group">
       <h4><B>Give des items spéciaux (MC 1.7+)</B></h4>
       <div name="part1">
@@ -259,42 +256,47 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         </div>
       </div>
     </div>
-  </br>
+  <br>
   <div class="col-md-3" style="width: 32%;">
    <div class="input-group">
     <span class="input-group-addon">Item</span>
     <select id="item" name="methode" class="form-control">
-     <option disabled="disabled"><B>--- Fer ---</B></option>
+     <optgroup label="--- Fer ---">
      <option value="256">Pelle en fer</option>
      <option value="257">Pioche en fer</option>
      <option value="258">Hache en fer</option>
      <option value="267">Epée en fer</option>
      <option value="292">Hoe en fer</option>
-     <option disabled="disabled"><B>--- Bois ---</B></option>
+     </optgroup>
+     <optgroup label="--- Bois ---">
      <option value="268">Epée en bois</option>
      <option value="269">Pelle en bois</option>
      <option value="270">Pioche en bois</option>
      <option value="271">Hache en bois</option>
      <option value="290">Hoe en bois</option>
      <option value="261">Arc</option>
-     <option disabled="disabled"><B>--- Pierre ---</B></option>
+     </optgroup>
+     <optgroup label="--- Pierre ---">
      <option value="272">Epée en pierre</option>
      <option value="273">Pelle en pierre</option>
      <option value="274">Pioche en pierre</option>
      <option value="275">Hache en pierre</option>
      <option value="291">Hoe en pierre</option>
-     <option disabled="disabled"><B>--- Diamant ---</B></option>
+     </optgroup>
+     <optgroup label="--- Diamant ---">
      <option value="276">Epée en diamant</option>
      <option value="274">Pelle en diamant</option>
      <option value="275">Pioche en diamant</option>
      <option value="276">Hache en diamant</option>
      <option value="293">Hoe en diamant</option>
-     <option disabled="disabled"><B>--- Or ---</B></option>
+     </optgroup>
+     <optgroup label="--- Or ---">
      <option value="274">Epée en or</option>
      <option value="275">Pelle en or</option>
      <option value="276">Pioche en or</option>
      <option value="276">Hache en or</option>
      <option value="294">Hoe en or</option>
+     </optgroup>
    </select>
  </div>
 </div>
@@ -311,7 +313,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 </div>
 </div>
 </div>
-</br>
+<br>
 <div name="part2" style="margin-top: 6%;">
  <div style="width: 32%;" class="col-md-3">
   <div class="input-group">
@@ -332,7 +334,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
  </div>
 </div>
 </div>
-</br>
+<br>
 <div name="part3" style="margin-top: 5%;">
   <div class="row-margin-top row-margin-bottom row">
    <div class="col-md-12">
@@ -343,7 +345,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
  </div>
 </div>
 </div>
-</br>
+<br>
 <div name="part4">
  <div class="row-margin-top row-margin-bottom row" style="margin-top: 2%">
   <div class="col-md-3" style="width: 32%;">
@@ -391,7 +393,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 </div>
 </div>
 </div>
-</br>
+<br>
 <div name="part5">
   <div class="row-margin-top row-margin-bottom row">
    <div class="col-md-3" style="width: 32%;">
@@ -442,20 +444,19 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 <hr>
 <div class="row-margin-top row-margin-bottom row" style="width: 85%;margin-right: 1%;">
   <div class="col-md-12">
-   <textarea id="fin" class="form-control" style="margin-top:5px;resize: none;" placeholder="give {JOUEUR} 256 1 ..." value=""></textarea>
+   <textarea id="fin" class="form-control" style="margin-top:5px;resize: none;" placeholder="give {JOUEUR} 256 1 ..."></textarea>
    <div style="margin-top: 1%">
     <button style="margin-left: 3%" type="submit" class="btn btn-info">Exécuter la commande</button>
   </div>
 </div>
 </div>
-</br>
+<br>
 </div>
-</center>
 </div>
-</br>
-</br>
-<div class="modal-footer">                                    
-  <center><button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button></center>
+<br>
+<br>
+<div class="modal-footer text-center">                                    
+  <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
 </div>
 </div>
 </div>
@@ -605,6 +606,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 
             visitsChart.Line(visitsChartData, visitsChartOptions);
           </script>
+          </canvas>
         </p>
       </div>
     </div>
@@ -689,8 +691,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
     </tbody>
   </table>
 </div>
-<div class="text-right">
- <center>Ceci sont les 8 derniers membres inscrits. <span class="fa fa-credit-card-alt"></span></center>
+<div class="text-center">
+ Ceci sont les 8 derniers membres inscrits. <span class="fa fa-credit-card-alt"></span>
 </div>
 </div>
 </div>
@@ -716,7 +718,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                   <h4>Système d'API : IP de vérification</h4>
                   <div class="row">
                     <div class="alert alert-success">
-                      <strong>Modifiez ici le nombres <span style="color: red;">limite</span> d'inscriptions par IP.</B></strong>
+                      <strong>Modifiez ici le nombres <span style="color: red;">limite</span> d'inscriptions par IP.</strong>
                     </div>
                   </div>
                   <div class="row">
@@ -755,7 +757,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                   <div class="row">
                     <input type="number" style="text-align: center;" name="strictMail" class="form-control" placeholder="1" value="<?php echo $sysMail[$i]['strictMail']; ?>">
                   </div>
-                </br>
+                <br>
                 <div class="row">
                   <div class="alert alert-success">
                     <strong>Activer/Désactiver L'API, et modifier sont contenus.</strong>
@@ -774,16 +776,16 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                   <div class="alert alert-info">
                     <strong><i class="fa fa-question-circle"></i> Détails importants <i class="fa fa-question-circle"></i></strong>
                     <div class="row">
-                      Voici les syntaxes à respecter dans votre message :</br>
-                      - <B>{JOUEUR}</B> = Au nom du joueur. (Optionnel.)</br>
-                      - <B>{LIEN}</B> = Au lien pour confirmer l'inscription. (<B>Obligatoire !</B>)</br>
-                      - <B>{MDP}</B> = Au mot de passe du joueur. (Optionnel.)</br>
+                      Voici les syntaxes à respecter dans votre message :<br>
+                      - <B>{JOUEUR}</B> = Au nom du joueur. (Optionnel.)<br>
+                      - <B>{LIEN}</B> = Au lien pour confirmer l'inscription. (<B>Obligatoire !</B>)<br>
+                      - <B>{MDP}</B> = Au mot de passe du joueur. (Optionnel.)<br>
                       - <B>{IP}</B> = A l'adresse IP de l'endroit où à étais effectué l'inscription. (Optionnel.)
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <textarea type="text" style="resize: none;" class="form-control" name="msgMail" value="<?php echo $sysMail[$i]['msgMail']; ?>" placeholder="Bienvenue[...] Voici votre lien d'activation..."><?php echo $sysMail[$i]['msgMail']; ?></textarea>
+                  <textarea style="resize: none;" class="form-control" name="msgMail" placeholder="Bienvenue[...] Voici votre lien d'activation..."><?php echo $sysMail[$i]['msgMail']; ?></textarea>
                 </div>
                 <hr>
                 <div class="row">
@@ -957,8 +959,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 
 
 </div>
-<div class="text-right">
- <center>Ceci sont les 10 dernières activités. <span class="fa fa-credit-card-alt"></span></center>
+<div class="text-center">
+ Ceci sont les 10 dernières activités. <span class="fa fa-credit-card-alt"></span>
 </div>
 </div>
 </div>
@@ -1006,8 +1008,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
   </tbody>
 </table>
 </div>
-<div class="text-right">
- <center>Ceci sont les 12 dernières achats dans la boutique. <span class="fa fa-credit-card-alt"></span></center>
+<div class="text-center">
+ Ceci sont les 12 dernières achats dans la boutique. <span class="fa fa-credit-card-alt"></span>
 </div>
 <?php } else {
   echo '<center><strong>Aucun achat</strong></center>';

@@ -44,15 +44,14 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		</header>
 		<section id="page" class="layout">
 			<div class="container">
-			</br>
-			<div class="alert alert-danger">
-				<center><strong>Erreur :</strong> Vous devez absolument effacer le dossier "installation" à la racine de votre site pour commencer à utiliser votre site.</br>
+			<br>
+			<div class="alert alert-danger text-center">
+				<strong>Erreur :</strong> Vous devez absolument effacer le dossier "installation" à la racine de votre site pour commencer à utiliser votre site.<br>
 					Rafraîchissez la page ou appuyez sur le bouton ci-dessous pour revérifier.
-				</center>
 			</div>
 			<center><a href="index.php" class="btn btn-warning btn-lg btn-block">Refaire une vérification</a></center>
-		</br>
-	</br>
+		<br>
+	<br>
 </div></section>
 <?php } else { include('controleur/page.php'); } 
 include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>

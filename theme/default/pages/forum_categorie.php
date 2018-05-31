@@ -63,7 +63,7 @@
 				?>
 			<tr>
 				<td><?php if($sousforumd[$a]['img'] == NULL) { ?><a href="?&page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><i class="material-icons">chat</i></a><?php }
-					else { ?><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><i class="material-icons"><?php echo $sousforumd[$a]['img']; ?></a><?php }?></td>
+					else { ?><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><i class="material-icons"><?php echo $sousforumd[$a]['img']; ?></i></a><?php }?></td>
 				<td><a href="?&page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $sousforumd[$a]['nom']; ?></a></td>	
 				<td><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $_Forum_->compteTopicsSF($sousforumd[$a]['id']); ?></a></td>
 				<td><a href="?page=forum_categorie&id=<?php echo $id; ?>&id_sous_forum=<?php echo $sousforumd[$a]['id']; ?>"><?php echo $_Forum_->compteAnswerSF($sousforumd[$a]['id']); ?></a></td>
@@ -78,7 +78,7 @@
 								<form action="?action=modifPermsSousForum" method="POST">
 									<input type="hidden" name="id" value="<?=$sousforumd[$a]['id'];?>" />
 									<a class="dropdown-item"><input type="number" name="perms" value="<?=$sousforumd[$a]['perms'];?>" class="form-control"></a>
-									<button type="submit" class="dropdown-item"><center>Modifier</center></button>
+									<button type="submit" class="dropdown-item text-center">Modifier</button>
 								</form>
 							</div>
 						</div>
@@ -117,7 +117,7 @@
 								<div class="col-md-6">
 									<input type="hidden" name="id_categorie" value="<?php echo $id; ?>" />
 									<label class="control-label" for="nom">Nom</label>
-									<input type="text" require class="form-control" name="nom" id="nom" maxlength="40" />
+									<input type="text" required class="form-control" name="nom" id="nom" maxlength="40" />
 								</div>
 								<div class="col-md-6">	
 									<label class="control-label" for="img">Material icône : <a href="https://design.google.com/icons" target="_blank" >https://design.google.com/icons</a></label>
@@ -126,7 +126,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-offset-4 col-md-6">
-									<button type="sublmit" class="btn btn-success">Créer un sous-forum</button>
+									<button type="submit" class="btn btn-success">Créer un sous-forum</button>
 								</div>
 							</div>
 						</form>
@@ -181,7 +181,7 @@
 					<tr>
 						<?php if(isset($_Joueur_) && ($_PGrades_['PermsForum']['moderation']['selTopic'] == true OR $_Joueur_['rang'] == 1) && !$_SESSION['mode'])
 							{
-								?><td><input name="selection" type="checkbox" value="<?php echo $topicd[$i]['id']; ?>"/></a></td>
+								?><td><input name="selection" type="checkbox" value="<?php echo $topicd[$i]['id']; ?>"/></td>
 										<?php 
 							} 
 							$Img = new ImgProfil($topicd[$i]['pseudo'], 'pseudo');
@@ -194,7 +194,7 @@
 						}
 							echo ' '.$topicd[$i]['nom']; ?></a><br/><p style="margin-bottom: 0px;"><small><a href="?page=profil&profil=<?=$topicd[$i]['pseudo'];?>"><?=$topicd[$i]['pseudo'];?></a>, le <?=$_Forum_->getDateConvert($topicd[$i]['date_creation']);?></small></p></td>
 						<td><p>Réponses : <?php echo $_Forum_->compteReponse($topicd[$i]['id']); ?></td>
-						<td><a href="?&page=post&id=<?php echo $topicd[$i]['id']; ?>"><?php echo $_Forum_->conversionLastAnswer($topicd[$i]['last_answer']); ?></td>
+						<td><a href="?&page=post&id=<?php echo $topicd[$i]['id']; ?>"><?php echo $_Forum_->conversionLastAnswer($topicd[$i]['last_answer']); ?></a></td>
 					</tr>
 					<?php 
 					}
@@ -270,7 +270,7 @@
 			<div class="form-group row">
 				<label for="nom" class="col-sm-2 form-control-label">Rentrez le nom de votre sujet/topic</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="nom" name="nom" placeholder="Le titre de votre topic ici" require />
+					<input type="text" class="form-control" id="nom" name="nom" placeholder="Le titre de votre topic ici" required />
 				</div>
 			</div>
 			<div class="col-md-12 text-center">
@@ -302,13 +302,13 @@
 			<div class="form-group row">
 				<label for="contenue" class="col-sm-2 form-control-label">Insérez le contenue de votre topic ! ( Max 15 000 caractères )</label>
 				<div class="col-sm-10">
-					<textarea id="contenue" name="contenue" max="15000" min="1" class="form-control" rows="10" require ></textarea>
+					<textarea id="contenue" name="contenue" maxlength="15000" class="form-control" rows="10" required ></textarea>
 				</div>
 			</div>
-			<div class="form-group row">
-				<center><div class="col-sm-offset-2 col-sm-10">
+			<div class="form-group row text-center">
+				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-primary">Poster</button>
-				</div></center>
+				</div>
 			</div>
 		</form>
 		<?php 
