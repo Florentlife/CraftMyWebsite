@@ -122,7 +122,7 @@
 		<form action="?action=creerCoupon" method="POST">
 					<div class="form-group col-lg-6">
 						<label>Titre de la remise (description)</label>
-						<input type="text" class="form-control" name="titre" placeholder="Remise spécial CMW V1.6" required maxlength="60">
+						<input type="text" class="form-control" name="titre" placeholder="Remise spécial CMW V1.7" required maxlength="60">
 					</div>
 					<div class="form-group col-lg-6">
 						<label> Pourcentage de remise </label>
