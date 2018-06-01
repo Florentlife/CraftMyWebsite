@@ -785,7 +785,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                   </div>
                 </div>
                 <div class="row">
-                  <textarea style="resize: none;" class="form-control" name="msgMail" placeholder="Bienvenue[...] Voici votre lien d'activation..."><?php echo $sysMail[$i]['msgMail']; ?></textarea>
+                  <textarea style="resize: vertical;height: 250px" class="form-control" name="msgMail" placeholder="Bienvenue[...] Voici votre lien d'activation..."><?php echo $sysMail[$i]['msgMail']; ?></textarea>
                 </div>
                 <hr>
                 <div class="row">

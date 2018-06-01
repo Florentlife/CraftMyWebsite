@@ -400,6 +400,11 @@
 		require_once('admin/actions/editGrade.php');
 		$_SESSION['referrerAdmin'] = 'grade';
 		break;
+
+		case 'newsletter': 
+		require_once('admin/actions/newsletter.php');
+		$_SESSION['referrerAdmin'] = 'newsletter';
+		break;
 		
 		// Si le joueur a rentré un url contenant une valeur d'action innexistant?
 		default:

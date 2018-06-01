@@ -921,6 +921,30 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="panel panel-default">
+                                                                                <div class="panel-heading" role="tab" id="headingPagesNewsLetter<?php echo $i; ?>">
+                                                                                    <h4 class="panel-title">
+                                                                                        <a role="button" data-toggle="collapse" data-parent="#accordionPages<?php echo $i; ?>" href="#collapsePagesNewsLetter<?php echo $i; ?>" aria-expanded="true" aria-controls="collapsePagesNewsLetter<?php echo $i; ?>"><strong>NewsLetter</strong></a>
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div id="collapsePagesNewsLetter<?php echo $i; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPagesNewsLetter<?php echo $i; ?>">
+                                                                                    <div class="panel-body">
+                                                                                        <div class="col-lg-12 text-center">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12 col-lg-offset-2 text-left">
+                                                                                                    <div class="col-lg-10">
+                                                                                                        <div class="checkbox">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" name="permsPanelNewsletterActionsEditDefaultMessage<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['newsletter']['actions']['send']) echo 'checked'; ?> /> Peut envoyer une newsletter
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="panel panel-default">
                                                                                 <div class="panel-heading" role="tab" id="headingPagesMaj<?php echo $i; ?>">
                                                                                     <h4 class="panel-title">
                                                                                         <a role="button" data-toggle="collapse" data-parent="#accordionPages<?php echo $i; ?>" href="#collapsePagesMaj<?php echo $i; ?>" aria-expanded="true" aria-controls="collapsePagesMaj<?php echo $i; ?>"><strong>Mise à jour</strong></a>

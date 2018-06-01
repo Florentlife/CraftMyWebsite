@@ -1,20 +1,19 @@
-<?php if(isset($_GET['id']) AND isset($_Joueur_))
-{
+<?php if(!isset($_GET['id'], $_Joueur_)) header('Location: ?page=erreur&erreur=16');
+
 	//Vérification de l'existence du forum :
 	$id = $_GET['id'];
-	if($_Forum_->exist($id))
-	{
-		if(isset($_GET['id_sous_forum']))
-			$id_sous_forum = $_GET['id_sous_forum'];
-		$categoried = $_Forum_->infosCategorie($id);
-		if(isset($id_sous_forum))
-			$sousforumd = $_Forum_->SousForum($id_sous_forum);
-		else
+	if(!$_Forum_->exist($id)) header('Location: index.php?page=erreur&erreur=17');
+	
+	if(isset($_GET['id_sous_forum']))
+		$id_sous_forum = $_GET['id_sous_forum'];
+	$categoried = $_Forum_->infosCategorie($id);
+	if(isset($id_sous_forum))
+		$sousforumd = $_Forum_->SousForum($id_sous_forum);
+	else
 		$sousforumd = $_Forum_->infosSousForum($id, 0);
 		
-		if(($_Joueur_['rang'] == 1 AND !$_SESSION['mode']) OR $_PGrades_['PermsDefault']['forum']['perms'] >= $categoried['perms'] OR $categoried['perms'] == 0)
-		{
-			?><header class="heading-pagination">
+	if(!(($_Joueur_['rang'] == 1 AND !$_SESSION['mode']) OR $_PGrades_['PermsDefault']['forum']['perms'] >= $categoried['perms'] OR $categoried['perms'] == 0)) header('Location: ?page=erreur&erreur=7');?>
+		<header class="heading-pagination">
 			<div class="container-fluid">
 				<h1 class="text-uppercase wow fadeInRight" style="color:white;">Forum: <?=$categoried['nom'];?></h1>
 			</div>
@@ -264,7 +263,6 @@
 		<hr/>
 		<h4>Poster un topic dans la catégorie <?php echo $categoried['nom']; if(isset($id_sous_forum)) { echo ' et le sous-forum ' .$sousforumd['nom']. ''; } ?></h4>
 		<form action="?&action=create_topic" method="post">
-			<p>
 			<input type="hidden" name="id_categorie" value="<?php echo $id; ?>"/>
 			<input type="hidden" name="sous-forum" value="<?php if(isset($id_sous_forum)) { echo $id_sous_forum; } else { echo 'NULL'; } ?>"/>
 			<div class="form-group row">
@@ -314,15 +312,4 @@
 		<?php 
 	}
 	?></div>
-	</section><?php
-}
-else
-	header('Location: ?page=erreur&erreur=7');
-}
-else
-	header('Location: index.php?page=erreur&erreur=17');
-}
-else
-{
-	header('Location: ?page=erreur&erreur=16');
-} ?>
+</section>
