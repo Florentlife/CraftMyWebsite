@@ -149,13 +149,13 @@
 							<div class="form-group">
 								<label for="pseudo" class="col-sm-4 control-label">Pseudo du receveur</label>
 								<div class="col-sm-6">
-									<input type="text" require class="form-control" name="pseudo" placeholder="Le nom de la personne a qui vous souhaiter donner des jetons" id="pseudo">
+									<input type="text" required class="form-control" name="pseudo" placeholder="Le nom de la personne a qui vous souhaiter donner des jetons" id="pseudo">
 								</div>
 							</div>
 						  <div class="form-group">
 						    <label for="montant" class="col-sm-4 control-label">Montant</label>
 						    <div class="col-sm-6">
-						      <input type="number" require name="montant" class="form-control" placeholder="0" />
+						      <input type="number" required name="montant" class="form-control" placeholder="0" />
 						    </div>
 						  </div>
 						  <div class="form-group">
@@ -169,11 +169,11 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6">
-						<h3 ckass="header-bloc header-form">Modifier sa photo de profil</h3>
+						<h3 class="header-bloc header-form">Modifier sa photo de profil</h3>
 						<form class="form-horizontal" method="post" action="?action=modifImgProfil" role="form" enctype="multipart/form-data">
 							<div class="form-group">
 								<label for="img-profil" class="control-label">Importer votre image (< 1Mo, jpeg, jpg, png, bmp, ico, gif)</label>
-								<input type="file" name="img_profil" require class="form-control-file" id="img-profil">
+								<input type="file" name="img_profil" required class="form-control-file" id="img-profil">
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-success">Envoyer</button>
@@ -208,7 +208,7 @@
 							<td>Status</td>
 							<td><?php echo $serveurProfil['status']; ?></td>
 						</tr>
-						</tr>
+						<tr>
 							<td>Age</td>
 							<td><?php echo $joueurDonnees['age']; ?> ans.</td>
 						</tr>
@@ -216,20 +216,32 @@
 							<td>Pseudo</td>
 							<td><?php echo htmlspecialchars($getprofil); ?></td>
 						</tr>
+						<tr>
 							<td>Grade Site</td>
 							<td><?php echo $gradeSite; ?></td>
 						</tr>
+						<tr>
 							<td>Inscription</td>
 							<td><?php echo 'Le '.date('d/m/Y', $joueurDonnees['anciennete']).' &agrave; '.date('H:i:s', $joueurDonnees['anciennete']); ?></td>
 						</tr>
+						<tr>
 							<td>Email</td>
 							<td><?php if($joueurDonnees['show_email'] == 0)
 								echo $joueurDonnees['email'];
 							else
 								echo 'inconnue'; ?></td>
 						</tr>
+						<tr>
 							<td>Skype</td>
 							<td><?php echo $joueurDonnees['skype']; ?></td>
+						</tr>
+						<tr>
+							<td># votes</td>
+							<td>
+								<?php require_once("modele/topVotes.class.php");
+								$nbreVotes = new TopVotes($bddConnection);
+								echo $nbreVotes->getNbreVotes($getprofil);?>
+							</td>
 						</tr>
 					</table>
 				</div>

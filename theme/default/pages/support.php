@@ -112,7 +112,7 @@
 									$Img = new ImgProfil($tickets['auteur'], 'pseudo');
 									?></p>
 									<p class="text-right">Ticket de : <img src="<?=$Img->getImgToSize(16, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /> <?php echo $tickets['auteur']; ?></p>
-									</br>
+									<br>
 									<hr>
 									
 									<?php

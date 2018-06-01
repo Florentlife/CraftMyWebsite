@@ -11,12 +11,12 @@
             <div class="col-md-12 text-center">
                 <div class="row">
                     <div class="alert alert-success">
-                        <strong>Vous pouvez ajouter autant de grades que vous le souhaitez pour votre site. Grâce à une toute nouvelle fonctionnalité vous pouvez dorénavant modifier/ajouter des permissions à tous vos grades créés. Cependant, les grades par défaut (Créateur et Joueur) ne peuvent pas être modifiés par sécurité.</br>L'accès à cette fonctionnalité est réservée aux Créateurs.</strong>
+                        <strong>Vous pouvez ajouter autant de grades que vous le souhaitez pour votre site. Grâce à une toute nouvelle fonctionnalité vous pouvez dorénavant modifier/ajouter des permissions à tous vos grades créés. Cependant, les grades par défaut (Créateur et Joueur) ne peuvent pas être modifiés par sécurité.<br>L'accès à cette fonctionnalité est réservée aux Créateurs.</strong>
                     </div>
                 </div>
                 <div class="row">
                     <div class="alert alert-warning">
-                        <strong>ATTENTION</br>Certains hébergeurs bloquent la création automatique des grades.</strong>
+                        <strong>ATTENTION<br>Certains hébergeurs bloquent la création automatique des grades.</strong>
                     </div>
                 </div>
             </div>
@@ -911,6 +911,30 @@
                                                                                                         <div class="checkbox">
                                                                                                             <label>
                                                                                                                 <input type="checkbox" name="permsPanelSupportMaintenanceActionsSwitchRedirectMode<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['support']['maintenance']['actions']['switchRedirectMode'] == true) echo 'checked'; ?> /> Changer le mode de redirection
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="panel panel-default">
+                                                                                <div class="panel-heading" role="tab" id="headingPagesNewsLetter<?php echo $i; ?>">
+                                                                                    <h4 class="panel-title">
+                                                                                        <a role="button" data-toggle="collapse" data-parent="#accordionPages<?php echo $i; ?>" href="#collapsePagesNewsLetter<?php echo $i; ?>" aria-expanded="true" aria-controls="collapsePagesNewsLetter<?php echo $i; ?>"><strong>NewsLetter</strong></a>
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div id="collapsePagesNewsLetter<?php echo $i; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPagesNewsLetter<?php echo $i; ?>">
+                                                                                    <div class="panel-body">
+                                                                                        <div class="col-lg-12 text-center">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12 col-lg-offset-2 text-left">
+                                                                                                    <div class="col-lg-10">
+                                                                                                        <div class="checkbox">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" name="permsPanelNewsletterActionsEditDefaultMessage<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['newsletter']['actions']['send']) echo 'checked'; ?> /> Peut envoyer une newsletter
                                                                                                             </label>
                                                                                                         </div>
                                                                                                     </div>

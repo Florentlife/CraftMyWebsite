@@ -7,30 +7,27 @@
 <div class="container">
 	<div class="text-center">
 		<h4 class="text-primary"><i class="fa fa-shopping-cart"></i> Boutique</h4>
-		<h5><center>Comment ça marche?</center></h5>
-		<p><center><strong>
+		<h5 class="text-center">Comment ça marche?</h5>
+		<p class="text-center"><strong>
 			La boutique permet d'acheter du contenu In-Game depuis le site grâce à de l'argent réel, cela sert à payer l'hébergement du serveur.
 			La monnaie virtuelle utilisée sur la boutique est le "Jeton", vous pouvez obtenir des jetons en échange de dons <a href="?&page=token" style="color: blue;">sur cette page</a>
-		</strong></center></p>
-		</br>
+		</strong></p>
+		<br>
+		<hr>
+		<center>
 		<?php if(isset($_Joueur_)) { ?>
-		<center>
-		<hr>
 			<font style="font-family: minecraftia;font-size: 20px;">Bonjour <?php echo $_Joueur_['pseudo']; ?></font>
-				<h4>Vous avez <strong><?php if(isset($_Joueur_['tokens'])) echo $_Joueur_['tokens'] . ' <i class="fas fa-gem"></i>'; ?></h4></strong>
+				<h4>Vous avez <strong><?php if(isset($_Joueur_['tokens'])) echo $_Joueur_['tokens'] . ' <i class="fas fa-gem"></i>'; ?></strong></h4>
 				<a href="?page=panier" class="btn btn-primary btn-block">Votre panier contient <?php echo $_Panier_->compterArticle().($_Panier_->compterArticle()>1 ? ' articles' : ' article') ?> </a>
-		</center>
 		<?php } else { ?>
-		<hr>
-		<center>
 		<h4>Veuillez vous connecter pour accéder à la boutique:</h4>
 		<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-user"></span> Connexion</a>
-		</center>
 		<?php } ?>
+		</center>
 	</div>
-	</br>
-	</br>
-	<h3><center>Choisissez votre catégorie :</center></h3>
+	<br>
+	<br>
+	<h3 class="text-center">Choisissez votre catégorie :</h3>
 		<div class="tabbable">
 			<ul class="nav nav-tabs" style="margin-bottom:5vh;">
 			<?php
@@ -58,12 +55,10 @@
 						<div class="panel-body">
 							<?php if($categories[$j]['message'] == ""){ ?>
 							<?php } else { ?>
-							<p>
 							<div class="alert alert-dismissable alert-success">
 							<button type="button" class="close" data-dismiss="alert">×</button>
 							<center><?php echo $categories[$j]['message']; ?></center>
 							</div>
-							</p>
 							<?php } ?>
 							<div class="row">
 							<?php
@@ -86,9 +81,7 @@
 														echo '<a href="?page=boutique&offre=' .$offresTableau[$i]['id']. '" class="btn btn-primary btn-block" title="Voir la fiche produit"><i class="fa fa-eye"></i></a>';
 													echo '<a href="?action=addOffrePanier&offre='. $offresTableau[$i]['id']. '&quantite=1" class="btn btn-info btn-block" title="Ajouter directement au panier une unité"><i class="fa fa-cart-arrow-down"></i></a>';}
 													else { echo'<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-block" ><span class="glyphicon glyphicon-user"></span> Se connecter</a>'; }
-										echo '<button class="btn btn-success btn-block">Prix : ' .$offresTableau[$i]['prix']. ' <i class="fas fa-gem"></i></button>
-													</br>
-													</button>
+										echo '<button class="btn btn-success btn-block">Prix : ' . ($offresTableau[$i]['prix'] == '0' ? 'gratuit' : $offresTableau[$i]['prix'].'<i class="fas fa-gem">') . ' </i></button>
 												
 										</div>		';
 										$categories[$j]['offres']++;
@@ -120,7 +113,6 @@
 			<h4 class="modal-title" id="myModalLabel" style="color: white;">Achat de: <?php echo $infosOffre['offre']['nom']; ?></h4>
 		  </div>
 		  <div class="modal-body">
-				<p>
 					<br />
 					Vous obtiendrez ce grade sur <?php echo $infosCategories['serveur']; ?>.<br />
 					<?php
@@ -156,7 +148,6 @@
 						echo 'Cette offre est un don sans contrepartie...';
 					?>
 					</blockquote>
-				</p>
 		  </div>
 		  <div class="modal-footer">
 			<?php 	if(($enLigne AND $infosCategories['connection']) OR !$infosCategories['connection']) { ?>

@@ -25,12 +25,12 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3 class="panel-title"><center><?php echo $_Serveur_['General']['name']; ?> a besoin de vous !</center></h3>
+    <h3 class="panel-title text-center"><?php echo $_Serveur_['General']['name']; ?> a besoin de vous !</h3>
   </div>
   <div class="panel-body">
-    <p><center><strong>
+    <p class="text-center"><strong>
 		Voter pour le serveur permet d'améliorer son référencement ! Les votes sont récompensés par des items In-Game.<br /><br /><?php if(!isset($_Joueur_)) echo '<hr><a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-user"></span> Veuillez vous connecter.</a>'; ?>
-	</strong></center></p>
+	</strong></p>
 
   </div>
 </div>	

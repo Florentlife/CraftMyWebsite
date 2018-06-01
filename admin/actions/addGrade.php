@@ -13,25 +13,25 @@ if(isset($_Joueur_)) {
 		$existGrade = false;
 
 		if(strlen($nameGrade) > 32) {
-			header('Location: admin.php?&nomGradeLong=true');
+			header('Location: admin.php?page=grade&nomGradeLong=true');
 			exit();
 		} if(strlen($nameGrade) < 3) {
-			header('Location: admin.php?&nomGradeCourt=true');
+			header('Location: admin.php?page=grade&nomGradeCourt=true');
 			exit();
 		}
 
 		if(!is_dir($dirGrades)) {
 			if(!mkdir($dirGrades, 0755)) {
-				header('Location: admin.php?&cdgi=true');
+				header('Location: admin.php?page=grade&cdgi=true');
 				exit();
 			} if(!mkdir($dirGrades.'NOT_TOUCH/', 0755)) {
-				header('Location: admin.php?&cdnti=true');
+				header('Location: admin.php?page=grade&cdnti=true');
 				createGradeDefault();
 				exit();
 			}
 		} elseif(!is_dir($dirGrades.'NOT_TOUCH/')) {
 			if(!mkdir($dirGrades.'NOT_TOUCH/', 0755)) {
-				header('Location: admin.php?&cdnti=true');
+				header('Location: admin.php?page=grade&cdnti=true');
 				exit();
 			}
 		}
@@ -45,7 +45,7 @@ if(isset($_Joueur_)) {
 		}
 
 		if($existGrade == true) {
-			header('Location: admin.php?&gradeNameAlreadyUsed=true');
+			header('Location: admin.php?page=grade&gradeNameAlreadyUsed=true');
 			exit();
 		} else {
 			if(end($lastGrade) == -1) {
@@ -55,11 +55,11 @@ if(isset($_Joueur_)) {
 		    }
 			if(!file_exists($dirGrades.'NOT_TOUCH/default.yml')) {
 				createGradeDefault();
-				header('Location: admin.php?&gradeDefaultInexistantRegen=true');
+				header('Location: admin.php?page=grade&gradeDefaultInexistantRegen=true');
 				exit();
 			}  else {
 				if(file_exists($dirGrades.$numGrade.'.yml')) {
-					header("Location: admin.php?&conflitGrade=true");
+					header("Location: admin.php?page=grade&conflitGrade=true");
 					exit();
 				}
 				if(copy($dirGrades.'NOT_TOUCH/default.yml', $dirGrades.$numGrade.'.yml')) {
@@ -68,7 +68,7 @@ if(isset($_Joueur_)) {
 					$writeGrade = $writeGrade->GetTableau();
 					$writeGrade['Grade'] = $nameGrade;
 					$createGrade = new Ecrire($grade, $writeGrade);
-					header('Location: admin.php?&gradeCreated=true');
+					header('Location: admin.php?page=grade&gradeCreated=true');
 					exit();
 				}
 			}

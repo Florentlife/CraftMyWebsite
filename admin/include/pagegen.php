@@ -83,6 +83,11 @@ if(isset($_GET['page']))
 		include('./admin/page/maintenance.php');
 		break;
 
+		case 'newsletter':  
+		// require_once('./admin/donnees/newsletter.php'); 
+		include('./admin/page/newsletter.php');
+		break;
+
 		case 'support':  
 		require_once('./admin/donnees/support.php'); 
 		include('./admin/page/support.php');

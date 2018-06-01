@@ -142,11 +142,11 @@
                                     <label>
                                         <input type="radio" name="typeLien<?php echo $i; ?>" value="page" <?php if($typeNavRap[$i] == 1) echo 'checked'; ?>>
                                         Option 1: Je souhaite rediriger vers une page existante
-                                    </label></br>
+                                    </label><br>
                                     <label>
                                         <input type="radio" name="typeLien<?php echo $i; ?>" value="lien" <?php if($typeNavRap[$i] == 2) echo 'checked'; ?>>
                                         Option 2: Je souhaite rediriger vers un lien personnalisé
-                                    </label></br>
+                                    </label><br>
                                 </div>
                                 <?php } ?>
                                 <input type="submit" class="btn btn-warning" value="Modifier la navigation rapide"/>
@@ -200,5 +200,4 @@
             </div>
         </div>
         <?php } ?>
-    </div>
     </div>

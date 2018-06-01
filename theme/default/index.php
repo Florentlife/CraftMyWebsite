@@ -35,6 +35,14 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 			?>
 			<?php tempMess(); ?>
 		<?php
+		include("./include/version.php");
+        include("./include/version_distant.php");
+        if($versioncms != $versioncmsrelease && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['update']['showPage'] == 'on')) {?>
+        <div class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            Une mise à jour est disponible (<a href="https://craftmywebsite.fr/telecharger" target="_blank" class="alert-link"><?= $versioncmsrelease?></a>)
+        </div>
+        <?php }
 		$check_installation_dossier = "installation";
 		if (is_dir($check_installation_dossier)) { ?>
 		<header class="heading-pagination">
@@ -44,15 +52,14 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		</header>
 		<section id="page" class="layout">
 			<div class="container">
-			</br>
-			<div class="alert alert-danger">
-				<center><strong>Erreur :</strong> Vous devez absolument effacer le dossier "installation" à la racine de votre site pour commencer à utiliser votre site.</br>
+			<br>
+			<div class="alert alert-danger text-center">
+				<strong>Erreur :</strong> Vous devez absolument effacer le dossier "installation" à la racine de votre site pour commencer à utiliser votre site.<br>
 					Rafraîchissez la page ou appuyez sur le bouton ci-dessous pour revérifier.
-				</center>
 			</div>
 			<center><a href="index.php" class="btn btn-warning btn-lg btn-block">Refaire une vérification</a></center>
-		</br>
-	</br>
+		<br>
+	<br>
 </div></section>
 <?php } else { include('controleur/page.php'); } 
 include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>

@@ -125,13 +125,16 @@ section {
 }
 
 #loader {
+	position : fixed;
+	z-index: 9999;
+	background : url('icon-loader.gif') 50% 50% no-repeat;
+	top : 0px;
+	left : 0px;
+	height : 100%;
+	width : 100%;
+	cursor : wait;
+}
 
-position : fixed;
-z-index: 9999;
-background : url('icon-loader.gif') 50% 50% no-repeat;
-top : 0px;
-left : 0px;
-height : 100%;
-width : 100%;
-cursor : wait;
+.nav-item.dropdown:hover .dropdown-menu{
+    display: block;
 }

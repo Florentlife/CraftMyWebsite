@@ -85,7 +85,7 @@
       </div>
 	  <form role="form" method="post" action="?&action=inscription">
       <div class="modal-body">
-		<center><p><div class="alert alert-warning" style="text-align: center;">Veuillez mettre une adresse email correcte !</div></p></center>
+		<center><div class="alert alert-warning" style="text-align: center;">Veuillez mettre une adresse email correcte !</div></center>
 		<div class="form-group row">
 			<label for="PseudoInscriptionForm" class="col-md-2 col-form-label">Pseudo</label>
 			<div class="col-md-8">
@@ -137,7 +137,7 @@
 			<div class="col-md-6">
 				<img id='captcha' src='include/purecaptcha/purecaptcha_img.php?t=login_form' style="width: 100%;height: 100px;"/>
 				<br/>
-				<button type="button" onclick='var t=document.getElementById("captcha"); t.src=t.src+"&amp;"+Math.random();' href="" class="btn btn-info"><i class="fa fa-refresh"></i> Recharger le captcha</button>
+				<button type="button" onclick='var t=document.getElementById("captcha"); t.src=t.src+"&amp;"+Math.random();' class="btn btn-info"><i class="fa fa-refresh"></i> Recharger le captcha</button>
 				<br/>
 			</div>
 		</div>

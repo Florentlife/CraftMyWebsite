@@ -380,7 +380,7 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 					<label for="contenue" class="form-control-label">Contenue de votre réponse ( 10 000 caractères max ! ) : </label>
 				</div>
 			<div class="col-md-12">
-				<textarea class="form-control" name="contenue" id="contenue" max="10 000" min="1" rows="20" require ></textarea>
+				<textarea class="form-control" name="contenue" id="contenue" maxlength="10000" rows="20" required></textarea>
 			</div>
 		</div>
 		<div class="form-group row">
