@@ -235,6 +235,14 @@
 							<td>Skype</td>
 							<td><?php echo $joueurDonnees['skype']; ?></td>
 						</tr>
+						<tr>
+							<td># votes</td>
+							<td>
+								<?php require_once("modele/topVotes.class.php");
+								$nbreVotes = new TopVotes($bddConnection);
+								echo $nbreVotes->getNbreVotes($getprofil);?>
+							</td>
+						</tr>
 					</table>
 				</div>
 				<div class="footer-bloc">
