@@ -129,6 +129,7 @@ if(isset($_Joueur_)) {
 				$editGrade['PermsPanel']['support']['maintenance']['actions']['editAdminMessage'] = $_POST['permsPanelSupportMaintenanceActionsEditAdminMessage'.$i];
 				$editGrade['PermsPanel']['support']['maintenance']['actions']['editEtatMaintenance'] = $_POST['permsPanelSupportMaintenanceActionsEditEtatMaintenance'.$i];
 				$editGrade['PermsPanel']['support']['maintenance']['actions']['switchRedirectMode'] = $_POST['permsPanelSupportMaintenanceActionsSwitchRedirectMode'.$i];
+				$editGrade['PermsPanel']['newsletter']['actions']['send'] = $_POST['permsPanelNewsletterActionsEditDefaultMessage'.$i];
 				
 				$editGrade['PermsForum']['general']['addCategorie'] = $_POST['permsForumGeneralAddCategorie'.$i];
 				$editGrade['PermsForum']['general']['addForum'] = $_POST['permsForumGeneralAddForum'.$i];
