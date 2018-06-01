@@ -81,9 +81,7 @@
 														echo '<a href="?page=boutique&offre=' .$offresTableau[$i]['id']. '" class="btn btn-primary btn-block" title="Voir la fiche produit"><i class="fa fa-eye"></i></a>';
 													echo '<a href="?action=addOffrePanier&offre='. $offresTableau[$i]['id']. '&quantite=1" class="btn btn-info btn-block" title="Ajouter directement au panier une unité"><i class="fa fa-cart-arrow-down"></i></a>';}
 													else { echo'<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-block" ><span class="glyphicon glyphicon-user"></span> Se connecter</a>'; }
-										echo '<button class="btn btn-success btn-block">Prix : ' .$offresTableau[$i]['prix']. ' <i class="fas fa-gem"></i></button>
-													</br>
-													</button>
+										echo '<button class="btn btn-success btn-block">Prix : ' . ($offresTableau[$i]['prix'] == '0' ? 'gratuit' : $offresTableau[$i]['prix'].'<i class="fas fa-gem">') . ' </i></button>
 												
 										</div>		';
 										$categories[$j]['offres']++;
