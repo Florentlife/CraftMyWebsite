@@ -6,3 +6,5 @@ ALTER TABLE cmw_forum_post ADD perms INT UNSIGNED NOT NULL;
 ALTER TABLE cmw_forum_sous_forum ADD perms INT UNSIGNED NOT NULL;
 
 ALTER TABLE cmw_users ADD show_email TINYINT UNSIGNED NOT NULL;
+
+ALTER TABLE cmw_boutique_offres ADD nbre_vente INT NOT NULL AFTER prix;
