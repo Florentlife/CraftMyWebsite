@@ -20,8 +20,28 @@
                     </div>
                 </div>
             </div>
-        <? }
-        if($_Joueur_['rang'] == 1) { ?>
+        <?php }
+        if($_Joueur_['rang'] == 1) {
+            if(isset($_GET['gradeCreated']))
+            {
+                echo '<div class="alert alert-success text-center">Grade créé avec succès !</div>';
+            }
+            elseif(isset($_GET['nomGradeLong']))
+                echo '<div class="alert alert-danger text-center"><strong>Erreur !</strong><br>Le nom du grade entré est trop long !</div>';
+            elseif(isset($_GET['nomGradeCourt']))
+                echo '<div class="alert alert-danger text-center"><strong>Erreur !</strong><br>Le nom du grade entré est trop court !</div>';
+            elseif (isset($_GET['cdgi'])) {
+                echo '<div class="alert alert-danger text-center"><strong>Erreur Critique!</strong><br>Erreur interne, contacter le support de CraftMyWebsite code d\'erreur : cdgi</div>';
+            }
+            elseif(isset($_GET['cdnti']))
+                echo '<div class="alert alert-danger text-center"><strong>Erreur Critique!</strong><br>Erreur interne, contacter le support de CraftMyWebsite code d\'erreur : cdnti</div>';
+            elseif(isset($_GET['gradeNameAlreadyUsed']))
+                echo '<div class="alert alert-danger text-center"><strong>Erreur !</strong>Le nom du grade existe déjà !</div>';
+            elseif(isset($_GET['gradeDefaultInexistantRegen']))
+                echo '<div class="alert alert-danger text-center"><strong>Erreur Critique !</strong>Un fichier interne a été supprimé ! Réessayer l\'opération, en cas d\'échec contacter le support de CraftMyWebsite</div>';
+            elseif(isset($_GET['conflitGrade']))
+                echo '<div class="alert alert-danger text-center"><strong>Erreur Critique !</strong>Le ficheir existe déjà !</div>';
+         ?>
         <div class="col-md-12">
             <div class="panel panel-default cmw-panel">
                 <div class="panel-heading cmw-panel-header">

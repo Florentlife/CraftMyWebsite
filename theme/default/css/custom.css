@@ -138,3 +138,7 @@ section {
 .nav-item.dropdown:hover .dropdown-menu{
     display: block;
 }
+
+.dropdown-hover:hover .dropdown-menu{
+    display: block;
+}
