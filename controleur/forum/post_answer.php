@@ -3,14 +3,25 @@ if(isset($_Joueur_))
 {
 	if(isset($_POST['id_topic']) AND isset($_POST['contenue']) AND strlen($_POST['contenue']) <= 10000)
 	{
-		$id = htmlspecialchars($_POST['id_topic']);
+		$id = (int)htmlspecialchars($_POST['id_topic']);
 		$contenue = htmlspecialchars($_POST['contenue']);
-		$post_answer = $bddConnection->prepare('INSERT INTO cmw_forum_answer (id_topic, pseudo, contenue, date_post) VALUES (:id_topic, :pseudo, :contenue, NOW())');
-		$post_answer->execute(array(
-			'id_topic' => $id,
-			'pseudo' => $_Joueur_['pseudo'],
-			'contenue' => $contenue
-		));
+		$req = $bddConnection->prepare("SELECT id, pseudo, contenue FROM cmw_forum_answer WHERE id_topic = :id_topic ORDER BY ID DESC LIMIT 1");
+		$req->execute(array("id_topic" => $id));
+		$d = $req->fetch(PDO::FETCH_ASSOC);
+		var_dump($d);
+		if($d["pseudo"] == $_Joueur_["pseudo"]){
+			$contenu = $d["contenue"] ."[hr]Contenu fusionné[hr]". $contenue;
+			$req = $bddConnection->prepare("UPDATE cmw_forum_answer SET contenue = :contenu WHERE id = :id");
+			$req->execute(array("contenu" => $contenu, "id" => $d["id"]));
+		} else {
+			$post_answer = $bddConnection->prepare('INSERT INTO cmw_forum_answer (id_topic, pseudo, contenue, date_post) VALUES (:id_topic, :pseudo, :contenue, NOW())');
+			$post_answer->execute(array(
+				'id_topic' => $id,
+				'pseudo' => $_Joueur_['pseudo'],
+				'contenue' => $contenue
+			));
+		}
+		
 		$id_answer = $bddConnection->prepare('SELECT MAX(id) AS id FROM cmw_forum_answer WHERE id_topic = :id');
 		$id_answer->execute(array(
 			'id' => $id
