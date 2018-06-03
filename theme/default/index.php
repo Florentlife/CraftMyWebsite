@@ -66,6 +66,7 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <!-- Les formulaires pop-up -->
 <?php include('theme/' .$_Serveur_['General']['theme']. '/formulaires.php'); 
 ?>
+<div id="divScroll" class="btn btn-primary" onclick="goToTop()"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/jquery.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/popper.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/bootstrap.min.js"></script>
@@ -76,6 +77,22 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <script src="//api.mcgpass.com/v1/pay.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
 <script>
+
+window.onscroll = function() {divScroll()};
+
+function divScroll() {
+    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+        document.getElementById("divScroll").style.display = "block";
+    } else {
+        document.getElementById("divScroll").style.display = "none";
+    }
+}
+
+function goToTop() {
+    document.body.scrollTop = 0; // Safari
+    document.documentElement.scrollTop = 0; // Chrome, Firefox, IE & Opera
+}
+
 function securPass()
 {
 	$("#progress").removeClass("d-none");
