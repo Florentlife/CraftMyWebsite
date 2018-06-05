@@ -73,7 +73,7 @@
 					{
 						$Img = new ImgProfil($_Joueur_['id']);
 					?>
-					<div class="btn-group" role="group" aria-label="Dropdown Membres">
+					<div class="btn-group dropdown-hover" role="group" aria-label="Dropdown Membres">
                         <a href="?page=profil&profil=<?php echo $_Joueur_['pseudo']; ?>"><button type="button" class="btn btn-primary wow fadeInDown link btn-colored" data-wow-delay="<?php echo ($i+1)/10;?>s"><img src="<?=$Img->getImgToSize(20, $width, $height); ?>" style="margin-left: -10px; width: <?=$width;?>px; height: <?=$height;?>px;"> <?php echo $_Joueur_['pseudo']; ?></button></a>
                         <div class="btn-group" role="group">
                             <button id="btnGroupDrop3" type="button" class="btn btn-primary dropdown-toggle wow fadeInDown link btn-colored" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-wow-delay="<?php echo ($i+1)/10; ?>s"></button>

@@ -145,4 +145,7 @@ section {
 	bottom: 20px;
 	right: 20px;
 	cursor: pointer;
+
+.dropdown-hover:hover .dropdown-menu{
+    display: block;
 }

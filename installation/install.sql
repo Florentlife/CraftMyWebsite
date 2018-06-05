@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `cmw_boutique_offres` (
   `nom` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `prix` int(11) NOT NULL,
+  `nbre_vente` int(11) NOT NULL,
   `categorie_id` int(11) NOT NULL,
   `ordre` int(11) NOT NULL,
   `evo` smallint(5) UNSIGNED NOT NULL,
