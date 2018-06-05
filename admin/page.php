@@ -43,4 +43,21 @@ include './admin/include/header.php';
 			</div>
 		</div>
 	</div>
+	<div id="divScroll" class="btn btn-primary" onclick="goToTop()"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>
+	<script>
+	window.onscroll = function() {divScroll()};
+
+	function divScroll() {
+		if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+			document.getElementById("divScroll").style.display = "block";
+		} else {
+			document.getElementById("divScroll").style.display = "none";
+		}
+	}
+
+	function goToTop() {
+		document.body.scrollTop = 0; // Safari
+		document.documentElement.scrollTop = 0; // Chrome, Firefox, IE & Opera
+	}
+	</script>
 	<?php include './admin/include/footer.php'; ?>

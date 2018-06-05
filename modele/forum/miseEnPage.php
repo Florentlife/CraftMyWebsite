@@ -7,6 +7,7 @@ function espacement($contenue)
 
 function BBCode($contenue, $bdd)
 {
+	$contenue = preg_replace("#\[hr\]#isU", '<hr>', $contenue);
 	$contenue = preg_replace("#\[b\](.+)\[/b\]#isU", '<strong>$1</strong>', $contenue);
 	$contenue = preg_replace('#\[i\](.+)\[/i\]#isU', '<em>$1</em>', $contenue);
 	$contenue = preg_replace('#\[color=(.+)\](.+)\[/color\]#isU', '<span style="color: $1">$2</span>', $contenue);
