@@ -8,7 +8,6 @@ if(isset($_Joueur_))
 		$req = $bddConnection->prepare("SELECT id, pseudo, contenue FROM cmw_forum_answer WHERE id_topic = :id_topic ORDER BY ID DESC LIMIT 1");
 		$req->execute(array("id_topic" => $id));
 		$d = $req->fetch(PDO::FETCH_ASSOC);
-		var_dump($d);
 		if($d["pseudo"] == $_Joueur_["pseudo"]){
 			$contenu = $d["contenue"] ."[hr]Contenu fusionné[hr]". $contenue;
 			$req = $bddConnection->prepare("UPDATE cmw_forum_answer SET contenue = :contenu WHERE id = :id");
