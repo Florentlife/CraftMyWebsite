@@ -65,10 +65,10 @@
                     
 					<?php  $req_vote->execute(array('serveur' => $i));
 							$count_req->execute(array('serveur' => $i));
-							$data_count = $count_req->fetch();
+							$data_count = $count_req->fetch(PDO::FETCH_ASSOC);
 							if($data_count['count'] > 0)
 							{
-								while($liensVotes = $req_vote->fetch())
+								while($liensVotes = $req_vote->fetch(PDO::FETCH_ASSOC))
 								{
 									?>
 										<button type="submit" class="btn btn-primary bouton-vote" name="site" value="<?php echo $liensVotes['id']; ?>" onclick="window.open('<?php echo $liensVotes['lien']; ?>','Fiche','toolbar=no,status=no,width=1350 ,height=900,scrollbars=yes,location=no,resize=yes,menubar=yes')" >

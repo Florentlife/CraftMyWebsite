@@ -74,7 +74,7 @@
 										<?php
 											if(isset($_Joueur_)) {
 												$reqCheckLike = $accueilNews->checkLike($_Joueur_['pseudo'], $news[$i]['id']);
-												$getCheckLike = $reqCheckLike->fetch();
+												$getCheckLike = $reqCheckLike->fetch(PDO::FETCH_ASSOC);
 												$checkLike = $getCheckLike['pseudo'];
 												if($_Joueur_['pseudo'] == $checkLike) {
 													echo '<a href="#" data-toggle="modal" data-target="#news'.$news[$i]['id'].'" class="card-link"><i class="fa fa-comment" aria-hidden="true"></i> '.$countCommentaires.' Commentaires</a>';
@@ -106,9 +106,9 @@
 							unset($Img);
 							if(isset($_Joueur_)) {
 								$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
-								while($newsComments = $getNewsCommentaires->fetch()) {
+								while($newsComments = $getNewsCommentaires->fetch(PDO::FETCH_ASSOC)) {
 									$reqEditCommentaire = $accueilNews->editCommentaire($newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);
-									$getEditCommentaire = $reqEditCommentaire->fetch();
+									$getEditCommentaire = $reqEditCommentaire->fetch(PDO::FETCH_ASSOC);
 									$editCommentaire = $getEditCommentaire['commentaire'];
 									if($newsComments['pseudo'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1) {  ?>
 										<div class="modal fade" id="news<?php echo $news[$i]['id'].'-'.$newsComments['id'].'-edit'; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -144,7 +144,7 @@
 									<br>
 									<?php
 									$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
-									while($newsComments = $getNewsCommentaires->fetch()) {
+									while($newsComments = $getNewsCommentaires->fetch(PDO::FETCH_ASSOC)) {
 										if(isset($_Joueur_)) {
 											
 											$getCheckReport = $accueilNews->checkReport($_Joueur_['pseudo'], $newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);

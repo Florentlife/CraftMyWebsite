@@ -13,7 +13,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['editCa
 	$req3->execute(array( ':id' => $_GET['id']));
 
 	if(!empty($query));
-	while($donnees = $query->fetch())
+	while($donnees = $query->fetch(PDO::FETCH_ASSOC))
 	{
 		$req4 = $bddConnection->prepare('DELETE FROM cmw_boutique_action WHERE id_offre = :id');
 		$req4->execute(array(':id' => $donnees['id']));

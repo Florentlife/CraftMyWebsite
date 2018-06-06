@@ -2,7 +2,7 @@
 require_once('controleur/connection_base.php'); 
 $recupOpffresPaypal = $bddConnection->prepare('SELECT * FROM cmw_jetons_paypal_offres WHERE id = :id');
 $recupOpffresPaypal->execute(array('id' => $_GET['offer']));
-$donneesActions = $recupOpffresPaypal->fetch();
+$donneesActions = $recupOpffresPaypal->fetch(PDO::FETCH_ASSOC);
 include("controleur/paypal/fonction_api.php");
 $requete = construit_url_paypal($_Serveur_['Payement']['paypalUser'], $_Serveur_['Payement']['paypalPass'], $_Serveur_['Payement']['paypalSignature']);
 $requete = $requete."&METHOD=SetExpressCheckout".

@@ -213,7 +213,7 @@
 					<option value='0'>Aucun</option>
 					<?php 
 					$reqPrefix = $_Forum_->getPrefixModeration();
-					while($donnees_prefix = $reqPrefix->fetch())
+					while($donnees_prefix = $reqPrefix->fetch(PDO::FETCH_ASSOC))
 					{
 						?><option value="<?php echo $donnees_prefix['id']; ?>"><?=$donnees_prefix['nom'];?></option><?php 
 					}

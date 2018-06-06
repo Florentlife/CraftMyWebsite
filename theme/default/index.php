@@ -5,6 +5,15 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 <!DOCTYPE html>
 <html>
 <head>
+	<?php $configFile = new Lire('modele/config/config.yml');
+	$configFile = $configFile->GetTableau();
+	echo "<style>
+	:root {
+		--color-main: ". $configFile["color"]["main"] ."; 
+		--color-hover: ". $configFile["color"]["hover"] ."; 
+		--color-focus: ". $configFile["color"]["focus"] ."; 
+	}
+	</style>";?>
 	<meta charset="utf-8" />
 	<meta name="autor" content="CraftMyWebsite , TheTueurCiTy, <?php echo $_Serveur_['General']['name']; ?>" />
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">

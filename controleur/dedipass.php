@@ -29,7 +29,7 @@ else {
 	require_once('modele/joueur/maj.class.php');
 	$joueurMaj = new Maj($_Joueur_['pseudo'], $bddConnection);
 	$playerData = $joueurMaj->getReponseConnection();
-	$playerData = $playerData->fetch();
+	$playerData = $playerData->fetch(PDO::FETCH_ASSOC);
 	$playerData['tokens'] = $playerData['tokens'] + $virtual_currency;
 	$joueurMaj->setReponseConnection($playerData);
 	$joueurMaj->setNouvellesDonneesTokens($playerData);

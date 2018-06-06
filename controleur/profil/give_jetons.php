@@ -13,7 +13,7 @@ if(isset($_POST['pseudo']) && isset($_POST['montant']))
 		$req->execute(array(
 			'pseudo' => $_Joueur_['pseudo']
 		));
-		$donnees = $req->fetch();
+		$donnees = $req->fetch(PDO::FETCH_ASSOC);
 		if($_POST['montant'] <= $donnees['tokens'])
 		{
 			$exec = $bddConnection->prepare('UPDATE cmw_users SET tokens = tokens + :jetons WHERE pseudo = :pseudo');

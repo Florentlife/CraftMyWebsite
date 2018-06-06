@@ -148,7 +148,7 @@
                         </tr>
                     <?php 
                     $reqSmileys = $bddConnection->query('SELECT id, symbole, image FROM cmw_forum_smileys ORDER BY priorite DESC');
-                    while($data = $reqSmileys->fetch())
+                    while($data = $reqSmileys->fetch(PDO::FETCH_ASSOC))
                     {
                     	?><tr>
                     		<td><?=$data['symbole'];?></td>
@@ -183,7 +183,7 @@
                         </tr>
                     <?php 
                     $reqPrefix = $bddConnection->query('SELECT id, span, nom FROM cmw_forum_prefix ORDER BY id ASC');
-                    while($data = $reqPrefix->fetch())
+                    while($data = $reqPrefix->fetch(PDO::FETCH_ASSOC))
                     {
                     	?><tr>
                     		<td><?=$data['nom'];?></td>

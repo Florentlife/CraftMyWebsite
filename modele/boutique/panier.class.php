@@ -89,7 +89,7 @@ class Panier
 			$req->execute(array(
 				'id' => htmlspecialchars($_SESSION['panier']['id'][$i])
 			));
-			$fetch = $req->fetch();
+			$fetch = $req->fetch(PDO::FETCH_ASSOC);
 			$total += $_SESSION['panier']['quantite'][$i] * $fetch['prix'];
 		}
 		return $total*(1-$_SESSION['panier']['reduction']);
@@ -111,7 +111,7 @@ class Panier
 			$req->execute(array(
 				'id' => $id
 			));
-			$fetch = $req->fetch();
+			$fetch = $req->fetch(PDO::FETCH_ASSOC);
 			$nom = $fetch['nom'];
 			$infos = $fetch['description'];
 	}
@@ -142,7 +142,7 @@ class Panier
 		$req->execute(array(
 			'code' => htmlspecialchars($code)
 		));
-		$fetch = $req->fetch();
+		$fetch = $req->fetch(PDO::FETCH_ASSOC);
 		if(isset($fetch['titre']) AND isset($fetch['pourcent']))
 		{
 			$pourcent = $fetch['pourcent'];

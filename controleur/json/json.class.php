@@ -145,7 +145,7 @@ class JsonCon
 
 	public function GetBanList()
 	{
-		$file = $this->api->call("files.read", array("banned-players.txt"));
+		$file = $this->api->call("files.read", array("banned-players.json"));
 		$banlist = $this->api->call("getBannedPlayers");
 		return array($banlist, $file);
 	}

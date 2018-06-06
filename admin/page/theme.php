@@ -13,7 +13,7 @@
 
    <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editTheme'] == true) { ?>
 
-   <div class="col-xs-12 col-md-4 text-center">
+   <div class="col-xs-12 col-md-4 text-center" style="height: 400px">
       <div class="panel panel-default cmw-panel">
           <div class="panel-heading cmw-panel-header">
                 <h3 class="panel-title"><strong>Choisissez votre thème</strong></h3>
@@ -55,7 +55,7 @@
 <?php
  } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editBackground'] == true) { ?>
 
-<div class="col-xs-12 col-md-4 text-center">
+<div class="col-xs-12 col-md-4 text-center" style="height: 400px">
   <div class="panel panel-default cmw-panel">
       <div class="panel-heading cmw-panel-header">
           <h3 class="panel-title"><strong>Choisissez le fond d'écran</strong></h3>
@@ -82,7 +82,7 @@
 
 <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editTypeBackground'] == true) { ?>
 
-<div class="col-xs-12 col-md-4 text-center">
+<div class="col-xs-12 col-md-4 text-center" style="height: 400px">
   <div class="panel panel-default cmw-panel">
     <div class="panel-heading cmw-panel-header">
         <h3 class="panel-title"><strong>Choisissez le type de fond d'écran</strong></h3>
@@ -110,6 +110,29 @@
     </form>
   </div>
 </div>
+</div>
+<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editTheme']) { ?>
+
+<div class="col-xs-12 col-md-4 text-center" style="height: 400px">
+	<div class="panel panel-default cmw-panel">
+		<div class="panel-heading cmw-panel-header">
+			<h3 class="panel-title"><strong>Couleur du thème</strong></h3>
+		</div>
+		<div class="panel-body">
+			<h3>Choisir vos couleurs</h3>
+			<form method="POST" action="?&action=themeColor">
+				<?php $lecture = new Lire('modele/config/config.yml');
+					$lecture = $lecture->GetTableau()?>
+				<label>Couleur principale</label><br>
+				<input type="color" name='color_main'<?php if(isset($lecture["color"]["main"])) echo ' value="'.$lecture["color"]["main"].'"'?>><br><br>
+				<label>Couleur lors du survol</label><br>
+				<input type="color" name='color_hover'<?php if(isset($lecture["color"]["hover"])) echo ' value="'.$lecture["color"]["hover"].'"'?>><br><br>
+				<label>Couleur lors du clic</label><br>
+				<input type="color" name='color_focus'<?php if(isset($lecture["color"]["focus"])) echo ' value="'.$lecture["color"]["focus"].'"'?>><br><br>
+				<input type="submit" class="btn btn-success" value="Valider les changements">
+			</form>
+		</div>
+	</div>
 </div>
 <?php }
 if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['theme']['actions']['editTheme'] == true) {

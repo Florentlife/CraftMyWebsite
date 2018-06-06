@@ -1,6 +1,6 @@
 <?php include('theme/'.$_Serveur_['General']['theme'].'/config/configTheme.php');
 ?>
-<div class="col-xs-12 text-center">
+<div class="col-xs-12 col-md-8 text-center">
     <div class="panel panel-default cmw-panel">
         <div class="panel-heading cmw-panel-header">
             <h3 class="panel-title"><strong>Configuration du thème</strong></h3>

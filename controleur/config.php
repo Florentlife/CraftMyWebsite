@@ -65,7 +65,7 @@
 	{
 		$req = $bdd->prepare('SELECT rang FROM cmw_users WHERE pseudo = :pseudo');
 		$req->execute(array('pseudo' => $pseudo ));
-		$joueurDonnees = $req->fetch();
+		$joueurDonnees = $req->fetch(PDO::FETCH_ASSOC);
 		if($joueurDonnees['rang'] == 0) {
 			$gradeSite = 'Joueur';
 		} elseif($joueurDonnees['rang'] == 1) {

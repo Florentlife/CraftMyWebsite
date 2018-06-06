@@ -7,7 +7,7 @@
 	$i = 0;
 	if($recupOffres)
 	{
-		while($tableauOffres = $recupOffres->fetch())
+		while($tableauOffres = $recupOffres->fetch(PDO::FETCH_ASSOC))
 		{
 			$offresTableau[$i] = array(
 				'id' => $tableauOffres['id'],

@@ -63,7 +63,7 @@ if(isset($_GET['choix']))
 								<select class="c-select" name="emplacement" id="emplacement" required >
 									<?php 
 									$emplacement = $bddConnection->query('SELECT * FROM cmw_forum_categorie');
-									while($emplacementd = $emplacement->fetch())
+									while($emplacementd = $emplacement->fetch(PDO::FETCH_ASSOC))
 									{
 										if(isset($emplacementd['sous-forum']))
 										{
@@ -74,7 +74,7 @@ if(isset($_GET['choix']))
 											$sous_forum->execute(array(
 												'id' => $emplacementd['id']
 											));
-											while($sous_forumd = $sous_forum->fetch())
+											while($sous_forumd = $sous_forum->fetch(PDO::FETCH_ASSOC))
 											{
 												?><option value="<?php echo $emplacementd['id']; ?>_<?php echo $sous_forumd['id']; ?>"><?php echo $sous_forumd['nom']; ?></option><?php
 											}

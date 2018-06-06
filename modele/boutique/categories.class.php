@@ -9,7 +9,7 @@ class CategoriesList
 		$recupCategories = $bddConnection->query('SELECT * FROM cmw_boutique_categories');
 		
 		$i = 0;
-		while($tableauCategories = $recupCategories->fetch())
+		while($tableauCategories = $recupCategories->fetch(PDO::FETCH_ASSOC))
 		{
 			$categories[$i] = array(
 				'id' => $tableauCategories['id'],
@@ -34,7 +34,7 @@ class CategoriesList
 		$recupCategories->execute(Array ('id' => $id));
 		
 		$i = 0;
-		while($infosCategories = $recupCategories->fetch())
+		while($infosCategories = $recupCategories->fetch(PDO::FETCH_ASSOC))
 		{
 			$categories['serveur'] = $infosCategories['serveur'];
 			$categories['connection'] = $infosCategories['connection'];

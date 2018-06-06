@@ -102,25 +102,25 @@ section {
 }
 
 .btn-colored{
-    background-color: #502c87;
-    border-color: #502c87;
+    background-color: var(--color-main);
+    border-color: var(--color-main);
 }
 
 .btn-colored:hover{
-    background-color: #6738ad;
-    border-color: #6738ad;
+    background-color: var(--color-hover);
+    border-color: var(--color-hover);
     transition: 0.2s;
 }
 
 .btn-colored:active{
-    background-color: #8f65cd;
-    border-color: #8f65cd;
+    background-color: var(--color-focus);
+    border-color: var(--color-focus);
     transition: 0.2s;
 }
 
 .btn-colored:focus{
-    background-color: #8f65cd;
-    border-color: #8f65cd;
+    background-color: var(--color-focus);
+    border-color: var(--color-focus);
     transition: 0.2s;
 }
 

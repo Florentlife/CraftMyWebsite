@@ -8,7 +8,7 @@ if(isset($_Joueur_) AND isset($_POST['id_answer']))
 	$req->execute(array(
 		'id' => $id
 	));
-	$data = $req->fetch();
+	$data = $req->fetch(PDO::FETCH_ASSOC);
 	if($data['contenue'] !== $contenue)
 	{
 		$update = $bddConnection->prepare('UPDATE cmw_forum_answer SET contenue = :contenue, d_edition = NOW() WHERE id = :id ');

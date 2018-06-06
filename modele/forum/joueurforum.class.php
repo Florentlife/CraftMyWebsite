@@ -26,7 +26,7 @@ class JoueurForum {
 			'id' => $id_topic,
 			'pseudo' => $this->_JoueurForum_['pseudo']
 		));
-		$exist = $req->fetch();
+		$exist = $req->fetch(PDO::FETCH_ASSOC);
 		if(isset($exist['pseudo']))
 		{
 			$update = $this->bdd->prepare('UPDATE cmw_forum_lu SET vu = 1 WHERE id_topic = :id AND pseudo = :pseudo');
@@ -53,7 +53,7 @@ class JoueurForum {
 			'pseudo' => $this->_JoueurForum_['pseudo'],
 			'id_topic' => $id_topic
 		));
-		$read = $req->fetch();
+		$read = $req->fetch(PDO::FETCH_ASSOC);
 		if($read['vu'] == 1)
 		{
 			return TRUE;
@@ -72,7 +72,7 @@ class JoueurForum {
 			'pseudo' => $this->_JoueurForum_['pseudo'],
 			'id_topic' => $id_topic
 		));
-		$follow = $followr->fetch();
+		$follow = $followr->fetch(PDO::FETCH_ASSOC);
 		if(!empty($follow['id_topic']))
 		{
 			$follow = true;

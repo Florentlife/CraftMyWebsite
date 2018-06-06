@@ -5,7 +5,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance'][
     $i = 0;
 
     if(!empty($req))
-        while($Donnees = $req->fetch())
+        while($Donnees = $req->fetch(PDO::FETCH_ASSOC))
         {
             $maintenance[$i]['maintenanceId'] = $Donnees['maintenanceId'];
             $maintenance[$i]['maintenanceMsg'] = $Donnees['maintenanceMsg'];

@@ -20,7 +20,7 @@ if(isset($_Joueur_)) {
     require_once('modele/accueil/countNews.class.php');
     $req_CountReportNews = new CountNews($bddConnection);
     $rep_CountReportNews = $req_CountReportNews->GetCountReports();
-    $get_CountReportNews = $rep_CountReportNews->fetch();
+    $get_CountReportNews = $rep_CountReportNews->fetch(PDO::FETCH_ASSOC);
     $id = $get_CountReportNews['id'];
 
     if($ExistNews == "0") {

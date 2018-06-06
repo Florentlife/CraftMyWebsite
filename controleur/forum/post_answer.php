@@ -25,7 +25,7 @@ if(isset($_Joueur_))
 		$id_answer->execute(array(
 			'id' => $id
 		));
-		$id_answerd = $id_answer->fetch();
+		$id_answerd = $id_answer->fetch(PDO::FETCH_ASSOC);
 		if(empty($id_answerd['id']))
 		{
 			$id_answerd['id'] = 0;

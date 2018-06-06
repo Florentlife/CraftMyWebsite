@@ -1,4 +1,4 @@
-<?php if(urldecode($_GET['ActivateSuccess'])){ ?>
+<?php if(isset($_GET["ActivateSuccess"]) && urldecode($_GET['ActivateSuccess'])){ ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -8,7 +8,7 @@
 			});
 		}
 	</script>
-<?php } elseif(urldecode($_GET['WaitActivate'])) { ?>
+<?php } elseif(isset($_GET["WaitActivate"]) && urldecode($_GET['WaitActivate'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -18,7 +18,7 @@
 			});
 		}
 	</script>
-<?php } elseif(urldecode($_GET['ActivateImpossible'])) { ?>
+<?php } elseif(isset($_GET["ActivateImpossible"]) && urldecode($_GET['ActivateImpossible'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -28,7 +28,7 @@
 			});
 		}
 	</script>
-<?php } elseif(urldecode($_GET['MessageEnvoyer'])) { ?>
+<?php } elseif(isset($_GET["MessageEnvoyer"]) && urldecode($_GET['MessageEnvoyer'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -38,7 +38,7 @@
 			});
 		}
 	</script>
-<?php } elseif(urldecode($_GET['MessageTropLong'])) { ?>
+<?php } elseif(isset($_GET["MessageTropLong"]) && urldecode($_GET['MessageTropLong'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -48,7 +48,7 @@
 			});
 		}
 	</script>
-<?php } elseif(urldecode($_GET['MessageTropCourt'])) { ?>
+<?php } elseif(isset($_GET["MessageTropCourt"]) && urldecode($_GET['MessageTropCourt'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -58,7 +58,7 @@
 			});
 		}
 	</script>
-<?php } elseif(urldecode($_GET['NotOnline'])) { ?>
+<?php } elseif(isset($_GET["NotOnline"]) && urldecode($_GET['NotOnline'])) { ?>
 	<script>
 		window.onload=function(){
 			    Snarl.addNotification({
@@ -68,7 +68,7 @@
 			});
 		}
     </script> 
-<?php } elseif(urldecode($_GET['NewsNotExist'])) { ?>
+<?php } elseif(isset($_GET["NewsNotExist"]) && urldecode($_GET['NewsNotExist'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -78,7 +78,7 @@
 		    });
 	    }
     </script>
-<?php } elseif(urldecode($_GET['TicketNotExist'])) { ?>
+<?php } elseif(isset($_GET["TicketNotExist"]) && urldecode($_GET['TicketNotExist'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -88,7 +88,7 @@
 		    });
 	    }
     </script>
-<?php } elseif(urldecode($_GET['CommentaireNotExist'])) { ?>
+<?php } elseif(isset($_GET["CommentaireNotExist"]) && urldecode($_GET['CommentaireNotExist'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -98,7 +98,7 @@
 		    });
 	    }
     </script> 
-<?php } elseif(urldecode($_GET['LikeExist'])) { ?>
+<?php } elseif(isset($_GET["LikeExist"]) && urldecode($_GET['LikeExist'])) { ?>
     <script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -108,7 +108,7 @@
 			});
 		}
 	</script> 
-<?php } elseif(urldecode($_GET['LikeAdd'])) { ?>
+<?php } elseif(isset($_GET["LikeAdd"]) && urldecode($_GET['LikeAdd'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -118,7 +118,7 @@
 			});
 		}
 	</script>
-<?php } elseif(urldecode($_GET['SuppressionCommentaire'])) { ?>
+<?php } elseif(isset($_GET["SuppressionCommentaire"]) && urldecode($_GET['SuppressionCommentaire'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({
@@ -128,7 +128,7 @@
 			});
 		};
 	</script>
-<?php } elseif(urldecode($_GET['SuppressionImpossible'])) { ?>
+<?php } elseif(isset($_GET["SuppressionImpossible"]) && urldecode($_GET['SuppressionImpossible'])) { ?>
 	<script>
 		window.onload=function(){
 			Snarl.addNotification({

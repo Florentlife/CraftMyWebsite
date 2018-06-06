@@ -8,19 +8,13 @@ $ticketsCommentaireObj = new CommentairesTickets($bddConnection);
 $ticketCommentairesReq = $ticketsCommentaireObj->GetListTicketsCommentaires();
 
 $j = 0;
-while($a = $ticketCommentairesReq->fetch()) 
+while($a = $ticketCommentairesReq->fetch(PDO::FETCH_ASSOC)) 
 {
 	$i = $a['id_ticket'];
 	if(!isset($ticketCommentaires[$i]))
 		$j = 0;
 		
-	$ticketCommentaires[$i][$j]['id'] = $a['id'];
-	$ticketCommentaires[$i][$j]['auteur'] = $a['auteur'];
-	$ticketCommentaires[$i][$j]['message'] = $a['message'];
-	$ticketCommentaires[$i][$j]['jour'] = $a['jour'];
-	$ticketCommentaires[$i][$j]['mois'] = $a['mois'];
-	$ticketCommentaires[$i][$j]['heure'] = $a['heure'];
-	$ticketCommentaires[$i][$j]['minute'] = $a['minute'];
+	$ticketCommentaires[$i][$j] = $a;
 	$j++;
 }
 ?>

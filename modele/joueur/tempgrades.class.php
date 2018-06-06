@@ -25,7 +25,7 @@ class TempGrades
 	{
 		$joueursGrades = $this->bddConnection->prepare('SELECT * FROM cmw_tempgrades WHERE pseudo = :pseudo');	
 		$joueursGrades->execute(Array ( 'pseudo' => $this->pseudo ));
-		$joueursGrades = $joueursGrades->fetch();
+		$joueursGrades = $joueursGrades->fetch(PDO::FETCH_ASSOC);
 		return $joueursGrades;
 	}
 	

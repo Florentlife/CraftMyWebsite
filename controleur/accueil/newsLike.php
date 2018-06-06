@@ -7,14 +7,14 @@ if(isset($_Joueur_)) {
     $req_ExistNews = new ExistNews($bddConnection);
     $get_ExistNews = $req_ExistNews->GetExistNews($id_news);
     $req_ExistLike = $req_ExistNews->GetExistLike($pseudo, $id_news);
-    $get_ExistLike = $req_ExistLike->fetch();
+    $get_ExistLike = $req_ExistLike->fetch(PDO::FETCH_ASSOC);
     $ExistLike = $get_ExistLike['pseudo'];
     $ExistNews = $get_ExistNews->rowCount();
     
     require_once('modele/accueil/countNews.class.php');
     $req_CountLikes = new CountNews($bddConnection);
     $rep_CountLikes = $req_CountLikes->GetCountLikes();
-    $get_CountLikes = $rep_CountLikes->fetch();
+    $get_CountLikes = $rep_CountLikes->fetch(PDO::FETCH_ASSOC);
     $CountLikes = $get_CountLikes['id'];
 
     if($ExistNews == "0") {

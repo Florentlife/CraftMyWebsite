@@ -1,7 +1,8 @@
 <?php // On appelle les classes du controleur qui instancies les objets principaux (BDD, config, JSONAPI...).
 ob_start();
 session_start();
-//error_reporting(0);
+error_reporting(-1);
+if(!isset($_SESSION["mode"])) $_SESSION["mode"] = false; // pour les admins du forum
 //ini_set('display_errors', 1);
 require_once ('controleur/config.php');
 // On vérifie si le CMS n'a pas été installé, si il ne l'est pas, on redirige vers les fichiers d'installation...

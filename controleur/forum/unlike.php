@@ -14,7 +14,7 @@ if(isset($_POST['id_answer']) && isset($_Joueur_))
 	}
 	else
 	{
-		$dtest = $rtest->fetch();
+		$dtest = $rtest->fetch(PDO::FETCH_ASSOC);
 		$delete = $bddConnection->prepare('DELETE FROM cmw_forum_like WHERE id_answer = :id_answer AND pseudo = :pseudo AND Appreciation = :Appreciation');
 		$delete->execute(array(
 			'id_answer' => $id,
@@ -26,7 +26,7 @@ if(isset($_POST['id_answer']) && isset($_Joueur_))
 	$rheader->execute(array(
 		'id' => $id
 	));
-	$header = $rheader->fetch();
+	$header = $rheader->fetch(PDO::FETCH_ASSOC);
 	header('Location: ?&page=post&id=' . $header['id_topic'] . '');
 }
 else

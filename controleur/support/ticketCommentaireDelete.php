@@ -15,7 +15,7 @@ if(isset($_Joueur_)) {
     else
         $req_ExistCommentaire = $commentairesTickets->GetExistCommentaire($id_comm, $id_ticket, $pseudo);
     $req_AuteurCommentaire = $commentairesTickets->GetAuteurCommentaire($id_comm, $id_ticket);
-    $get_AuteurCommentaire = $req_AuteurCommentaire->fetch();
+    $get_AuteurCommentaire = $req_AuteurCommentaire->fetch(PDO::FETCH_ASSOC);
 
     $AuteurCommentaire = $get_AuteurCommentaire['auteur'];
     $ExistCommentaire = $req_ExistCommentaire->rowCount();

@@ -6,7 +6,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['tickets']['sho
   $i = 0;
 
   if(!empty($req))
-    while($donnees = $req->fetch())
+    while($donnees = $req->fetch(PDO::FETCH_ASSOC))
     {
       $donneesSupport[$i]['id'] = $donnees['id'];
       $donneesSupport[$i]['auteur'] = $donnees['auteur'];

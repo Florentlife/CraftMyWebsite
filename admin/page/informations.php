@@ -623,7 +623,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
       <div class="panel-body" style="height: 155px; width: 100%;">
         <?php 
         $all_message_postit = $bddConnection->query('SELECT id, auteur, message FROM cmw_postit ORDER BY id DESC LIMIT 0, 4');
-        while ($message_postit = $all_message_postit->fetch()) { ?>
+        while ($message_postit = $all_message_postit->fetch(PDO::FETCH_ASSOC)) { ?>
         	<p><strong>[<?php echo $message_postit['auteur']; ?>] </strong> <?php echo $message_postit['message']; ?>&nbsp;&nbsp; <a href="?&action=supprPostit&id=<?php echo $message_postit['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
        <?php } ?>
 
@@ -665,7 +665,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
           <th>Jetons</th>
           <th>Date d'inscription</th>
           <?php $req_etatMail = $bddConnection->query("SELECT etatMail FROM cmw_sysmail WHERE idMail = 1");
-          $get_etatMail = $req_etatMail->fetch();
+          $get_etatMail = $req_etatMail->fetch(PDO::FETCH_ASSOC);
           $result_etatMail = $get_etatMail['etatMail'];
           if($result_etatMail == "1") { ?>
           <th>Etat</th>
@@ -868,7 +868,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         $reqNameSupp = $bddConnection->prepare("SELECT titre as titre FROM cmw_support WHERE id LIKE :id");
         $reqNameSupp->bindParam(':id', $lastCommentaireSupp[$i]['id_ticket']);
         $reqNameSupp->execute();
-        $getNameSupp = $reqNameSupp->fetch();
+        $getNameSupp = $reqNameSupp->fetch(PDO::FETCH_ASSOC);
         $NameSupp = $getNameSupp['titre']; ?>
         <a href="#" class="list-group-item">
           <span class="badge"><?php echo $lastCommentaireSupp[$i]['date_post']; ?></span>
@@ -883,7 +883,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         $reqNameNews = $bddConnection->prepare("SELECT titre as titre FROM cmw_news WHERE id LIKE :id");
         $reqNameNews->bindParam(':id', $lastCommentaireNews[$i]['id_news']);
         $reqNameNews->execute();
-        $getNameNews = $reqNameNews->fetch();
+        $getNameNews = $reqNameNews->fetch(PDO::FETCH_ASSOC);
         $NameNews = $getNameNews['titre']; ?>
         <a href="#" class="list-group-item">
           <span class="badge"><?php echo date('Y-m-d', $lastCommentaireNews[$i]['date_post']).' '.date('H:i:s', $lastCommentaireNews[$i]['date_post']); ?></span>
@@ -940,7 +940,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
  if(!empty($lastOffre[$i]['id'])) {
   $NameCategorie = $lastOffre[$i]['categorie_id'];
   $req_NameCategorie = $bddConnection->query("SELECT titre FROM cmw_boutique_categories WHERE id = '$NameCategorie'");
-  $get_NameCategorie = $req_NameCategorie->fetch();
+  $get_NameCategorie = $req_NameCategorie->fetch(PDO::FETCH_ASSOC);
   $inverse_NameCategorie = $get_NameCategorie['titre']; ?>
   <a href="#" class="list-group-item">
    <i class="fa fa-fw fa-shopping-cart"></i> Dernière offre : <?php echo '<strong>'.$lastOffre[$i]['nom'].'</strong> dans la catégorie <strong>'.$inverse_NameCategorie.'</strong> au prix de <strong>'.$lastOffre[$i]['prix'].' Jetons</strong>'; ?>
@@ -998,7 +998,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
       <?php $NameOffre = $boutiquesStats[$i]['offre_id'];
       $req_NameOffre = $bddConnection->prepare("SELECT nom FROM cmw_boutique_offres WHERE id = :offre_id");
       $req_NameOffre->execute(array('offre_id' => $NameOffre));
-      $get_NameOffre = $req_NameOffre->fetch();
+      $get_NameOffre = $req_NameOffre->fetch(PDO::FETCH_ASSOC);
       $inverse_NameOffre = $get_NameOffre['nom']; ?>
       <td><?php if(!empty($inverse_NameOffre)){echo $inverse_NameOffre;}else{echo 'Offre supprimée';} ?></td>
       <td><?php echo $boutiquesStats[$i]['prix']; ?></td>
