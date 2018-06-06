@@ -30,3 +30,7 @@ Payement:
     paypalSignature: ""
     paypalEmail: curvalle.florent@gmail.com
     paypalMethodeAPI: "1"
+color:
+    main: '#ff0080'
+    hover: '#ff00ff'
+    focus: '#ff80c0'
