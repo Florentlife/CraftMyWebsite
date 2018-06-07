@@ -420,6 +420,11 @@
                                                                                                                 <input type="checkbox" name="permsPanelInfoStatsMembersEditLimitIp<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['info']['stats']['members']['editLimitIp'] == true) echo 'checked'; ?> /> Edition de la limite d'inscription par IP
                                                                                                             </label>
                                                                                                         </div>
+                                                                                                        <div class="checkbox">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" name="permsPanelInfoStatsMembersShowIP<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['info']['stats']['members']['showIP']) echo 'checked'; ?> /> Voir les adresse IP des joueurs
+                                                                                                            </label>
+                                                                                                        </div>
                                                                                                     </div>
                                                                                                     <div class="col-lg-10">
                                                                                                         <div class="checkbox">
