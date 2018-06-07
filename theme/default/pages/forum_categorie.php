@@ -1,4 +1,4 @@
-<?php if(!isset($_GET['id'], $_Joueur_)) header('Location: ?page=erreur&erreur=16');
+<?php if(!isset($_GET['id'])) header('Location: ?page=erreur&erreur=16');
 
 	//Vérification de l'existence du forum :
 	$id = $_GET['id'];
@@ -257,7 +257,7 @@
 			</div>
 			<?php
 		} 
-	if((($categoried['close'] == 0 AND $sousforumd['close'] == 0) OR ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['seeForumHide'] == true)) AND !$_SESSION['mode'])
+	if(isset($_Joueur_) && ((($categoried['close'] == 0 AND $sousforumd['close'] == 0) OR ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['seeForumHide'] == true)) AND !$_SESSION['mode']))
 	{
 		?>
 		<hr/>
