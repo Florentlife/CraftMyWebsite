@@ -684,7 +684,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         <?php if($result_etatMail == "1") { ?>
         <td><?php if($membresStats[$i]['ValidationMail'] == "1"){echo "Valide";}else{echo "Invalide";} ?></td>
         <?php } ?>
-		<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['members']['showIP']{?>
+		<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['members']['showIP']){?>
         <td><?php echo $membresStats[$i]['ip']; ?></td>
 		<?php }?>
       </tr>
