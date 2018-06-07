@@ -62,7 +62,7 @@ class Chat extends JsonCon
 					$span = '</span>';
 					$aFermer = 0;
 				}
-				elseif($soan == 0 && $i == 0)
+				elseif($span == 0 && $i == 0)
 				{
 					$span = '';
 					$aFermer= 0;

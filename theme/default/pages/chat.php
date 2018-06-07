@@ -18,13 +18,12 @@
 				for($i = 0; $i < count($jsonCon); $i++)
 				{
 				?>
-					  
-						<li class="nav-item">
-							<a href="#categorie-<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo 'active'; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></a>
-						</li>
+					<li class="nav-item">
+						<a href="#categorie-<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo 'active'; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></a>
+					</li>
 				<?php 
-			} 
-			?>
+				} 
+				?>
 				</ul>
 				<div class="tab-content" id="messages">
 				<?php
@@ -55,7 +54,7 @@
 				<?php 
 				}
 				?>
-			</div>
+				</div>
 			<?php 
 			if(isset($_Joueur_))
 			{
@@ -83,7 +82,7 @@
 				<?php 
 			}
 			?>
-		</div>
+			</div>
 		<?php
 		}
 		?>
