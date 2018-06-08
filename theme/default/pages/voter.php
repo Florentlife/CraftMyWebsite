@@ -91,7 +91,7 @@
 			else
 				{
 					?><center>
-		<h4>Veuillez vous connecter pour accéder à la boutique:</h4>
+		<h4>Veuillez vous connecter pour accéder aux votes:</h4>
 		<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-user"></span> Connexion</a>
 		</center><?php
 				} ?>				
