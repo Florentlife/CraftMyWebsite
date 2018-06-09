@@ -1,5 +1,5 @@
 <?php
-error_reporting(-1);
+error_reporting(0);
 	// On appelle les classes du controleur qui instancies les objets principaux (BDD, config, JSONAPI...).
 	require_once('controleur/config.php');
 	require_once('controleur/connection_base.php');	
@@ -35,10 +35,9 @@ error_reporting(-1);
 		if(isset($_GET['action'])){
 			include('admin/donnees.php');
 			include('admin/action.php');
-		} else {
-			$pageadmin = $_GET['page'];
-			include('admin/page.php');
-		}
+		
+		$pageadmin = $_GET['page'];
+		include('admin/page.php');
 	}
 	else
 	{
