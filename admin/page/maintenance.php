@@ -97,7 +97,7 @@
                                             <div class="panel-body">
                                                 <form method="post" action="?&action=switchMaintenance&maintenanceId=<?=$maintenance[$i]['maintenanceId']?>">
 													<label>Définir une date de fin de maintenance: <small>Laissez vide si aucune</small></label>
-													<input type="text" name="date" value="<?php if(!empty($maintenance[$i]['dateFin']) && $maintenance[$i]['dateFin'] > time()) echo date("d/m/Y H:i", $maintenance[$i]["dateFin"]);?>" class="form-control" placeholder="format: mm/dd/yy hh:mm">
+													<input type="text" name="date" value="<?php if(!empty($maintenance[$i]['dateFin']) && $maintenance[$i]['dateFin'] > time()) echo date("d/m/Y H:i", $maintenance[$i]["dateFin"]);?>" class="form-control" placeholder="format: jj/mm/aaaa hh:mm">
                                                     <?php if($maintenance[$i]['maintenanceEtat'] == 1) { 
                                                         echo '<button type="submit" class="btn btn-danger btn-block" />Désactiver la maintenance</button>';
                                                     } else {
