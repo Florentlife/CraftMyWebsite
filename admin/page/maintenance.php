@@ -87,7 +87,7 @@
                                         <?php } ?>
                             </div>
                             <div class="row">
-                                <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['actions']['editEtatMaintenance'] == true) { ?>
+                                <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['actions']['editEtatMaintenance']) { ?>
                                     <div class="col-md-12">
                                         <div class="panel panel-success" style="text-align: center;">
                                             <div class="panel-heading">
@@ -95,11 +95,13 @@
                                             </div>
                                             <center>Vous souhaitez rendre le site accessible uniquement aux administrateurs ? Il vous suffit d'appuyer sur le bouton ci-dessous. Les visiteurs seront redirigés vers la page de maintenance.</center>
                                             <div class="panel-body">
-                                                <form method="post" action="?&action=switchMaintenance&maintenanceId=<?php echo $maintenance[$i]['maintenanceId']; ?>">
+                                                <form method="post" action="?&action=switchMaintenance&maintenanceId=<?=$maintenance[$i]['maintenanceId']?>">
+													<label>Définir une date de fin de maintenance: <small>Laissez vide si aucune</small></label>
+													<input type="text" name="date" value="<?php if(!empty($maintenance[$i]['dateFin']) && $maintenance[$i]['dateFin'] > time()) echo date("d/m/Y H:i", $maintenance[$i]["dateFin"]);?>" class="form-control" placeholder="format: mm/dd/yy hh:mm">
                                                     <?php if($maintenance[$i]['maintenanceEtat'] == 1) { 
-                                                        echo '<button type="submit" name="maintenanceEtat" class="btn btn-danger btn-block" value="0" />Désactiver la maintenance</button>';
+                                                        echo '<button type="submit" class="btn btn-danger btn-block" />Désactiver la maintenance</button>';
                                                     } else {
-                                                        echo '<button type="submit" name="maintenanceEtat" class="btn btn-success btn-block" value="1" />Activer la maintenance</button>';
+                                                        echo '<button type="submit" class="btn btn-success btn-block" />Activer la maintenance</button>';
                                                     } ?> 
                                                 </form>
                                             </div>

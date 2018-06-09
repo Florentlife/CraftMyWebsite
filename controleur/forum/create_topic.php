@@ -34,7 +34,7 @@ if(isset($_Joueur_))
 		));
 		}
 		$return = $bddConnection->query('SELECT MAX(id) AS id FROM cmw_forum_post');
-		$return = $return->fetch();
+		$return = $return->fetch(PDO::FETCH_ASSOC);
 		$follow = $bddConnection->prepare('INSERT INTO cmw_forum_topic_followed (pseudo, id_topic, last_answer) VALUES (:pseudo, :id_topic, 0) ');
 		$follow->execute(array(
 			'pseudo' => $_Joueur_['pseudo'],

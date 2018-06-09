@@ -4,7 +4,7 @@ $topVotes = new TopVotes($bddConnection);
 $topVotes = $topVotes->GetTopVoteurs();
 
 $j = 1;
-for($i = 1; $donneesVotes = $topVotes->fetch(); $i++)
+for($i = 1; $donneesVotes = $topVotes->fetch(PDO::FETCH_ASSOC); $i++)
 {
 	$voteur[$i]['pseudo'] = $donneesVotes['pseudo'];
 	$voteur[$i]['nbre_votes'] = $donneesVotes['nbre_votes'];

@@ -1,8 +1,9 @@
 <?php
 require('modele/forum/date.php');
-if(isset($_GET['id']) AND isset($_Joueur_))
+if(isset($_GET['id']))
 {
 	$id = $_GET['id'];
+	if(isset($_Joueur_))
 	$_JoueurForum_->topic_lu($id, $bddConnection);
 	$topicd = $_Forum_->getTopic($id);
 	if(!empty($topicd['id']))
@@ -17,13 +18,13 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 	<section class="layout" id="page">
 	<div class="container">
 	<nav class="nav nav-pills nav-justified">
-		<?php if($_JoueurForum_->is_followed($id))
+		<?php if(isset($_Joueur_) && $_JoueurForum_->is_followed($id))
 		{
 			?>
 			<a class="nav-link" href="?&action=unfollow&id_topic=<?php echo $topicd['id']; ?>">Ne plus suivre cette discussion </a>
 				<?php
 		}
-		else
+		else if(isset($_Joueur_))
 		{
 			?>
 			<a class="nav-link" href="?&action=follow&id_topic=<?php echo $topicd['id']; ?>">Suivre cette discussion</a>
@@ -119,13 +120,15 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 		</div>
 	</div>
 	<div class="row">
+		<?php if(isset($_Joueur_)){?>
 		<div class="col-md-2">
-	<form action="?&action=signalement_topic" method="post">
-		<input type="hidden" name="id_topic2" value='<?php echo $id; ?>' />
-		<button type="submit" class="btn btn-primary">Signaler !</button>
-	</form>
-	</div>
-	<?php if($_Joueur_['pseudo'] == $topicd['pseudo'] OR ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['editTopic'] == true) AND !$_SESSION['mode'])
+			<form action="?&action=signalement_topic" method="post">
+				<input type="hidden" name="id_topic2" value='<?php echo $id; ?>' />
+				<button type="submit" class="btn btn-primary">Signaler !</button>
+			</form>
+		</div>
+		<?php }?>
+	<?php if(isset($_Joueur_) && ($_Joueur_['pseudo'] == $topicd['pseudo'] OR ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['editTopic'] == true) AND !$_SESSION['mode']))
 	{
 		?><div class="col-md-2"><form action="?page=edit_topic" method="post">
 			<input type="hidden" name="id_topic" value="<?php echo $id; ?>" />
@@ -134,7 +137,7 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 		</div>
 		<?php 
 	}
-		if($_Joueur_['pseudo'] == $topicd['pseudo'] OR ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteTopic'] == true) AND !$_SESSION['mode'])
+		if(isset($_Joueur_) && ($_Joueur_['pseudo'] == $topicd['pseudo'] OR ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteTopic'] == true) AND !$_SESSION['mode']))
 		{
 			?>
 		<div class="col-md-2">
@@ -192,6 +195,8 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 				<p class="text-right text-muted"><?php echo $answerd[$i]['day']; ?> <?php $answerd[$i]['mois'] = switch_date($answerd[$i]['mois']); echo $answerd[$i]['mois']; ?> <?php echo $answerd[$i]['annee']; ?> <?php if($answerd[$i]['d_edition'] != NULL){ echo 'édité le '; $d_edition = explode('-', $answerd[$i]['d_edition']); echo '' .$d_edition[2]. '/' .$d_edition[1]. '/' .$d_edition[0]. ''; } ?> </p>
 			</div>
 		</div>
+		
+		<?php if(isset($_Joueur_)){?>
 		<div class="row">
 		<div class="col-md-2">
 			<form action="?&action=signalement" method="post">
@@ -316,7 +321,9 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 				</form></div><?php
 			}
 			?>
-		</div></div><?php 
+		</div>
+		<?php }?>
+		</div><?php 
 	}
 
 	?><br/>
@@ -335,7 +342,7 @@ if(isset($_GET['id']) AND isset($_Joueur_))
 	 {
 		 ?><div class="alert alert-info" role="alert">Le topic est fermé ! Aucune réponse n'est possible ! </div><?php 
 	 }
-	 elseif($topicd['etat'] == 0 OR (($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['seeForumHide'] == true) AND !$_SESSION['mode']))
+	 elseif(isset($_Joueur_) && ($topicd['etat'] == 0 OR (($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['seeForumHide'] == true) AND !$_SESSION['mode'])))
 	 {
 		$data = $_Forum_->isLock($topicd['id_categorie']);	
 		if($data['close'] == 0 OR ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['seeForumHide'] == true) AND !$_SESSION['mode'])

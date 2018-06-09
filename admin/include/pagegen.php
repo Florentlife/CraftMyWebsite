@@ -105,7 +105,7 @@ if(isset($_GET['page']))
 		$pageDataReq = $pageDataReq->GetListPages(urldecode($_GET['page']));
 
 
-		$pageData = $pageDataReq->fetch();
+		$pageData = $pageDataReq->fetch(PDO::FETCH_ASSOC);
 
 		$pages['id'] = $pageData['id'];
 		$pages['titre'] = $pageData['titre'];

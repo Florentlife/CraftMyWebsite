@@ -28,12 +28,12 @@ if(isset($_GET['id_topic']) AND isset($_GET['choix']))
 				$info_remove->execute(array(
 					'id' => $id
 				));
-				$info_removed = $info_remove->fetch();
+				$info_removed = $info_remove->fetch(PDO::FETCH_ASSOC);
 				$count_answer = $bddConnection->prepare('SELECT COUNT(id) AS id FROM cmw_forum_answer WHERE id_topic = :id');
 				$count_answer->execute(array(
 					'id' => $id
 				));
-				$count_answerd = $count_answer->fetch();
+				$count_answerd = $count_answer->fetch(PDO::FETCH_ASSOC);
 				$removed = $bddConnection->prepare('INSERT INTO cmw_forum_topic_removed (nom, nb_reponse, 
 				auteur_topic, date_creation, raison, date_suppression, auteur_suppression) VALUES (:nom,
 				:nb_reponse, :auteur_topic, :date_creation, :raison, NOW(), :auteur_suppression)');

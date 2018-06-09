@@ -10,7 +10,7 @@ class OffresList
 		$recupOffres = $bddConnection->query('SELECT * FROM cmw_boutique_offres ORDER BY ordre');
 		
 		$i = 1;
-		while($tableauOffres = $recupOffres->fetch())
+		while($tableauOffres = $recupOffres->fetch(PDO::FETCH_ASSOC))
 		{
 			$offresByGet[$tableauOffres['id']] = array(
 				'id' => $tableauOffres['id'],
@@ -50,7 +50,7 @@ class OffresList
 		$recupActions->execute(Array ('id' => $id));
 		
 		$i = 0;
-		while($infosActions = $recupActions->fetch())
+		while($infosActions = $recupActions->fetch(PDO::FETCH_ASSOC))
 		{
 			$infos['action'][$i]['methode'] = $infosActions['methode'];
 			$infos['action'][$i]['commande_valeur'] = $infosActions['commande_valeur'];
@@ -114,7 +114,7 @@ class OffresList
 		$recupOffres->execute(Array ('id' => $id));
 		
 		$i = 0;
-		$infosOffres = $recupOffres->fetch();
+		$infosOffres = $recupOffres->fetch(PDO::FETCH_ASSOC);
 		
 			$infos['offre']['nom'] = $infosOffres['nom'];
 			$infos['offre']['description'] = $infosOffres['description'];

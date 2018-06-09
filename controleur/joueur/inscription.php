@@ -25,14 +25,14 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 				require_once('modele/joueur/connection.class.php');
 				$userConnection = new Connection($_POST['pseudo'], $bddConnection);
 				$ligneReponse = $userConnection->getReponseConnection();
-				$donneesJoueur = $ligneReponse->fetch();
+				$donneesJoueur = $ligneReponse->fetch(PDO::FETCH_ASSOC);
 
 				if(empty($donneesJoueur['pseudo']))
 				{
 					require_once('modele/joueur/ScriptBySprik07/connectionPerIP.class.php');
 					$req_connexionPerIp = new ConnectionPerIP($getIp, $bddConnection);
 					$rep_connexionPerIp = $req_connexionPerIp->getReponseConnection();
-					$ConnectionPerIp = $rep_connexionPerIp->fetch();
+					$ConnectionPerIp = $rep_connexionPerIp->fetch(PDO::FETCH_ASSOC);
 
 					require_once('modele/joueur/ScriptBySprik07/countIpBDD.class.php');
 					$req_countIpBdd = new CountIpBdd($getIp, $bddConnection);
@@ -42,7 +42,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 					require_once('modele/joueur/ScriptBySprik07/reqLimitePerIP.class.php');
 					$req_limiteIpBdd = new LimiteIpBdd($bddConnection);
 					$rep_limiteIpBdd = $req_limiteIpBdd->getReponseConnection();
-					$get_limiteIpBdd = $rep_limiteIpBdd->fetch();
+					$get_limiteIpBdd = $rep_limiteIpBdd->fetch(PDO::FETCH_ASSOC);
 					$LimiteIpBdd = $get_limiteIpBdd['nbrPerIP'];
 
 					if($CountIpBdd < $LimiteIpBdd)
@@ -52,7 +52,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 							require_once('modele/joueur/ScriptBySprik07/reqSysMail.class.php');
 							$req_apiMailBdd = new GetApiMailBdd($bddConnection);
 							$rep_apiMailBdd = $req_apiMailBdd->getReponseConnection();
-							$get_apiMailBdd = $rep_apiMailBdd->fetch();
+							$get_apiMailBdd = $rep_apiMailBdd->fetch(PDO::FETCH_ASSOC);
 							$ApiMailBdd['fromMail'] = $get_apiMailBdd['fromMail'];
 							$ApiMailBdd['sujetMail'] = $get_apiMailBdd['sujetMail'];
 							$ApiMailBdd['msgMail'] = $get_apiMailBdd['msgMail'];
@@ -117,7 +117,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 								$userConnection = new Connection($_POST['pseudo'], $bddConnection);
 								$ligneReponse = $userConnection->getReponseConnection();
 								
-								$donneesJoueur = $ligneReponse->fetch();
+								$donneesJoueur = $ligneReponse->fetch(PDO::FETCH_ASSOC);
 								require_once('controleur/joueur/joueurcon.class.php');
 								$utilisateur_connection = new JoueurCon($donneesJoueur['id'], $donneesJoueur['pseudo'], $donneesJoueur['email'], $donneesJoueur['rang'], $donneesJoueur['tokens'], NULL, NULL);
 								header('Location: '.$_SERVER['HTTP_REFERER']);

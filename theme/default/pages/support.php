@@ -25,7 +25,7 @@
 					</thead>
 					<tbody>
 					<?php $j = 0;
-					while($tickets = $ticketReq->fetch()) { ?>
+					while($tickets = $ticketReq->fetch(PDO::FETCH_ASSOC)) { ?>
 						<tr>
 						    <?php if($tickets['ticketDisplay'] == 0 OR $tickets['auteur'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1 OR $_PGrades_['PermsDefault']['support']['displayTicket'] == true) {
 						    if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsDefault']['support']['displayTicket'] == true) { ?>
@@ -126,7 +126,7 @@
 											$get_idComm->bindParam(':auteur', $ticketCommentaires[$tickets['id']][$i]['auteur']);
 											$get_idComm->bindParam(':id_ticket', $tickets['id']);
 											$get_idComm->execute();
-											$req_idComm = $get_idComm->fetch();
+											$req_idComm = $get_idComm->fetch(PDO::FETCH_ASSOC);
 									?>
 									<div class="panel panel-default">
 										<div class="panel-body">
@@ -228,7 +228,7 @@
 							$get_idComm->bindParam(':auteur', $ticketCommentaires[$tickets['id']][$i]['auteur']);
 							$get_idComm->bindParam(':id_ticket', $tickets['id']);
 							$get_idComm->execute();
-							$req_idComm = $get_idComm->fetch(); ?>
+							$req_idComm = $get_idComm->fetch(PDO::FETCH_ASSOC); ?>
 					<div class="modal fade" id="editComm-<?php echo $req_idComm['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editComm">
 					    <form method="POST" action="?&action=edit_support_commentaire&id_comm=<?php echo $req_idComm['id']; ?>&id_ticket=<?php echo $tickets['id']; ?>&auteur=<?php echo $ticketCommentaires[$tickets['id']][$i]['auteur']; ?>">
 				        <div class="modal-dialog modal-lg" role="document">

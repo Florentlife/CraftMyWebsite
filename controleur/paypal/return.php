@@ -2,7 +2,7 @@
 require_once('controleur/connection_base.php'); 
 $recupOpffresPaypal = $bddConnection->prepare('SELECT * FROM cmw_jetons_paypal_offres WHERE id = :id');
 $recupOpffresPaypal->execute(array('id' => $_GET['offre']));
-$donneesActions = $recupOpffresPaypal->fetch();
+$donneesActions = $recupOpffresPaypal->fetch(PDO::FETCH_ASSOC);
 include("controleur/paypal/fonction_api.php"); // On importe la page créée précédemment
 $requete = construit_url_paypal($_Serveur_['Payement']['paypalUser'], $_Serveur_['Payement']['paypalPass'], $_Serveur_['Payement']['paypalSignature']);
 
@@ -40,7 +40,7 @@ else
 		require_once('modele/joueur/maj.class.php');
 		$joueurMaj = new Maj($_Joueur_['pseudo'], $bddConnection);
 		$playerData = $joueurMaj->getReponseConnection();
-		$playerData = $playerData->fetch();
+		$playerData = $playerData->fetch(PDO::FETCH_ASSOC);
 		$playerData['tokens'] = $playerData['tokens'] + $donneesActions['jetons_donnes'];
 		$joueurMaj->setReponseConnection($playerData);
 		$joueurMaj->setNouvellesDonneesTokens($playerData);

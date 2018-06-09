@@ -6,7 +6,7 @@ $requete = $bdd->prepare('SELECT * FROM cmw_users WHERE id = :id');
 $requete->execute(array(
 	'id' => $id
 	));
-$donnesJoueur = $requete->fetch();
+$donnesJoueur = $requete->fetch(PDO::FETCH_ASSOC);
 if($pass == $donnesJoueur['mdp'])
 {
 	require_once('controleur/joueur/joueurcon.class.php');

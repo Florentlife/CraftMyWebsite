@@ -13,7 +13,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 	{
 		$req = $bdd->query('SELECT * FROM cmw_boutique_reduction');
 		$i = 0;
-		while($fetch = $req->fetch())
+		while($fetch = $req->fetch(PDO::FETCH_ASSOC))
 		{
 			$coupons[$i]['id'] = $fetch['id'];
 			$coupons[$i]['titre'] = $fetch['titre'];
@@ -30,7 +30,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 		
 		$i = 0;
 		$categories = null;
-		while($donnees = $reponse->fetch())
+		while($donnees = $reponse->fetch(PDO::FETCH_ASSOC))
 		{
 			$categories[$i]['titre'] = $donnees['titre'];
 			$categories[$i]['message'] = $donnees['message'];
@@ -47,7 +47,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 		
 		$i = 0;
 		$offres = null;
-		while($donnees = $reponse->fetch())
+		while($donnees = $reponse->fetch(PDO::FETCH_ASSOC))
 		{
 			$offres[$i]['id'] = $donnees['id'];
 			$offres[$i]['ordre'] = $donnees['ordre'];
@@ -66,7 +66,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 		
 		$i = 0;
 		$action = null;
-		while($donnees = $reponse->fetch())
+		while($donnees = $reponse->fetch(PDO::FETCH_ASSOC))
 		{
 			$action[$i]['id'] = $donnees['id'];
 			$action[$i]['methode'] = $donnees['methode'];

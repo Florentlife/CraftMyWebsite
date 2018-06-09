@@ -8,7 +8,7 @@ if(urldecode($_GET['pseudo']) AND urldecode($_GET['cle']))
   require_once('modele/joueur/ScriptBySprik07/reqVerifActivateMail.class.php');
   $req_verifActivateMail = new VerifActivateMail($get_Pseudo, $bddConnection);
   $rep_verifActivateMail = $req_verifActivateMail->getReponseConnection();
-  $get_verifActivateMail = $rep_verifActivateMail->fetch();
+  $get_verifActivateMail = $rep_verifActivateMail->fetch(PDO::FETCH_ASSOC);
   $get_CleBdd = $get_verifActivateMail['CleUnique'];
   $get_Actif = $get_verifActivateMail['ValidationMail'];
   

@@ -36,10 +36,8 @@ error_reporting(0);
 			include('admin/donnees.php');
 			include('admin/action.php');
 		}
-		
 		$pageadmin = $_GET['page'];
 		include('admin/page.php');
-		
 	}
 	else
 	{

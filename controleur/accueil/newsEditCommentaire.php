@@ -16,13 +16,13 @@ if(isset($_Joueur_)) {
 	require_once('modele/accueil/checkNews.class.php');
 	$req_CheckOwnerCommentaire = new CheckNews($bddConnection);
 	$rep_CheckOwnerCommentaire = $req_CheckOwnerCommentaire->CheckOwnerCommentaire($id_comm, $id_news);
-	$get_CheckOwnerCommentaire = $rep_CheckOwnerCommentaire->fetch();
+	$get_CheckOwnerCommentaire = $rep_CheckOwnerCommentaire->fetch(PDO::FETCH_ASSOC);
 	$CheckOwnerCommentaire = $get_CheckOwnerCommentaire['pseudo'];
 
 	require_once('modele/accueil/countNews.class.php');
 	$req_CountEditCommentaire = new CountNews($bddConnection);
 	$rep_CountEditCommentaire = $req_CountEditCommentaire->GetCountEditCommentaire($id_comm, $id_news, $auteur);
-	$get_CountEditCommentaire = $rep_CountEditCommentaire->fetch();
+	$get_CountEditCommentaire = $rep_CountEditCommentaire->fetch(PDO::FETCH_ASSOC);
 	$CountEditCommentaire = $get_CountEditCommentaire['nbrEdit'];
 
 	if($ExistNews == "0") {

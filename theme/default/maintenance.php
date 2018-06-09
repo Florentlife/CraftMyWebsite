@@ -2,13 +2,22 @@
 include('controleur/maintenance.php');
 
 if($maintenance[$i]['maintenanceEtat'] == 0){
-setTempMess("<script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'La maintenance n\'est pas activée !', icon: '<span class=\'glyphicon glyphicon-cog\'></span>'});});</script>");
+setTempMess("<script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'La maintenance n\'est pas activée !', icon: '<span class=\'fas fa-cog\'></span>'});});</script>");
 header('Location: index.php');
 }
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+	<?php $configFile = new Lire('modele/config/config.yml');
+	$configFile = $configFile->GetTableau();
+	echo "<style>
+	:root {
+		--color-main: ". $configFile["color"]["main"] ."; 
+		--color-hover: ". $configFile["color"]["hover"] ."; 
+		--color-focus: ". $configFile["color"]["focus"] ."; 
+	}
+	</style>";?>
 	<meta charset="UTF-8">
 	<title>Maintenance <?php echo $_Serveur_['General']['name']; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,7 +29,28 @@ header('Location: index.php');
     <link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/maintenance.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container text-center">
+		<?php if(!empty($donnees['dateFin']) && $donnees['dateFin'] > time()){?>
+			<div id="clockdiv">
+				<div>
+					<span class="days"></span>
+					<div class="smalltext">Days</div>
+				</div>
+				<div>
+					<span class="hours"></span>
+					<div class="smalltext">Hours</div>
+				</div>
+				<div>
+					<span class="minutes"></span>
+					<div class="smalltext">Minutes</div>
+				</div>
+				<div>
+					<span class="seconds"></span>
+					<div class="smalltext">Seconds</div>
+				</div>
+			</div>
+		<?php }?>
+		
         <div class="row">
             <div class="col-sm-3"></div>
             <div class="col-sm-6">
@@ -84,6 +114,7 @@ header('Location: index.php');
 			</div>
 		</div>
 	</div>
+	
 	<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/jquery.min.js"></script>
 	<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
     <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/popper.min.js"></script>
@@ -91,5 +122,48 @@ header('Location: index.php');
     <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/wow.min.js"></script>
     <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/custom.js"></script>
     <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/snarl.min.js"></script>
+	<script type="text/javascript">
+		function getTimeRemaining(endtime) {
+		  var t = Date.parse(endtime) - Date.parse(new Date());
+		  var seconds = Math.floor((t / 1000) % 60);
+		  var minutes = Math.floor((t / 1000 / 60) % 60);
+		  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+		  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+		  return {
+			'total': t,
+			'days': days,
+			'hours': hours,
+			'minutes': minutes,
+			'seconds': seconds
+		  };
+		}
+
+		function initializeClock(id, endtime) {
+		  var clock = document.getElementById(id);
+		  var daysSpan = clock.querySelector('.days');
+		  var hoursSpan = clock.querySelector('.hours');
+		  var minutesSpan = clock.querySelector('.minutes');
+		  var secondsSpan = clock.querySelector('.seconds');
+
+		  function updateClock() {
+			var t = getTimeRemaining(endtime);
+
+			daysSpan.innerHTML = t.days;
+			hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+			minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+			secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+			if (t.total <= 0) {
+			  clearInterval(timeinterval);
+			}
+		  }
+
+		  updateClock();
+		  var timeinterval = setInterval(updateClock, 1000);
+		}
+
+		var deadline = new Date(Date.parse(new Date()) + <?=($donnees["dateFin"] - time())?> * 1000);
+		initializeClock('clockdiv', deadline);
+	</script>
 </body>
 </html>

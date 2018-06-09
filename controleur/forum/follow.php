@@ -6,7 +6,7 @@ if(isset($_GET['id_topic']))
 	$req->execute(array(
 		'id_topic' => $id
 	));
-	$reqd = $req->fetch();
+	$reqd = $req->fetch(PDO::FETCH_ASSOC);
 	if(empty($reqd['id']))
 	{
 		$reqd['id'] = 0;

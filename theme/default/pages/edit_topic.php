@@ -7,7 +7,7 @@ if(isset($_Joueur_) AND isset($_POST['id_topic']))
 	$req->execute(array(
 		'id' => $id
 	));
-	$donnee = $req->fetch();
+	$donnee = $req->fetch(PDO::FETCH_ASSOC);
 	?>
 	<header class="heading-pagination">
 	<div class="container-fluid">

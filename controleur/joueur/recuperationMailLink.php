@@ -5,7 +5,7 @@ require_once('modele/joueur/checkToken.class.php');
 $tokenInfos = new checkToken($token, $bddConnection);
 $ligneReponse = $tokenInfos->getReponseConnection();
 
-$donneesJoueur = $ligneReponse->fetch();
+$donneesJoueur = $ligneReponse->fetch(PDO::FETCH_ASSOC);
 if(empty($donneesJoueur))
 {
 	//Quand le token est un faux les donneesJoueur sont vides car il n'y a aucune entrée correspondante dans la BDD

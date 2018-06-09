@@ -25,7 +25,7 @@ $AccueilData = new AccueilData($bddConnection);
 $newsRecup = $AccueilData->GetNews();
 
 $i = 0;
-while($newsDonnees = $newsRecup->fetch())
+while($newsDonnees = $newsRecup->fetch(PDO::FETCH_ASSOC))
 {
 	$news[$i]['id'] = $newsDonnees['id'];
 	$news[$i]['titre'] = $newsDonnees['titre'];
@@ -56,7 +56,7 @@ $repCheckVisit = $AccueilData->CheckVisit($getIp, $getDates);
 $CheckVisit = $repCheckVisit->rowCount();
 
 $repTotalVisits = $AccueilData->GetTotalVisits();
-$getTotalVisits = $repTotalVisits->fetch();
+$getTotalVisits = $repTotalVisits->fetch(PDO::FETCH_ASSOC);
 $totalVisits = $getTotalVisits['id'];
 
 if($CheckVisit == "0") {

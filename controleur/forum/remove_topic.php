@@ -16,7 +16,7 @@ if(isset($_POST['id_topic']) AND isset($_Joueur_))
 	$select->execute(array(
 		'id' => $id
 	));
-	$data = $select->fetch();
+	$data = $select->fetch(PDO::FETCH_ASSOC);
 	$rcount = $bddConnection->prepare('SELECT * FROM cmw_forum_answer WHERE id_topic = :id');
 	$rcount->execute(array(
 		'id' => $id

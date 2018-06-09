@@ -17,7 +17,7 @@ if(isset($_POST['id_answer']) AND isset($_Joueur_) AND isset($_POST['page']))
 	$select->execute(array(
 		'id' => $id
 	));
-	$data = $select->fetch();
+	$data = $select->fetch(PDO::FETCH_ASSOC);
 	$insert = $bddConnection->prepare('INSERT INTO cmw_forum_answer_removed (id_answer, id_topic, 
 	auteur_answer, date_creation, Raison, date_suppression, auteur_suppression) VALUES (:id_answer, :id_topic, :auteur_answer, 
 	:date_creation, :raison, NOW(), :auteur_suppression) ');

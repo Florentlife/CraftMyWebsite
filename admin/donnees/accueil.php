@@ -19,7 +19,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['showPage'] == tru
 
     $pagesReq = $bddConnection->query('SELECT titre FROM cmw_pages');
     $i = 0;
-    while($pagesDonnees = $pagesReq->fetch())
+    while($pagesDonnees = $pagesReq->fetch(PDO::FETCH_ASSOC))
     {
        $pages[$i] = $pagesDonnees['titre'];
        $i++;
