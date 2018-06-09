@@ -85,6 +85,11 @@
 		$_SESSION['referrerAdmin'] = 'theme';
 		break;
 		
+		case 'themeColor': 
+		require_once('admin/actions/themeColor.php');
+		$_SESSION['referrerAdmin'] = 'theme';
+		break;
+		
 		case 'supprMembre': 
 		require_once('admin/actions/supprMembre.php');
 		$_SESSION['referrerAdmin'] = 'membres';
