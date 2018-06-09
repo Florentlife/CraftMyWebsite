@@ -34,11 +34,11 @@ header('Location: index.php');
 			<div id="clockdiv">
 				<div>
 					<span class="days"></span>
-					<div class="smalltext">Days</div>
+					<div class="smalltext">Jours</div>
 				</div>
 				<div>
 					<span class="hours"></span>
-					<div class="smalltext">Hours</div>
+					<div class="smalltext">Heures</div>
 				</div>
 				<div>
 					<span class="minutes"></span>
@@ -46,7 +46,7 @@ header('Location: index.php');
 				</div>
 				<div>
 					<span class="seconds"></span>
-					<div class="smalltext">Seconds</div>
+					<div class="smalltext">Secondes</div>
 				</div>
 			</div>
 		<?php }?>
