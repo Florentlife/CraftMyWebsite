@@ -35,7 +35,7 @@ error_reporting(0);
 		if(isset($_GET['action'])){
 			include('admin/donnees.php');
 			include('admin/action.php');
-		
+		}
 		$pageadmin = $_GET['page'];
 		include('admin/page.php');
 	}
