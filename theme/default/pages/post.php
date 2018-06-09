@@ -196,7 +196,7 @@ if(isset($_GET['id']))
 			</div>
 		</div>
 		
-		<?php if(isset($_Joueur_)){?>
+		<?php if(isset($_Joueur_)){ ?>
 		<div class="row">
 		<div class="col-md-2">
 			<form action="?&action=signalement" method="post">
@@ -322,7 +322,10 @@ if(isset($_GET['id']))
 			}
 			?>
 		</div>
-		<?php }?>
+		<?php }
+		else
+			echo '<div class="alert alert-warning text-center">Connectez-vous pour pouvoir interragir ! </div>';
+		?>
 		</div><?php 
 	}
 
@@ -400,6 +403,8 @@ if(isset($_GET['id']))
 	<?php 
 		}
 	 }
+	 elseif(!isset($_Joueur))
+	 	echo '<div class="alert alert-warning text-center">Connectez-vous pour pouvoir interragir ! </div>';
 	 ?>
 	 	</div>
 </section>

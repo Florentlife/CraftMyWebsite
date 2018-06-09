@@ -311,5 +311,7 @@
 		</form>
 		<?php 
 	}
+	elseif(!isset($_Joueur_))
+		echo '<div class="alert alert-warning text-center">Connectez-vous pour pouvoir interragir ! </div>';
 	?></div>
 </section>
