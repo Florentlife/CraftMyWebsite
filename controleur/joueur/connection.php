@@ -9,7 +9,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo'])
 	$userConnection = new Connection($_POST['pseudo'], $bddConnection);
 	$ligneReponse = $userConnection->getReponseConnection();
 	
-	$donneesJoueur = $ligneReponse->fetch();
+	$donneesJoueur = $ligneReponse->fetch(PDO::FETCH_ASSOC);
 	if(empty($donneesJoueur))
 	{
 		header('Location: ?&page=erreur&erreur=5');
@@ -21,7 +21,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo'])
 			require_once('modele/joueur/ScriptBySprik07/reqVerifMailBDD.class.php');
 			$req_verifMailBdd = new VerifMailBdd($get_Pseudo, $bddConnection);
 			$rep_verifMailBdd = $req_verifMailBdd->getReponseConnection();
-			$get_verifMailBdd = $rep_verifMailBdd->fetch();
+			$get_verifMailBdd = $rep_verifMailBdd->fetch(PDO::FETCH_ASSOC);
 			$VerifMailBdd = $get_verifMailBdd['ValidationMail'];
 
 			if($VerifMailBdd == '1')

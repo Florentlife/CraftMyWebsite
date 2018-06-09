@@ -42,7 +42,7 @@ class Forum {
 		$derniere_reponse_req->execute(array(
 			'id' => htmlspecialchars($id)
 			));
-		$derniere_reponse_donnees = $derniere_reponse_req->fetch();
+		$derniere_reponse_donnees = $derniere_reponse_req->fetch(PDO::FETCH_ASSOC);
 		if(!isset($derniere_reponse_donnees['pseudo']))
 		{
 			$dernier_topic = $this->bdd->prepare('SELECT nom AS titre, id, pseudo, date_creation AS date_post, COUNT(id) AS count
@@ -51,7 +51,7 @@ class Forum {
 			$dernier_topic->execute(array(
 				'id' => htmlspecialchars($id)
 			));
-			$derniere_reponse_donnees = $dernier_topic->fetch();
+			$derniere_reponse_donnees = $dernier_topic->fetch(PDO::FETCH_ASSOC);
 			if($derniere_reponse_donnees['count'] == 0)
 				return FALSE;
 			else
@@ -68,7 +68,7 @@ class Forum {
 		$categorie->execute(array(
 			'id' => htmlspecialchars($id)
 			));
-		$donnees = $categorie->fetch();
+		$donnees = $categorie->fetch(PDO::FETCH_ASSOC);
 		return $donnees;
 	}
 	
@@ -80,7 +80,7 @@ class Forum {
 			'id_categorie' => htmlspecialchars($id)
 			));
 		if($fetch == 0)
-			$donnees = $sousForum->fetch();
+			$donnees = $sousForum->fetch(PDO::FETCH_ASSOC);
 		else
 			$donnees = $sousForum->fetchAll();
 		return $donnees;
@@ -111,7 +111,7 @@ class Forum {
 		$sousforum->execute(array(
 			'id' => htmlspecialchars($id)
 		));
-		return $sousforum->fetch();
+		return $sousforum->fetch(PDO::FETCH_ASSOC);
 	}
 	
 	//Compte topics pour les topics de sous forum
@@ -143,12 +143,12 @@ class Forum {
 		$topic->execute(array(
 			'id' => $id
 		));
-		$donnees = $topic->fetch();
+		$donnees = $topic->fetch(PDO::FETCH_ASSOC);
 		if(isset($donnees['sous_forum']))
 		{
 			$nom = $this->bdd->prepare('SELECT nom FROM cmw_forum_sous_forum WHERE id = :id'); 
 			$nom->execute(array('id' => $donnees['sous_forum']));
-			$data = $nom->fetch();
+			$data = $nom->fetch(PDO::FETCH_ASSOC);
 			$donnees['nom_sf'] = $data['nom'];
 		}
 		return $donnees;
@@ -160,7 +160,7 @@ class Forum {
 		$count = $this->bdd->prepare('SELECT COUNT(id) AS count_id FROM cmw_forum_answer WHERE id_topic = :id_topic');
 		$count->bindParam(':id_topic', $id);
 		$count->execute();
-		$fetch = $count->fetch();
+		$fetch = $count->fetch(PDO::FETCH_ASSOC);
 		return $fetch['count_id'];
 	}
 	
@@ -201,7 +201,7 @@ class Forum {
 			'pseudo' => $joueur,
 			'id_answer' => $id
 		));
-		return $test_vote->fetch();
+		return $test_vote->fetch(PDO::FETCH_ASSOC);
 	}
 	
 	//Vérification si le forum est lock 
@@ -211,7 +211,7 @@ class Forum {
 		$req->execute(array(
 			'id' => $id
 			));
-		return $req->fetch();
+		return $req->fetch(PDO::FETCH_ASSOC);
 	}
 	
 	//Vérifie l'existence du forum 
@@ -221,7 +221,7 @@ class Forum {
 		$req->execute(array(
 			'id' => $id
 			));
-		$data = $req->fetch();
+		$data = $req->fetch(PDO::FETCH_ASSOC);
 		if($data['count'] > 0)
 			return true;
 		else
@@ -234,7 +234,7 @@ class Forum {
 		global $_Serveur_;
 		$req = $this->bdd->prepare('SELECT rang FROM cmw_users WHERE pseudo = :pseudo');
 		$req->execute(array('pseudo' => $pseudo ));
-		$joueurDonnees = $req->fetch();
+		$joueurDonnees = $req->fetch(PDO::FETCH_ASSOC);
 		if($joueurDonnees['rang'] == 0) {
 			$gradeSite = 'Joueur';
 		} elseif($joueurDonnees['rang'] == 1) {
@@ -256,7 +256,7 @@ class Forum {
 	{
 		$req = $this->bdd->prepare('SELECT span, nom FROM cmw_forum_prefix WHERE id = :id');
 		$req->execute(array(	'id' => $prefix));
-		$fetch = $req->fetch();
+		$fetch = $req->fetch(PDO::FETCH_ASSOC);
 		$return = '<span class="'.$fetch['span'].'">'.$fetch['nom'].'</span>';
 		return $return;
 	}
@@ -265,7 +265,7 @@ class Forum {
 	{
 		$req = $this->bdd->prepare('SELECT COUNT(id) AS count FROM cmw_forum_post WHERE id_categorie = :id');
 		$req->execute(array('id' => $id));
-		$fetch = $req->fetch();
+		$fetch = $req->fetch(PDO::FETCH_ASSOC);
 		return $fetch['count'];
 	}
 
@@ -274,7 +274,7 @@ class Forum {
 		$req = $this->bdd->prepare('SELECT id FROM cmw_forum_post WHERE sous_forum = :sf');
 		$req->execute(array(	'sf' => htmlspecialchars($id)));
 		$count = 0;
-		while($data = $req->fetch())
+		while($data = $req->fetch(PDO::FETCH_ASSOC))
 			$count+=$this->compteReponse($data['id']);
 		return $count;
 	}
@@ -303,7 +303,7 @@ class Forum {
 				ON cmw_forum_answer.id_topic = cmw_forum_post.id
 			WHERE cmw_forum_post.id_categorie = :id;');
 		$req->execute(array('id' => $id));
-		$data = $req->fetch();
+		$data = $req->fetch(PDO::FETCH_ASSOC);
 		return $data['count'];
 	}
 

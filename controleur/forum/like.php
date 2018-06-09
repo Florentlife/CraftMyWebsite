@@ -13,7 +13,7 @@ if(isset($_POST['choix']) AND isset($_Joueur_) AND isset($_POST['id_answer']))
 	$post->execute(array(
 		'id' => $id
 	));
-	$postd = $post->fetch();
+	$postd = $post->fetch(PDO::FETCH_ASSOC);
 	header('Location: ?&page=post&id=' . $postd['id_topic'] . '');
 }
 else

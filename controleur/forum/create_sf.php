@@ -17,7 +17,7 @@ if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['gen
 	$recup->execute(array(
 		'id' => $id
 	));
-	$data = $recup->fetch();
+	$data = $recup->fetch(PDO::FETCH_ASSOC);
 	$sf = $data['sous-forum'] + 1;
 	$update = $bddConnection->prepare('UPDATE cmw_forum_categorie SET sous-forum = :sous-forum WHERE id = :id');
 	$update->execute(array(

@@ -7,7 +7,7 @@ if(isset($_POST['email']) AND !empty($_POST['email']))
 	$userConnection = new Mail($_POST['email'], $bddConnection);
 	$ligneReponse = $userConnection->getReponseConnection();
 	
-	$donneesJoueur = $ligneReponse->fetch();
+	$donneesJoueur = $ligneReponse->fetch(PDO::FETCH_ASSOC);
 	if(empty($donneesJoueur))
 	{
 		header('Location: ?&page=erreur&erreur=4');

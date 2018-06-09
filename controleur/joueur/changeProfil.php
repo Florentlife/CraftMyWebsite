@@ -26,7 +26,7 @@ function VerifieMdp($mdp, $mdpNew, $mdpConfirm, $pseudo, $bddConnection)
 	require_once('modele/joueur/maj.class.php');
 	$maj = new Maj($pseudo, $bddConnection);
 	$maj = $maj->getReponseConnection();
-	$maj = $maj->fetch();
+	$maj = $maj->fetch(PDO::FETCH_ASSOC);
 	if(password_verify($mdp, $maj['mdp']))
 		return true;
 	else

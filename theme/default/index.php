@@ -98,8 +98,9 @@ function divScroll() {
 }
 
 function goToTop() {
-    document.body.scrollTop = 0; // Safari
-    document.documentElement.scrollTop = 0; // Chrome, Firefox, IE & Opera
+	$('html, body').animate({
+		scrollTop: 0
+	}, 1000);
 }
 
 function securPass()

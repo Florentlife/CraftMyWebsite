@@ -5,7 +5,7 @@ $req_topic->execute(array(
 	'pseudo' => $_Joueur_['pseudo']
 ));
 $new = 0;
-while($td = $req_topic->fetch())
+while($td = $req_topic->fetch(PDO::FETCH_ASSOC))
 {
 	if($td['pseudo'] != $td['last_answer_pseudo'] AND $td['last_answer_pseudo'] != NULL AND $td['vu'] == 0 AND $td['new'] == 0)
 	{
@@ -24,7 +24,7 @@ $req_answer->execute(array(
 	'pseudo' => $_Joueur_['pseudo'],
 	'pseudop' => $_Joueur_['pseudo']
 ));
-while($answer_liked = $req_answer->fetch())
+while($answer_liked = $req_answer->fetch(PDO::FETCH_ASSOC))
 {
 	if($answer_liked['vu'] == 0 AND $answer_liked['new'] == 0)
 	{

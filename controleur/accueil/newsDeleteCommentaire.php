@@ -21,7 +21,7 @@ if(isset($_Joueur_)) {
     require_once('modele/accueil/checkNews.class.php');
     $req_CheckOwnerCommentaire = new CheckNews($bddConnection);
     $rep_CheckOwnerCommentaire = $req_CheckOwnerCommentaire->CheckOwnerCommentaire($id, $id_news);
-    $get_CheckOwnerCommentaire = $rep_CheckOwnerCommentaire->fetch();
+    $get_CheckOwnerCommentaire = $rep_CheckOwnerCommentaire->fetch(PDO::FETCH_ASSOC);
     $CheckOwnerCommentaire = $get_CheckOwnerCommentaire['pseudo'];
 
     if($ExistNews == "0") {

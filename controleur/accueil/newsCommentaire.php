@@ -12,7 +12,7 @@ if(isset($_Joueur_)) {
 	require_once('modele/accueil/countNews.class.php');
 	$req_CountCommentaires = new CountNews($bddConnection);
 	$rep_CountCommentaires = $req_CountCommentaires->GetCountCommentaires();
-    $get_CountCommentaires = $rep_CountCommentaires->fetch();
+    $get_CountCommentaires = $rep_CountCommentaires->fetch(PDO::FETCH_ASSOC);
 	$id = $get_CountCommentaires['id'];
 
 	if($ExistNews == "0") {

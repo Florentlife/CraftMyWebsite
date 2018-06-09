@@ -4,7 +4,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['pages']['showPage'] == tr
 
 	unset($pages);
 	$i = 0;
-	while($pagesDonnees = $pagesReq->fetch())
+	while($pagesDonnees = $pagesReq->fetch(PDO::FETCH_ASSOC))
 	{
 		$pages[$i]['id'] = $pagesDonnees['id'];
 		$pages[$i]['titre'] = $pagesDonnees['titre'];

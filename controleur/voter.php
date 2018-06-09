@@ -5,7 +5,7 @@ require_once('modele/joueur/maj.class.php');
 include('controleur/topVoteurs.php');
 $joueurMaj = new Maj($_Joueur_['pseudo'], $bddConnection);
 $playerData = $joueurMaj->getReponseConnection();
-$playerData = $playerData->fetch();	
+$playerData = $playerData->fetch(PDO::FETCH_ASSOC);	
 	
 if(isset($_Joueur_['pseudo']) && $_POST['site'] > 0)
 {
@@ -134,7 +134,7 @@ $succes = false;
 		$line->execute(array(
 			'pseudo' => $pseudo,
 			'site' => $id	));
-		$donnees = $line->fetch();	
+		$donnees = $line->fetch(PDO::FETCH_ASSOC);	
 		return $donnees;
 	}
 	
@@ -160,7 +160,7 @@ $succes = false;
 			'pseudo' => $pseudo,
 			'site' => $id	));
 			
-		$donnees = $line->fetch();
+		$donnees = $line->fetch(PDO::FETCH_ASSOC);
 		
 		if(empty($donnees['pseudo']))
 			return false;
@@ -200,6 +200,6 @@ $succes = false;
 	{
 		$req = $bddConnection->prepare('SELECT * FROM cmw_votes_config WHERE id = :id');
 		$req->execute(array('id' => $id));
-		return $req->fetch();
+		return $req->fetch(PDO::FETCH_ASSOC);
 	}
 ?>

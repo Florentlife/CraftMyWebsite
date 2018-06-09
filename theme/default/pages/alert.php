@@ -30,7 +30,7 @@ Ici c'est les alertes pour aime/aime pas
 $req_answer = $_JoueurForum_->get_like_dislike();
 
 //Récupération des données de la table avec jointure entre table 
-while($answer_liked = $req_answer->fetch())
+while($answer_liked = $req_answer->fetch(PDO::FETCH_ASSOC))
 {
 	if($answer_liked['vu'] == '0')
 	{
@@ -81,7 +81,7 @@ while($answer_liked = $req_answer->fetch())
 			$topic->execute(array(
 				'id' => $answer_liked['id_topic']
 			));
-			$topicd = $topic->fetch();
+			$topicd = $topic->fetch(PDO::FETCH_ASSOC);
 			echo $topicd['nom'];
 			//On affiche le nom du topic où l'alerte à été créer
 			?></td>
@@ -108,7 +108,7 @@ while($answer_liked = $req_answer->fetch())
 
 
 $req_topic = $_JoueurForum_->get_new_answer();
-while($donnees_new = $req_topic->fetch())
+while($donnees_new = $req_topic->fetch(PDO::FETCH_ASSOC))
 {
 	if($donnees_new['pseudo'] != $donnees_new['last_answer_pseudo'] AND $donnees_new['last_answer_pseudo'] != NULL AND $donnees_new['vu'] == 0)
 	{

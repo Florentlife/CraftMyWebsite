@@ -18,7 +18,7 @@ if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['moderation']['seeSignalement'
 			<th>Lien</th>
 		</tr>
 	<?php 
-	while($data = $req->fetch())
+	while($data = $req->fetch(PDO::FETCH_ASSOC))
 	{
 		?><tr>
 			<td><?php if($data['type'] == 0)
@@ -44,7 +44,7 @@ if(isset($_Joueur_) AND ($_PGrades_['PermsForum']['moderation']['seeSignalement'
 				$req_topic->execute(array(
 					'id' => $data['id_topic_answer']
 				));
-				$id = $req_topic->fetch();
+				$id = $req_topic->fetch(PDO::FETCH_ASSOC);
 				$req_page = $bddConnection->prepare('SELECT * FROM cmw_forum_answer WHERE id_topic = :id');
 				$req_page->execute(array(
 					'id' => $id['id_topic']

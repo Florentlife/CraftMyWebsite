@@ -5,7 +5,7 @@ $tempGrades = new TempGrades($bddConnection);
 
 $joueurGradesReq = $tempGrades->GetPlayer();
 
-while($joueurGrades = $joueurGradesReq->fetch())
+while($joueurGrades = $joueurGradesReq->fetch(PDO::FETCH_ASSOC))
 {
 	$tempGrades->SetPseudo($joueurGrades['pseudo']);
 	$gradeJoueur = $tempGrades->RecupDonnees();
@@ -23,7 +23,7 @@ while($joueurGrades = $joueurGradesReq->fetch())
 $req = $bddConnection->prepare('SELECT tokens FROM cmw_users WHERE pseudo = :pseudo');
 $req->execute(array('pseudo' => $_Joueur_['pseudo']));
 
-$donnees = $req->fetch();
+$donnees = $req->fetch(PDO::FETCH_ASSOC);
 $_SESSION['Player']['tokens'] = $donnees['tokens'];
 $_Joueur_['tokens'] = $donnees['tokens'];
 ?>

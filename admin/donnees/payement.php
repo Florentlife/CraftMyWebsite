@@ -10,7 +10,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['showPage'] == 
 	$query = $bddConnection->query('SELECT * FROM cmw_jetons_paypal_offres');
 
 	$i = 0;
-	while($donneesQuery = $query->fetch())
+	while($donneesQuery = $query->fetch(PDO::FETCH_ASSOC))
 	{
 		$paypalOffres[$i]['id'] = $donneesQuery['id'];
 		$paypalOffres[$i]['nom'] = $donneesQuery['nom'];

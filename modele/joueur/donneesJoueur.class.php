@@ -7,7 +7,7 @@ class JoueurDonnees
     {	
 		$req = $bdd->prepare('SELECT * FROM cmw_users WHERE pseudo = :pseudo');
 		$req->execute(Array ( 'pseudo' => $pseudo ));
-		$donnees = $req->fetch();
+		$donnees = $req->fetch(PDO::FETCH_ASSOC);
 		$this->donnees = $donnees;
 	}
 	

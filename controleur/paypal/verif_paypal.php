@@ -6,7 +6,7 @@
 
 $recupOpffresPaypal = $bddConnection->prepare('SELECT * FROM cmw_jetons_paypal_offres WHERE id = :id');
 $recupOpffresPaypal->execute(array('id' => $_GET['offre']));
-$donneesActions = $recupOpffresPaypal->fetch();
+$donneesActions = $recupOpffresPaypal->fetch(PDO::FETCH_ASSOC);
 
 $req = 'cmd=_notify-validate';
  
@@ -58,7 +58,7 @@ fclose($file);
 require_once('modele/joueur/maj.class.php');
 $joueurMaj = new Maj($id, $bddConnection);
 $playerData = $joueurMaj->getReponseConnection();
-$playerData = $playerData->fetch();
+$playerData = $playerData->fetch(PDO::FETCH_ASSOC);
 $playerData['tokens'] = $playerData['tokens'] + $donneesActions['jetons_donnes'];
 $joueurMaj->setReponseConnection($playerData);
 $joueurMaj->setNouvellesDonneesTokens($playerData);

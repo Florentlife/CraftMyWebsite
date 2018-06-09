@@ -30,75 +30,63 @@
 	<h3 class="text-center">Choisissez votre catégorie :</h3>
 		<div class="tabbable">
 			<ul class="nav nav-tabs" style="margin-bottom:5vh;">
-			<?php
-			$j = 0;
-			while($j < count($categories))
-			{
-			$categories[$j]['titre'] = str_replace(' ', '_', $categories[$j]['titre']);
-			?>
+			<?php for($j = 0; $j < count($categories); $j++){?>
 				  
-					<li class="nav-item">
-						<a href="#categorie-<?php echo $j; ?>" data-toggle="tab" class="nav-link <?php if($j == 0) echo 'active'; ?>"><?php $categories[$j]['titre'] = str_replace('_', ' ', $categories[$j]['titre']); echo $categories[$j]['titre']; ?></a>
-					</li>
-			<?php $j++; } ?>
+				<li class="nav-item">
+					<a href="#categorie-<?=$j?>" data-toggle="tab" class="nav-link <?php if($j == 0) echo 'active'; ?>"><?=$categories[$j]['titre']; ?></a>
+				</li>
+			<?php } ?>
 			</ul>
 			<div class="tab-content">
-				<?php
-				$j = 0;
-				while($j < count($categories))
-				{
-				$categories[$j]['titre'] = str_replace(' ', '_', $categories[$j]['titre']);
-				?>
-				
-				<div id="categorie-<?php echo $j; ?>" class="tab-pane fade <?php if($j==0) echo 'in active show';?>" <?php if($j == 0) { echo 'aria-expanded="true"'; } else echo 'aria-expanded="false"'; ?>>
-				<?php $categories[$j]['titre'] = str_replace('_', ' ', $categories[$j]['titre']); ?>
-						<div class="panel-body">
-							<?php if($categories[$j]['message'] == ""){ ?>
-							<?php } else { ?>
-							<div class="alert alert-dismissable alert-success">
+			<?php for($j = 0; $j < count($categories); $j++){?>
+				<div id="categorie-<?=$j?>" class="tab-pane fade <?php if($j==0) echo 'in active show';?>" <?= ($j == 0) ? 'aria-expanded="true"' :'aria-expanded="false"'?>>
+					<div class="panel-body">
+					<?php if(!empty($categories[$j]['message'])){ ?>
+						<div class="alert alert-dismissable alert-success">
 							<button type="button" class="close" data-dismiss="alert">×</button>
 							<center><?php echo $categories[$j]['message']; ?></center>
-							</div>
-							<?php } ?>
-							<div class="row">
-							<?php
-								foreach($categories as $key => $value)
-								{
-									$categories[$key]['offres'] == 0;
-								}
-								for($i = 1; $i <= count($offresTableau); $i++)
-								{
-									if($offresTableau[$i]['categorie'] == $categories[$j]['id'])
-									{
-										echo '
-										<div class="col-md-4 panel panel-default">
-											<div class="panel-body">
-													<h3 class="titre-offre"><center>'. $offresTableau[$i]['nom'] .'</center></h3>
-													<div class="offre-description">' .$offresTableau[$i]['description']. '</div>
-												</div>
-												';
-													if(isset($_Joueur_)) {
-														echo '<a href="?page=boutique&offre=' .$offresTableau[$i]['id']. '" class="btn btn-primary btn-block" title="Voir la fiche produit"><i class="fa fa-eye"></i></a>';
-													echo '<a href="?action=addOffrePanier&offre='. $offresTableau[$i]['id']. '&quantite=1" class="btn btn-info btn-block" title="Ajouter directement au panier une unité"><i class="fa fa-cart-arrow-down"></i></a>';}
-													else { echo'<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-block" ><span class="glyphicon glyphicon-user"></span> Se connecter</a>'; }
-										echo '<button class="btn btn-success btn-block">Prix : ' . ($offresTableau[$i]['prix'] == '0' ? 'gratuit' : $offresTableau[$i]['prix'].'<i class="fas fa-gem">') . ' </i></button>
-												
-										</div>		';
-										$categories[$j]['offres']++;
-									}
-								}
-							?>
-							</div>
-							<?php 
-							if($categories[$j]['offres'] == 0)
-								echo '<div class="alert alert-dismissible alert-danger">
-									<button type="button" class="close" data-dismiss="alert">&times;</button>
-									<center><strong>Oh zut !</strong> <a href="#" class="alert-link">'.$categories[$key]['titre'].'</a> est encore vide, ré-essayez plus tard !.</center>
-								</div>';
-							?>
 						</div>
+					<?php } ?>
+					
+						<div class="row">
+								<?php
+									foreach($categories as $key => $value)
+									{
+										$categories[$key]['offres'] == 0;
+									}
+									for($i = 1; $i <= count($offresTableau); $i++)
+									{
+										if($offresTableau[$i]['categorie'] == $categories[$j]['id'])
+										{
+											echo '
+											<div class="col-md-4 panel panel-default">
+												<div class="panel-body">
+														<h3 class="titre-offre"><center>'. $offresTableau[$i]['nom'] .'</center></h3>
+														<div class="offre-description">' .$offresTableau[$i]['description']. '</div>
+													</div>
+													';
+														if(isset($_Joueur_)) {
+															echo '<a href="?page=boutique&offre=' .$offresTableau[$i]['id']. '" class="btn btn-primary btn-block" title="Voir la fiche produit"><i class="fa fa-eye"></i></a>';
+														echo '<a href="?action=addOffrePanier&offre='. $offresTableau[$i]['id']. '&quantite=1" class="btn btn-info btn-block" title="Ajouter directement au panier une unité"><i class="fa fa-cart-arrow-down"></i></a>';}
+														else { echo'<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-block" ><span class="fas fa-user"></span> Se connecter</a>'; }
+											echo '<button class="btn btn-success btn-block">Prix : ' . ($offresTableau[$i]['prix'] == '0' ? 'gratuit' : $offresTableau[$i]['prix'].'<i class="fas fa-gem">') . ' </i></button>
+													
+											</div>		';
+											$categories[$j]['offres']++;
+										}
+									}
+								?>
+						</div>
+					
+					<?php if($categories[$j]['offres'] == 0) {?>
+						<div class="alert alert-dismissible alert-danger">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<center><strong>Oh zut !</strong> <?=$categories[$j]['titre']?> est encore vide, ré-essayez plus tard !.</center>
+						</div>
+					<?php }?>
 					</div>
-				<?php $j++; } ?>	
+				</div>
+			<?php }?>	
 			</div>
 		</div>						
 	<?php

@@ -22,7 +22,7 @@ class ImgProfil
 				$req->execute(array(
 					'pseudo' => $id
 				));
-				$fetch = $req->fetch();
+				$fetch = $req->fetch(PDO::FETCH_ASSOC);
 				if($fetch['id'] == NULL)
 					$this->id = $id;
 				else
@@ -33,7 +33,7 @@ class ImgProfil
 			$this->id = $id;
 		$req = $bddConnection->prepare('SELECT img_extension FROM cmw_users WHERE id = :id');
 		$req->execute(array('id' => $this->id));
-		$fetch = $req->fetch();
+		$fetch = $req->fetch(PDO::FETCH_ASSOC);
 		$this->extension = $fetch['img_extension'];
 	}
 
@@ -94,7 +94,7 @@ class ImgProfil
 		$req->execute(array(
 			'id' => $this->id
 		));
-		$fetch = $req->fetch();
+		$fetch = $req->fetch(PDO::FETCH_ASSOC);
 		$pseudo = $fetch['pseudo'];
 	}
 
