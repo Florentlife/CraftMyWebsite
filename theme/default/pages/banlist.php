@@ -19,7 +19,7 @@
 			
 			<div class="tab-content">
 				<?php for($i=0; $i < count($jsonCon); $i++) {
-					$messages = $Chat->getMessages($i);?>
+?>
 				<div id="serv_<?=$i?>" class="tab-pane fade <?php if($i==0) echo 'in active show'; ?>" aria-expanded="false">
 					<table class="table table-bordered">
 						<tr>
