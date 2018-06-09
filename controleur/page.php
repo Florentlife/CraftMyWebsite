@@ -20,6 +20,7 @@ if(isset($_GET['page']))
 		break;
 
 		case 'membre':
+			require('modele/app/membres.class.php');
 			include('theme/'.$_Serveur_['General']['theme']. '/pages/membres.php');
 		break;
 		

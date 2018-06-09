@@ -15,6 +15,11 @@ if(isset($_GET['action']))
 			header('Location: index.php');
 		break;
 
+		case 'rechercheMembre':
+			require('modele/app/membres.class.php');
+			include('controleur/app/rechercheMembre.php');
+		break;
+
 		case 'modifPermsForum':
 			require('modele/forum/adminForum.class.php');
 			$entite = 1; //Forum
