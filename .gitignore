@@ -4,6 +4,8 @@ controleur/.htpasswd
 modele/.htpasswd
 *.yml
 modele/.htpasswd
+modele/config/config.yml
+modele/config/configServeur.yml
 controleur/.htpasswd
 admin/actions/.htpasswd
 *.xml
