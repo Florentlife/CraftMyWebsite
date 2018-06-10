@@ -23,8 +23,8 @@ DataBase:
 Payement:
     paypal: true
     mcgpass: true
-    mcgpass_id: "1734"
-    mcgpass_idSite: "137"
+    mcgpass_id: "*******"
+    mcgpass_idSite: "*****"
     paypalUser: ""
     paypalPass: ""
     paypalSignature: ""
