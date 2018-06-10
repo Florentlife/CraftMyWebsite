@@ -15,16 +15,16 @@ General:
     port: "25565"
     createur: Créateur
 DataBase:
-    dbAdress: localhost
-    dbName: cmw
-    dbUser: phpmyadmin
-    dbPassword: ic82yD53R4
+    dbAdress: *********
+    dbName: *****
+    dbUser: ********
+    dbPassword: *********
     dbPort: "3306"
 Payement:
     paypal: true
     mcgpass: true
-    mcgpass_id: "1734"
-    mcgpass_idSite: "137"
+    mcgpass_id: "*******"
+    mcgpass_idSite: "*****"
     paypalUser: ""
     paypalPass: ""
     paypalSignature: ""
