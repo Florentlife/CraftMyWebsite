@@ -8,7 +8,6 @@ chmod("../modele/config/configMenu.yml", 0777);
 chmod("../modele/config/configServeur.yml", 0777);
 chmod("../modele/config/configVotes.yml", 0777);
 chmod("../modele/config/configWidgets.yml", 0777);
-chmod("../modele/config/groups.yml", 0777);
 chmod("../modele/.htpasswd", 0777);
 chmod("../controleur/.htpasswd", 0777);
 chmod("../admin/actions/.htpasswd", 0777);
