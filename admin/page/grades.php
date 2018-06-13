@@ -45,29 +45,6 @@
         <div class="col-md-12">
             <div class="panel panel-default cmw-panel">
                 <div class="panel-heading cmw-panel-header">
-                    <h3 class="panel-title"><strong>Création d'un nouveau grade</strong></h3>
-                </div>
-                <div class="panel-body">
-                    <form method="POST" action="?&action=addGrade">
-                        <div class="col-md-12">
-                            <h3>Créer un grade</h3>
-                            <div class="row">
-                                <label class="control-label">Nom du grade</label>
-                                <input type="text" name="gradeName" class="form-control" style="text-align: center;" placeholder="Support"/>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 text-center" style="margin-top: 5px;">
-                                    <input type="submit" class="btn btn-success" value="Créer le grade !"/>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="panel panel-default cmw-panel">
-                <div class="panel-heading cmw-panel-header">
                     <h3 class="panel-title"><strong>Changer le nom du grade Créateur</strong></h3>
                 </div>
             </div>
@@ -86,6 +63,29 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default cmw-panel">
+                <div class="panel-heading cmw-panel-header">
+                    <h3 class="panel-title"><strong>Création d'un nouveau grade</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <form method="POST" action="?&action=addGrade">
+                        <div class="col-md-12">
+                            <h3>Créer un grade</h3>
+                            <div class="row">
+                                <label class="control-label">Nom du grade</label>
+                                <input type="text" name="gradeName" class="form-control" style="text-align: center;" placeholder="Support"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center" style="margin-top: 5px;">
+                                    <input type="submit" class="btn btn-success" value="Créer le grade !"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <?php } 
