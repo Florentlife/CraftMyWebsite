@@ -130,8 +130,9 @@ if(isset($_GET['id']))
 		<?php }?>
 	<?php if(isset($_Joueur_) && ($_Joueur_['pseudo'] == $topicd['pseudo'] OR ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['editTopic'] == true) AND !$_SESSION['mode']))
 	{
-		?><div class="col-md-2"><form action="?page=edit_topic" method="post">
-			<input type="hidden" name="id_topic" value="<?php echo $id; ?>" />
+		?><div class="col-md-2"><form action="?action=editForum" method="post">
+			<input type="hidden" name="objet" value="topic"/>
+			<input type="hidden" name="id" value="<?php echo $id; ?>" />
 			<button type="submit" class="btn btn-rounded btn-default">Editer le topic</button>
 		</form>
 		</div>
@@ -298,8 +299,9 @@ if(isset($_GET['id']))
 			}
 			if($_Joueur_['pseudo'] === $answerd[$i]['pseudo'] OR ($_PGrades_['PermsForum']['moderation']['editMessage'] == true OR $_Joueur_['rang'] == 1) AND !$_SESSION['mode'])
 			{
-				?><div class="col-md-2"><form action="?page=edit_answer" method="post">
-					<input type="hidden" name="id_answer" value="<?php echo $answerd[$i]['id']; ?>" />
+				?><div class="col-md-2"><form action="?action=editForum" method="post">
+					<input type="hidden" name="objet" value="answer" />
+					<input type="hidden" name="id" value="<?php echo $answerd[$i]['id']; ?>" />
 					<button type="submit" class="btn btn-default">Editer ce message</button>
 				</form></div>
 				<?php 
