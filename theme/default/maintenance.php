@@ -31,7 +31,12 @@ header('Location: index.php');
 </head>
 <body>
 	<div class="container text-center">
-		<?php if(!empty($donnees['dateFin']) && $donnees['dateFin'] > time()){?>
+		<?php if(!empty($donnees['dateFin'])){
+				if($donnees['dateFin'] != 0 && $donnees['dateFin'] <= time()){
+					$req = $bddConnection->prepare('UPDATE cmw_maintenance SET maintenanceEtat = :maintenanceEtat WHERE maintenanceId = :maintenanceId');
+					$req->execute(array('maintenanceEtat' => 0, 'maintenanceId' => $donnees['maintenanceId']));
+					header("Location: /");
+				}?>
 			<div id="clockdiv">
 				<div>
 					<span class="days"></span>
@@ -171,6 +176,8 @@ header('Location: index.php');
 		  var minutes = Math.floor((t / 1000 / 60) % 60);
 		  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
 		  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+		  if(days == 0 && hours == 0 && minutes == 0 && seconds == 0)
+			  window.location.replace("/");
 		  return {
 			'total': t,
 			'days': days,
