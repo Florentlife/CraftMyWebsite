@@ -30,6 +30,7 @@
                     </div>
                     <table class="table table-striped table-hover">
                         <tr>
+                            <th style='width:75px'>ID</th>
                             <th>Pseudo</th>
                             <th>Email</th>
                             <th>Jetons</th>
@@ -40,6 +41,9 @@
                         </tr>
                         <?php for($i = 0; $i < count($membres); $i++) { ?>
                             <tr class="ligneMembres">
+                            <td>
+                                <input type="number" class="form-control membres-form" value="<?= $membres[$i]['id']?>" disabled>
+                            </td>
                             <td>
                                 <input type="text" class="form-control membres-form"  name="pseudo<?php echo $i; ?>" value="<?php echo $membres[$i]['pseudo']; ?>" placeholder="Pseudo">
                             </td>
