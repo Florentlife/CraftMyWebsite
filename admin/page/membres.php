@@ -35,6 +35,7 @@
                             <th>Jetons</th>
                             <th>Rang</th>
                             <th>Mot de passe</th>
+                            <th>Valid. manuelle</th>
                             <th>Suppression</th>
                         </tr>
                         <?php for($i = 0; $i < count($membres); $i++) { ?>
@@ -61,6 +62,13 @@
                             </td>
                             <td>
                                 <input type="password" class="form-control membres-form"  name="mdp<?php echo $i; ?>" value="" placeholder="Changer MDP">
+                            </td>
+                            <td>
+								<?php if($membres[$i]['ValidationMail'] == 0){?>
+                                <a href="?&action=validMail&id=<?php echo $membres[$i]['id']; ?>" class="btn btn-danger">Valider e-mail</a>
+								<?php } else {?>
+                                <a href="#" class="btn btn-success disable">e-mail validé</a>
+								<?php }?>
                             </td>
                             <td>
                                 <a href="?&action=supprMembre&id=<?php echo $membres[$i]['id']; ?>" class="btn btn-danger">Supprimer</a>

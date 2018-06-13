@@ -95,6 +95,11 @@
 		$_SESSION['referrerAdmin'] = 'membres';
 		break;
 		
+		case 'validMail': 
+		require_once('admin/actions/validMail.php');
+		$_SESSION['referrerAdmin'] = 'membres';
+		break;
+		
 		case 'modifierMembres': 
 		require_once('admin/actions/modifierMembres.php');
 		$_SESSION['referrerAdmin'] = 'membres';
