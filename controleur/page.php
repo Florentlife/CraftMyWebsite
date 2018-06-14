@@ -19,7 +19,7 @@ if(isset($_GET['page']))
 			include('theme/'.$_Serveur_['General']['theme']. '/pages/chat.php');
 		break;
 
-		case 'membre':
+		case 'membres':
 			require('modele/app/membres.class.php');
 			include('theme/'.$_Serveur_['General']['theme']. '/pages/membres.php');
 		break;
