@@ -970,6 +970,30 @@
                                                                                 </div>
                                                                             </div>
                                                                             <div class="panel panel-default">
+                                                                                <div class="panel-heading" role="tab" id="headingPagesNewsLetter<?php echo $i; ?>">
+                                                                                    <h4 class="panel-title">
+                                                                                        <a role="button" data-toggle="collapse" data-parent="#accordionPages<?php echo $i; ?>" href="#collapsePagesUpload<?php echo $i; ?>" aria-expanded="true" aria-controls="collapsePagesUpload<?php echo $i; ?>"><strong>Upload d'images</strong></a>
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div id="collapsePagesUpload<?php echo $i; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPagesUpload<?php echo $i; ?>">
+                                                                                    <div class="panel-body">
+                                                                                        <div class="col-lg-12 text-center">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12 col-lg-offset-2 text-left">
+                                                                                                    <div class="col-lg-10">
+                                                                                                        <div class="checkbox">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" name="permsPanelUploadManage<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['upload']['manage']) echo 'checked'; ?> /> Peut gérer l'upload d'images
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="panel panel-default">
                                                                                 <div class="panel-heading" role="tab" id="headingPagesMaj<?php echo $i; ?>">
                                                                                     <h4 class="panel-title">
                                                                                         <a role="button" data-toggle="collapse" data-parent="#accordionPages<?php echo $i; ?>" href="#collapsePagesMaj<?php echo $i; ?>" aria-expanded="true" aria-controls="collapsePagesMaj<?php echo $i; ?>"><strong>Mise à jour</strong></a>

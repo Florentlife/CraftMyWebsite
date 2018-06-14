@@ -420,6 +420,11 @@
 		require_once('admin/actions/newsletter.php');
 		$_SESSION['referrerAdmin'] = 'newsletter';
 		break;
+
+		case 'uploadImg': 
+		require_once('admin/actions/uploadImg.php');
+		$_SESSION['referrerAdmin'] = 'upload';
+		break;
 		
 		// Si le joueur a rentré un url contenant une valeur d'action innexistant?
 		default:
