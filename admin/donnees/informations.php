@@ -105,6 +105,13 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastAchatmcgpass[$i] = $lastAchatmcgpassDonnees;
         $i++;
     }
+    $req = $bddConnection->query('SELECT * FROM cmw_log_DealJeton ORDER BY date DESC LIMIT 10;');
+    $i = 0;
+    while($d = $req->fetch(PDO::FETCH_ASSOC))
+    {
+        $lastDealJeton[$i] = $d;
+        $i++;
+    }
 
 }
 ?>

@@ -155,12 +155,8 @@ if(isset($_GET['action']))
 			include('controleur/forum/rep.php');
 		break;
 		
-		case 'edit_topic':
-			include('controleur/forum/edit_topic.php');
-		break;
-		
-		case 'edit_answer':
-			include('controleur/forum/edit_answer.php');
+		case 'editForum':
+			include('controleur/forum/edit.php');
 		break;
 		
 		case 'r_t_vu':

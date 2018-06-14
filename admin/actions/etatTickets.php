@@ -4,6 +4,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['tickets']['act
 	$req->execute(array (
 		'etat' => $_POST['etat'],
 		'id' => $_GET['id'],
-		))
+		));
 }
 ?>

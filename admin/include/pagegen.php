@@ -4,7 +4,7 @@ if(isset($_GET['page']))
 	switch ($_GET['page']) // on utilise ici un switch pour inclure telle ou telle page selon.
 	{ 		
 		
-		case 'accueil':  
+		case 'accueil':
 		echo '<link href="./admin/assets/css/page/style-accueil.css" rel="stylesheet">';
 		require_once('./admin/donnees/informations.php'); 
 		include('./admin/page/informations.php');
@@ -18,79 +18,83 @@ if(isset($_GET['page']))
 		include('./admin/page/general.php');
 		break;
 
-		case 'theme':  
+		case 'theme':
 		require_once('./admin/donnees/theme.php'); 
 		include('./admin/page/theme.php');
 		break;
 
-		case 'grade':  
+		case 'grade':
 		require_once('./admin/donnees/grades.php'); 
 		include('./admin/page/grades.php');
 		break;
 
-		case 'slidemini':  
+		case 'slidemini':
 		require_once('./admin/donnees/accueil.php'); 
 		include('./admin/page/accueil.php');
 		break;
 
-		case 'reglagejsonapi':  
+		case 'reglagejsonapi':
 		require_once('./admin/donnees/regServeur.php'); 
 		include('./admin/page/regServeur.php');
 		break;
 
-		case 'custompages':  
+		case 'custompages':
 		require_once('./admin/donnees/pages.php'); 
 		include('./admin/page/pages.php');
 		break;
 
-		case 'news':  
+		case 'news':
 		require_once('./admin/donnees/news.php'); 
 		include('./admin/page/news.php');
 		break;
 
-		case 'boutique':  
+		case 'boutique':
 		require_once('./admin/donnees/boutique.php'); 
 		include('./admin/page/boutique.php');
 		break;
 
-		case 'paiement':  
+		case 'paiement':
 		require_once('./admin/donnees/payement.php'); 
 		include('./admin/page/payement.php');
 		break;
 
-		case 'menus':  
+		case 'menus':
 		require_once('./admin/donnees/menu.php'); 
 		include('./admin/page/menu.php');
 		break;
 
-		case 'voter':  
+		case 'voter':
 		require_once('./admin/donnees/voter.php'); 
 		include('./admin/page/voter.php');
 		break;
 
-		case 'membres':  
+		case 'membres':
 		require_once('./admin/donnees/membres.php'); 
 		include('./admin/page/membres.php');
 		break;
 
-		case 'widgets':  
+		case 'widgets':
 		require_once('./admin/donnees/widgets.php'); 
 		include('./admin/page/widgets.php');
 		break;
 
-		case 'maintenance':  
+		case 'support':
+		require_once('./admin/donnees/support.php'); 
+		include('./admin/page/support.php');
+		break;
+
+		case 'maintenance':
 		require_once('./admin/donnees/maintenance.php'); 
 		include('./admin/page/maintenance.php');
 		break;
 
-		case 'newsletter':  
+		case 'newsletter':
 		// require_once('./admin/donnees/newsletter.php'); 
 		include('./admin/page/newsletter.php');
 		break;
 
-		case 'support':  
-		require_once('./admin/donnees/support.php'); 
-		include('./admin/page/support.php');
+		case 'upload':
+		include('./admin/page/upload.php');
 		break;
 
 		case 'maj':  
