@@ -292,10 +292,22 @@
 									<div class="col-sm-4">
 										<div class="form-group">
 											<label for="exampleSelect1">Visibilité</label>
+											<?php $lectConf = new Lire('modele/config/config.yml');
+											$lectConf = $lectConf->GetTableau();
+											if(!isset($lectConf["support"]["visibilite"]) || $lectConf["support"]["visibilite"] == "both" ){ ?>
 											<select class="form-control" id="vu_ticket" name="ticketDisplay">
 												<option value="0">Publique</option>
 												<option value="1">Privée</option>
 											</select>
+											<?php } else {?>
+											<select class="form-control">
+												<?php if($lectConf["support"]["visibilite"] == "prive"){ ?>
+												<option>Privée</option>
+												<?php } else {?>
+												<option>Publique</option>
+												<?php }?>
+											</select>
+											<?php }?>
 										</div>
 									</div>
 								</div>

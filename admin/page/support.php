@@ -15,7 +15,26 @@
                 </div></div>
             <?php } else { ?>
             <div class="row">
-                <div class="col-md-12 text-center">
+				<div class=" col-md-3 text-center">
+					<div class="panel panel-default cmw-panel">
+						<div class="panel-heading cmw-panel-header">
+							<h3 class="panel-title"><strong>visibilité du support</strong></h3>
+						</div>
+						<div class="panel-body">
+							<?php $lecture = new Lire('modele/config/config.yml');
+							$lecture = $lecture->GetTableau();?>
+							<form method="POST" action="?&action=switchTypeSupport">
+								<select name="visibilite" class="form-control" required>
+									<option value="both"<?php if(isset($lecture["support"]["visibilite"]) && $lecture["support"]["visibilite"] == "both") echo " selected"?>> Au choix
+									<option value="prive"<?php if(isset($lecture["support"]["visibilite"]) && $lecture["support"]["visibilite"] == "prive") echo " selected"?>> Privée
+									<option value="public"<?php if(isset($lecture["support"]["visibilite"]) && $lecture["support"]["visibilite"] == "public") echo " selected"?>> Publique
+								</select>
+								<input type="submit" class="btn btn-success" value="Valider">
+							</form>
+						</div>
+					</div>
+				</div>
+                <div class="col-md-9 text-center">
                     <div class="panel panel-default cmw-panel">
                         <div class="panel-heading cmw-panel-header">
                             <h3 class="panel-title"><strong>Édition des tickets</strong></h3>
@@ -53,6 +72,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         <?php }
         } ?>

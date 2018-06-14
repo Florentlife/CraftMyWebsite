@@ -25,6 +25,11 @@
 			$_SESSION['referrerAdmin'] = 'support';
 		break;
 
+		case 'switchTypeSupport':
+			require_once('admin/actions/switchTypeSupport.php');
+			$_SESSION['referrerAdmin'] = 'support';
+		break;
+
 		case 'addPrefix':
 			require_once('admin/actions/addPrefix.php');
 			$_SESSION['referrerAdmin'] = 'forum';
