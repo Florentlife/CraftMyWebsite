@@ -51,7 +51,7 @@
                                 <input type="text" class="form-control membres-form"  name="email<?php echo $i; ?>" value="<?php echo $membres[$i]['email']; ?>" placeholder="Email">
                             </td>
                             <td>
-                                <input type="number" class="form-control membres-form"  name="jetons<?php echo $i; ?>" value="<?php echo $membres[$i]['jetons']; ?>" placeholder="Jetons">
+                                <input type="number" class="form-control membres-form"  name="jetons<?php echo $i; ?>" value="<?php echo $membres[$i]['tokens']; ?>" placeholder="Jetons">
                             </td>
                             <td>
                                 <select name="rang<?php echo $i; ?>" size="1" class="form-control">

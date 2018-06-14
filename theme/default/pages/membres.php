@@ -41,9 +41,10 @@
 	        	<?php
 	        		foreach($membres as $value)
 	        		{
+	        			$Img = new ImgProfil($value['id']);
 	        			?><tr>
 	        				<td scope="row"><a href="?page=profil&profil=<?=$value['pseudo'];?>" style="color: inherit;"><?=$value['id'];?></a></td>
-	        				<td><a href="?page=profil&profil=<?=$value['pseudo'];?>" style="color: inherit;"><?=$value["pseudo"];?></a></td>
+	        				<td><a href="?page=profil&profil=<?=$value['pseudo'];?>" style="color: inherit;"><img src='<?=$Img->getImgToSize(32, $width, $height);?>' style='width: <?=$width;?>px; height: <?=$height;?>px;' alt='Profil' /> <?=$value["pseudo"];?></a></td>
 	        				<td><a href="?page=profil&profil=<?=$value['pseudo'];?>" style="color: inherit;"><?=$Membres->gradeJoueur($value["pseudo"]);?></a></td>
 	        				<td><a href="?page=profil&profil=<?=$value['pseudo'];?>" style="color: inherit;"><?=$value['tokens'];?></a></td>
 	        			</tr>
@@ -81,7 +82,7 @@
 <script>
 	function rechercheAjaxMembre()
 	{
-		$("#tableMembre").html("<img src='//cdn.dribbble.com/users/891352/screenshots/2651893/svg-search.gif'>Recherche en cours ...");
+		$("#tableMembre").html("<img src='theme/<?=$_Serveur_['General']['theme'];?>/img/gif-search.gif'>Recherche en cours ...");
 		$.ajax({
 			url: 'index.php?action=rechercheMembre',
 			type: 'POST',

@@ -30,6 +30,7 @@ header('Location: index.php');
     <link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/maintenance.css">
 </head>
 <body>
+    <section class="layout" id="page">
 	<div class="container text-center">
 		<?php if(!empty($donnees['dateFin'])){
 				if($donnees['dateFin'] != 0 && $donnees['dateFin'] <= time()){
@@ -113,6 +114,7 @@ header('Location: index.php');
             </div>
         </div>
     </div>
+</section>
 	<footer style="margin-top: 50px; width: 100%">
         <div class="card card-inverse card-primary text-xs-center">
             <div class="card-block">

@@ -38,7 +38,7 @@ function VerifieChmod() {
     $dir[8] = 'controleur/.htpasswd';
     $dir[9] = 'admin/actions/.htpasswd';
 
-    $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/');
+    $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/', 'theme/upload/panel/');
     $dirDossier[1] = array('../theme/smileys/');
 
     $err = null;

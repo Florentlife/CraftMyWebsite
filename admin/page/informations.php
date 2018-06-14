@@ -839,13 +839,13 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 		<span data-toggle="collapse" data-target="#listDealJeton"><i class="fa fa-fw fa-handshake-o"></i> Dernier echange de jetons: </span>
 		<a href="#" class="list-group-item">
 			<span class="badge"><?php echo date('d-m-Y H:i:s', $lastDealJeton[0]['date']); ?></span>
-            <?php echo '<strong>'.$lastDealJeton[0]['fromUser'].' donne '. $lastDealJeton[0]["amount"] .' à '. $lastDealJeton[0]["toUser"] .'</strong>'; ?>
+            <?php echo '<strong>'.$lastDealJeton[0]['fromUser'].' a donné '. $lastDealJeton[0]["amount"] .' jetons à '. $lastDealJeton[0]["toUser"] .'</strong>'; ?>
 		</a>
 		<div id="listDealJeton" class="collapse">
         <?php for($i = 1; $i < count($lastDealJeton); $i++) { ?>
           <a href="#" class="list-group-item">
             <span class="badge"><?php echo date('d-m-Y H:i:s', $lastDealJeton[$i]['date']); ?></span>
-            <?php echo '<strong>'.$lastDealJeton[$i]['fromUser'].' donne '. $lastDealJeton[$i]["amount"] .' à '. $lastDealJeton[$i]["toUser"] .'</strong>'; ?>
+            <?php echo '<strong>'.$lastDealJeton[$i]['fromUser'].' a donné '. $lastDealJeton[$i]["amount"] .' jetons à '. $lastDealJeton[$i]["toUser"] .'</strong>'; ?>
           </a>
         <?php }?>
 		</div>

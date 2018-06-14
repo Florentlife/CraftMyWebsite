@@ -21,5 +21,10 @@ chmod("../theme/upload/slider/slider3.png", 0777);
 chmod("../theme/upload/slider/", 0777);
 chmod("../theme/upload/cross.png", 0777);
 chmod("../theme/upload/true.png", 0777);
+chmod("../theme/upload/panel", 0777);
+chmod("../theme/upload/panel/bg.png", 0777);
+chmod("../theme/upload/panel/cross.png", 0777);
+chmod("../theme/upload/panel/true.png", 0777);
+chmod("../theme/upload/panel/index.php", 0777);
 chmod("../theme/smileys", 0777);
 ?>
