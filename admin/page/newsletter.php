@@ -34,30 +34,6 @@
 	<div class="col-md-6">
 		<div class="panel panel-default cmw-panel">
 			<div class="panel-heading cmw-panel-header">
-				<h3 class="panel-title"><strong>Liste des utilisateur recevant la newsletter</strong></h3>
-			</div>
-			<div class="panel-body">
-				<?php $news = $bddConnection->query('SELECT * FROM cmw_users WHERE newsletter = 1');?>
-				<h3><?= $news->rowCount()?> joueurs vont recevoir la newsletter !</h3>
-				<table class="table">
-					<tr>
-						<th>Pseudo</th>
-						<th>Email</th>
-					</tr>
-					<?php 
-						while ($donneesnews = $news->fetch(PDO::FETCH_ASSOC)) {?>
-					<tr>
-						<td><?php echo $donneesnews['pseudo']; ?></td>
-						<td><?php echo $donneesnews['email']; ?></td>
-					</tr>
-					<?php }?>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-6">
-		<div class="panel panel-default cmw-panel">
-			<div class="panel-heading cmw-panel-header">
 				<h3 class="panel-title"><strong>Envoyer une newsletter</strong></h3>
 			</div>
 			<div class="panel-body">
