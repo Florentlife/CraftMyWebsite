@@ -31,6 +31,11 @@ Payement:
     paypalEmail: curvalle.florent@gmail.com
     paypalMethodeAPI: "1"
 color:
-    main: '#ff0080'
-    hover: '#ff00ff'
-    focus: '#ff80c0'
+    theme:
+        main: '#ff0080'
+        hover: '#ff00ff'
+        focus: '#ff80c0'
+    panel:
+        main: '#ff8040'
+        hover: '#c16100'
+        focus: '#ffbc9b'
