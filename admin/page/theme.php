@@ -120,15 +120,29 @@
 		</div>
 		<div class="panel-body">
 			<h3>Choisir vos couleurs</h3>
-			<form method="POST" action="?&action=themeColor">
-				<?php $lecture = new Lire('modele/config/config.yml');
-					$lecture = $lecture->GetTableau()?>
-				<label>Couleur principale</label><br>
-				<input type="color" name='color_main'<?php if(isset($lecture["color"]["main"])) echo ' value="'.$lecture["color"]["main"].'"'?>><br><br>
-				<label>Couleur lors du survol</label><br>
-				<input type="color" name='color_hover'<?php if(isset($lecture["color"]["hover"])) echo ' value="'.$lecture["color"]["hover"].'"'?>><br><br>
-				<label>Couleur lors du clic</label><br>
-				<input type="color" name='color_focus'<?php if(isset($lecture["color"]["focus"])) echo ' value="'.$lecture["color"]["focus"].'"'?>><br><br>
+			<form method="POST" action="?&action=themeColor" class="row">
+				<div class="col-sm-6">
+					<h5>Theme</h5>
+					<?php $lecture = new Lire('modele/config/config.yml');
+						$lecture = $lecture->GetTableau()?>
+					<label>Couleur principale</label><br>
+					<input type="color" name='color_theme_main'<?php if(isset($lecture["color"]["theme"]["main"])) echo ' value="'.$lecture["color"]["theme"]["main"].'"'?>><br><br>
+					<label>Couleur lors du survol</label><br>
+					<input type="color" name='color_theme_hover'<?php if(isset($lecture["color"]["theme"]["hover"])) echo ' value="'.$lecture["color"]["theme"]["hover"].'"'?>><br><br>
+					<label>Couleur lors du clic</label><br>
+					<input type="color" name='color_theme_focus'<?php if(isset($lecture["color"]["theme"]["focus"])) echo ' value="'.$lecture["color"]["theme"]["focus"].'"'?>><br><br>
+				</div>
+				<div class="col-sm-6">
+					<h5>Panel</h5>
+					<?php $lecture = new Lire('modele/config/config.yml');
+						$lecture = $lecture->GetTableau()?>
+					<label>Couleur principale</label><br>
+					<input type="color" name='color_panel_main'<?php if(isset($lecture["color"]["panel"]["main"])) echo ' value="'.$lecture["color"]["panel"]["main"].'"'?>><br><br>
+					<label>Couleur lors du survol</label><br>
+					<input type="color" name='color_panel_hover'<?php if(isset($lecture["color"]["panel"]["hover"])) echo ' value="'.$lecture["color"]["panel"]["hover"].'"'?>><br><br>
+					<label>Couleur lors du clic</label><br>
+					<input type="color" name='color_panel_focus'<?php if(isset($lecture["color"]["panel"]["focus"])) echo ' value="'.$lecture["color"]["panel"]["focus"].'"'?>><br><br>
+				</div>
 				<input type="submit" class="btn btn-success" value="Valider les changements">
 			</form>
 		</div>
