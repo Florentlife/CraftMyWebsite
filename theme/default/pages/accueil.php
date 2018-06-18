@@ -25,7 +25,7 @@
 	<section class="layout micro-blog">
 		<div class="container">
 			<div class="row">
-				<?php for($i = 0; $i < 3; $i++)
+				<?php for($i = 1; $i < count($lectureAccueil['Infos']) + 1; $i++)
 				{ ?>
 					<div class="col-lg-4 col-md-6 col-sm-12">
 						<div class="card hvr-float-shadow" style="margin-bottom:15px;">
