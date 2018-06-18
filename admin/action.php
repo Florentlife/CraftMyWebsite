@@ -250,6 +250,11 @@
 		$_SESSION['referrerAdmin'] = 'slidemini';
 		break;
 		
+		case 'addRapNav': 
+		require_once('admin/actions/addRapNav.php');
+		$_SESSION['referrerAdmin'] = 'slidemini';
+		break;
+		
 		case 'newSlider':
 		require_once('admin/actions/newSlider.php');
 		$_SESSION['referrerAdmin'] = 'slidemini';
