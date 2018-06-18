@@ -25,6 +25,11 @@
 			$_SESSION['referrerAdmin'] = 'support';
 		break;
 
+		case 'switchTypeSupport':
+			require_once('admin/actions/switchTypeSupport.php');
+			$_SESSION['referrerAdmin'] = 'support';
+		break;
+
 		case 'addPrefix':
 			require_once('admin/actions/addPrefix.php');
 			$_SESSION['referrerAdmin'] = 'forum';
@@ -92,6 +97,11 @@
 		
 		case 'supprMembre': 
 		require_once('admin/actions/supprMembre.php');
+		$_SESSION['referrerAdmin'] = 'membres';
+		break;
+		
+		case 'validMail': 
+		require_once('admin/actions/validMail.php');
 		$_SESSION['referrerAdmin'] = 'membres';
 		break;
 		
@@ -237,6 +247,11 @@
 		
 		case 'editRapNav': 
 		require_once('admin/actions/editRapNav.php');
+		$_SESSION['referrerAdmin'] = 'slidemini';
+		break;
+		
+		case 'addRapNav': 
+		require_once('admin/actions/addRapNav.php');
 		$_SESSION['referrerAdmin'] = 'slidemini';
 		break;
 		
@@ -409,6 +424,11 @@
 		case 'newsletter': 
 		require_once('admin/actions/newsletter.php');
 		$_SESSION['referrerAdmin'] = 'newsletter';
+		break;
+
+		case 'uploadImg': 
+		require_once('admin/actions/uploadImg.php');
+		$_SESSION['referrerAdmin'] = 'upload';
 		break;
 		
 		// Si le joueur a rentré un url contenant une valeur d'action innexistant?

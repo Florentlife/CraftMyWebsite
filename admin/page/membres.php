@@ -30,15 +30,20 @@
                     </div>
                     <table class="table table-striped table-hover">
                         <tr>
+                            <th style='width:75px'>ID</th>
                             <th>Pseudo</th>
                             <th>Email</th>
                             <th>Jetons</th>
                             <th>Rang</th>
                             <th>Mot de passe</th>
+                            <th>Valid. manuelle</th>
                             <th>Suppression</th>
                         </tr>
                         <?php for($i = 0; $i < count($membres); $i++) { ?>
                             <tr class="ligneMembres">
+                            <td>
+                                <input type="number" class="form-control membres-form" value="<?= $membres[$i]['id']?>" disabled>
+                            </td>
                             <td>
                                 <input type="text" class="form-control membres-form"  name="pseudo<?php echo $i; ?>" value="<?php echo $membres[$i]['pseudo']; ?>" placeholder="Pseudo">
                             </td>
@@ -46,7 +51,7 @@
                                 <input type="text" class="form-control membres-form"  name="email<?php echo $i; ?>" value="<?php echo $membres[$i]['email']; ?>" placeholder="Email">
                             </td>
                             <td>
-                                <input type="number" class="form-control membres-form"  name="jetons<?php echo $i; ?>" value="<?php echo $membres[$i]['jetons']; ?>" placeholder="Jetons">
+                                <input type="number" class="form-control membres-form"  name="jetons<?php echo $i; ?>" value="<?php echo $membres[$i]['tokens']; ?>" placeholder="Jetons">
                             </td>
                             <td>
                                 <select name="rang<?php echo $i; ?>" size="1" class="form-control">
@@ -61,6 +66,13 @@
                             </td>
                             <td>
                                 <input type="password" class="form-control membres-form"  name="mdp<?php echo $i; ?>" value="" placeholder="Changer MDP">
+                            </td>
+                            <td>
+								<?php if($membres[$i]['ValidationMail'] == 0){?>
+                                <a href="?&action=validMail&id=<?php echo $membres[$i]['id']; ?>" class="btn btn-danger">Valider e-mail</a>
+								<?php } else {?>
+                                <a href="#" class="btn btn-success disable">e-mail validé</a>
+								<?php }?>
                             </td>
                             <td>
                                 <a href="?&action=supprMembre&id=<?php echo $membres[$i]['id']; ?>" class="btn btn-danger">Supprimer</a>

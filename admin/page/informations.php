@@ -834,11 +834,28 @@ for($j = 0; $j < count($lecture['Json']); $j++)
     </div>
     <div class="panel-body">
       <div class="list-group">
+		<?php if(count($lastDealJeton) > 0){?>
+		<a href="#" class="list-group-item">
+		<span data-toggle="collapse" data-target="#listDealJeton"><i class="fa fa-fw fa-handshake-o"></i> Dernier echange de jetons: </span>
+		<a href="#" class="list-group-item">
+			<span class="badge"><?php echo date('d-m-Y H:i:s', $lastDealJeton[0]['date']); ?></span>
+            <?php echo '<strong>'.$lastDealJeton[0]['fromUser'].' a donné '. $lastDealJeton[0]["amount"] .' jetons à '. $lastDealJeton[0]["toUser"] .'</strong>'; ?>
+		</a>
+		<div id="listDealJeton" class="collapse">
+        <?php for($i = 1; $i < count($lastDealJeton); $i++) { ?>
+          <a href="#" class="list-group-item">
+            <span class="badge"><?php echo date('d-m-Y H:i:s', $lastDealJeton[$i]['date']); ?></span>
+            <?php echo '<strong>'.$lastDealJeton[$i]['fromUser'].' a donné '. $lastDealJeton[$i]["amount"] .' jetons à '. $lastDealJeton[$i]["toUser"] .'</strong>'; ?>
+          </a>
+        <?php }?>
+		</div>
+		</a>
+        <?php }?>
 
         <?php for($i = 0; $i < count($lastMembre); $i++) {
           if(!empty($lastMembre[$i]['pseudo'])) { ?>
           <a href="#" class="list-group-item">
-            <span class="badge"><?php echo date('Y-m-d', $lastMembre[$i]['anciennete']).' '.date('H:i:s', $lastMembre[$i]['anciennete']); ?></span>
+            <span class="badge"><?php echo date('d-m-Y H:i:s', $lastMembre[$i]['anciennete']); ?></span>
             <i class="fa fa-fw fa-user"></i> Dernier membre inscrit : 
             <?php echo '<strong>'.$lastMembre[$i]['pseudo'].'</strong>'; ?>
           </a>
@@ -888,7 +905,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         $getNameNews = $reqNameNews->fetch(PDO::FETCH_ASSOC);
         $NameNews = $getNameNews['titre']; ?>
         <a href="#" class="list-group-item">
-          <span class="badge"><?php echo date('Y-m-d', $lastCommentaireNews[$i]['date_post']).' '.date('H:i:s', $lastCommentaireNews[$i]['date_post']); ?></span>
+          <span class="badge"><?php echo date('d-m-Y H:i:s', $lastCommentaireNews[$i]['date_post']); ?></span>
           <i class="fa fa-newspaper-o"></i> Dernier commentaire par : 
           <?php echo '<strong>'.$lastCommentaireNews[$i]['pseudo'].'</strong> dans la nouveauté <strong>'.$NameNews.'</strong>'; ?>
         </a>
@@ -898,7 +915,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
       <?php for($i = 0; $i < count($lastNews); $i++) {
        if(!empty($lastNews[$i]['titre'])) { ?>
        <a href="#" class="list-group-item">
-        <span class="badge"><?php echo date('Y-m-d', $lastNews[$i]['date']).' '.date('H:i:s', $lastNews[$i]['date']); ?></span>
+        <span class="badge"><?php echo date('d-m-Y H:i:s', $lastNews[$i]['date']); ?></span>
         <i class="fa fa-star"></i> Dernière nouveauté : 
         <?php echo '<strong>'.$lastNews[$i]['titre'].'</strong> par <strong>'.$lastNews[$i]['auteur'].'</strong>'; ?>
       </a>
@@ -908,7 +925,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
     <?php for($i = 0; $i < count($lastVote); $i++) {
      if(!empty($lastVote[$i]['id'])) { ?>
      <a href="#" class="list-group-item">
-      <span class="badge"><?php echo date('Y-m-d', $lastVote[$i]['date_dernier']).' '.date('H:i:s', $lastVote[$i]['date_dernier']); ?></span>
+      <span class="badge"><?php echo date('d-m-Y H:i:s', $lastVote[$i]['date_dernier']); ?></span>
       <i class="fa fa-bullhorn"></i> Dernier vote par :
       <?php echo '<strong>'.$lastVote[$i]['pseudo'].'</strong>'; ?>
     </a>
@@ -918,7 +935,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
   <?php for($i = 0; $i < count($lastMaintenance); $i++) {
    if(!empty($lastMaintenance[$i]['maintenanceTime'])) { ?>
    <a href="#" class="list-group-item">
-    <span class="badge"><?php if($lastMaintenance[$i]['maintenanceTime'] != "0") { echo date('Y-m-d', $lastMaintenance[$i]['maintenanceTime']).' '.date('H:i:s', $lastMaintenance[$i]['maintenanceTime']); } ?></span>
+    <span class="badge"><?php if($lastMaintenance[$i]['maintenanceTime'] != "0") { echo date('d-m-Y H:i:s', $lastMaintenance[$i]['maintenanceTime']);}?></span>
     <?php if($lastMaintenance[$i]['maintenanceEtat'] == "0") { ?>
     <span class="badge" style="background-color: #d9534f;">Inactif</span>
     <?php } elseif($lastMaintenance[$i]['maintenanceEtat'] == "1") { ?>

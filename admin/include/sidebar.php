@@ -72,6 +72,10 @@
     <a href="?page=newsletter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'newsletter'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> NewsLetter <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
+    <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['showPage'] == true) { ?>
+    <a href="?page=upload" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'upload'){ echo 'active'; } ?>" role="button">Upload <i class="fa fa-upload cmw-fa-sidebar" aria-hidden="true"></i> </a>
+    <?php } ?>
+
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['update']['showPage'] == true) { ?>
     <a href="?page=maj" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'maj'){ echo 'active'; } ?>" role="button">Mise à jour <i class="fa fa-free-code-camp cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>

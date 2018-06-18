@@ -19,7 +19,7 @@ if(isset($_GET['page']))
 			include('theme/'.$_Serveur_['General']['theme']. '/pages/chat.php');
 		break;
 
-		case 'membre':
+		case 'membres':
 			require('modele/app/membres.class.php');
 			include('theme/'.$_Serveur_['General']['theme']. '/pages/membres.php');
 		break;
@@ -44,12 +44,8 @@ if(isset($_GET['page']))
 			include('theme/' .$_Serveur_['General']['theme']. '/pages/signalement.php');
 		break;
 		
-		case 'edit_topic':
-			include('theme/' .$_Serveur_['General']['theme']. '/pages/edit_topic.php');
-		break;
-		
-		case 'edit_answer':
-			include('theme/' .$_Serveur_['General']['theme']. '/pages/edit_answer.php');
+		case 'editForum':
+			include('theme/' .$_Serveur_['General']['theme']. '/pages/editForum.php');
 		break;
 		
 		case 'forum_categorie':

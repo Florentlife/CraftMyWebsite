@@ -45,29 +45,6 @@
         <div class="col-md-12">
             <div class="panel panel-default cmw-panel">
                 <div class="panel-heading cmw-panel-header">
-                    <h3 class="panel-title"><strong>Création d'un nouveau grade</strong></h3>
-                </div>
-                <div class="panel-body">
-                    <form method="POST" action="?&action=addGrade">
-                        <div class="col-md-12">
-                            <h3>Créer un grade</h3>
-                            <div class="row">
-                                <label class="control-label">Nom du grade</label>
-                                <input type="text" name="gradeName" class="form-control" style="text-align: center;" placeholder="Support"/>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 text-center" style="margin-top: 5px;">
-                                    <input type="submit" class="btn btn-success" value="Créer le grade !"/>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="panel panel-default cmw-panel">
-                <div class="panel-heading cmw-panel-header">
                     <h3 class="panel-title"><strong>Changer le nom du grade Créateur</strong></h3>
                 </div>
             </div>
@@ -86,6 +63,29 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default cmw-panel">
+                <div class="panel-heading cmw-panel-header">
+                    <h3 class="panel-title"><strong>Création d'un nouveau grade</strong></h3>
+                </div>
+                <div class="panel-body">
+                    <form method="POST" action="?&action=addGrade">
+                        <div class="col-md-12">
+                            <h3>Créer un grade</h3>
+                            <div class="row">
+                                <label class="control-label">Nom du grade</label>
+                                <input type="text" name="gradeName" class="form-control" style="text-align: center;" placeholder="Support"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center" style="margin-top: 5px;">
+                                    <input type="submit" class="btn btn-success" value="Créer le grade !"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
         <?php } 
@@ -960,6 +960,30 @@
                                                                                                         <div class="checkbox">
                                                                                                             <label>
                                                                                                                 <input type="checkbox" name="permsPanelNewsletterActionsEditDefaultMessage<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['newsletter']['actions']['send']) echo 'checked'; ?> /> Peut envoyer une newsletter
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="panel panel-default">
+                                                                                <div class="panel-heading" role="tab" id="headingPagesNewsLetter<?php echo $i; ?>">
+                                                                                    <h4 class="panel-title">
+                                                                                        <a role="button" data-toggle="collapse" data-parent="#accordionPages<?php echo $i; ?>" href="#collapsePagesUpload<?php echo $i; ?>" aria-expanded="true" aria-controls="collapsePagesUpload<?php echo $i; ?>"><strong>Upload d'images</strong></a>
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div id="collapsePagesUpload<?php echo $i; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingPagesUpload<?php echo $i; ?>">
+                                                                                    <div class="panel-body">
+                                                                                        <div class="col-lg-12 text-center">
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-12 col-lg-offset-2 text-left">
+                                                                                                    <div class="col-lg-10">
+                                                                                                        <div class="checkbox">
+                                                                                                            <label>
+                                                                                                                <input type="checkbox" name="permsPanelUploadManage<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['upload']['manage']) echo 'checked'; ?> /> Peut gérer l'upload d'images
                                                                                                             </label>
                                                                                                         </div>
                                                                                                     </div>

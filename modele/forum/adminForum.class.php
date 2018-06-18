@@ -1,5 +1,6 @@
 <?php 
-require('modele/forum/forum.class.php');
+if(!class_exists('Forum'))
+	require('modele/forum/forum.class.php');
 
 class AdminForum extends Forum
 {
@@ -64,6 +65,69 @@ class AdminForum extends Forum
 			}
 			return 1;
 		}
+	}
+
+	public function verifEdit($objet, $id, $joueur, $perms)
+	{
+		++$this->actions;
+		if($joueur['rang'] == 1)
+			return true;
+		elseif($objet == 1 && $perms['PermsForum']['moderation']['editTopic'])
+			return true;
+		elseif($objet == 2 && $perms['PermsForum']['moderation']['editMessage'])
+			return true;
+		else
+		{
+			$table = ($objet == 1) ? 'cmw_forum_post' : 'cmw_forum_answer';
+			$req = $this->bdd->prepare('SELECT pseudo FROM '.$table.' WHERE id = :id');
+			$req->execute(array(
+				'id' => $id
+			));
+			$fetch = $req->fetch(PDO::FETCH_ASSOC);
+			if($fetch['pseudo'] == $pseudo)
+				return true;
+			else
+			{
+				$this->success[$this->action-1] = 'ERREUR, vous ne détenez pas le droit d\'éditer !';
+				return false;
+			}
+		}
+	}
+
+	public function editObjet($objet, $id, $pseudo, $contenue, &$id_topic)
+	{
+		++$this->actions;
+		if($objet == 1)
+		{
+			$req = $this->bdd->prepare('SELECT contenue FROM cmw_forum_post WHERE id = :id');
+			$req->execute(array(
+				'id' => $id
+			));
+			$id_topic = $id;
+			$data = $req->fetch(PDO::FETCH_ASSOC);
+			$table = 'cmw_forum_post';
+		}
+		else
+		{
+			$req = $this->bdd->prepare('SELECT contenue, id_topic FROM cmw_forum_answer WHERE id = :id');
+			$req->execute(array(
+				'id' => $id
+			));
+			$data = $req->fetch(PDO::FETCH_ASSOC);
+			$id_topic = $data['id_topic'];
+			$table = 'cmw_forum_answer';
+		}
+		if($data['contenue'] != $contenue)
+		{
+			$update = $this->bdd->prepare('UPDATE '.$table.' SET contenue = :contenue, d_edition = NOW() WHERE id = :id');
+			$update->execute(array(
+				'contenue' => $contenue,
+				'id' => $id
+			));
+			return true;
+		}
+		else
+			return true;
 	}
 
 	public function getPage($entite, $id)
