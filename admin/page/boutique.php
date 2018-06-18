@@ -100,8 +100,8 @@
 						</select>
 					</div>
 					<div class="form-group col-lg-12">
-						<label>Nombre de ventes possibles <small>(Laissez vide si aucune limite, max 9999)</small></label><br>
-						<input class="form-control" type="number" name="nbre_ventes" min="0" max="9999" />
+						<label>Nombre de ventes possibles <small>(-1 si aucune limite, max 9999)</small></label><br>
+						<input class="form-control" type="number" name="nbre_ventes" min="-1" max="9999" required />
 					</div>
 					<hr>
 					<div class="form-group col-lg-12">
@@ -220,13 +220,14 @@
 											<th>Description</th>
 											<th>Prix</th>
 											<th>catégorie</th>
+											<th>Nombre de ventes restantes</th>
 											<th>Ordre</th>
 											<th>Supprimer</th>
 											<th>Action</th>
 										</tr>
 										<?php $j = 0;
 										while($j < count($offres)) {
-											if($offres[$j]['categorie'] == $categories[$i]['id']) { ?>
+											if($offres[$j]['categorie'] == $categories[$i]['id']) {?>
 											<tr>
 												<td><input type="text" name="offresNom<?php echo $offres[$j]['id']; ?>" class="form-control" value="<?php echo $offres[$j]['nom']; ?>" /></td>
 												<td><input type="text" name="offresDescription<?php echo $offres[$j]['id']; ?>" class="form-control" value="<?php echo htmlspecialchars($offres[$j]['description']); ?>" /></td>
@@ -238,6 +239,7 @@
 															if($categories[$k]['titre'] != $offres[$j]['categorie']) echo '<option value="' .$categories[$k]['id']. '">' .$categories[$k]['titre']. '</option>'; $k++; } ?>
 														</select>
 												</td>
+												<td><input type="number" name="nbre_vente_<?php echo $offres[$j]['id']; ?>" class="form-control" value="<?php echo $offres[$j]['nbre_vente']; ?>" /></td>
 												<td><input type="number" name="offresOrdre<?php echo $offres[$j]['id']; ?>" class="form-control" value="<?php echo $offres[$j]['ordre']; ?>" /></td>
 												<td><input type="checkbox" name="suppr<?php echo $offres[$j]['id']; ?>" /></td>
 												<td><a class="btn btn-success" data-toggle="modal" data-target="#OffreAction<?php echo $offres[$j]['id']; ?>">Modifier</a></td>

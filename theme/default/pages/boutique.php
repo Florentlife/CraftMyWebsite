@@ -61,7 +61,7 @@
 											echo '
 											<div class="col-md-4 panel panel-default">
 												<div class="panel-body">
-														<h3 class="titre-offre"><center>'. $offresTableau[$i]['nom'] .'</center></h3>
+													<h3 class="titre-offre"><center>'. $offresTableau[$i]['nom']; if($offresTableau[$i]['nbre_vente'] > -1) { echo '<br><small>Reste: '. $offresTableau[$i]['nbre_vente'] .'</small>'; } echo'</center></h3>
 														<div class="offre-description">' .$offresTableau[$i]['description']. '</div>
 													</div>
 													';
