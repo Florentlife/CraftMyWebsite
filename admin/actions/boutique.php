@@ -84,20 +84,30 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['editCa
 				$i++;
 			}
 		}
+		$i = 0;
+		foreach($post as $cle => $element)
+		{
+			if(preg_match("#nbre_vente#", $cle))
+			{
+				$boutiqueData['nbre_vente'][$i] = $element;
+				$i++;
+			}
+		}
 		return $boutiqueData;
 	}
 	function UpdatePourTableau($bdd, $tableau)
 	{
 		for($i = 0;$i < count($tableau['id']);$i++)
-			SetInBdd($bdd, $tableau['nom'][$i], $tableau['description'][$i], $tableau['categorie'][$i], $tableau['prix'][$i], $tableau['id'][$i], $tableau['ordre'][$i]);
+			SetInBdd($bdd, $tableau['nom'][$i], $tableau['description'][$i], $tableau['nbre_vente'][$i], $tableau['categorie'][$i], $tableau['prix'][$i], $tableau['id'][$i], $tableau['ordre'][$i]);
 	}
-	function SetInBdd($bdd, $nom, $description, $categorie, $prix, $id, $ordre)
+	function SetInBdd($bdd, $nom, $description, $nbre_vente, $categorie, $prix, $id, $ordre)
 	{
-		$req = $bdd->prepare('UPDATE cmw_boutique_offres SET ordre = :ordre, nom = :nom, description = :description,prix = :prix, categorie_id = :categorie WHERE id = :id');
+		$req = $bdd->prepare('UPDATE cmw_boutique_offres SET ordre = :ordre, nom = :nom, description = :description, nbre_vente = :nbre_vente,prix = :prix, categorie_id = :categorie WHERE id = :id');
 		$req->execute(Array (
 			'id' => $id,
 			'nom' => $nom,
 			'description' => $description,
+			'nbre_vente' => $nbre_vente,
 			'categorie' => $categorie,
 			'prix' => $prix,
 			'ordre' => $ordre,
