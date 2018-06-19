@@ -8,7 +8,7 @@
 			$req->execute(array("id" => $_SESSION['panier']['id'][$a]));
 			$d = $req->fetch(PDO::FETCH_ASSOC);
 			if($d["nbre_vente"] == "0"){
-				header('Location: ?page=erreur&erreur=19');
+				header('Location: ?page=erreur&erreur=19&type='.htmlspecialchars("Erreur Boutique").'&titre='.htmlspecialchars("Stock insufisant !"). '&contenue='.htmlspecialchars("Désolé, mais un des articles que vous souhaitez acheter est indisponible pour l'instant :( !"));
 				exit();
 			}
 			if($_SESSION['panier']['prix'][$a] > 0 && $_SESSION['panier']['quantite'][$a] > 0)
@@ -88,7 +88,7 @@
 			}
 		}
 		$_Panier_->supprimerPanier();
-		// header('Location: ?page=panier&success=true');
+		 header('Location: ?page=panier&success=true');
 	}
 	else
 		header('Location: ?page=erreur&erreur=18');
