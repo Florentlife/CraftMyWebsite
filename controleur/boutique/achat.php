@@ -7,12 +7,14 @@
 			$req = $bddConnection->prepare("SELECT nbre_vente FROM cmw_boutique_offres WHERE id = :id");
 			$req->execute(array("id" => $_SESSION['panier']['id'][$a]));
 			$d = $req->fetch(PDO::FETCH_ASSOC);
-			if($d["nbre_vente"] == 0)
+			if($d["nbre_vente"] == "0"){
 				header('Location: ?page=erreur&erreur=19');
+				exit();
+			}
 			if($_SESSION['panier']['prix'][$a] > 0 && $_SESSION['panier']['quantite'][$a] > 0)
 			{
 				$req = $bddConnection->prepare("UPDATE cmw_boutique_offres SET nbre_vente = :nbre_vente WHERE id = :id");
-				$req->execute(array("nbre_vente" => $d["nbre_vente"], "id" => $_SESSION['panier']['id'][$a]));
+				$req->execute(array("nbre_vente" => --$d["nbre_vente"], "id" => $_SESSION['panier']['id'][$a]));
 				
 				$recupActions = $bddConnection->prepare('SELECT * FROM cmw_boutique_action WHERE id_offre = :id_offre');
 				$recupActions->execute(array('id_offre' => $_SESSION['panier']['id'][$a]));
@@ -86,7 +88,7 @@
 			}
 		}
 		$_Panier_->supprimerPanier();
-		header('Location: ?page=panier&success=true');
+		// header('Location: ?page=panier&success=true');
 	}
 	else
 		header('Location: ?page=erreur&erreur=18');

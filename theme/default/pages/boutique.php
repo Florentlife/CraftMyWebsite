@@ -61,15 +61,31 @@
 											echo '
 											<div class="col-md-4 panel panel-default">
 												<div class="panel-body">
-													<h3 class="titre-offre"><center>'. $offresTableau[$i]['nom']; if($offresTableau[$i]['nbre_vente'] > -1) { echo '<br><small>Reste: '. $offresTableau[$i]['nbre_vente'] .'</small>'; } echo'</center></h3>
+													<h3 class="titre-offre"><center>'. (($offresTableau[$i]['nbre_vente'] > -1) ? "<s>".$offresTableau[$i]['nom']."</s>" : $offresTableau[$i]['nbre_vente']);
+													if($offresTableau[$i]['nbre_vente'] > -1) {
+														echo "<br><span style='font-size: 9pt;'>";
+														if($offresTableau[$i]['nbre_vente'] == 0) {
+															echo "vide";
+														} else {
+															echo 'Reste: '. $offresTableau[$i]['nbre_vente'];
+														}
+														echo "</span>";
+													}
+													echo'</center></h3>
 														<div class="offre-description">' .$offresTableau[$i]['description']. '</div>
 													</div>
 													';
 														if(isset($_Joueur_)) {
 															echo '<a href="?page=boutique&offre=' .$offresTableau[$i]['id']. '" class="btn btn-primary btn-block" title="Voir la fiche produit"><i class="fa fa-eye"></i></a>';
-														echo '<a href="?action=addOffrePanier&offre='. $offresTableau[$i]['id']. '&quantite=1" class="btn btn-info btn-block" title="Ajouter directement au panier une unité"><i class="fa fa-cart-arrow-down"></i></a>';}
-														else { echo'<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-block" ><span class="fas fa-user"></span> Se connecter</a>'; }
-											echo '<button class="btn btn-success btn-block">Prix : ' . ($offresTableau[$i]['prix'] == '0' ? 'gratuit' : $offresTableau[$i]['prix'].'<i class="fas fa-gem">') . ' </i></button>
+															if($offresTableau[$i]['nbre_vente'] == 0){
+																echo '<a href="#" class="btn btn-info btn-block">Rupture de stock</a>';
+															} else {
+																echo '<a href="?action=addOffrePanier&offre='. $offresTableau[$i]['id']. '&quantite=1" class="btn btn-info btn-block" title="Ajouter directement au panier une unité"><i class="fa fa-cart-arrow-down"></i></a>';
+															}
+														} else { 
+															echo'<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-block" ><span class="fas fa-user"></span> Se connecter</a>';
+														}
+														echo '<button class="btn btn-success btn-block">Prix : ' . ($offresTableau[$i]['prix'] == '0' ? 'gratuit' : $offresTableau[$i]['prix'].'<i class="fas fa-gem">') . ' </i></button>
 													
 											</div>		';
 											$categories[$j]['offres']++;
