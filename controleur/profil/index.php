@@ -9,10 +9,7 @@ $joueurDonnees = $joueurDonnees->getTableauDonnees();
 
 if(empty($joueurDonnees))
 {
-	$joueurDonnees['rang'] = 0;
-	$joueurDonnees['email'] = 'inconnu';
-	$joueurDonnees['skype'] = 'inconnu';
-	$joueurDonnees['age'] = '??';
+	header('Location: ?page=erreur&erreur=19&type=Profil&titre='.htmlspecialchars("Utilisateur inexistant !").'&contenue='.htmlspecialchars("L'utilisateur recherché est inexistant ou n'est pas connue de nos bases de données ! :("));
 }
 
 if(empty($joueurDonnees['skype']))
