@@ -417,7 +417,12 @@
 		break;
 
 		case 'editGrade': 
-		require_once('admin/actions/editGrade.php');
+		if(isset($_POST['Createur']))
+			require_once('admin/actions/nom.php');
+		elseif(isset($_POST['Joueur']))
+			require_once('admin/actions/nomJoueur.php');
+		else
+			require_once('admin/actions/editGrade.php');
 		$_SESSION['referrerAdmin'] = 'grade';
 		break;
 

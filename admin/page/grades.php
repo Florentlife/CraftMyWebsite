@@ -45,29 +45,6 @@
         <div class="col-md-12">
             <div class="panel panel-default cmw-panel">
                 <div class="panel-heading cmw-panel-header">
-                    <h3 class="panel-title"><strong>Changer le nom du grade Créateur</strong></h3>
-                </div>
-            </div>
-            <div class="panel-body">
-                <form method="POST" action="?action=changeNom">
-                    <div class="col-md-12">
-                        <h3>Changer le nom</h3>
-                        <div class="row">
-                            <label class="control-label">Nom</label>
-                            <input type="text" name="nom" class="form-control" style="text-align: center;" value="<?php echo $_Serveur_['General']['createur']; ?>" />
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12 text-center" style="margin-top: 5px;">
-                                <input type="submit" class="btn btn-success" value="Changer le nom !">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="panel panel-default cmw-panel">
-                <div class="panel-heading cmw-panel-header">
                     <h3 class="panel-title"><strong>Création d'un nouveau grade</strong></h3>
                 </div>
                 <div class="panel-body">
@@ -99,16 +76,29 @@
                     <form method="POST" action="?&action=editGrade">
                         <h3>Editer un/des grade(s)</h3>
                             <ul class="nav nav-tabs">
+                                <li class="active"><a href="#gradeCreateur" data-toggle="tab"><?php echo $_Serveur_['General']['createur']; ?></a></li>
                                 <?php for($i = 2; $i <= end($lastGrade); $i++) { 
                                     if(file_exists($dirGrades.$i.'.yml')) { ?>
-                                        <li <?php if($i == 2) echo 'class="active"'; ?>><a href="#grade<?php echo $i; ?>" data-toggle="tab"><?php echo $idGrade[$i]['Grade']; ?></a></li>
+                                        <li><a href="#grade<?php echo $i; ?>" data-toggle="tab"><?php echo $idGrade[$i]['Grade']; ?></a></li>
                                 <?php }
                                 } ?>
+                                <li><a href="#gradeJoueur" data-toggle="tab"><?php echo $_Serveur_['General']['joueur']; ?></a></li>
                             </ul>
                             <div class="tab-content">
+                                <div class="tab-pane active well" id="gradeCreateur">
+                                    <div class="row">
+                                        <label class="control-label">Nom du grade</label>
+                                        <input class="form-control" name="nom" type="text" style="text-align: center;" value="<?=$_Serveur_['General']['createur'];?>" />
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center" style="margin-top: 5px;">
+                                            <input type="submit" name="Createur" class="btn btn-success" value="Changer le nom !">
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php for($i = 2; $i <= end($lastGrade); $i++) { 
                                     if(file_exists($dirGrades.$i.'.yml')) { ?>
-                                    <div class="tab-pane well <?php if($i == 2) echo 'active"'; ?>" id="grade<?php echo $i; ?>">
+                                    <div class="tab-pane well" id="grade<?php echo $i; ?>">
                                         <div class="row">
                                             <input type="hidden" name="oldGradeName-<?php echo $i; ?>" value="<?php echo $idGrade[$i]['Grade']; ?>"/>
                                             <label class="control-label">Nom du grade</label>
@@ -1171,15 +1161,26 @@
                                                         <a class="btn btn-danger" href="?&action=supprGrade&grade=<?php echo $i; ?>">Supprimer le grade <?php echo $idGrade[$i]['Grade']; ?></a>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center" style="margin-top: 5px;">
+                                                        <input type="submit" class="btn btn-success" value="Valider les changements !"/>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                             <?php }
                                             } ?>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-12 text-center" style="margin-top: 5px;">
-                                                <input type="submit" class="btn btn-success" value="Valider les changements !"/>
+                                            <div class="tab-pane well" id="gradeJoueur">
+                                                <div class="row">
+                                                    <label class="control-label">Nom du grade</label>
+                                                    <input class="form-control" name="nom" type="text" style="text-align: center;" value="<?=$_Serveur_['General']['joueur'];?>" />
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12 text-center" style="margin-top: 5px;">
+                                                        <input type="submit" name="Joueur" class="btn btn-success" value="Changer le nom !">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </form>

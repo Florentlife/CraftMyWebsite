@@ -67,7 +67,7 @@
 		$req->execute(array('pseudo' => $pseudo ));
 		$joueurDonnees = $req->fetch(PDO::FETCH_ASSOC);
 		if($joueurDonnees['rang'] == 0) {
-			$gradeSite = 'Joueur';
+			$gradeSite = $_Serveur_['General']['joueur'];
 		} elseif($joueurDonnees['rang'] == 1) {
 			$gradeSite = "<p class='username' style='margin-bottom: 0px;'><span class='style16'>".$_Serveur_['General']['createur']."</span></p>";
 		} elseif(fopen('./modele/grades/'.$joueurDonnees['rang'].'.yml', 'r')) {
@@ -75,9 +75,9 @@
 			$readGradeSite = $openGradeSite->GetTableau();
 			$gradeSite = $readGradeSite['Grade'];
 			if(empty($readGradeSite['Grade']))
-				$gradeSite = 'Joueur';
+				$gradeSite = $_Serveur_['General']['joueur'];
 		} else {
-			$gradeSite = 'Joueur';
+			$gradeSite = $_Serveur_['General']['joueur'];
 		}
 		return $gradeSite;
 	}

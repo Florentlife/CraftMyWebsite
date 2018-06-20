@@ -14,6 +14,7 @@ General:
     ip: play.epicube.fr
     port: "25565"
     createur: Créateur
+    joueur: Joueur
 DataBase:
     dbAdress: *********
     dbName: *****

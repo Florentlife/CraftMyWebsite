@@ -36,7 +36,7 @@ class MembresPage
 		$req->execute(array('pseudo' => $pseudo ));
 		$joueurDonnees = $req->fetch(PDO::FETCH_ASSOC);
 		if($joueurDonnees['rang'] == 0) {
-			$gradeSite = 'Joueur';
+			$gradeSite = $_Serveur_['General']['joueur'];
 		} elseif($joueurDonnees['rang'] == 1) {
 			$gradeSite = "<span class='prefix style16' style='color: red;'>".$_Serveur_['General']['createur']."</span>";
 		} elseif(fopen('./modele/grades/'.$joueurDonnees['rang'].'.yml', 'r')) {
@@ -44,9 +44,9 @@ class MembresPage
 			$readGradeSite = $openGradeSite->GetTableau();
 			$gradeSite = "<span class='prefix ".$readGradeSite['prefix']." ".$readGradeSite['effets']."'>".$readGradeSite['Grade']."</span>";
 			if(empty($readGradeSite['Grade']))
-				$gradeSite = 'Joueur';
+				$gradeSite = $_Serveur_['General']['joueur'];
 		} else {
-			$gradeSite = 'Joueur';
+			$gradeSite = $_Serveur_['General']['joueur'];
 		}
 		return $gradeSite;
 	}
