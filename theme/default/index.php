@@ -398,10 +398,10 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
             checked = $("input:checkbox[name=selection]:checked");
 
             if (checked.length > 0) {
-                $('#popover').removeClass('hide')
+                $('#popover').css('display', '')
             }
             else {
-                $('#popover').addClass('hide');
+                $('#popover').css('display', 'none');
             }
         })
     });
