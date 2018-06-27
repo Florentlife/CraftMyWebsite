@@ -5,7 +5,12 @@
 	if(isset($_GET['action']) AND isset($_Joueur_['rang']) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['access'] == true))
 	{
 	switch ($_GET['action']) // on utilise ici un switch pour inclure telle ou telle page selon l'action.
-	{ 				
+	{ 		
+		case 'dropVisits':
+			$bddConnection->exec('TRUNCATE cmw_visits');
+			$_SESSION['referrerAdmin'] = 'accueil';
+		break;	
+			
 		case 'commande': 
 		require_once('admin/actions/commande.php');
 		break;

@@ -545,6 +545,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
           strftime("| %d %B %Y |"); ?>
         </h3>
       </div>
+      <center>
+        <a class="btn btn-warning" href="?action=dropVisits">Supprimer les visites</a></center>
       <div class="panel-body">
         <p>
          <canvas id="visitsChart" style="width: 256px;height: 256px">
