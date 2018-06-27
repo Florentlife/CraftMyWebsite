@@ -3,14 +3,10 @@
 $skype = VerifieDonnee($_POST['skype']);
 $age = VerifieDonnee($_POST['age']);
 
-$age = (int) $age;
+$age = intval($age);
 
-if($skype == 1 OR $age == 1)
+if($skype == 1 AND $age == 1)
 	header('Location: ?&page=profil&profil=' .$_Joueur_['pseudo']. '&erreur=1');
-if($age == 2 OR $skype == 2)
-	header('Location: ?&page=profil&profil=' .$_Joueur_['pseudo']. '&erreur=2');
-	
-
 	
 ValideChangement($skype, $age, $_Joueur_['pseudo'], $bddConnection);
 		
@@ -30,7 +26,13 @@ function ValideChangement($skype, $age, $pseudo, $bddConnection)
 {	
 	require_once('modele/joueur/maj.class.php');
 	$maj = new Maj($pseudo, $bddConnection);
-	$maj->setNouvellesDonneesSkype($skype);
-	$maj->setNouvellesDonneesAge($age);
+	if($skype != 1)
+		$maj->setNouvellesDonneesSkype($skype);
+	else
+		$maj->setNouvellesDonneesSkype('');
+	if($age != 1)
+		$maj->setNouvellesDonneesAge($age);
+	else
+		$maj->setNouvellesDonneesAge(0);
 }
 ?>
