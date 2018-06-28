@@ -76,7 +76,7 @@
                     <form method="POST" action="?&action=editGrade">
                         <h3>Editer un/des grade(s)</h3>
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#gradeCreateur" data-toggle="tab"><?php echo $_Serveur_['General']['createur']; ?></a></li>
+                                <li class="active"><a href="#gradeCreateur" data-toggle="tab"><?php echo $_Serveur_['General']['createur']['nom']; ?></a></li>
                                 <?php for($i = 2; $i <= end($lastGrade); $i++) { 
                                     if(file_exists($dirGrades.$i.'.yml')) { ?>
                                         <li><a href="#grade<?php echo $i; ?>" data-toggle="tab"><?php echo $idGrade[$i]['Grade']; ?></a></li>
@@ -88,7 +88,50 @@
                                 <div class="tab-pane active well" id="gradeCreateur">
                                     <div class="row">
                                         <label class="control-label">Nom du grade</label>
-                                        <input class="form-control" name="nom" type="text" style="text-align: center;" value="<?=$_Serveur_['General']['createur'];?>" />
+                                        <input class="form-control" name="nomCreateur" type="text" style="text-align: center;" value="<?=$_Serveur_['General']['createur']['nom'];?>" />
+                                        <label class="control-label">Couleur du Grade</label>
+                                        <?php 
+                                            $prefixs = array(
+                                                'prefixPrimary',
+                                                'prefixSecondary',
+                                                'prefixRed',
+                                                'prefixGreen',
+                                                'prefixOlive',
+                                                'prefixLightGreen',
+                                                'prefixBlue',
+                                                'prefixRoyalBlue',
+                                                'prefixSkyBlue',
+                                                'prefixGray',
+                                                'prefixSilver',
+                                                'prefixYellow',
+                                                'prefixOrange',
+                                                'prefixCreateur'
+                                            );
+                                            $effets = array(
+                                                'style5',
+                                                'style16'
+                                            );
+                                            for($a = 0; $a < count($prefixs); $a++)
+                                            {
+                                                ?>
+                                                <label class="checkbox-inline">
+                                                    <input class="form-check-input" type="radio" name="prefixCreateur" id="<?=$prefixs[$a];?>" value="<?=$prefixs[$a];?>" <?=($_Serveur_['General']['createur']['prefix'] == $prefixs[$a]) ? 'checked' : ''; ?>>
+                                                        <span class="prefix <?=$prefixs[$a];?>" style="height: 15px; width: 20px;">T</span>
+                                                </label>
+                                                <?php
+                                            }
+                                            ?>
+                                            <br/>
+                                            <label class="control-label">Effets</label>
+                                            <?php 
+                                            for($a =0; $a < count($effets); $a++)
+                                            {
+                                                ?><label class="checkbox-inline">
+                                                    <input class="form-check-input" type="radio" name="effetCreateur" value="<?=$effets[$a];?>" <?=($_Serveur_['General']['createur']['effets'] == $effets[$a]) ? 'checked' : ''; ?>>
+                                                        <span class="username"><span class="<?=$effets[$a];?>">Test</span></span>
+                                                </label><?php
+                                            }
+                                            ?>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 text-center" style="margin-top: 5px;">

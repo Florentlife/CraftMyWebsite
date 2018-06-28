@@ -50,3 +50,4 @@ border: 1px solid rgb(222,222,222);
 .prefix.prefixSilver     { color: black; background-color: silver; border-color: silver; }
 .prefix.prefixYellow     { color: black; background-color: yellow; border-color: #E0E000; }
 .prefix.prefixOrange     { color: black; background-color: orange; border-color: #FFC520; }
+.prefix.prefixCreateur   { color: red; }

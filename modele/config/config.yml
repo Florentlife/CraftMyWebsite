@@ -13,7 +13,10 @@ General:
     ipTexte: play.epicube.fr
     ip: play.epicube.fr
     port: "25565"
-    createur: Créateur
+    createur: 
+        nom: Créateur
+        prefix: prefixCreateur
+        effets: style16
     joueur: Joueur
 DataBase:
     dbAdress: *********
