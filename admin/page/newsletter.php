@@ -71,11 +71,14 @@
 					</div>
 					<input type="text" name="reply" class="form-control" placeholder="Adresse mail de réponse (laissez vide si même que celle d'envoi)">
 					<input type="text" name="sujet" class="form-control" placeholder="Le sujet de la newsletter"/>
-					<textarea name="contenu" style="resize: vertical;width: 100%;height: 300px">Votre message ! Code HTML autorisé !</textarea>
+					<textarea name="contenu" id="contenuNewsLetter" style="resize: vertical;width: 100%;height: 300px">Votre message ! Code HTML autorisé !</textarea>
 					<button class="btn btn-lg btn-primary btn-block" type="submit"> Envoyer</button>
 				</form>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+    CKEDITOR.replace( 'contenuNewsLetter' );
+    </script>
 	<?php }?>
 </div>
