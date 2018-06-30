@@ -10,6 +10,10 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['actions']['edi
 				$email = $_POST['email' . $i];
 				$rang = $_POST['rang' . $i];
 				$jetons = $_POST['jetons' . $i];
+				if($rang == 1 AND $membres[$i]['rang'] != 1 AND $_Joueur_['rang'] != 1)
+					$rang = $membres[$i]['rang'];
+				if($membres[$i]['rang'] == 1 && $rang != 1 && $_Joueur_['rang'] != 1)
+					$rang = 1;
 
 				if($pseudo != $membres[$i]['pseudo'] OR $email != $membres[$i]['email'] OR $rang != $membres[$i]['rang'] OR $jetons != $membres[$i]['jetons'])
 					ValiderChangement($pseudo, $email, $rang, $jetons, $membres[$i]['id'], $bddConnection);
@@ -29,7 +33,8 @@ function ValiderChangement($pseudo, $email, $rang, $jetons, $id, $bdd)
 		'email' => $email,
 		'rang' => $rang,
 		'tokens' => $jetons,
-		'id' => $id,	));
+		'id' => $id
+	));
 }
 
 function ChangerMdp($mdp, $id, $bdd)
@@ -38,6 +43,7 @@ function ChangerMdp($mdp, $id, $bdd)
 	$reqChangeMdp = $bdd->prepare('UPDATE cmw_users SET mdp = :mdp WHERE id = :id');
 	$reqChangeMdp->execute( Array(
 		'mdp' => $mdp,
-		'id' => $id,	));
+		'id' => $id
+	));
 }
 ?>
