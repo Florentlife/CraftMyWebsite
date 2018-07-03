@@ -351,7 +351,12 @@
                                                                         </div>
                                                                         <div class="checkbox">
                                                                             <label>
-                                                                                <input type="checkbox" name="permsPanelMembres<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['members']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>membres</strong>
+                                                                                <input type="checkbox" name="permsPanelMembres<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['members']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>membres -> Informations</strong>
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="checkbox">
+                                                                            <label>
+                                                                                <input type="checkbox" name="permsPanelSocial<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['social']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>membres -> Social</strong>
                                                                             </label>
                                                                         </div>
                                                                         <div class="checkbox">
@@ -359,6 +364,7 @@
                                                                                 <input type="checkbox" name="permsPanelForum<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>forum</strong>
                                                                             </label>
                                                                         </div>
+                                                                        
                                                                     </div>
                                                                     <div class="col-lg-6 text-left">
                                                                         <div class="checkbox">

@@ -10,6 +10,11 @@ if(isset($_GET['page']))
 		include('./admin/page/informations.php');
 		break;
 
+		case 'social':
+			require_once('./admin/donnees/reseaux.php');
+			include('./admin/page/reseaux.php');
+		break;
+
 		case 'forum':
 			require_once('./admin/page/forum.php');
 		break;

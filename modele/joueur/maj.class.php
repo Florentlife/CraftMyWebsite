@@ -55,13 +55,43 @@ class Maj
 			'pseudo' => $this->pseudo
 			));
 	}
-	public function setNouvellesDonneesSkype($skype)
+	public function setNouvellesDonneesReseaux($reseaux, $id)
 	{
-		$reqMaj = $this->bdd->prepare('UPDATE cmw_users SET skype = :skype WHERE pseudo = :pseudo');
-		$reqMaj->execute(array(
-			'skype' => $skype,
-			'pseudo' => $this->pseudo
+		$selectMaj = $this->bdd->prepare('SELECT id FROM cmw_reseaux WHERE idJoueur = :id');
+		$selectMaj->execute(array(
+			'id' => $id
+		));
+		$data = $selectMaj->fetch(PDO::FETCH_ASSOC);
+		if(isset($data['id']))
+		{
+			foreach($reseaux as $key => $value)
+			{
+				$reqMaj = $this->bdd->prepare('UPDATE cmw_reseaux SET '.$key.' = :valeur WHERE idJoueur = :id');
+				$reqMaj->execute(array(
+					'valeur' => $value,
+					'id' => $id
+				));
+			}
+		}
+		else
+		{
+			$nom = key($reseaux);
+			$valeur = current($reseaux);
+			$req = $this->bdd->prepare('INSERT INTO cmw_reseaux (idJoueur, '.$nom.') VALUES (:id, :valeur)');
+			$req->execute(array(
+				'id' => $id,
+				'valeur' => $valeur
 			));
+			array_shift($reseaux);
+			foreach($reseaux as $key => $value)
+			{
+				$reqMaj = $this->bdd->prepare('UPDATE cmw_reseaux SET '.$key.' = :valeur WHERE idJoueur = :id');
+				$reqMaj->execute(array(
+					'valeur' => $value,
+					'id' => $id
+				));
+			}
+		}
 	}
 	public function setNouvellesDonneesAge($age)
 	{

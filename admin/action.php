@@ -5,12 +5,24 @@
 	if(isset($_GET['action']) AND isset($_Joueur_['rang']) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['access'] == true))
 	{
 	switch ($_GET['action']) // on utilise ici un switch pour inclure telle ou telle page selon l'action.
-	{ 		
+	{ 
 		case 'dropVisits':
-			$bddConnection->exec('TRUNCATE cmw_visits');
+			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['visitors']['showTable'] == true)
+				$bddConnection->exec('TRUNCATE cmw_visits');
 			$_SESSION['referrerAdmin'] = 'accueil';
-		break;	
-			
+		break;
+
+		case 'addSocial':
+			require('admin/actions/addSocial.php');
+			$_SESSION['referrerAdmin'] = 'social';
+		break;
+
+		case 'removeSocial':
+			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['social']['showPage'])
+				$bddConnection->exec('ALTER TABLE cmw_reseaux DROP '.$_GET['nom']);
+			$_SESSION['referrerAdmin'] = 'social';
+		break;
+
 		case 'commande': 
 		require_once('admin/actions/commande.php');
 		break;

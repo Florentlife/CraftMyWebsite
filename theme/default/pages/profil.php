@@ -120,13 +120,19 @@
 
 						<form class="form-horizontal" method="post" action="?&action=changeProfilAutres" role="form">
 							
-
-							<div class="form-group">
-								<label for="pseudo" class="col-sm-4 control-label">Skype</label>
-								<div class="col-sm-6">
-									<input type="text" class="form-control" name="skype" placeholder="Votre nom d'utilisateur Skype" value="<?php if($joueurDonnees['skype'] != 'inconnu') echo $joueurDonnees['skype']; ?>">
+							<?php 
+							foreach($listeReseaux as $value)
+							{
+								?>
+								<div class="form-group">
+									<label for="pseudo" class="col-sm-4 control-label"><?=ucfirst($value['nom']);?></label>
+									<div class="col-sm-6">
+										<input type="text" class="form-control" name="<?=$value['nom'];?>" placeholder="Votre nom d'utilisateur <?=$value['nom'];?>" value="<?php if($joueurDonnees[$value['nom']] != 'inconnu') echo $joueurDonnees[$value['nom']]; ?>">
+									</div>
 								</div>
-							</div>
+								<?php 
+							}
+							?>
 						  <div class="form-group">
 						    <label for="inputPassword3" class="col-sm-4 control-label">Age</label>
 						    <div class="col-sm-6">
@@ -231,10 +237,15 @@
 							else
 								echo 'inconnue'; ?></td>
 						</tr>
-						<tr>
-							<td>Skype</td>
-							<td><?php echo $joueurDonnees['skype']; ?></td>
-						</tr>
+						<?php 
+						foreach($listeReseaux as $value)
+						{
+							?><tr>
+								<td><?=ucfirst($value['nom']);?></td>
+								<td><?=$joueurDonnees[$value['nom']];?></td>
+							</tr><?php 
+						}
+						?>
 						<tr>
 							<td># votes</td>
 							<td>

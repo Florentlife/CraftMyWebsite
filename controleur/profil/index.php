@@ -5,15 +5,12 @@ include('controleur/profil/serveur.php');
 include('modele/joueur/donneesJoueur.class.php');
 
 $joueurDonnees = new JoueurDonnees($bddConnection, $_GET['profil']);
-$joueurDonnees = $joueurDonnees->getTableauDonnees();
+$joueurDonnees = $joueurDonnees->getTableauDonnees($listeReseaux);
 
 if(empty($joueurDonnees))
 {
 	header('Location: ?page=erreur&erreur=19&type=Profil&titre='.htmlspecialchars("Utilisateur inexistant !").'&contenue='.htmlspecialchars("L'utilisateur recherché est inexistant ou n'est pas connue de nos bases de données ! :("));
 }
-
-if(empty($joueurDonnees['skype']))
-	$joueurDonnees['skype'] = 'inconnu';
 if(empty($joueurDonnees['age']))
 	$joueurDonnees['age'] = '??';
 if(empty($joueurDonnees['tokens']))
