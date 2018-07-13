@@ -7,7 +7,7 @@
 	<div class="container">		
 		<h3 class="header-bloc">Chat Minecraft</h3>
 		<?php 
-		if(count($jsonCon) > 1)
+		if(count($jsonCon) >= 1)
 		{
 			echo '<div class="alert alert-info">Commencez par choisir le serveur ! :)</div>';
 			$Chat = new Chat($jsonCon);

@@ -321,6 +321,7 @@ if(isset($_GET['action']))
 		break;
 		
 		case 'changeProfilAutres':
+			require('modele/joueur/donneesJoueurs.class.php');
 			include('controleur/joueur/changeProfilAutres.php');
 		break;
 		

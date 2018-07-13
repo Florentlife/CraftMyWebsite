@@ -54,6 +54,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 			$offres[$i]['nom'] = $donnees['nom'];
 			$offres[$i]['description'] = $donnees['description'];
 			$offres[$i]['prix'] = $donnees['prix'];
+			$offres[$i]['nbre_vente'] = $donnees['nbre_vente'];
 			$offres[$i]['categorie'] = $donnees['categorie_id'];
 			$i++;
 		}

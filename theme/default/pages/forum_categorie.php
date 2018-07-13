@@ -203,7 +203,7 @@
 			<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['moderation']['addPrefix'] == true OR $_PGrades_['PermsForum']['moderation']['epingle'] == true OR $_PGrades_['PermsForum']['moderation']['closeTopic'] == true) AND !$_SESSION['mode'])
 			{
 			?>
-			<div id="popover" class="hide"><hr/><form id="sel-form" method='POST' action='?action=selTopic' class="inline">
+			<div id="popover" style="display: none;"><hr/><form id="sel-form" method='POST' action='?action=selTopic' class="inline">
 				<input type='hidden' name='idCat' value='<?php echo $id; ?>'>
 				<?php if(isset($id_sous_forum)) echo "<input type='hidden' name='idSF' value='$id_sous_forum'>"; 
 				if($_PGrades_['PermsForum']['moderation']['addPrefix'] == true OR $_Joueur_['rang'] == 1)

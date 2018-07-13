@@ -1,21 +1,24 @@
 <?php
+$joueurDonnees = new JoueurDonnees($bddConnection, $_Joueur_['pseudo']);
+$joueurDonnees = $joueurDonnees->getTableauDonnees($listeReseaux);
 
-$skype = VerifieDonnee($_POST['skype']);
+$changementsReseaux = array();
+foreach($listeReseaux as $value)
+{
+	if(!empty($_POST[$value['nom']]))
+	{
+		$temp = htmlspecialchars($_POST[$value['nom']]);
+		$changementsReseaux += [ $value['nom'] => $temp ];
+	}
+}
+
 $age = VerifieDonnee($_POST['age']);
 
-$age = (int) $age;
+$age = intval($age);
 
-if($skype == 1 OR $age == 1)
-	header('Location: ?&page=profil&profil=' .$_Joueur_['pseudo']. '&erreur=1');
-if($age == 2 OR $skype == 2)
-	header('Location: ?&page=profil&profil=' .$_Joueur_['pseudo']. '&erreur=2');
-	
+ValideChangement($changementsReseaux, $age, $_Joueur_['pseudo'], $bddConnection, $_Joueur_['id']);
+header('Location: ?page=profil&profil='.$_Joueur_['pseudo'].'&success=true');
 
-	
-ValideChangement($skype, $age, $_Joueur_['pseudo'], $bddConnection);
-		
-header('Location: ?&page=profil&profil=' .$_Joueur_['pseudo']);
-		
 function VerifieDonnee($donnee)
 {	
 	if(!isset($donnee) OR empty($donnee))
@@ -26,11 +29,15 @@ function VerifieDonnee($donnee)
 	return $donnee;
 }	
 
-function ValideChangement($skype, $age, $pseudo, $bddConnection)
+function ValideChangement($reseaux, $age, $pseudo, $bddConnection, $id)
 {	
 	require_once('modele/joueur/maj.class.php');
 	$maj = new Maj($pseudo, $bddConnection);
-	$maj->setNouvellesDonneesSkype($skype);
-	$maj->setNouvellesDonneesAge($age);
+	if(!empty($reseaux))
+		$maj->setNouvellesDonneesReseaux($reseaux, $id);
+	if($age != 1)
+		$maj->setNouvellesDonneesAge($age);
+	else
+		$maj->setNouvellesDonneesAge(0);
 }
 ?>
