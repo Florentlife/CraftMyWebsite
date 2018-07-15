@@ -84,9 +84,9 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/toastr.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/snarl.min.js"></script>
 <script src="//api.mcgpass.com/v1/pay.js"></script>
+<script src="theme/<?=$_Serveur_['General']['theme'];?>/js/messagerie.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
 <script>
-
 window.onscroll = function() {divScroll()};
 
 function divScroll() {
@@ -423,6 +423,18 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
 if(isset($_GET['setTemp']) && $_GET['setTemp'] == 1)
 {
 	?><script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'Votre nouveau mot de passe vous a été envoyé par mail !', icon: '<span class=\'glyphicon glyphicon-ok\'></span>});});</script>;<?php
+}
+if(isset($_GET['send']))
+{
+	?><script>
+		$(document).ready(function() {
+			Snarl.addNotification({
+				title: "Messagerie",
+				text: "Votre message a bien été envoyé !",
+				icon: '<i class="far fa-paper-plane"></i>'
+			});
+		});
+		</script><?php
 }
 ?>
 </body>
