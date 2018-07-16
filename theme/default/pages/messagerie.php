@@ -20,26 +20,20 @@
 				if(!empty($messages['conv']))
 				{
 					?>
+					<h3 class="text-center">Vous avez <?=$messages['nbConversations'];?> conversations</h3>
 					<div id="accordion">
-						<?php 
-							foreach($messages['conv'] as $value)
-							{
-								$Img = new ImgProfil($value['from'], 'pseudo');
-								?>
-								<div class="card">
-							    	<div class="card-header card-header-messagerie" id="messageHead<?=$value['id'];?>">
-							      		<h5 class="mb-0">
-							        		<button class="btn btn-link btn-message" type="button" data-toggle="modal" data-target="#modalMessage" data-backdrop="static"  data-id="<?=$value['id'];?>" data-with="<?=$value['from'];?>"><p class="text-left">
-							          			<?=($value['lu'] == 0) ? '<i class="fas fa-envelope" id="i'.$value['id'].'"></i>': '<i class="far fa-envelope-open" id="i'.$value['id'].'"></i>';?> <img src="<?=$Img->getImgToSize(24, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /><strong><?=$value['from'];?></strong>
-							          			<span style="float: right;">le <?=$value['date'];?></span></p>
-							          			<p class="text-message"><?=$value['message'];?></p>
-							        		</button>
-							      		</h5>
-							    	</div>
-							    </div>
-								<?php
-							} ?>
+						<?php echo $messages['conv'];?>
 						</div>
+						<nav aria-label="Pages Conversation">
+						  <ul class="pagination">
+						  	<?php
+						  	for($i = 1; $i <= $messages['nbPages']; $i++)
+						  	{
+						  		echo '<li class="page-item"><a class="page-link" onClick="getConversations('.$i.');">'.$i.'</a></li>';
+						  	}
+							?>
+						  </ul>
+						</nav>
 					<?php 
 				}
 				?>

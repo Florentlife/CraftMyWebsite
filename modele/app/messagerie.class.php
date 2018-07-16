@@ -15,18 +15,19 @@ class Messagerie
 	{
 		$return = array();
 		$nbConversations = $this->countConversations();
-		$nbPages = ceil($nbConversations / 20);
+		$nbPages = ceil($nbConversations / 10);
 		if($page > $nbPages)
 			return false;
 		$return['nbConversations'] = $nbConversations;
 		$return['nbPages'] = $nbPages;
 		$return['conv'] = array();
-		$premierAffichage = ($page - 1) * 20;
+		$premierAffichage = ($page - 1) * 10;
 		$req = $this->bdd->prepare('SELECT * FROM(SELECT DISTINCT cmw_messages.idConversation AS idConversation, cmw_messages.expediteur AS expediteur, cmw_messages.date_envoie AS date_envoie, cmw_conversations.pseudo1 AS pseudo1, cmw_conversations.pseudo2 AS pseudo2, cmw_messages.message AS message, cmw_messages.lu AS lu  FROM cmw_conversations 
 			INNER JOIN cmw_messages ON cmw_conversations.id = idConversation
 			WHERE pseudo1 = :pseudo OR pseudo2 = :pseudo
 		    ORDER BY date_envoie DESC)cmw_conversations
-		    GROUP BY idConversation ORDER BY date_envoie DESC');
+		    GROUP BY idConversation ORDER BY date_envoie DESC
+		    LIMIT '.$premierAffichage.', 10');
 		$req->execute(array(
 			'pseudo' => $this->pseudo
 		));
@@ -50,17 +51,18 @@ class Messagerie
 				'lu' => $lu
 			));
 		}
+		$return['conv'] = $this->formattageHTML($return['conv']);
 		return $return;
 	}
 
-	public function getMessages($idConv, $page = 1)
+	public function getMessages($idConv, &$nbPages, $page = 1)
 	{
 		$nbMessages = $this->countMessages($idConv);
-		$nbPages = ceil($nbMessages / 20);
+		$nbPages = ceil($nbMessages / 5);
 		if($page > $nbPages)
 			return false;
-		$prAffic = ($page - 1) * 20;
-		$req = $this->bdd->prepare('SELECT * FROM cmw_messages WHERE idConversation = :id ORDER BY date_envoie DESC LIMIT '.$prAffic.', 20');
+		$prAffic = ($page - 1) * 5;
+		$req = $this->bdd->prepare('SELECT * FROM cmw_messages WHERE idConversation = :id ORDER BY date_envoie DESC LIMIT '.$prAffic.', 5');
 		$req->execute(array(
 			'id' => $idConv
 		));
@@ -156,6 +158,31 @@ class Messagerie
 		));
 		$fetch = $req->fetch(PDO::FETCH_ASSOC);
 		return $fetch['count'];
+	}
+
+	private function formattageHTML($conversations)
+	{
+		$return='';
+		foreach($conversations as $value)
+		{
+			$Img = new ImgProfil($value['from'], 'pseudo');
+			$return.='<div class="card">
+		    	<div class="card-header card-header-messagerie" id="messageHead'.$value['id'].'">
+		      		<h5 class="mb-0">
+		        		<button class="btn btn-link btn-message" type="button" data-toggle="modal" data-target="#modalMessage" data-backdrop="static"  data-id="'.$value['id'].'" data-with="'.$value['from'].'"><p class="text-left">';
+		    if($value['lu']== 0)
+		    	$return.='<i class="fas fa-envelope" id="i'.$value['id'].'"></i>';
+		    else
+		    	$return.= '<i class="far fa-envelope-open" id="i'.$value['id'].'"></i>';
+		    $return.=' <img src="'.$Img->getImgToSize(24, $width, $height).'" style="width: '.$width.'px; height: '.$height.'px;" alt="none" /> <strong>'.$value['from'].'</strong>
+		          			<span style="float: right;">le '.$value['date'].'</span></p>
+		          			<p class="text-message">'.$value['message'].'</p>
+		        		</button>
+		      		</h5>
+		    	</div>
+		    </div>';
+		}
+		return $return;
 	}
 }
 ?>

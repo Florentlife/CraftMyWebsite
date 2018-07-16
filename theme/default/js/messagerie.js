@@ -38,3 +38,27 @@ $('#modalMessage').on('show.bs.modal', function (event) {
 		}
 	});
 });
+
+function getConversations(page)
+{
+	$("#accordion").html("<center><img src='theme/default/img/gif-charge.gif' alt='chargement...'/></center>");
+	$.ajax({
+		method: "POST",
+		url: '?action=getConversations',
+		data: { page: page }
+	}).done(function(donnees){
+		$("#accordion").html(donnees);
+	});
+}
+
+function getMessages(id, page)
+{
+	$('#Conversation').html("<center><img src='theme/default/img/gif-charge.gif' alt='chargement...'/></center>");
+	$.ajax({
+		method: "POST",
+		url: '?action=getConversationMessage',
+		data: { id: id, page: page }
+	}).done(function(donnees){
+		$("#Conversation").html(donnees);
+	});
+}
