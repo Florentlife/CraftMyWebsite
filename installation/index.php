@@ -43,10 +43,12 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 	}
 	include '../include/version.php';
 	?>
+	<!DOCTYPE html>
 	<html>
 	<head>
 		<title>CraftMyWebsite Setup #<?php echo $installEtape;?></title>	
 		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="css/style.css" rel="stylesheet" type="text/css">
 		<link href="css/animate.css" rel="stylesheet" type="text/css">
