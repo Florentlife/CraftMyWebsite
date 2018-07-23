@@ -5,11 +5,9 @@
 </header>
 <section class="layout" id="page">
 	<div class="container">	
-		<h3>Messagerie ...</h3>
 		<div class="categories-edit">
 			<ul class="nav nav-tabs" id="modifProfil">
-				<li class="col-md-6 active"><a href="#conversation" data-toggle="tab"><center>Conversations</center></a></li>
-				<li class="col-md-6"><a data-toggle="modal" data-backdrop="static" href="#modalRep"><center>Nouveau message</center></a></li>
+				<li class="col-md-12"><a class="btn btn-primary btn-block" style="margin-bottom: 15px" data-toggle="modal" data-backdrop="static" href="#modalRep"><center>Nouveau message</center></a></li>
 			</ul>
 		</div>
 		<div class="tab-content">
@@ -20,12 +18,13 @@
 				if(!empty($messages['conv']))
 				{
 					?>
-					<h3 class="text-center">Vous avez <?=$messages['nbConversations'];?> conversations</h3>
+					<h3 class="text-center" style="margin-bottom: 15px;">Vous avez <?=$messages['nbConversations'];?> conversations</h3>
 					<div id="accordion">
 						<?php echo $messages['conv'];?>
 						</div>
+						<br>
 						<nav aria-label="Pages Conversation">
-						  <ul class="pagination">
+						  <ul class="pagination" style="float: right;">
 						  	<?php
 						  	for($i = 1; $i <= $messages['nbPages']; $i++)
 						  	{

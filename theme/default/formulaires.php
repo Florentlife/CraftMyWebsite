@@ -225,7 +225,8 @@
 			         </div>
 			    </div>
 			    <div class="container">
-			    	<h3>Répondre:</h3>
+						<br>
+			    	<h3>Répondre :</h3>
 			    	<?php 
 						$smileys = getDonnees($bddConnection);
 						for($i = 0; $i < count($smileys['symbole']); $i++)

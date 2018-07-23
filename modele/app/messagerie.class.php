@@ -171,9 +171,9 @@ class Messagerie
 		      		<h5 class="mb-0">
 		        		<button class="btn btn-link btn-message" type="button" data-toggle="modal" data-target="#modalMessage" data-backdrop="static"  data-id="'.$value['id'].'" data-with="'.$value['from'].'"><p class="text-left">';
 		    if($value['lu']== 0)
-		    	$return.='<i class="fas fa-envelope" id="i'.$value['id'].'"></i>';
+		    	$return.='<i style="font-size: 18px;margin-right: 8px;" class="fas fa-envelope" id="i'.$value['id'].'"></i>';
 		    else
-		    	$return.= '<i class="far fa-envelope-open" id="i'.$value['id'].'"></i>';
+		    	$return.= '<i style="font-size: 18px;margin-right: 8px;" class="far fa-envelope-open" id="i'.$value['id'].'"></i>';
 		    $return.=' <img src="'.$Img->getImgToSize(24, $width, $height).'" style="width: '.$width.'px; height: '.$height.'px;" alt="none" /> <strong>'.$value['from'].'</strong>
 		          			<span style="float: right;">le '.$value['date'].'</span></p>
 		          			<p class="text-message">'.$value['message'].'</p>
