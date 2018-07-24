@@ -220,12 +220,11 @@
       <form action="?action=sendMessage" method="POST">
       		<input type="hidden" name="destinataire" class="destinataire" />
 	      	<div class="modal-body">
-	      		<div class="container">
+	      		<div class="container" style="margin-bottom: 10px;">
 			         <div id="Conversation">
-			         </div>
+			         </div><br/>
 			    </div>
 			    <div class="container">
-						<br>
 			    	<h3>Répondre :</h3>
 			    	<?php 
 						$smileys = getDonnees($bddConnection);
