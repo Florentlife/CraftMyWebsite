@@ -16,17 +16,18 @@ if(isset($_POST['id']))
 			$date = new DateTime($value['date_envoie']);
 			$date = strftime("%A %d %B %Y à %H:%M:%S", $date->getTimestamp());
 			if($value['expediteur'] == $_Joueur_['pseudo'])
-				echo '<div class="col-md-6">';
+				echo '<div class="col-md-11" style="background: #f3f3f3; margin-bottom: 10px;">';
 			else
-				echo '<div class="col-md-9 offset-md-3" style="background-color: #1da1f2;">';
-			echo '<p>'.$value['expediteur'].'<span style="float: right;">'.$date.'</span></p><hr/>
+				echo '<div class="col-md-11 offset-md-1" style="background-color: #e4e4e4; margin-bottom: 10px;">';
+			echo '<b><p style="margin-top: 10px; color: #000;"><img style="margin-right: 5px;" src="https://cravatar.eu/avatar/'.$value['expediteur'].'/20"></img>'.$value['expediteur'].'<span style="float: right;">'.$date.'</span></p></b>
 			<p class="text-message-conv">'.BBCode(espacement($value['message']), $bddConnection).'</p>
 			</div><br/>';
 			echo '</div>';
 		}
 		echo '
+		<br>
 		<nav aria-label="Pages Messages">
-		  <ul class="pagination">';
+		  <ul class="pagination" style="float: right;">';
 		if($page > 1)
 	  	{
 	  		?><li class="page-item">
