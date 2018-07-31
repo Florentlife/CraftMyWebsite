@@ -46,3 +46,5 @@ CREATE TABLE cmw_ban_config (
 
 INSERT INTO `cmw_ban_config` (`id`, `titre`, `texte`) VALUES
 (1, 'Vous êtes bannis', 'Vous avez été bannis du site, veuillez prendre contact avec l\'administration pour les raisons de votre bannissement.');
+
+ALTER TABLE cmw_forum_categorie ADD ordre INT UNSIGNED NOT NULL;

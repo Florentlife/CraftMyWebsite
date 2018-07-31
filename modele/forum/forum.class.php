@@ -22,7 +22,7 @@ class Forum {
 	//Fonction de récupération des données de chaque forum
 	public function infosForum($id)
 	{
-		$requete = $this->bdd->prepare('SELECT * FROM cmw_forum_categorie WHERE forum = :forum');
+		$requete = $this->bdd->prepare('SELECT * FROM cmw_forum_categorie WHERE forum = :forum ORDER BY ordre ASC');
 		$requete->execute(array(
 			'forum' => htmlspecialchars($id)
 		));

@@ -104,6 +104,10 @@ if(isset($_GET['action']))
 			include('controleur/forum/ordre.php');
 		break;
 
+		case 'ordreCat':
+			include('controleur/forum/ordreCat.php');
+		break;
+
 		case 'ordreSousForum':
 			include('controleur/forum/ordreSF.php');
 		break;
