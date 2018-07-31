@@ -44,7 +44,7 @@
 					<?php if(!empty($categories[$j]['message'])){ ?>
 						<div class="alert alert-dismissable alert-success">
 							<button type="button" class="close" data-dismiss="alert">×</button>
-							<center><?php echo $categories[$j]['message']; ?></center>
+							<center><?php echo espacement($categories[$j]['message']); ?></center>
 						</div>
 					<?php } ?>
 					
@@ -72,7 +72,7 @@
 														echo "</span>";
 													}
 													echo'</center></h3>
-														<div class="offre-description">' .$offresTableau[$i]['description']. '</div>
+														<div class="offre-description">' .espacement($offresTableau[$i]['description']). '</div>
 													</div>
 													';
 														if(isset($_Joueur_)) {
@@ -147,7 +147,7 @@
 					<blockquote>
 					<?php
 					if(isset($infosOffre['offre']['description']))
-						echo $infosOffre['offre']['description'];
+						echo espacement($infosOffre['offre']['description']);
 					else
 						echo 'Cette offre est un don sans contrepartie...';
 					?>
