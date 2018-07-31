@@ -15,6 +15,11 @@ if(isset($_GET['page']))
 			include('./admin/page/reseaux.php');
 		break;
 
+		case 'ban':
+			require_once('./admin/donnees/ban.php');
+			include('./admin/page/ban.php');
+		break;
+
 		case 'forum':
 			require_once('./admin/page/forum.php');
 		break;

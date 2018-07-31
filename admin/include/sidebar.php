@@ -48,22 +48,13 @@
     <a href="?page=voter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'voter'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> Vote <i class="fa fa-star cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
-    <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == true OR $_PGrades_['PermsPanel']['support']['maintenance']['showPage'] == true OR $_PGrades_['PermsPanel']['social']['showPage'] == true) { ?>
+    <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == true OR $_PGrades_['PermsPanel']['newsletter']['showPage'] == true OR $_PGrades_['PermsPanel']['social']['showPage'] == true) { ?>
     <a href="#collapseMembres" data-toggle="collapse" style="margin-bottom: 5px;" aria-expanded="true" aria-controls="collapseMembres" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && ($pageadmin == 'membres' OR $pageadmin == "newsletter" OR $pageadmin == "social")){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="false"></i> Membres <i class="fa fa-users cmw-fa-sidebar" aria-hidden="true"></i></a>
      <div id="collapseMembres" class="collapse <?=(isset($pageadmin) && ($pageadmin == "membres" OR $pageadmin == "newsletter" OR $pageadmin == "social"))  ? 'in' : ''; ?> " style="margin-bottom: 5px; padding-left: 10px;">
-        <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'])
-        { ?>
-        <a href="?page=membres" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "membres") echo 'active'; ?>">Informations <i class="fa fa-address-card cmw-fa-sidebar"></i></a><?php 
-        }
-        if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['social']['showPage']) { ?>
+        <a href="?page=membres" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "membres") echo 'active'; ?>">Informations <i class="fa fa-address-card cmw-fa-sidebar"></i></a>
         <a href="?page=social" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "social") echo 'active'; ?>">Social <i class="fa fa-address-book cmw-fa-sidebar"></i></a>
-        <?php 
-        }
-        if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['showPage']) { ?>
         <a href="?page=newsletter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "newsletter") echo 'active'; ?>">Newsletter <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a> 
-        <?php 
-        }
-        ?> 
+        <?php if($_Joueur_['rang'] == 1) { ?><a href="?page=ban" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "ban") echo 'active'; ?>">Bannissement <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a><?php } ?>
     </div>
     <?php } 
 

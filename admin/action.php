@@ -17,6 +17,21 @@
 			$_SESSION['referrerAdmin'] = 'social';
 		break;
 
+		case 'addBan':
+			require('admin/actions/addBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
+		case 'removeBan':
+			require('admin/actions/removeBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
+		case 'pageBan':
+			require('admin/actions/pageBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
 		case 'removeSocial':
 			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['social']['showPage'])
 				$bddConnection->exec('ALTER TABLE cmw_reseaux DROP '.$_GET['nom']);
@@ -123,8 +138,8 @@
 		break;
 		
 		case 'modifierMembres': 
-		require_once('admin/actions/modifierMembres.php');
-		$_SESSION['referrerAdmin'] = 'membres';
+			require_once('admin/actions/modifierMembres.php');
+			$_SESSION['referrerAdmin'] = 'membres';
 		break;
 		
 		case 'creerPage': 
