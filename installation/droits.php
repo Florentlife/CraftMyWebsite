@@ -21,10 +21,9 @@ function VerifieChmod() {
     $dirR[3] = '../modele/config/configMenu.yml';
     $dirR[4] = '../modele/config/configServeur.yml';
     $dirR[5] = '../modele/config/configWidgets.yml';
-    $dirR[6] = '../modele/config/groups.yml';
-    $dirR[7] = '../modele/.htpasswd';
-    $dirR[8] = '../controleur/.htpasswd';
-    $dirR[9] = '../admin/actions/.htpasswd';
+    $dirR[6] = '../modele/.htpasswd';
+    $dirR[7] = '../controleur/.htpasswd';
+    $dirR[8] = '../admin/actions/.htpasswd';
 
 
     $dir[0] = 'installation/install.yml';
@@ -33,12 +32,11 @@ function VerifieChmod() {
     $dir[3] = 'modele/config/configMenu.yml';
     $dir[4] = 'modele/config/configServeur.yml';
     $dir[5] = 'modele/config/configWidgets.yml';
-    $dir[6] = 'modele/config/groups.yml';
-    $dir[7] = 'modele/.htpasswd';
-    $dir[8] = 'controleur/.htpasswd';
-    $dir[9] = 'admin/actions/.htpasswd';
+    $dir[6] = 'modele/.htpasswd';
+    $dir[7] = 'controleur/.htpasswd';
+    $dir[8] = 'admin/actions/.htpasswd';
 
-    $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/', 'theme/upload/panel/');
+    $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/', '../theme/upload/panel/');
     $dirDossier[1] = array('../theme/smileys/');
 
     $err = null;
@@ -95,7 +93,7 @@ function VerifieChmod() {
         $errDossier = explode(';', $errDossier);
         for($i = 0; $i < count($errDossier); $i++) 
         {    
-            $return['chmodDossier'][$i] = 'infèrieur à 777 sur certains fichiers';
+            $return['chmodDossier'][$i] = 'inférieur à 777 sur certains fichiers';
             $return['dirDossier'][$i] = $dirDossier[$errDossier[$i]][0];
         }
     }
@@ -124,7 +122,7 @@ function DrawChmod($return)
     <center>
         Voiçi un tutoriel afin de vous aider dans l'installation de CraftMyWebsite <?php echo $versioncms; ?>:<br/>
         <br/>
-            <object style="max-width: 620px;width: 100%;max-height: 315px; height: 100%;" data="http://www.youtube.com/v/nV4kRY-kYFo"></object>
+            <object style="max-width: 620px;width: 100%;max-height: 315px; height: 100%;" data="//www.youtube.com/v/nV4kRY-kYFo"></object>
     </center>
 </div> 
 <h4 style="font-family: material;text-align: center;">Voici la liste des chmod qui ne sont pas réglés correctements: </h4>
