@@ -12,3 +12,39 @@ ALTER TABLE cmw_boutique_offres ADD nbre_vente INT NOT NULL AFTER prix;
 ALTER TABLE `cmw_maintenance` ADD `dateFin` INT(11) NOT NULL AFTER `maintenanceEtat`;
 
 CREATE TABLE `cmw_log_DealJeton` ( `ID` INT NOT NULL AUTO_INCREMENT , `fromUser` VARCHAR(20) NOT NULL , `toUser` VARCHAR(20) NOT NULL , `amount` INT NOT NULL , `date` INT NOT NULL , PRIMARY KEY (`ID`)) ENGINE = InnoDB;
+
+CREATE TABLE cmw_reseaux (id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, idJoueur INT UNSIGNED NOT NULL, Skype VARCHAR(30)) ENGINE = InnoDB;
+
+ALTER TABLE cmw_users DROP skype;
+
+CREATE TABLE cmw_conversations (
+	id SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	pseudo1 VARCHAR(20) NOT NULL,
+	pseudo2 VARCHAR(20) NOT NULL
+) ENGINE = InnoDB;
+
+CREATE TABLE cmw_messages (
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `idConversation` smallint(5) UNSIGNED NOT NULL,
+  `expediteur` varchar(20) NOT NULL,
+  `message` text NOT NULL,
+  `date_envoie` datetime NOT NULL,
+  `lu` tinyint(1) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE cmw_ban (
+	`id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`ip` VARCHAR(20) NOT NULL,
+	`pseudo` VARCHAR(16) 
+) ENGINE=InnoDB;
+
+CREATE TABLE cmw_ban_config (
+	`id` TINYINT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	`titre` VARCHAR(255) NOT NULL,
+	`texte` TEXT NOT NULL
+);
+
+INSERT INTO `cmw_ban_config` (`id`, `titre`, `texte`) VALUES
+(1, 'Vous êtes bannis', 'Vous avez été bannis du site, veuillez prendre contact avec l\'administration pour les raisons de votre bannissement.');
+
+ALTER TABLE cmw_forum_categorie ADD ordre INT UNSIGNED NOT NULL;

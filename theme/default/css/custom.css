@@ -150,3 +150,35 @@ section {
 .dropdown-hover:hover .dropdown-menu{
     display: block;
 }
+
+.btn-message
+{
+    width: 100%;
+    outline: none;
+}
+
+.btn-message:focus, .btn-message:active, .btn-message:hover
+{
+    box-shadow: none;
+    outline: none;
+    text-decoration: none;
+}
+
+.card-header-messagerie:hover
+{
+    background-color: #d6d6d6;
+}
+
+.text-message
+{
+    text-align: left;
+    margin-bottom: 0px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.text-message-conv
+{
+    max-width: 100%;
+    overflow: auto;
+}

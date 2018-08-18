@@ -14,9 +14,9 @@ header('Location: index.php');
 	$configFile = $configFile->GetTableau();
 	echo "<style>
 	:root {
-		--color-main: ". $configFile["color"]["main"] ."; 
-		--color-hover: ". $configFile["color"]["hover"] ."; 
-		--color-focus: ". $configFile["color"]["focus"] ."; 
+		--color-main: ". $configFile["color"]['theme']["main"] ."; 
+		--color-hover: ". $configFile["color"]['theme']["hover"] ."; 
+		--color-focus: ". $configFile["color"]['theme']["focus"] ."; 
 	}
 	</style>";?>
 	<meta charset="UTF-8">

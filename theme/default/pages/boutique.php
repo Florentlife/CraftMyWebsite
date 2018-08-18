@@ -44,7 +44,7 @@
 					<?php if(!empty($categories[$j]['message'])){ ?>
 						<div class="alert alert-dismissable alert-success">
 							<button type="button" class="close" data-dismiss="alert">×</button>
-							<center><?php echo $categories[$j]['message']; ?></center>
+							<center><?php echo espacement($categories[$j]['message']); ?></center>
 						</div>
 					<?php } ?>
 					
@@ -72,7 +72,7 @@
 														echo "</span>";
 													}
 													echo'</center></h3>
-														<div class="offre-description">' .$offresTableau[$i]['description']. '</div>
+														<div class="offre-description">' .espacement($offresTableau[$i]['description']). '</div>
 													</div>
 													';
 														if(isset($_Joueur_)) {
@@ -147,21 +147,24 @@
 					<blockquote>
 					<?php
 					if(isset($infosOffre['offre']['description']))
-						echo $infosOffre['offre']['description'];
+						echo espacement($infosOffre['offre']['description']);
 					else
 						echo 'Cette offre est un don sans contrepartie...';
 					?>
 					</blockquote>
 		  </div>
 		  <div class="modal-footer">
-			<?php 	if(($enLigne AND $infosCategories['connection']) OR !$infosCategories['connection']) { ?>
+			<?php 	if((($enLigne AND $infosCategories['connection']) OR !$infosCategories['connection']) AND $infosCategories['nbre_vente'] != 0)  { ?>
 							<form action="index.php" method="GET" class="form-inline">
 								<input type="hidden" name="action" value="addOffrePanier"/>
 								<input type="hidden" name="offre" value="<?php echo $_GET['offre']; ?>"/>
 								<label for="quantite" class="form-control mb-1 mr-sm-1">Quantité: </label>
 								<input type="number" class="form-control mb-1 mr-sm-1" id="quantite" name="quantite" min="0" value="1" />
 								<button type="submit" class="btn btn-success mb-2">Ajouter au panier</button>
-							</form><?php } else{ ?>
+							</form><?php }
+							elseif($infosCategories['nbre_vente'] == 0)
+								echo '<div class="row" style="width: 100%;"><div class="col-md-12" style="text-align: center;"><a class="btn btn-info" href="#">Rupture de stock !</a></div></div>';
+							 else{ ?>
 							Connectez vous sur le serveur voulu... <?php } 
 					?>
 		  </div><button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>

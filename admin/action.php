@@ -5,7 +5,39 @@
 	if(isset($_GET['action']) AND isset($_Joueur_['rang']) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['access'] == true))
 	{
 	switch ($_GET['action']) // on utilise ici un switch pour inclure telle ou telle page selon l'action.
-	{ 				
+	{ 
+		case 'dropVisits':
+			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['visitors']['showTable'] == true)
+				$bddConnection->exec('TRUNCATE cmw_visits');
+			$_SESSION['referrerAdmin'] = 'accueil';
+		break;
+
+		case 'addSocial':
+			require('admin/actions/addSocial.php');
+			$_SESSION['referrerAdmin'] = 'social';
+		break;
+
+		case 'addBan':
+			require('admin/actions/addBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
+		case 'removeBan':
+			require('admin/actions/removeBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
+		case 'pageBan':
+			require('admin/actions/pageBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
+		case 'removeSocial':
+			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['social']['showPage'])
+				$bddConnection->exec('ALTER TABLE cmw_reseaux DROP '.$_GET['nom']);
+			$_SESSION['referrerAdmin'] = 'social';
+		break;
+
 		case 'commande': 
 		require_once('admin/actions/commande.php');
 		break;
@@ -106,8 +138,8 @@
 		break;
 		
 		case 'modifierMembres': 
-		require_once('admin/actions/modifierMembres.php');
-		$_SESSION['referrerAdmin'] = 'membres';
+			require_once('admin/actions/modifierMembres.php');
+			$_SESSION['referrerAdmin'] = 'membres';
 		break;
 		
 		case 'creerPage': 
@@ -417,7 +449,12 @@
 		break;
 
 		case 'editGrade': 
-		require_once('admin/actions/editGrade.php');
+		if(isset($_POST['Createur']))
+			require_once('admin/actions/nom.php');
+		elseif(isset($_POST['Joueur']))
+			require_once('admin/actions/nomJoueur.php');
+		else
+			require_once('admin/actions/editGrade.php');
 		$_SESSION['referrerAdmin'] = 'grade';
 		break;
 

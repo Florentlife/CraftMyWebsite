@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 error_reporting(0);
+ini_set('display_errors', 1);
 if(!isset($_SESSION["mode"])) $_SESSION["mode"] = false; // pour les admins du forum
 //ini_set('display_errors', 1);
 require_once ('controleur/config.php');
@@ -51,15 +52,22 @@ if(!isset($_Serveur_['General']['createur']))
     $tmp['General']['createur'] = 'Créateur';
     $ecriture = new Ecrire('modele/config/config.yml', $tmp);
 }
-if (isset($_GET['action'])) {
-    require_once ('controleur/action.php');
-} elseif (isset($_GET['redirection']) AND $_GET['redirection'] == 'maintenance') {
-	include ('theme/' . $_Serveur_['General']['theme'] . '/maintenance.php');
-}else
-// On charge l'index uniquement si il n'y a pas d'action, cela permet de choisir la page sur laquelle l'utilisateur sera redirigé après l'action. Sinon, on redirige vers
+if(Ban::isBanned($bddConnection))
 {
-    // La base de la page, s'occupe du <head> ainsi que de l'organisation des élements et chargement du javascript --> La theme.
-    include ('theme/' . $_Serveur_['General']['theme'] . '/index.php');
-    require_once ('controleur/joueur/changerGrade.php');
+    require_once('theme/'. $_Serveur_['General']['theme'] .'/ban.php');
+}
+else
+{
+    if (isset($_GET['action'])) {
+        require_once ('controleur/action.php');
+    } elseif (isset($_GET['redirection']) AND $_GET['redirection'] == 'maintenance') {
+        include ('theme/' . $_Serveur_['General']['theme'] . '/maintenance.php');
+    }else
+    // On charge l'index uniquement si il n'y a pas d'action, cela permet de choisir la page sur laquelle l'utilisateur sera redirigé après l'action. Sinon, on redirige vers
+    {
+        // La base de la page, s'occupe du <head> ainsi que de l'organisation des élements et chargement du javascript --> La theme.
+        include ('theme/' . $_Serveur_['General']['theme'] . '/index.php');
+        require_once ('controleur/joueur/changerGrade.php');
+    }
 }
 ob_end_flush();

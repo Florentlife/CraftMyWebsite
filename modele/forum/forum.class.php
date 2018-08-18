@@ -22,7 +22,7 @@ class Forum {
 	//Fonction de récupération des données de chaque forum
 	public function infosForum($id)
 	{
-		$requete = $this->bdd->prepare('SELECT * FROM cmw_forum_categorie WHERE forum = :forum');
+		$requete = $this->bdd->prepare('SELECT * FROM cmw_forum_categorie WHERE forum = :forum ORDER BY ordre ASC');
 		$requete->execute(array(
 			'forum' => htmlspecialchars($id)
 		));
@@ -236,17 +236,17 @@ class Forum {
 		$req->execute(array('pseudo' => $pseudo ));
 		$joueurDonnees = $req->fetch(PDO::FETCH_ASSOC);
 		if($joueurDonnees['rang'] == 0) {
-			$gradeSite = 'Joueur';
+			$gradeSite = $_Serveur_['General']['joueur'];
 		} elseif($joueurDonnees['rang'] == 1) {
-			$gradeSite = "<span class='prefix style16' style='color: red;'>".$_Serveur_['General']['createur']."</span>";
+			$gradeSite = "<span class='prefix ".$_Serveur_['General']['createur']['prefix']." ".$_Serveur_['General']['createur']['effets']."'>".$_Serveur_['General']['createur']['nom']."</span>";
 		} elseif(fopen('./modele/grades/'.$joueurDonnees['rang'].'.yml', 'r')) {
 			$openGradeSite = new Lire('./modele/grades/'.$joueurDonnees['rang'].'.yml');
 			$readGradeSite = $openGradeSite->GetTableau();
 			$gradeSite = "<span class='prefix ".$readGradeSite['prefix']." ".$readGradeSite['effets']."'>".$readGradeSite['Grade']."</span>";
 			if(empty($readGradeSite['Grade']))
-				$gradeSite = 'Joueur';
+				$gradeSite = $_Serveur_['General']['joueur'];
 		} else {
-			$gradeSite = 'Joueur';
+			$gradeSite = $_Serveur_['General']['joueur'];
 		}
 		return $gradeSite;
 	}

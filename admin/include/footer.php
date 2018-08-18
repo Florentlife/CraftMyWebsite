@@ -38,5 +38,30 @@
     }
 }(this, this.document));
 </script>
+<script type="text/javascript">
+    function cocher(classCheck, appel)
+    {
+        if($(appel).is(':checked'))
+        {
+            $(':checkbox.'+classCheck).prop('checked', true);
+        }
+        else
+        {
+            $(':checkbox.'+classCheck).prop('checked', false);
+        }
+    }
+
+    function toutCocher(accordion, appel)
+    {
+        if($(appel).is(':checked'))
+        {
+            $('#'+accordion+' :checkbox').prop('checked', true);
+        }
+        else
+        {
+            $('#'+accordion+' :checkbox').prop('checked', false);
+        }
+    }
+</script>
 </body>
 </html>

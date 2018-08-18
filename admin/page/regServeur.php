@@ -1,4 +1,4 @@
-<div class="cmw-page-content-header"><strong>Slider & Miniature</strong> - Gérez vos sliders & miniatures de votre site</div>
+<div class="cmw-page-content-header"><strong>Réglages JSONAPI</strong> - Gérez vos serveurs JSONAPI</div>
 
 
 <div class="row">

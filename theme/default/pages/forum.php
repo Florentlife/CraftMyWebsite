@@ -51,7 +51,7 @@ for($i = 0; $i < count($fofo); $i++)
 		</div><?php } ?></div>
 		<thead>
 			<tr>
-				<th colspan="5" style="width: <?=(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode']) ? '87%;' : '100%';?>;"><h3 class="text-center"><?php echo ucfirst($fofo[$i]['nom']); ?></h3></th>
+				<th colspan="5" style="width: <?=(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode']) ? '81%' : '100%';?>;"><h3 class="text-center"><?php echo ucfirst($fofo[$i]['nom']); ?></h3></th>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode'])
 				{
 					?><th>Actions</th>
@@ -120,15 +120,24 @@ $categorie = $_Forum_->infosForum($fofo[$i]['id']);
 				{
 					?><td><a href="?action=remove_cat&id=<?php echo $categorie[$j]['id']; ?>" style="text-align: left;"><i class="fas fa-trash-alt"></i></a>
 					<div class="dropdown" style="display: inline; text-align: center;">
-							<button type="button" class="btn btn-info dropdown-toggle" id="Perms<?=$categorie[$j]['id'];?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fas fa-edit"></i>
+						<button type="button" class="btn btn-info dropdown-toggle" id="Perms<?=$categorie[$j]['id'];?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-edit"></i>
+						</button>
+						<div class="dropdown-menu">
+							<form action="?action=modifPermsCategorie" method="POST">
+								<input type="hidden" name="id" value="<?=$categorie[$j]['id'];?>" />
+								<a class="dropdown-item"><input type="number" name="perms" value="<?=$categorie[$j]['perms'];?>" class="form-control"></a>
+								<button type="submit" class="dropdown-item text-center">Modifier</button>
+							</form>
+						</div>
+					</div>
+					<div class="dropdown" style="display: inline; text-align: center;">
+							<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-list"></i>
 							</button>
 							<div class="dropdown-menu">
-								<form action="?action=modifPermsCategorie" method="POST">
-									<input type="hidden" name="id" value="<?=$categorie[$j]['id'];?>" />
-									<a class="dropdown-item"><input type="number" name="perms" value="<?=$categorie[$j]['perms'];?>" class="form-control"></a>
-									<button type="submit" class="dropdown-item text-center">Modifier</button>
-								</form>
+							    <a class="dropdown-item" href="?action=ordreCat&ordre=<?=$categorie[$j]['ordre']; ?>&id=<?=$categorie[$j]['id']; ?>&forum=<?=$categorie[$j]['forum'];?>&modif=monter"><i class="fas fa-arrow-up"></i> Monter d'un cran</a>
+							    <a class="dropdown-item" href="?action=ordreCat&ordre=<?=$categorie[$j]['ordre']; ?>&id=<?=$categorie[$j]['id']; ?>&forum=<?=$categorie[$j]['forum'];?>&modif=descendre"><i class="fas fa-arrow-down"></i> Descendre d'un cran</a>
 							</div>
 						</div>
 					<a href=<?php if($categorie[$j]['close'] == 0) { ?>"?action=lock_cat&id=<?=$categorie[$j]['id'];?>&lock=1" title="Fermer le forum"><i class="fa fa-unlock-alt"<?php } else { ?>"?action=unlock_cat&id=<?=$categorie[$j]['id'];?>&lock=0" title="Ouvrir le forum"><i class="fa fa-lock"<?php } ?> aria-hidden="true"></i></a></td><?php

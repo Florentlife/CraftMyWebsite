@@ -15,6 +15,27 @@ if(isset($_GET['action']))
 			header('Location: index.php');
 		break;
 
+		case  'getConversations':
+			require('modele/app/messagerie.class.php');
+			include('controleur/messagerie/getConversations.php');
+		break;
+
+		case 'messageLu':
+			require('modele/app/messagerie.class.php');
+			include('controleur/messagerie/lu.php');
+		break;
+
+		case 'getConversationMessage':
+			require('modele/app/messagerie.class.php');
+			include('controleur/messagerie/getMessages.php');
+		break;
+
+		case 'sendMessage':
+			require('modele/app/messagerie.class.php');
+			include('controleur/messagerie/send.php');
+		break;
+		
+
 		case 'rechercheMembre':
 			require('modele/app/membres.class.php');
 			include('controleur/app/rechercheMembre.php');
@@ -81,6 +102,10 @@ if(isset($_GET['action']))
 
 		case 'ordreForum':
 			include('controleur/forum/ordre.php');
+		break;
+
+		case 'ordreCat':
+			include('controleur/forum/ordreCat.php');
 		break;
 
 		case 'ordreSousForum':
@@ -321,6 +346,7 @@ if(isset($_GET['action']))
 		break;
 		
 		case 'changeProfilAutres':
+			require('modele/joueur/donneesJoueur.class.php');
 			include('controleur/joueur/changeProfilAutres.php');
 		break;
 		

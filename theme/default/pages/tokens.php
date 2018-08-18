@@ -33,7 +33,7 @@
 							<div class="well offre-contenu">
 								<div class="contenuBoutique">
 									<h3 class="titre-offre">'. $offresTableau[$i]['nom'] .'</h3>
-									' .$offresTableau[$i]['description']. '
+									' .espacement($offresTableau[$i]['description']). '
 								</div>
 								<div class="footer-offre"> ';
 									if(isset($_Joueur_)) {
