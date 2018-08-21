@@ -42,7 +42,7 @@
                     echo $playeronline; ?></span> Joueurs connectés au serveur / <span class="badge badge-secondary" style="font-size: 100%;"><?php $req = $bddConnection->query('SELECT COUNT(id) AS count 
                     FROM cmw_users');
                     $fetch = $req->fetch(PDO::FETCH_ASSOC);
-                    echo $fetch['count']; ?></span><a href="?page=membre" style="color: inherit;"> Membres inscrits</a>
+                    echo $fetch['count']; ?></span><a href="?page=membres" style="color: inherit;"> Membres inscrits</a>
                 </div>
             </div>
         </div>
