@@ -19,7 +19,7 @@ $_Panier_ = new Panier($bddConnection);
 // On démarre les sessions sur la page pour récupérer les variables globales(les données du joueur...).*
 /* Si l'utilisateur est connecté, on met ses informations dans un tableau global, qui sera utilisable que
  le laps de temps du chargement de la page contrairement aux sessions. */
-if (isset($_SESSION['Player']['pseudo']) OR isset($_COOKIE['id'], $_COOKIE['pass'])) {
+if ((isset($_SESSION['Player']['pseudo']) AND !empty($_SESSION['Player']['pseudo'])) OR isset($_COOKIE['id'], $_COOKIE['pass'])) {
     /* On instancie un joueur, et on récupère le tableau de données. $_Joueur_ sera donc utilisable
      sur toutes les pages grâce au système de GET sur l'index.*/
 	if(!isset($_SESSION['Player']['pseudo']))

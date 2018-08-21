@@ -19,7 +19,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 	<meta property="og:title" content="<?=$_Serveur_['General']['name']?>">
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="http://<?=$_SERVER["SERVER_NAME"]?>">
-	<meta property="og:image" content="https://craftmywebsite.fr/images/site_logo.png">
+	<meta property="og:image" content="favicon.ico">
 	<meta property="og:image:alt" content="<?=$_Serveur_['General']['description']?>">
 	<meta property="og:description" content="<?=$_Serveur_['General']['description']?>">
 	<meta property="og:site_name" content="<?=$_Serveur_['General']['name']?>" />
