@@ -27,12 +27,7 @@ $newsRecup = $AccueilData->GetNews();
 $i = 0;
 while($newsDonnees = $newsRecup->fetch(PDO::FETCH_ASSOC))
 {
-	$news[$i]['id'] = $newsDonnees['id'];
-	$news[$i]['titre'] = $newsDonnees['titre'];
-	$news[$i]['message'] = $newsDonnees['message'];
-	$news[$i]['auteur'] = $newsDonnees['auteur'];
-	$news[$i]['date'] = $newsDonnees['date'];
-	$news[$i]['image'] = $newsDonnees['image'];
+	$news[$i] = $newsDonnees;
 	$i++;
 }
 
