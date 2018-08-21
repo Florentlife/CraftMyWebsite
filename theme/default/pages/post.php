@@ -102,11 +102,11 @@ if(isset($_GET['id']))
 	<div class="row">
 		<div class="col-md-2">
 		<!-- Div de droite où on met le profil de l'auteur -->
-		<?php
+		<center><?php
 			$Img = new ImgProfil($topicd['pseudo'], 'pseudo');
 			?>
-			<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" />
-			<p class="username"> Pseudo : <?php echo $topicd['pseudo']; ?><br/>Grade :
+			<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" /></center>
+			<p class="username text-center"><?php echo $topicd['pseudo']; ?><br/>
 			<?php echo $_Forum_->gradeJoueur($topicd['pseudo']); ?> </p>
 		</div>
 		<div class="col-md-10">
@@ -177,12 +177,12 @@ if(isset($_GET['id']))
 		<div class="row">
 			<div class="col-md-2">
 				<div id="<?php echo $answerd[$i]['id']; ?>"> <!-- div de droite avec les infos joueurs -->
-					<?php 
+					<center><?php 
 					$Img = new ImgProfil($answerd[$i]['pseudo'], 'pseudo');
 					?>
-					<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" />
-					<p class="username">Pseudo : <?php echo $answerd[$i]['pseudo']; ?><br/>
-						Grade : <?php echo $_Forum_->gradeJoueur($answerd[$i]['pseudo']); ?>
+					<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" /></center>
+					<p class="username text-center"><?php echo $answerd[$i]['pseudo']; ?><br/>
+						<?php echo $_Forum_->gradeJoueur($answerd[$i]['pseudo']); ?>
 					</p>
 				</div>
 			</div>
@@ -325,8 +325,6 @@ if(isset($_GET['id']))
 			?>
 		</div>
 		<?php }
-		else
-			echo '<div class="alert alert-warning text-center">Connectez-vous pour pouvoir interragir ! </div>';
 		?>
 		</div><?php 
 	}
