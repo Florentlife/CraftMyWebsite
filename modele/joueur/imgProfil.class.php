@@ -40,7 +40,7 @@ class ImgProfil
 	public function getImgToSize($size, &$width, &$height)
 	{
 		$this->getImg();
-		if($this->modif == true)
+		if($this->modif)
 		{
 			// Constraints
 			$max_width = $size;
@@ -56,10 +56,10 @@ class ImgProfil
 		}
 		else
 		{
-			if(!is_int($this->id))
+			if(!is_numeric($this->id))
 				$pseudo = $this->id;
 			else
-				$this->getPseudo($pseudo);
+				$pseudo = $this->getPseudo($this->id);
 			$this->img = "https://cravatar.eu/avatar/$pseudo/$size";
 			return $this->img;
 		}
@@ -82,8 +82,8 @@ class ImgProfil
 			$this->modif = false;
 			if(!is_int($this->id))
 				$pseudo = $this->id;
-			else
-				$this->getPseudo($pseudo);
+			else 
+				$pseudo = $this->getPseudo($this->id);
 			$this->img = "https://cravatar.eu/avatar/".$pseudo.".png";
 		}
 	}
@@ -95,7 +95,7 @@ class ImgProfil
 			'id' => $this->id
 		));
 		$fetch = $req->fetch(PDO::FETCH_ASSOC);
-		$pseudo = $fetch['pseudo'];
+		return $fetch['pseudo'];
 	}
 
 	public function getExtension()

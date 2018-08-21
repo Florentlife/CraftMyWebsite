@@ -5,12 +5,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['news']['showPage'] == tru
 	$i = 0;
 	while($donneesNews = $news->fetch(PDO::FETCH_ASSOC))
 	{
-		$tableauNews[$i]['id'] = $donneesNews['id'];
-		$tableauNews[$i]['titre'] = $donneesNews['titre'];
-		$tableauNews[$i]['message'] = $donneesNews['message'];
-		$tableauNews[$i]['auteur'] = $donneesNews['auteur'];
-		$tableauNews[$i]['date'] = $donneesNews['date'];
-		$tableauNews[$i]['image'] = $donneesNews['image'];
+		$tableauNews[$i] = $donneesNews;
 		$i++;
 	}
 	$req_newsStats = $bddConnection->query('SELECT * FROM cmw_news ORDER BY id');
@@ -18,12 +13,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['news']['showPage'] == tru
 	$i = 0;
 	while($newsStatsDonnees = $req_newsStats->fetch(PDO::FETCH_ASSOC))
 	{
-		$newsStats[$i]['id'] = $newsStatsDonnees['id'];
-		$newsStats[$i]['titre'] = $newsStatsDonnees['titre'];
-		$newsStats[$i]['message'] = $newsStatsDonnees['message'];
-		$newsStats[$i]['auteur'] = $newsStatsDonnees['auteur'];
-		$newsStats[$i]['date'] = $newsStatsDonnees['date'];
-		$newsStats[$i]['image'] = $newsStatsDonnees['image'];
+		$newsStats[$i] = $newsStatsDonnees;
 		$i++;
 	}
 }

@@ -1030,7 +1030,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 </table>
 </div>
 <div class="text-center">
- Ceci sont les 12 dernières achats dans la boutique. <span class="fa fa-credit-card-alt"></span>
+ Ceci sont les 12 derniers achats dans la boutique. <span class="fa fa-credit-card-alt"></span>
 </div>
 <?php } else {
   echo '<center><strong>Aucun achat</strong></center>';

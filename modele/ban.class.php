@@ -69,7 +69,7 @@ class Ban
 		}
 	}
 
-	private function get_client_ip_env() {
+	private static function get_client_ip_env() {
 		$ipaddress = '';
 		if (getenv('HTTP_CLIENT_IP')) {
 			$ipaddress = getenv('HTTP_CLIENT_IP');
