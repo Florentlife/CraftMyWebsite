@@ -101,7 +101,7 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 					<p><a href="http://craftmywebsite.fr" class="btn btn-primary btn-installation" role="button">Aller sur CraftMyWebsite.fr</a></p>
 			</div>
 		<br>
-		<h4 class="text-center" style="padding:15px">Un probléme avec l'installation ? Accédez au tutoriel en cliquant ici : <a target="_blank" href="https://www.youtube.com/watch?v=nV4kRY-kYFo">Tutoriel Vidéo</a></h4>
+		<h4 class="text-center" style="padding:15px">Un probléme avec l'installation ? Accédez au tutoriel en cliquant ici : <a target="_blank" href="//www.youtube.com/watch?v=nV4kRY-kYFo">Tutoriel Vidéo</a></h4>
 		<br/>
 		<div class="p-install-form">
 			<div class="container" style="width: 90%; margin: 10px auto;">

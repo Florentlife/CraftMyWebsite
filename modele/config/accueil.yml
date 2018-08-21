@@ -6,15 +6,15 @@ Infos:
         lien: '#'
     2:
         message: Image de démo à modifier dans votre panel CraftMyWebsite ! (2)
-        image: miniature-demo-2.jpg
+        image: miniature-demo-2.png
         lien: '#'
     3:
         message: Image de démo à modifier dans votre panel CraftMyWebsite ! (3)
-        image: miniature-demo-3.jpg
+        image: miniature-demo-3.png
         lien: '#'
     4:
         message: Image de démo à modifier dans votre panel CraftMyWebsite ! (4)
-        image: miniature-demo-1.png
+        image: miniature-demo-1.jpg
         lien: '#'
 Slider:
     image: slider1.png
