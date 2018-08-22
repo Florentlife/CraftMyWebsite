@@ -59,7 +59,7 @@ class ImgProfil
 			if(!is_numeric($this->id))
 				$pseudo = $this->id;
 			else
-				$pseudo = $this->getPseudo($this->id);
+				$pseudo = $this->getPseudo();
 			$this->img = "https://cravatar.eu/avatar/$pseudo/$size";
 			return $this->img;
 		}
@@ -83,12 +83,12 @@ class ImgProfil
 			if(!is_int($this->id))
 				$pseudo = $this->id;
 			else 
-				$pseudo = $this->getPseudo($this->id);
+				$pseudo = $this->getPseudo();
 			$this->img = "https://cravatar.eu/avatar/".$pseudo.".png";
 		}
 	}
 
-	public function getPseudo(&$pseudo)
+	public function getPseudo()
 	{
 		$req = $this->bdd->prepare('SELECT pseudo FROM cmw_users WHERE id = :id');
 		$req->execute(array(
