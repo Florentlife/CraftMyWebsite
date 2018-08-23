@@ -1,7 +1,7 @@
 <?php // On appelle les classes du controleur qui instancies les objets principaux (BDD, config, JSONAPI...).
 ob_start();
 session_start();
-//error_reporting(0);
+error_reporting(0);
 ini_set('display_errors', 1);
 if(!isset($_SESSION["mode"])) $_SESSION["mode"] = false; // pour les admins du forum
 //ini_set('display_errors', 1);
