@@ -77,7 +77,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
               <div class="row">
                 <?php foreach ($serveurStats[$j]['joueurs'] as $cle => $element) { ?>
                 <a href="index.php?&page=profil&profil=<?php echo $serveurStats[$j]['joueurs'][$cle]; ?>" class="icon-player">
-                  <?php echo '<img src="http://cravatar.eu/helmhead/' .$serveurStats[$j]['joueurs'][$cle]. '/56.png" title="Voir le profil de ' .$serveurStats[$j]['joueurs'][$cle]. '">'; ?></a>
+                  <?php echo '<img src="https://cravatar.eu/helmhead/' .$serveurStats[$j]['joueurs'][$cle]. '/56.png" title="Voir le profil de ' .$serveurStats[$j]['joueurs'][$cle]. '">'; ?></a>
                   <?php } ?>
                 </div>
                 <hr>
@@ -544,8 +544,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
           setlocale(LC_TIME, 'fr.UTF-8', 'fr_FR.UTF-8', 'fr_FR.ISO8859-1');
           strftime("| %d %B %Y |"); ?>
         </h3>
-      </div>
-      <center>
+        </div><center>
         <a class="btn btn-warning" href="?action=dropVisits">Supprimer les visites</a></center>
       <div class="panel-body">
         <p>
@@ -622,18 +621,18 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         <h3 class="panel-title"><i class=" fa fa-pencil-square-o"></i> Post-it (Pour ne rien oublier)
         </h3>
       </div>
-      <div class="panel-body" style="height: 155px; width: 100%;">
+      <div class="panel-body" id="post_contenue" style="height: 155px; width: 100%;">
         <?php 
         $all_message_postit = $bddConnection->query('SELECT id, auteur, message FROM cmw_postit ORDER BY id DESC LIMIT 0, 4');
         while ($message_postit = $all_message_postit->fetch(PDO::FETCH_ASSOC)) { ?>
-        	<p><strong>[<?php echo $message_postit['auteur']; ?>] </strong> <?php echo $message_postit['message']; ?>&nbsp;&nbsp; <a href="?&action=supprPostit&id=<?php echo $message_postit['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
+        	<p id="<?=$message_postit['id'];?>"><strong>[<?php echo $message_postit['auteur']; ?>] </strong> <?php echo $message_postit['message']; ?>&nbsp;&nbsp; <a onclick="ajaxSupprPostIt(<?=$message_postit['id'];?>);"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
        <?php } ?>
 
       </div>
       <div class="panel-footer">
-        <form method="POST" action="?&action=creerPostit">
-          <span class="pull-left"><input type="text" name="post-it_message" placeholder="Message (max 50 caractères)" class="form-control" maxlength="50"></span>
-          <span class="pull-right"><button type="submit" class="btn btn-success pull-right">Envoyer !</button></span>
+        <form method="POST" onsubmit="ajaxPostIt(); return false;" id="formPostIt">
+          <span class="pull-left"><input type="text" name="post-it_message" id="post_message" placeholder="Message (max 50 caractères)" class="form-control" maxlength="50"></span>
+          <span class="pull-right"><button type="submit" class="btn btn-success pull-right" onClick="ajaxPostIt;">Envoyer !</button></span>
         </form>
       <div class="clearfix"></div>
     </div>
@@ -1030,7 +1029,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 </table>
 </div>
 <div class="text-center">
- Ceci sont les 12 derniers achats dans la boutique. <span class="fa fa-credit-card-alt"></span>
+ Ceci sont les 12 dernières achats dans la boutique. <span class="fa fa-credit-card-alt"></span>
 </div>
 <?php } else {
   echo '<center><strong>Aucun achat</strong></center>';

@@ -73,5 +73,34 @@ function updateFormRecompense(appel)
         $("#updateRecompense").html("<label class='control-label'>Quelle date ?</label><input type='date' name='date' class='form-control' /><label class='control-label'>Réinitialiser les votes après ?</label><select name='reinit' class='form-control'><option value='1'>Oui</option><option value='0'>Non</option></select><label class='control-label'>Rang de la personne</label><select name='rang' class='form-control'><option value='1'>Premier</option><option value='2'>Second</option><option value='3'>Troisième</option></select>");
 }
 </script>
+<script>
+function ajaxPostIt()
+{
+    $("#formPostIt").append('<progress></progress>');
+    $("#post_message").attr("disabled", "true");
+    message = $("#post_message").val();
+    $.ajax({
+        method: "POST",
+        url: '?action=creerPostit',
+        data: { message: message }
+    }).done(function(donnees){
+        $("#post_contenue").html(donnees);
+        $("#post_message").val('');
+        $("#formPostIt").html('<span class="pull-left"><input type="text" name="post-it_message" id="post_message" placeholder="Message (max 50 caractères)" class="form-control" maxlength="50"></span><span class="pull-right"><button type="submit" class="btn btn-success pull-right" onClick="ajaxPostIt;">Envoyer !</button></span>');
+    });
+}
+
+function ajaxSupprPostIt(id)
+{
+    $("#"+id).html("<strong><span style='color: red;'>En Suppression ...</span></strong>");
+    $.ajax({
+        method: "GET",
+        url: '?action=supprPostit',
+        data: { id: id }
+    }).done(function(donnees){
+        $("#post_contenue").html(donnees);
+    });
+}
+</script>
 </body>
 </html>
