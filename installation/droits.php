@@ -98,8 +98,13 @@ function VerifieChmod() {
         }
     }
 
+    if(!array_key_exists('ENV_HTACCESS_READING', $_SERVER))
+    {
+        $htaccess = true;
+        $return['htaccess'] = true;
+    }
 
-    if($err == null AND $errDossier == null)
+    if($err == null AND $errDossier == null AND $htaccess == null)
         return null;
     else
         return $return;
@@ -125,6 +130,12 @@ function DrawChmod($return)
             <object style="max-width: 620px;width: 100%;max-height: 315px; height: 100%;" data="//www.youtube.com/v/nV4kRY-kYFo"></object>
     </center>
 </div> 
+<?php
+ if ($return['htaccess'])
+{
+    ?><div class="alert alert-danger"><strong>ATTENTION</strong> : Erreur Critique, votre serveur est soumis aux failles htaccess. Veuillez les activez, en suivant ce tuto : https://www.aidoweb.com/tutoriaux/fichier-htaccess-qui-ne-fonctionne-pas-solutions-configuration-apache-648 ou nous contacter sur Discord : https://discord.gg/Tyfr6nC. </div><?php
+}
+?>
 <h4 style="font-family: material;text-align: center;">Voici la liste des chmod qui ne sont pas réglés correctements: </h4>
 
 <?php if(isset($return['chmodDossier'])) { ?>
@@ -159,18 +170,19 @@ function DrawChmod($return)
     </tr>
     <?php } ?>
 </table>
-<?php } ?>
-<center><a href="index.php" class="btn btn-primary btn-installation">Relancer la vérification</a><br/>
+<?php } 
+?>
+<center><a href="index.php" class="btn btn-primary btn-installation">Relancer la vérification</a><br/><br/>
 <a onclick="ajax_chmod();" class="btn btn-primary btn-installation">Tenter de modifier les chmod automatiquement</a></center>
 </div>
 <script src="../theme/default/js/jquery.min.js"></script>
 <script src="../theme/default/js/bootstrap.min.js"></script>
 <script>
-	function ajax_chmod(){
-		var url = 'chmod.php';
-		$.post(url, function(data){
+    function ajax_chmod(){
+        var url = 'chmod.php';
+        $.post(url, function(data){
         window.location = "index.php"
     });
-	}
+    }
 </script>
 <?php } ?>
