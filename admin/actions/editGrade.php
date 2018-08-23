@@ -3,7 +3,7 @@ if(isset($_Joueur_)) {
 	if($_Joueur_['rang'] == 1) {
 		$checkGradeName[] = array();
 		$editGradeName = true;
-		for($i = 2; $i <= end($lastGrade); $i++) {
+		for($i = 2; $i <= max($lastGrade); $i++) {
 			if(file_exists($dirGrades.$i.'.yml')) {
 				$grade = $dirGrades.$i.'.yml';
 				$editGrade = new Lire($grade);

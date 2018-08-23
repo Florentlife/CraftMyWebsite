@@ -66,7 +66,7 @@
             </div>
         </div>
         <?php } 
-        if($_Joueur_['rang'] == 1 AND end($lastGrade) >= 2) { ?>
+        if($_Joueur_['rang'] == 1 AND max($lastGrade) >= 2) { ?>
         <div class="col-md-12">
             <div class="panel panel-default cmw-panel">
                 <div class="panel-heading cmw-panel-header">
@@ -77,7 +77,7 @@
                         <h3>Editer un/des grade(s)</h3>
                             <ul class="nav nav-tabs">
                                 <li class="active"><a href="#gradeCreateur" data-toggle="tab"><?php echo $_Serveur_['General']['createur']['nom']; ?></a></li>
-                                <?php for($i = 2; $i <= end($lastGrade); $i++) { 
+                                <?php for($i = 2; $i <= max($lastGrade); $i++) { 
                                     if(file_exists($dirGrades.$i.'.yml')) { ?>
                                         <li><a href="#grade<?php echo $i; ?>" data-toggle="tab"><?php echo $idGrade[$i]['Grade']; ?></a></li>
                                 <?php }
@@ -139,7 +139,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <?php for($i = 2; $i <= end($lastGrade); $i++) { 
+                                <?php for($i = 2; $i <= max($lastGrade); $i++) { 
                                     if(file_exists($dirGrades.$i.'.yml')) { ?>
                                     <div class="tab-pane well" id="grade<?php echo $i; ?>">
                                         <div class="row">

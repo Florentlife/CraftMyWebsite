@@ -13,7 +13,7 @@ if($_Joueur_['rang'] == 1) {
 		array_push($lastGrade, -1);
 
 	$idGrade[] = array();
-	for($i = 2;$i <= end($lastGrade); $i++) {
+	for($i = 2;$i <= max($lastGrade); $i++) {
 		$openGrade = new Lire($dirGrades.$i.'.yml');
 		$readGrade = $openGrade->GetTableau();
 		$idGrade[$i] = $readGrade;
