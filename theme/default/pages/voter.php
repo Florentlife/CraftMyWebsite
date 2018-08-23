@@ -29,7 +29,41 @@
   </div>
   <div class="panel-body">
     <p class="text-center"><strong>
-		Voter pour le serveur permet d'améliorer son référencement ! Les votes sont récompensés par des items In-Game.<br /><br /><?php if(!isset($_Joueur_)) echo '<hr><a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-user"></span> Veuillez vous connecter.</a>'; ?>
+		Voter pour le serveur permet d'améliorer son référencement ! Les votes sont récompensés par des items In-Game.<br /><br /><?php if(!isset($_Joueur_)) echo '<hr><a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-user"></span> Veuillez vous connecter.</a>';
+		if(isset($_Joueur_))
+		{
+			if(!empty($donneesVotesTemp))
+			{
+				echo '<div class="alert alert-success"><center><ul style="list-style-position: inside; padding-left: 0px;">';
+				foreach($donneesVotesTemp as $data)
+				{
+					echo '<li>';
+					$action = explode(':', $data['action'], 2);
+					if($action[0] == "give")
+					{
+						echo "Give de ";
+						$action = explode(':', $action[1]);
+						echo $action[3]. "x ".$action[1];
+						if($data['methode'] == 2)
+							echo ' sur le serveur '.$lecture['Json'][$data['serveur']]['nom'];
+						else
+							echo ' sur tout les serveurs de jeu';
+					}
+					elseif($action[0] == "jeton")
+					{
+						echo "Give de ".$action[1]." jetons sur le site";
+					}
+					else
+					{
+						echo "Vous récupérerez une surprise :D :P";
+					}
+					echo "</li>";
+				}
+				echo '</ul>';
+				echo "<a class='btn btn-success' href='?action=recupVotesTemp' title='Récupérer mes récompenses'>Récupérer mes récompenses (Connectez-vous sur le serveur)</a></center></div>";
+			}	
+		}
+		?>
 	</strong></p>
 
   </div>
@@ -109,11 +143,15 @@
 						<tr><th>#</th><th>Pseudo</th><th>Votes</th></tr>
 					</thead>
 				
-						<?php for($i = 0; $i < count($topVoteurs) AND $i < 10; $i++) {
-							$Img = new ImgProfil($topVoteurs[$i]['pseudo'], 'pseudo');
-						 ?>
-						<tr><td><?php echo $i+1 ?></td><td><img src="<?=$Img->getImgToSize(30, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /> <strong><?php echo $topVoteurs[$i]['pseudo']; ?></strong></td><td><?php echo $topVoteurs[$i]['nbre_votes']; ?></td></tr>
-						<?php }?>
+						<?php 
+						if(isset($topVoteurs))
+						{
+							for($i = 0; $i < count($topVoteurs) AND $i < 10; $i++) {
+								$Img = new ImgProfil($topVoteurs[$i]['pseudo'], 'pseudo');
+							 ?>
+							<tr><td><?php echo $i+1 ?></td><td><img src="<?=$Img->getImgToSize(30, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /> <strong><?php echo $topVoteurs[$i]['pseudo']; ?></strong></td><td><?php echo $topVoteurs[$i]['nbre_votes']; ?></td></tr>
+							<?php }
+						} ?>
 				</table>
 			</div>
 </div>

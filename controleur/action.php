@@ -20,6 +20,10 @@ if(isset($_GET['action']))
 			include('controleur/messagerie/getConversations.php');
 		break;
 
+		case 'recupVotesTemp':
+			include('controleur/recupVotesTemp.php');
+		break;
+
 		case 'messageLu':
 			require('modele/app/messagerie.class.php');
 			include('controleur/messagerie/lu.php');

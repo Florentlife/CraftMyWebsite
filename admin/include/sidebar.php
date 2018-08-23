@@ -45,7 +45,11 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['showPage'] == true) { ?>
-    <a href="?page=voter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'voter'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> Vote <i class="fa fa-star cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <a href="#collapseVoter" data-toggle="collapse" style="margin-bottom: 5px;" aria-expanded="true" aria-controls="collapseVoter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && ($pageadmin == 'voter' || $pageadmin == 'configVoter')){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> Vote <i class="fa fa-star cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <div id="collapseVoter" class="collapse <?=(isset($pageadmin) && ($pageadmin == 'voter' || $pageadmin == 'configVoter')) ? 'in' : ''; ?>" style="margin-bottom: 5px; padding-left: 10px;">
+    	<a href="?page=voter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "voter") echo 'active'; ?>">Liens vote <i class="fa fa-link cmw-fa-sidebar"></i></a>
+    	<a href="?page=configVoter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "configVoter") echo 'active'; ?>">Récompenses Auto <i class="fa fa-trophy cmw-fa-sidebar"></i></a>
+    </div>
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == true OR $_PGrades_['PermsPanel']['newsletter']['showPage'] == true OR $_PGrades_['PermsPanel']['social']['showPage'] == true) { ?>

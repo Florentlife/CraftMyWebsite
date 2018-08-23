@@ -15,6 +15,11 @@ if(isset($_GET['page']))
 			include('./admin/page/reseaux.php');
 		break;
 
+		case 'configVoter':
+			require_once('./admin/donnees/configVoter.php');
+			include('./admin/page/configVoter.php');
+		break;
+
 		case 'ban':
 			require_once('./admin/donnees/ban.php');
 			include('./admin/page/ban.php');

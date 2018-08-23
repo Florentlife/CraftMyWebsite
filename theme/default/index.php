@@ -18,14 +18,14 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
     <meta name="apple-mobile-web-app-capable" content="<?=$configFile["color"]["theme"]["main"]?>">
 	<meta property="og:title" content="<?=$_Serveur_['General']['name']?>">
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="http://<?=$_SERVER["SERVER_NAME"]?>">
-	<meta property="og:image" content="favicon.ico">
+	<meta property="og:url" content="https://<?=$_SERVER["SERVER_NAME"]?>">
+	<meta property="og:image" content="https://<?=$_SERVER["SERVER_NAME"]?>/favicon.ico">
 	<meta property="og:image:alt" content="<?=$_Serveur_['General']['description']?>">
 	<meta property="og:description" content="<?=$_Serveur_['General']['description']?>">
 	<meta property="og:site_name" content="<?=$_Serveur_['General']['name']?>" />
 	<meta name="twitter:title" content="<?=$_Serveur_['General']['name']?>">
 	<meta name="twitter:description" content="<?=$_Serveur_['General']['description']?>">
-	<meta name="twitter:image" content="https://craftmywebsite.fr/images/site_logo.png">
+	<meta name="twitter:image" content="https://<?=$_SERVER["SERVER_NAME"]?>/favicon.ico">
 	<meta charset="utf-8" />
 	<meta name="autor" content="CraftMyWebsite , TheTueurCiTy, <?php echo $_Serveur_['General']['name']; ?>" />
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">

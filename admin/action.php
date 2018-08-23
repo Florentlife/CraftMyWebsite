@@ -17,6 +17,16 @@
 			$_SESSION['referrerAdmin'] = 'social';
 		break;
 
+		case 'supprRecAuto':
+			require('admin/actions/supprRecAuto.php');
+			$_SESSION['referrerAdmin'] = 'configVoter';
+		break;
+
+		case 'creerRecompenseAuto':
+			require('admin/actions/creerRecompenseAuto.php');
+			$_SESSION['referrerAdmin'] = 'configVoter';
+		break;
+
 		case 'addBan':
 			require('admin/actions/addBan.php');
 			$_SESSION['referrerAdmin'] = 'ban';
