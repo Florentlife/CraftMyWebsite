@@ -7,7 +7,7 @@
 <section class="layout" id="page">
 	<div class="container">
 	<?php 
-		if($_Joueur_['pseudo'] != $_GET['profil'])
+		if(isset($_Joueur_["pseudo"]) && $_Joueur_['pseudo'] != $_GET['profil'])
 			{ ?>
 				<button type="button" data-toggle="modal" data-target="#modalRep" data-to="<?=$_GET['profil'];?>" style="float: right;" class="btn btn-primary">Lui envoyer un message</button>
 	<?php
