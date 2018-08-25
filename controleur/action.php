@@ -20,6 +20,11 @@ if(isset($_GET['action']))
 			include('controleur/messagerie/getConversations.php');
 		break;
 
+		case 'changeNomForum':
+			require('modele/forum/adminForum.class.php');
+			include('controleur/forum/changeNomForum.php');
+		break;
+
 		case 'recupVotesTemp':
 			include('controleur/recupVotesTemp.php');
 		break;

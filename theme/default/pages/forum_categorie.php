@@ -50,7 +50,7 @@
 				<th>Messages</th>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteSousForum'] == true) AND !$_SESSION['mode'])
 				{
-					?><th style="width: 20%">Actions</th><?php 
+					?><th style="width: 28%">Actions</th><?php 
 				} ?>
 			</tr>
 			<?php
@@ -81,6 +81,7 @@
 								</form>
 							</div>
 						</div>
+						<a class="btn btn-info" data-toggle="modal" href="#NomForum" data-entite="2" data-nom="<?=$sousforumd[$a]['nom'];?>" data-id="<?=$sousforumd[$a]['id'];?>"><i class="fas fa-font"></i></a>
 						<div class="dropdown" style="display: inline; text-align: center;">
 							<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fas fa-list"></i>

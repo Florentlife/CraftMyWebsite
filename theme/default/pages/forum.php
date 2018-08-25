@@ -36,6 +36,7 @@ for($i = 0; $i < count($fofo); $i++)
 			  </div>
 			<a href="?action=remove_forum&id=<?php echo $fofo[$i]['id']; ?>" class="btn btn-danger" style="text-align: right;">Supprimer</a>
 			</div>
+			<a class="btn btn-info" data-toggle="modal" href="#NomForum" data-entite="0" data-nom="<?=$fofo[$i]['nom'];?>" data-id="<?=$fofo[$i]['id'];?>"><i class="fas fa-font"></i></a>
 			<div class="dropdown" style="display: inline;">
 				<button class="btn btn-info dropdown-toggle" type="button" id="perms<?=$fofo[$i]['id']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Modifier les Permissions
@@ -51,7 +52,7 @@ for($i = 0; $i < count($fofo); $i++)
 		</div><?php } ?></div>
 		<thead>
 			<tr>
-				<th colspan="5" style="width: <?=(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode']) ? '81%' : '100%';?>;"><h3 class="text-center"><?php echo ucfirst($fofo[$i]['nom']); ?></h3></th>
+				<th colspan="5" style="width: <?=(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode']) ? '75%' : '100%';?>;"><h3 class="text-center"><?php echo ucfirst($fofo[$i]['nom']); ?></h3></th>
 				<?php if(($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['deleteCategorie'] == true) AND !$_SESSION['mode'])
 				{
 					?><th>Actions</th>
@@ -131,15 +132,16 @@ $categorie = $_Forum_->infosForum($fofo[$i]['id']);
 							</form>
 						</div>
 					</div>
+					<a class="btn btn-info" data-toggle="modal" href="#NomForum" data-entite="1" data-nom="<?=$categorie[$j]['nom'];?>" data-id="<?=$categorie[$j]['id'];?>"><i class="fas fa-font"></i></a>
 					<div class="dropdown" style="display: inline; text-align: center;">
-							<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fas fa-list"></i>
-							</button>
-							<div class="dropdown-menu">
-							    <a class="dropdown-item" href="?action=ordreCat&ordre=<?=$categorie[$j]['ordre']; ?>&id=<?=$categorie[$j]['id']; ?>&forum=<?=$categorie[$j]['forum'];?>&modif=monter"><i class="fas fa-arrow-up"></i> Monter d'un cran</a>
-							    <a class="dropdown-item" href="?action=ordreCat&ordre=<?=$categorie[$j]['ordre']; ?>&id=<?=$categorie[$j]['id']; ?>&forum=<?=$categorie[$j]['forum'];?>&modif=descendre"><i class="fas fa-arrow-down"></i> Descendre d'un cran</a>
-							</div>
+						<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-list"></i>
+						</button>
+						<div class="dropdown-menu">
+						    <a class="dropdown-item" href="?action=ordreCat&ordre=<?=$categorie[$j]['ordre']; ?>&id=<?=$categorie[$j]['id']; ?>&forum=<?=$categorie[$j]['forum'];?>&modif=monter"><i class="fas fa-arrow-up"></i> Monter d'un cran</a>
+						    <a class="dropdown-item" href="?action=ordreCat&ordre=<?=$categorie[$j]['ordre']; ?>&id=<?=$categorie[$j]['id']; ?>&forum=<?=$categorie[$j]['forum'];?>&modif=descendre"><i class="fas fa-arrow-down"></i> Descendre d'un cran</a>
 						</div>
+					</div>
 					<a href=<?php if($categorie[$j]['close'] == 0) { ?>"?action=lock_cat&id=<?=$categorie[$j]['id'];?>&lock=1" title="Fermer le forum"><i class="fa fa-unlock-alt"<?php } else { ?>"?action=unlock_cat&id=<?=$categorie[$j]['id'];?>&lock=0" title="Ouvrir le forum"><i class="fa fa-lock"<?php } ?> aria-hidden="true"></i></a></td><?php
 				}
 ?>

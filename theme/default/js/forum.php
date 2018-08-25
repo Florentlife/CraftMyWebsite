@@ -94,4 +94,14 @@ function miseEnPage($str)
 	}
 	return $str;
 }
+$('#NomForum').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget);
+  var ancienNom = button.data('nom'); 
+  var id = button.data('id'); 
+  var entite = button.data('entite'); 
+  var modal = $(this)
+  modal.find('.modal-body #nom').val(ancienNom);
+  modal.find('.modal-body #id').val(id);
+  modal.find('.modal-body #entite').val(entite);
+});
 </script>

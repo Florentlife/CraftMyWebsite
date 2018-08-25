@@ -130,6 +130,29 @@ class AdminForum extends Forum
 			return true;
 	}
 
+	public function setNewNomForum($nom, $id, $entite)
+	{
+		++$this->actions;
+		if($entite == 1)
+		{
+			$req = $this->bdd->prepare('UPDATE cmw_forum_categorie SET nom = :nom WHERE id = :id');
+			
+		}
+		elseif($entite == 0)
+		{
+			$req = $this->bdd->prepare('UPDATE cmw_forum SET nom = :nom WHERE id = :id');
+		}
+		elseif($entite == 2)
+		{
+			$req = $this->bdd->prepare('UPDATE cmw_forum_sous_forum SET nom = :nom WHERE id = :id');
+		}
+		$req->execute(array(
+			'nom' => $nom,
+			'id' => $id
+		));
+
+	}
+
 	public function getPage($entite, $id)
 	{
 		if($entite == 1)
