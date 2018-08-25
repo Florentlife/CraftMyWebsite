@@ -115,8 +115,8 @@
 							<div class="row">
 								<div class="col-md-6">
 									<input type="hidden" name="id_categorie" value="<?php echo $id; ?>" />
-									<label class="control-label" for="nom">Nom</label>
-									<input type="text" required class="form-control" name="nom" id="nom" maxlength="40" />
+									<label class="control-label" for="nomSF">Nom</label>
+									<input type="text" required class="form-control" name="nom" id="nomSF" maxlength="40" />
 								</div>
 								<div class="col-md-6">	
 									<label class="control-label" for="img">Material icône : <a href="https://design.google.com/icons" target="_blank" >https://design.google.com/icons</a></label>
@@ -221,8 +221,8 @@
 				</select>
 				<?php } if($_PGrades_['PermsForum']['moderation']['epingle'] == true or $_Joueur_['rang'] == 1)
 				{ ?>
-				<label for='epingle'>Epingler une discussion : </label> <input type='radio' name='epingle' value='1' id='oui'/> <label for='oui'>Oui</label>
-																		<input type='radio' name='epingle' value='0' id='non'/> <label for='non'>Non</label>
+				<label for='epingle'>Epingler une discussion : </label> <input type='radio' name='epingle' value='1' id='ouiEp'/> <label for='ouiEp'>Oui</label>
+																		<input type='radio' name='epingle' value='0' id='nonEp'/> <label for='nonEp'>Non</label>
 				<?php } if($_PGrades_['PermsForum']['moderation']['closeTopic'] == true OR $_Joueur_['rang'] ==1)
 				{ ?>
 				<label for='close'>Fermer une discussion : </label> <input type='radio' name='close' value='1' id='yes'/> <label for='yes'>Oui</label>
@@ -230,8 +230,8 @@
 				<?php } if($_PGrades_['PermsForum']['moderation']['deleteTopic'] == true OR $_Joueur_['rang'] == 1)
 				{
 					?><br/>
-					<label for='remove'>Supprimer les discussions : </label> <input type='radio' name='remove' value='1' id='oui'/> <label for='oui'>Oui</label>
-																			<input type='radio' name='remove' value='0' id='non' checked/> <label for='non'>Non</label>
+					<label for='remove'>Supprimer les discussions : </label> <input type='radio' name='remove' value='1' id='ouiSP'/> <label for='ouiSP'>Oui</label>
+																			<input type='radio' name='remove' value='0' id='nonSp' checked/> <label for='nonSp'>Non</label>
 					<?php
 				} ?><button type='submit' class='btn btn-lg btn-primary btn-block'>Valider</button>
 				</form>
@@ -276,7 +276,8 @@
 					$smileys = getDonnees($bddConnection);
 					for($i = 0; $i < count($smileys['symbole']); $i++)
 					{
-						echo '<a href="javascript:insertAtCaret(\'contenue\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
+						$symbole = str_replace("'", "\'", $smileys['symbole'][$i]);
+						echo '<a href="javascript:insertAtCaret(\'contenue\',\' '.$symbole.' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
 					}
 				?>
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en gras', 'ce texte sera en gras', 'b')" style="text-decoration: none;" title="gras"><i class="fas fa-bold" aria-hidden="true"></i></a>
@@ -287,6 +288,10 @@
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en centré', 'ce texte sera centré', 'center')" style="text-decoration: none" title="centré"><i class="fas fa-align-center"></i></a>
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en aligné à droite', 'ce texte sera aligné à droite', 'right')" style="text-decoration: none" title="aligné à droite"><i class="fas fa-align-right"></i></a>
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en justifié', 'ce texte sera justifié', 'justify')" style="text-decoration: none" title="justifié"><i class="fas fa-align-justify"></i></a>
+				<a href="javascript:ajout_text_complement('contenue', 'Ecrivez ici l\'adresse de votre lien', 'https://craftmywebsite.fr/forum', 'url', 'Entrez le titre de votre lien', 'CraftMyWebsite')" style="text-decoration: none" title="lien"><i class="fas fa-link"></i></a>
+				<a href="javascript:ajout_text_complement('contenue', 'Ecrivez ici l\'adresse de votre image', 'https://craftmywebsite.fr/img/cat6.png', 'img', 'Entrez ici le titre de votre image (laisser vide si vous ne voulez pas compléter', 'Titre')" style="text-decoration: none" title="image"><i class="fas fa-image"></i></a>
+				<a href="javascript:ajout_text_complement('contenue', 'Ecrivez ici votre texte en couleur', 'Ce texte sera coloré', 'color', 'Entrer le nom de la couleur en anglais ou en hexaécimal avec le  # : http://www.code-couleur.com/', 'red ou #40A497')" style="text-decoration: none" title="couleur"><i class="fas fa-font"></i></a>
+				<a href="javascript:ajout_text_complement('contenue', 'Ecrivez ici votre message caché', 'contenue du spoiler', 'spoiler', 'Entrer le titre du message caché (si la case est vide le titre sera \'Spoiler\'', 'Spoiler')" style="text-decoration: none" title="spoiler"><i class="fas fa-flag"></i></a>
 				<div class="dropdown">
 				  	<a href="#" role="button" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				   	 <i class="fas fa-text-height"></i>
@@ -298,9 +303,13 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="contenue" class="col-sm-2 form-control-label">Insérez le contenue de votre topic ! ( Max 15 000 caractères )</label>
-				<div class="col-sm-10">
-					<textarea id="contenue" name="contenue" maxlength="15000" class="form-control" rows="10" required ></textarea>
+				<div class="col-md-6">
+					<label for="contenue" class="form-control-label">Insérez le contenue de votre topic ! ( Max 15 000 caractères )</label>
+					<textarea id="contenue" name="contenue" maxlength="15000"  class="form-control" rows="10" required oninput="previewTopic(this);"></textarea>
+				</div>
+				<div class="col-md-6">
+					<center><label class="form-control-label">Prévisualisation </label></center>
+					<p style="height: auto; width: auto; background-color: white;" id="previewTopic"></p>
 				</div>
 			</div>
 			<div class="form-group row text-center">

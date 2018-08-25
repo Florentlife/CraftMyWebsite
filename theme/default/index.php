@@ -97,6 +97,7 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/snarl.min.js"></script>
 <script src="//api.mcgpass.com/v1/pay.js"></script>
 <script src="theme/<?=$_Serveur_['General']['theme'];?>/js/messagerie.js"></script>
+<?php include('theme/'.$_Serveur_['General']['theme'].'/js/forum.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
 <script>
 window.onscroll = function() {divScroll()};

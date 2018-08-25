@@ -150,7 +150,10 @@
     </div>
   </div>
 </div>
-
+<?php
+if(isset($_GET['page']) && $_GET['page'] == "messagerie")
+{
+	?>
 <div class="modal fade" id="modalRep" tabindex="-1" role="dialog" aria-labelledby="ModalRepLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
@@ -220,17 +223,17 @@
       <form action="?action=sendMessage" method="POST">
       		<input type="hidden" name="destinataire" class="destinataire" />
 	      	<div class="modal-body">
-	      		<div class="container" style="margin-bottom: 10px;">
+	      		<div class="container">
 			         <div id="Conversation">
-			         </div><br/>
-			    </div>
+			         </div>
+			    </div><br/>
 			    <div class="container">
 			    	<h3>Répondre :</h3>
 			    	<?php 
 						$smileys = getDonnees($bddConnection);
 						for($i = 0; $i < count($smileys['symbole']); $i++)
 						{
-							echo '<a href="javascript:insertAtCaret(\'contenue\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
+							echo '<a href=\'javascript:insertAtCaret("contenue","'.$smileys['symbole'][$i].' ")\'><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
 						}
 					?>
 					<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en gras', 'ce texte sera en gras', 'b')" style="text-decoration: none;" title="gras"><i class="fas fa-bold" aria-hidden="true"></i></a>
@@ -265,3 +268,6 @@
     </div>
   </div>
 </div>
+<?php 
+}
+?>

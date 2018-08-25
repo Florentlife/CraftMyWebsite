@@ -386,12 +386,18 @@ if(isset($_GET['id']))
 				</div>
 				<!--<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en rouge', 'ce texte sera en rouge', 'color=red')" class="redactor_color_link" style="background-color: rgb(255, 0, 0);"></a>-->
 			</div><br/>
+			<div class="col-md-6">
 				<div class="col-md-12 text-center">
 					<label for="contenue" class="form-control-label">Contenue de votre réponse ( 10 000 caractères max ! ) : </label>
 				</div>
-			<div class="col-md-12">
-				<textarea class="form-control" name="contenue" id="contenue" maxlength="10000" rows="20" required></textarea>
+				<div class="col-md-12">
+					<textarea class="form-control" name="contenue" id="contenue" maxlength="10000" rows="20" oninput="previewTopic(this);" required></textarea>
+				</div>
 			</div>
+			<div class="col-md-6">
+				<center><label class="form-control-label">Prévisualisation</label></center>
+				<p style="height: auto; width: auto; background-color: white;" id="previewTopic"></p>
+			</div> 
 		</div>
 		<div class="form-group row">
 			<div class="col-md-12 text-center">
