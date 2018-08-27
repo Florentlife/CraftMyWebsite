@@ -15,6 +15,10 @@ if(isset($_GET['action']))
 			header('Location: index.php');
 		break;
 
+		case 'dedipass':
+			include('controleur/dedipass.php');
+		break;
+
 		case  'getConversations':
 			require('modele/app/messagerie.class.php');
 			include('controleur/messagerie/getConversations.php');

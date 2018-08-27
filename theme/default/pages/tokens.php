@@ -71,6 +71,20 @@
 		</div>
 			<?php 
 		}
+	if($_Serveur_['Payement']['dedipass'] == true)
+	{
 		?>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title text-center">Paiement par Dedipass</h3>
+			</div>
+			 <div class="panel-body">
+					<div class="alert alert-success">Vous pouvez payer par Dedipass, vous paierez ainsi avec votre forfait téléphonique, c'est donc un avantage important. D'un autre côté, vous serez déversé de moins de tokens qu'avec un payement paypal (qui sont beaucoup moins taxés).</div>
+					<div data-dedipass="<?=$_Serveur_['Payement']['public_key'];?>" data-dedipass-custom=""></div>		
+			</div>
+		</div>
+		<?php
+	}
+	?>
 </div>
 </section>

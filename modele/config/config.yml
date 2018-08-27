@@ -27,8 +27,11 @@ DataBase:
 Payement:
     paypal: true
     mcgpass: true
-    mcgpass_id: 
-    mcgpass_idSite: 
+    dedipass: false
+    mcgpass_id: ""
+    mcgpass_idSite: ""
+    public_key: ""
+    private_key: ""
     paypalUser: ""
     paypalPass: ""
     paypalSignature: ""

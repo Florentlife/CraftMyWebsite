@@ -4,7 +4,7 @@ if( empty($code) ) {
   header('Location: index.php?page=tokens&success=false');
 } 
 else { 
-  $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key=' . $_Serveur_['Payement']['dedipass_public'] . '&private_key=' . $_Serveur_['Payement']['dedipass_private'] . '&code=' . $code); 
+  $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key=' . $_Serveur_['Payement']['public_key'] . '&private_key=' . $_Serveur_['Payement']['private_key'] . '&code=' . $code); 
   $dedipass = json_decode($dedipass); 
   if($dedipass->status == 'success') { 
     // Le transaction est validée et payée. 

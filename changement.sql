@@ -44,6 +44,17 @@ CREATE TABLE cmw_ban_config (
 	`texte` TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS `cmw_dedipass` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(40) NOT NULL,
+  `code` varchar(8) NOT NULL,
+  `rate` varchar(60) NOT NULL,
+  `payout` float NOT NULL,
+  `tokens` int(11) NOT NULL,
+  `date_achat` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
 INSERT INTO `cmw_ban_config` (`id`, `titre`, `texte`) VALUES
 (1, 'Vous êtes bannis', 'Vous avez été bannis du site, veuillez prendre contact avec l\'administration pour les raisons de votre bannissement.');
 
