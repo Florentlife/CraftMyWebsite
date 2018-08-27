@@ -223,39 +223,42 @@
 					</div><!-- /.modal -->
 
 					<?php if($ticketCommentaires[$tickets['id']][$i]['auteur'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1 OR $_PGrades_['PermsDefault']['support']['editMemberComm'] == true) {
-						for($i = 0; $i < count($ticketCommentaires[$tickets['id']]); $i++) {
-							$get_idComm = $bddConnection->prepare('SELECT id FROM cmw_support_commentaires WHERE auteur LIKE :auteur AND id_ticket LIKE :id_ticket');
-							$get_idComm->bindParam(':auteur', $ticketCommentaires[$tickets['id']][$i]['auteur']);
-							$get_idComm->bindParam(':id_ticket', $tickets['id']);
-							$get_idComm->execute();
-							$req_idComm = $get_idComm->fetch(PDO::FETCH_ASSOC); ?>
-					<div class="modal fade" id="editComm-<?php echo $req_idComm['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editComm">
-					    <form method="POST" action="?&action=edit_support_commentaire&id_comm=<?php echo $req_idComm['id']; ?>&id_ticket=<?php echo $tickets['id']; ?>&auteur=<?php echo $ticketCommentaires[$tickets['id']][$i]['auteur']; ?>">
-				        <div class="modal-dialog modal-lg" role="document">
-					        <div class="modal-content">
-						        <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        <h4 class="modal-title text-center" id="editComm">Edition du commentaire</h4>
-						        </div>
-						        <div class="modal-body">
-						            <div class="col-lg-12 text-center">
-						            	<div class="row">
-						            		<textarea name="editMessage" class="form-control" rows="3" style="resize: none;"><?php echo $ticketCommentaires[$tickets['id']][$i]['message']; ?></textarea>
-						            	</div>
-						            </div>
-						        </div>
-						        <div class="modal-footer">
-						        	<div class="col-lg-12 text-center">
-						        		<div class="row">
-						        			<button type="submit" class="btn btn-primary">Valider !</button>
-						        		</div>
-						        	</div>
-						        </div>
-						    </div>
-						</div>
-						</form>
-				    </div>
-				    <?php }
+						if(!empty($ticketCommentaires[$tickets['id']]))
+						{
+							for($i = 0; $i < count($ticketCommentaires[$tickets['id']]); $i++) {
+								$get_idComm = $bddConnection->prepare('SELECT id FROM cmw_support_commentaires WHERE auteur LIKE :auteur AND id_ticket LIKE :id_ticket');
+								$get_idComm->bindParam(':auteur', $ticketCommentaires[$tickets['id']][$i]['auteur']);
+								$get_idComm->bindParam(':id_ticket', $tickets['id']);
+								$get_idComm->execute();
+								$req_idComm = $get_idComm->fetch(PDO::FETCH_ASSOC); ?>
+						<div class="modal fade" id="editComm-<?php echo $req_idComm['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="editComm">
+						    <form method="POST" action="?&action=edit_support_commentaire&id_comm=<?php echo $req_idComm['id']; ?>&id_ticket=<?php echo $tickets['id']; ?>&auteur=<?php echo $ticketCommentaires[$tickets['id']][$i]['auteur']; ?>">
+					        <div class="modal-dialog modal-lg" role="document">
+						        <div class="modal-content">
+							        <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        <h4 class="modal-title text-center" id="editComm">Edition du commentaire</h4>
+							        </div>
+							        <div class="modal-body">
+							            <div class="col-lg-12 text-center">
+							            	<div class="row">
+							            		<textarea name="editMessage" class="form-control" rows="3" style="resize: none;"><?php echo $ticketCommentaires[$tickets['id']][$i]['message']; ?></textarea>
+							            	</div>
+							            </div>
+							        </div>
+							        <div class="modal-footer">
+							        	<div class="col-lg-12 text-center">
+							        		<div class="row">
+							        			<button type="submit" class="btn btn-primary">Valider !</button>
+							        		</div>
+							        	</div>
+							        </div>
+							    </div>
+							</div>
+							</form>
+					    </div>
+					    <?php }
+							}
 				       }
 				    }
 					$j++; } ?>
