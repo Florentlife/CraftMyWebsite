@@ -142,6 +142,9 @@
                 <h3 class="panel-title"><strong>Modifier une miniature</strong></h3>
             </div>
             <div class="panel-body">
+                <?php if(!empty($lectureAccueil['Infos']))
+                {
+                    ?>
                 <form method="POST" action="?&action=editRapNav">
                     <ul class="nav nav-tabs">
 					<?php for($i = 1;$i < count($lectureAccueil['Infos']) + 1;$i++) {?>
@@ -153,6 +156,7 @@
 					<?php for($i = 1;$i < count($lectureAccueil['Infos']) + 1;$i++) {?>
 						<div class="tab-pane well<?php if($i == 1) echo ' active'?>" id="navRap<?=$i?>">
 							<h3>Miniature #<?=$i?></h3>
+                            <a style="float: right;" href="?action=supprMini&id=<?=$i;?>" class="btn btn-danger">Supprimer</a>
 							<div class="row">
 								<img class="col-md-4 thumbnail" src="theme/upload/navRap/<?php echo $lectureAccueil['Infos'][$i]['image']; ?>"/>
 								<div class="col-md-8">
@@ -208,9 +212,12 @@
 							</label><br>
 						</div>
 					<?php } ?>
-						<input type="submit" class="btn btn-warning" value="Modifier la miniature"/>
+                        <input type="submit" class="btn btn-warning" value="Modifier la miniature"/>
 					</div>
 				</form>
+                <?php 
+            }
+            ?>
 			</div>
 		</div>
 	</div>

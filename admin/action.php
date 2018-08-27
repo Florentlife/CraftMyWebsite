@@ -12,6 +12,11 @@
 			$_SESSION['referrerAdmin'] = 'accueil';
 		break;
 
+		case 'supprMini':
+			require('admin/actions/supprMini.php');
+			$_SESSION['referrerAdmin'] = 'slidemini';
+		break;
+
 		case 'addSocial':
 			require('admin/actions/addSocial.php');
 			$_SESSION['referrerAdmin'] = 'social';

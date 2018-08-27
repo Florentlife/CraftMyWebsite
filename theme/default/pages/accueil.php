@@ -22,6 +22,8 @@
         </div>
     </header>
     <!--Page-->
+    <?php if(!empty($lectureAccueil['Infos']))
+    { ?>
 	<section class="layout micro-blog">
 		<div class="container">
 			<div class="row">
@@ -40,6 +42,7 @@
 			</div>
 		</div>
 	</section>
+<?php } ?>
     <section class="layout micro-blog">
         <div class="container">
             <div class="text-center">
@@ -65,12 +68,9 @@
 
 							$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
 							?>
-							<div class="<?php if(count($news) == 1 || $news[$i]["pinned"] == "1") echo 'col-lg-12 col-md-12 col-sm-12'; elseif(count($news) >= 2) echo 'col-lg-6 col-md-6 col-sm 6'; ?>">
+							<div class="<?php if(count($news) == 1) echo 'col-lg-12 col-md-12 col-sm-12'; elseif(count($news) >= 2) echo 'col-lg-6 col-md-6 col-sm 6'; ?>">
 								<div class="card hvr-float-shadow w-100" style="margin-bottom:15px;">
-									<h5 class="card-header text-uppercase bg-primary" style="color:white;">
-										<small class="text-muted">#<?php echo $news[$i]['id'] - 1; ?></small> <?php echo $news[$i]['titre']; ?>
-										<?php if($news[$i]["pinned"] == "1") {?><i class="fas fa-thumbtack float-right"></i><?php }?>
-									</h5><br/>
+									<h5 class="card-header text-uppercase bg-primary" style="color:white;"><small class="text-muted">#<?php echo $news[$i]['id'] - 1; ?></small> <?php echo $news[$i]['titre']; ?></h5><br/>
 									<div class="card-block">
 										<p class="card-text"><?php echo $news[$i]['message']; ?></p>
 										<!--<a href="news.html" class="card-link btn btn-primary">Lire plus</a>-->
