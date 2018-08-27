@@ -19,7 +19,5 @@ if(isset($_Joueur_, $_PGrades_, $_GET['id']) && ($_Joueur_['rang'] == 1 OR $_PGr
 			$i++;
 		}
 	}
-	var_dump($tmp);
-	var_dump($lectureAccueil);
 	$ecriture = new Ecrire('modele/config/accueil.yml', $tmp);
 }
