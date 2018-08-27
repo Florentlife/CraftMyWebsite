@@ -70,7 +70,7 @@ header('Location: index.php');
                             <?php echo $donnees['maintenanceMsg']; ?>
                         </h6>
                     </div>
-                    <hr><?php if(isset($_Joueur_['rang'], $_PGrades_) && $_Joueur_['rang'] != 1 AND !$_PGrades_['PermsPanel']['access'])
+                    <hr><?php if(!isset($_Joueur_['rang'], $_PGrades_) && $_Joueur_['rang'] != 1 AND !$_PGrades_['PermsPanel']['access'])
                     { ?>
                     <div class="card-footer text-muted" style="border:0px;">
                         <a class="btn btn-block btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Connexion administrateur</a>

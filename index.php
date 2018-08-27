@@ -2,6 +2,7 @@
 ob_start();
 session_start();
 error_reporting(0);
+date_default_timezone_set('Europe/Paris');
 ini_set('display_errors', 1);
 if(!isset($_SESSION["mode"])) $_SESSION["mode"] = false; // pour les admins du forum
 //ini_set('display_errors', 1);
