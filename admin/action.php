@@ -440,17 +440,17 @@
 
 		case 'switchSysMail': 
 		require_once('admin/actions/switchSysMail.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'modifIP';
 		break;
 
 		case 'editSysMail': 
 		require_once('admin/actions/editSysMail.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'modifIP';
 		break;
 
 		case 'editNbrPerIP': 
 		require_once('admin/actions/editNbrPerIP.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'modifIP';
 		break;
 
 		case 'supprGrade': 

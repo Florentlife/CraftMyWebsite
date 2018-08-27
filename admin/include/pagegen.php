@@ -15,6 +15,11 @@ if(isset($_GET['page']))
 			include('./admin/page/reseaux.php');
 		break;
 
+		case 'modifIP':
+			require_once('./admin/donnees/modifIP.php');
+			include('./admin/page/modifIP.php');
+		break;
+
 		case 'configVoter':
 			require_once('./admin/donnees/configVoter.php');
 			include('./admin/page/configVoter.php');
