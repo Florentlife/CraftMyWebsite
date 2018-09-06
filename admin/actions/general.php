@@ -11,6 +11,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['general']['actions']['edi
 		$lecture['General']['ipTexte'] = $_POST['ipTexte'];
 		$lecture['General']['ip'] = $_POST['ip'];
 		$lecture['General']['port'] = $_POST['port'];
+		$lecture['General']['statut'] = $_POST['statut'];
 
 		$lecture['DataBase']['dbAdress'] = $_POST['adresse'];
 		$lecture['DataBase']['dbName'] = $_POST['dbNom'];

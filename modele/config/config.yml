@@ -13,6 +13,7 @@ General:
     ipTexte: 
     ip: 
     port: 
+    statut: 1
     createur: 
         nom: Créateur
         prefix: prefixCreateur

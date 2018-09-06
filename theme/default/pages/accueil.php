@@ -3,14 +3,16 @@
         <div class="heading-mask">
             <div class="container" style="text-align:center;">
                 <h1 class="text-primary text-uppercase wow zoomInDown" data-wow-delay="0.6s"><?php echo $_Serveur_['General']['name']; ?></h1>
-                <p class="h6 wow fadeInUp" data-wow-delay="0.9s"><?php if($modeEnLigne == 0)
+                <p class="h6 wow fadeInUp" data-wow-delay="0.9s"><?php if($_Serveur_['General']['statut'] == 0)
                 {
                 	echo '<span class="badge badge-danger">Hors-Ligne</span>'; 
                 }
-                else
+                elseif($_Serveur_['General']['statut'] == 1)
                 {
                 	echo '<span class="badge badge-success">En Ligne</span> : '.$playeronline.' / '.$maxPlayers;
                 }
+                else
+                	echo '<span class="badge badge-warning">En Maintenance</span>'; 
                 ?></p>
                 <p class="wow fadeInUp" data-wow-delay="1s"><?php echo $_Serveur_['General']['description']; ?></p>
             </div>

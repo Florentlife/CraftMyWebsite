@@ -53,14 +53,6 @@
 		setcookie('playeronline', $playeronline, time() + 300);
 		setcookie('maxPlayers', $maxPlayers, time() + 300);
 	}
-	if(empty($playeronline) AND empty($maxPlayers))
-	{
-		$modeEnLigne = 0;
-	}
-	else
-	{
-		$modeEnLigne = 1;
-	}
 
 	function gradeJoueur($pseudo, $bdd)
 	{
