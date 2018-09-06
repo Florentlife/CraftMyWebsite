@@ -94,12 +94,12 @@ class AdminForum extends Forum
 		}
 	}
 
-	public function editObjet($objet, $id, $pseudo, $contenue, &$id_topic)
+	public function editObjet($objet, $id, $pseudo, $contenue, &$id_topic, $titre = null)
 	{
 		++$this->actions;
 		if($objet == 1)
 		{
-			$req = $this->bdd->prepare('SELECT contenue FROM cmw_forum_post WHERE id = :id');
+			$req = $this->bdd->prepare('SELECT contenue, nom FROM cmw_forum_post WHERE id = :id');
 			$req->execute(array(
 				'id' => $id
 			));
@@ -117,13 +117,22 @@ class AdminForum extends Forum
 			$id_topic = $data['id_topic'];
 			$table = 'cmw_forum_answer';
 		}
-		if($data['contenue'] != $contenue)
+		if($data['contenue'] != $contenue OR (isset($data['nom'], $titre) && $data['nom'] != $titre))
 		{
 			$update = $this->bdd->prepare('UPDATE '.$table.' SET contenue = :contenue, d_edition = NOW() WHERE id = :id');
 			$update->execute(array(
 				'contenue' => $contenue,
 				'id' => $id
 			));
+			if(isset($titre, $data['nom']))
+			{
+				echo true;
+				$update = $this->bdd->prepare('UPDATE cmw_forum_post SET nom = :nom, d_edition = NOW() WHERE id = :id');
+				$update->execute(array(
+					'nom' => $titre,
+					'id' => $id
+				));
+			}
 			return true;
 		}
 		else
