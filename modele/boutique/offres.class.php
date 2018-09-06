@@ -120,6 +120,7 @@ class OffresList
 		
 			$infos['offre']['nom'] = $infosOffres['nom'];
 			$infos['offre']['description'] = $infosOffres['description'];
+			$infos['offre']['nbre_vente'] = $infosOffres['nbre_vente'];
 			$infos['offre']['prix'] = $infosOffres['prix'];
 			$infos['offre']['categorie'] = $infosOffres['categorie_id'];
 

@@ -101,6 +101,18 @@ function ajaxSupprPostIt(id)
         $("#post_contenue").html(donnees);
     });
 }
+
+function showOptions(type)
+{
+    if($('#options'+type).hasClass("d-none"))
+    {
+        $("#options"+type).removeClass('d-none');
+    }
+    else
+    {
+        $("#options"+type).addClass("d-none");
+    }
+}
 </script>
 </body>
 </html>

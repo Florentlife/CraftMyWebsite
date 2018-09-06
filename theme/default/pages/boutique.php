@@ -61,7 +61,7 @@
 											echo '
 											<div class="col-md-4 panel panel-default">
 												<div class="panel-body">
-													<h3 class="titre-offre"><center>'. (($offresTableau[$i]['nbre_vente'] > -1) ? "<s>".$offresTableau[$i]['nom']."</s>" : $offresTableau[$i]['nbre_vente']);
+													<h3 class="titre-offre"><center>'. (($offresTableau[$i]['nbre_vente'] == 0) ? "<s>".$offresTableau[$i]['nom']."</s>" : $offresTableau[$i]['nom']);
 													if($offresTableau[$i]['nbre_vente'] > -1) {
 														echo "<br><span style='font-size: 9pt;'>";
 														if($offresTableau[$i]['nbre_vente'] == 0) {
@@ -154,7 +154,7 @@
 					</blockquote>
 		  </div>
 		  <div class="modal-footer">
-			<?php 	if((($enLigne AND $infosCategories['connection']) OR !$infosCategories['connection']) AND $infosCategories['nbre_vente'] != 0)  { ?>
+			<?php 	if((($enLigne AND $infosCategories['connection']) OR !$infosCategories['connection']) AND $infosOffre['offre']['nbre_vente'] > 0)  { ?>
 							<form action="index.php" method="GET" class="form-inline">
 								<input type="hidden" name="action" value="addOffrePanier"/>
 								<input type="hidden" name="offre" value="<?php echo $_GET['offre']; ?>"/>
@@ -162,7 +162,7 @@
 								<input type="number" class="form-control mb-1 mr-sm-1" id="quantite" name="quantite" min="0" value="1" />
 								<button type="submit" class="btn btn-success mb-2">Ajouter au panier</button>
 							</form><?php }
-							elseif($infosCategories['nbre_vente'] == 0)
+							elseif($infosOffre['offre']['nbre_vente'] == 0)
 								echo '<div class="row" style="width: 100%;"><div class="col-md-12" style="text-align: center;"><a class="btn btn-info" href="#">Rupture de stock !</a></div></div>';
 							 else{ ?>
 							Connectez vous sur le serveur voulu... <?php } 
