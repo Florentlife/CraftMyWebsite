@@ -40,10 +40,13 @@ class JoueurDonnees
 
 	private function listReseaux()
 	{
-		$req = $this->bdd->query('SELECT COLUMN_NAME AS nom FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "cmw_reseaux"');
+		global $_Serveur_;
+		$req = $this->bdd->query('SELECT COLUMN_NAME AS nom FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = "cmw_reseaux" AND TABLE_SCHEMA = "'.$_Serveur_['DataBase']['dbName'].'"');
 		$donneesSocial = $req->fetchAll(PDO::FETCH_ASSOC);
-		array_shift($donneesSocial);
-		array_shift($donneesSocial);
+		unset($donneesSocial[array_search('id', array_column($donneesSocial, 'nom'))]);
+		array_merge($donneesSocial);
+		unset($donneesSocial[array_search('idJoueur', array_column($donneesSocial, 'nom'))+1]);
+		array_merge($donneesSocial);
 		$this->reseaux = $donneesSocial;
 	}
 }

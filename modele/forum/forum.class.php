@@ -261,6 +261,7 @@ class Forum {
 		return $return;
 	}
 
+	//Renvoie le nombre de topic dans le forum
 	public function compteTopicsForum($id)
 	{
 		$req = $this->bdd->prepare('SELECT COUNT(id) AS count FROM cmw_forum_post WHERE id_categorie = :id');
@@ -314,6 +315,16 @@ class Forum {
 		$mois = $this->switch_date($explode[1]);
 		$annee = $explode[0];
 		return $jours.' '.$mois.' '.$annee;
+	}
+
+	public function getSignature($pseudo)
+	{
+		$req = $this->bdd->prepare('SELECT signature FROM cmw_users WHERE pseudo = :pseudo');
+		$req->execute(array(
+			'pseudo' => $pseudo
+		));
+		$fetch = $req->fetch(PDO::FETCH_ASSOC);
+		return $fetch['signature'];
 	}
 
 	protected function switch_date($date)

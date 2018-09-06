@@ -116,6 +116,13 @@ if(isset($_GET['id']))
 			$contenue = BBCode($contenue, $bddConnection);
 			echo $contenue;
 			?></div><br/><div style="border-top: 0.5px grey solid;"></div>
+			<hr/>
+			<?php 
+			$signature = $_Forum_->getSignature($topicd['pseudo']);
+			$signature = espacement($signature);
+			$signature = BBCode($signature, $bddConnection);
+			echo $signature;
+			?>
 			<p class="text-right text-muted">Posté le <?php  echo $topicd['jour']; ?> <?php $mois = switch_date($topicd['mois']); echo $mois; ?> <?php echo $topicd['annee'];?>  <?php if($topicd['d_edition'] != NULL) { echo 'édité le '; $d_edition = explode('-', $topicd['d_edition']); echo $d_edition[2]; echo '/' .$d_edition[1]. '/' .$d_edition[0]. ''; } ?></p>
 		</div>
 	</div>
@@ -192,7 +199,13 @@ if(isset($_GET['id']))
 				$answere = BBCode($answere, $bddConnection);
 				echo $answere;
 				?></div>
-				<br/><div style="border-top: 0.5px grey solid;"></div>
+				<hr/>
+				<?php 
+				$signature = $_Forum_->getSignature($answerd[$i]['pseudo']);
+				$signature = espacement($signature);
+				$signature = BBCode($signature, $bddConnection);
+				echo $signature;
+				?>
 				<p class="text-right text-muted"><?php echo $answerd[$i]['day']; ?> <?php $answerd[$i]['mois'] = switch_date($answerd[$i]['mois']); echo $answerd[$i]['mois']; ?> <?php echo $answerd[$i]['annee']; ?> <?php if($answerd[$i]['d_edition'] != NULL){ echo 'édité le '; $d_edition = explode('-', $answerd[$i]['d_edition']); echo '' .$d_edition[2]. '/' .$d_edition[1]. '/' .$d_edition[0]. ''; } ?> </p>
 			</div>
 		</div>

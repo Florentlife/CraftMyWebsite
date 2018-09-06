@@ -12,11 +12,13 @@ foreach($listeReseaux as $value)
 	}
 }
 
+$signature = htmlspecialchars($_POST['signature']);
+
 $age = VerifieDonnee($_POST['age']);
 
 $age = intval($age);
 
-ValideChangement($changementsReseaux, $age, $_Joueur_['pseudo'], $bddConnection, $_Joueur_['id']);
+ValideChangement($changementsReseaux, $age, $_Joueur_['pseudo'], $signature, $bddConnection, $_Joueur_['id']);
 header('Location: ?page=profil&profil='.$_Joueur_['pseudo'].'&success=true');
 
 function VerifieDonnee($donnee)
@@ -29,7 +31,7 @@ function VerifieDonnee($donnee)
 	return $donnee;
 }	
 
-function ValideChangement($reseaux, $age, $pseudo, $bddConnection, $id)
+function ValideChangement($reseaux, $age, $pseudo, $signature, $bddConnection, $id)
 {	
 	require_once('modele/joueur/maj.class.php');
 	$maj = new Maj($pseudo, $bddConnection);
@@ -39,5 +41,6 @@ function ValideChangement($reseaux, $age, $pseudo, $bddConnection, $id)
 		$maj->setNouvellesDonneesAge($age);
 	else
 		$maj->setNouvellesDonneesAge(0);
+	$maj->setNouvellesDonneesSignature($signature);
 }
 ?>

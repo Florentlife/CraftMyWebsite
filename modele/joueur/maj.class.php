@@ -47,6 +47,14 @@ class Maj
 			'id' => $donnees['id']
 			));
 	}
+	public function setNouvellesDonneesSignature($signature)
+	{
+		$reqMaj = $this->bdd->prepare('UPDATE cmw_users SET signature = :signature WHERE pseudo = :pseudo');
+		$reqMaj->execute(array(
+			'signature' => $signature,
+			'pseudo' => $this->pseudo
+		));
+	}
 	public function setNouvellesDonneesEmail($email)
 	{
 		$reqMaj = $this->bdd->prepare('UPDATE cmw_users SET email = :email WHERE pseudo = :pseudo');

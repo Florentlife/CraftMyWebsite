@@ -434,6 +434,10 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
 });
 </script>
 <?php 
+if($_GET['page'] == "profil")
+{
+?><script>previewTopic($("#signature"));</script><?php
+}
 if(isset($_GET['setTemp']) && $_GET['setTemp'] == 1)
 {
 	?><script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'Votre nouveau mot de passe vous a été envoyé par mail !', icon: '<span class=\'glyphicon glyphicon-ok\'></span>});});</script>;<?php
