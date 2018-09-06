@@ -81,7 +81,7 @@
 								</form>
 							</div>
 						</div>
-						<a class="btn btn-info" data-toggle="modal" href="#NomForum" data-entite="2" data-nom="<?=$sousforumd[$a]['nom'];?>" data-id="<?=$sousforumd[$a]['id'];?>"><i class="fas fa-font"></i></a>
+						<a class="btn btn-info" data-toggle="modal" href="#NomForum" data-entite="2" data-nom="<?=$sousforumd[$a]['nom'];?>" data-icone="<?=($sousforumd[$a]['img'] == NULL) ? 'chat' : $sousforumd[$a]['img'];?>" data-id="<?=$sousforumd[$a]['id'];?>"><i class="fas fa-font"></i></a>
 						<div class="dropdown" style="display: inline; text-align: center;">
 							<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								<i class="fas fa-list"></i>

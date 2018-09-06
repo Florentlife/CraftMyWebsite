@@ -139,13 +139,12 @@ class AdminForum extends Forum
 			return true;
 	}
 
-	public function setNewNomForum($nom, $id, $entite)
+	public function setNewNomForum($nom, $id, $entite, $icone = null)
 	{
 		++$this->actions;
 		if($entite == 1)
 		{
-			$req = $this->bdd->prepare('UPDATE cmw_forum_categorie SET nom = :nom WHERE id = :id');
-			
+			$req = $this->bdd->prepare('UPDATE cmw_forum_categorie SET nom = :nom, img = :icone WHERE id = :id');
 		}
 		elseif($entite == 0)
 		{
@@ -153,12 +152,23 @@ class AdminForum extends Forum
 		}
 		elseif($entite == 2)
 		{
-			$req = $this->bdd->prepare('UPDATE cmw_forum_sous_forum SET nom = :nom WHERE id = :id');
+			$req = $this->bdd->prepare('UPDATE cmw_forum_sous_forum SET nom = :nom, img = :icone WHERE id = :id');
 		}
-		$req->execute(array(
-			'nom' => $nom,
-			'id' => $id
-		));
+		if($entite > 0)
+		{
+			$req->execute(array(
+				'nom' => $nom,
+				'icone' => $icone,
+				'id' => $id
+			));
+		}
+		else
+		{
+			$req->execute(array(
+				'nom' => $nom,
+				'id' => $id
+			));
+		}
 
 	}
 

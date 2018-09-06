@@ -285,6 +285,10 @@ if(isset($_GET['page']) && $_GET['page'] == "messagerie")
         	<input type="hidden" name="id" id="id" value="">
         	<input type="hidden" name="entite" id="entite" value="">
         	<input type="text" class="form-control" name="nom" id="nom" />
+        	<br/>
+        	<label class="control-label col-sm-4" for="icone">Icone</label>
+        	<input type="text" class="form-control col-sm-6" style="display: inline-block;" name="icone" value="" id="icone">
+        	<p class="text-muted text-center"><a href="https://design.google.com/icons/" target="_blank">https://design.google.com/icons/</a></p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>

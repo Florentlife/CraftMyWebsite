@@ -132,7 +132,7 @@ $categorie = $_Forum_->infosForum($fofo[$i]['id']);
 							</form>
 						</div>
 					</div>
-					<a class="btn btn-info" data-toggle="modal" href="#NomForum" data-entite="1" data-nom="<?=$categorie[$j]['nom'];?>" data-id="<?=$categorie[$j]['id'];?>"><i class="fas fa-font"></i></a>
+					<a class="btn btn-info" data-toggle="modal" href="#NomForum" data-entite="1" data-nom="<?=$categorie[$j]['nom'];?>" data-icone="<?=($categorie[$j]['img'] == NULL) ? 'chat' : $categorie[$j]['img'];?>" data-id="<?=$categorie[$j]['id'];?>"><i class="fas fa-font"></i></a>
 					<div class="dropdown" style="display: inline; text-align: center;">
 						<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-list"></i>
@@ -186,7 +186,7 @@ if(isset($_Joueur_) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['gen
 						</div>
 				</div><br>
 				<div class="froum-group row">
-						<label class="col-md-6 col-form-label" for="img">Icon disponible sur : <a href="https://design.google.com/icons/">https://design.google.com/icons/</a></label>
+						<label class="col-md-6 col-form-label" for="img">Icon disponible sur : <a href="https://design.google.com/icons/" target="_blank">https://design.google.com/icons/</a></label>
 						<div class="col-md-6">
 							<input type="text" name="img" id="img" maxlength="300" class="form-control" />
 						</div>
