@@ -41,7 +41,10 @@ if(isset($_POST['id_topic']) AND isset($_Joueur_))
 	$delete->execute(array(
 		'id' => $id
 	));
-	header('Location: ?page=forum');
+	if(isset($data['sous_forum']))
+		header('Location: ?page=forum_categorie&id='.$data['id_categorie'].'&id_sous_forum='.$data['sous_forum']);
+	else
+		header('Location: ?page=forum_categorie&id='.$data['id_categorie']);
 }
 else
 	header('Location: ?page=erreur&erreur=0');
