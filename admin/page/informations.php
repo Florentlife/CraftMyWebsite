@@ -695,7 +695,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
   </table>
 </div>
 <div class="text-center">
- Ceci sont les 8 derniers membres inscrits. <span class="fa fa-credit-card-alt"></span>
+ Ceci sont les 8 derniers membres inscrits. <span class="fa fa-address-book"></span>
 </div>
 </div>
 </div>
@@ -856,7 +856,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 
 </div>
 <div class="text-center">
- Ceci sont les 10 dernières activités. <span class="fa fa-credit-card-alt"></span>
+ Ceci sont les 10 dernières activités. <span class="fa fa-briefcase"></span>
 </div>
 </div>
 </div>
