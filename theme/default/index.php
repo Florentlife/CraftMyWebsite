@@ -280,6 +280,37 @@ function ajout_text_complement(textarea, entertext, tapetext, balise, complement
 			else insertAtCaret(textarea, '['+balise+']'+VarTxt+'[/'+balise+']'); 
 		}
 	}
+	else if(balise == 'img')
+	{
+		if (document.selection && document.selection.createRange().text != '')
+		{
+			complement = window.prompt(entertext, tapetext);
+			document.getElementById(textarea).focus();
+			VarTxt = document.selection.createRange().text;
+			if(VarTxt != null && VarTxt != '')
+				document.selection.createRange().text = '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']';
+			else
+				document.selection.createRange().text = '['+balise+']'+complement+'[/'+balise+']';
+		}
+		else if (document.getElementById(textarea).selectionEnd && (document.getElementById(textarea).selectionEnd - document.getElementById(textarea).selectionStart > 0))
+		{
+			complement = window.prompt(entertext, tapetext);
+			valeurDeb = document.getElementById(textarea).value.substring( 0 , document.getElementById(textarea).selectionStart );
+			valeurFin = document.getElementById(textarea).value.substring( document.getElementById(textarea).selectionEnd , document.getElementById(textarea).textLength );
+			objectSelected = document.getElementById(textarea).value.substring( document.getElementById(textarea).selectionStart , document.getElementById(textarea).selectionEnd );
+			if(objectSelected != null && objectSelected != '')
+				document.getElementById(textarea).value = valeurDeb+'['+balise+'='+complement+']'+objectSelected+'[/'+balise+']'+valeurFin;
+			else
+				document.getElementById(textarea).value = valeurDeb+'['+balise+']'+complement+'[/'+balise+']'+valeurFin;
+		}
+		else
+		{
+			VarTxt = window.prompt(complementTxt,complementtape);
+			complement = window.prompt(entertext, tapetext);
+			if ((VarTxt != null) && (VarTxt != '') && complement != null && complement != '') insertAtCaret(textarea, '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']');
+			else insertAtCaret(textarea, '['+balise+']'+complement+'[/'+balise+']'); 
+		}
+	}
 	else
 	{
 		if (document.selection && document.selection.createRange().text != '')
