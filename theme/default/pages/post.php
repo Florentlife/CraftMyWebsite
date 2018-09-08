@@ -127,7 +127,8 @@ if(isset($_GET['id']))
 		</div>
 	</div>
 	<div class="row">
-		<?php if(isset($_Joueur_)){?>
+		<?php
+		if(isset($_Joueur_)){?>
 		<div class="col-md-2">
 			<form action="?&action=signalement_topic" method="post">
 				<input type="hidden" name="id_topic2" value='<?php echo $id; ?>' />
@@ -163,6 +164,57 @@ if(isset($_GET['id']))
 		}
 	?>
 	</div>
+	<?php 
+	$countlike = $_Forum_->compteLike($topicd['id'], $count1, 1);
+	$countdislike = $_Forum_->compteDisLike($topicd['id'], $count2, 1);
+	if($count1 > 0 OR $count2 > 0)
+	{
+		echo '<div class="row justify-content-end"><div class="col-md-2">';
+		if($count1 > 0)
+			echo $count1.' personnes aiment ça.<br/>';
+	
+		if($count2 > 0)
+			echo $count2.' personnes n\'aiment pas ça';
+
+		echo '</div></div>';
+	}
+	if(isset($_Joueur_))
+	{
+		if(array_search($_Joueur_['pseudo'], array_column($countlike, 'pseudo')) === FALSE AND array_search($_Joueur_['pseudo'], array_column($countdislike, 'pseudo')) === FALSE AND $_Joueur_['pseudo'] != $topicd['pseudo'])
+		{
+			?>
+			<div class="row justify-content-end"><div class="col-md-1">
+					<form class="form-inline" action="?&action=like" method="post">
+						<input type="hidden" name="choix" value="1" />
+						<input type="hidden" name="type" value="1" />
+						<input type="hidden" name="id_answer" value="<?php echo $topicd['id']; ?>" />
+						<button type="submit" class="btn btn-primary" title="J'aime" ><i class="far fa-thumbs-up"></i></button>
+					</form></div><div class="col-md-1">
+					<form class="form-inline" action="?&action=like" method="post">
+						<input type="hidden" name="choix" value="2" />
+						<input type="hidden" name="type" value="1" />
+						<input type="hidden" name="id_answer" value="<?php echo $topicd['id']; ?>" />
+						<button type="submit" class="btn btn-primary" title="Je n'aime pas"><i class="far fa-thumbs-down"></i></button>
+					</form>
+				</div>
+			</div>
+			<?php
+		}
+		elseif(array_search($_Joueur_['pseudo'], array_column($countlike, 'pseudo')) !== FALSE OR array_search($_Joueur_['pseudo'], array_column($countdislike, 'pseudo')) !== FALSE)
+		{
+			?><div class="row justify-content-end">
+				<div class="col-md-1">
+					<form class='form-inline' action="?&action=unlike" method="post">
+						<input type="hidden" name="id_answer" value="<?php echo $topicd['id']; ?>" />
+						<input type="hidden" name="type" value="1" />
+						<button type="submit" class="btn btn-primary" title="Ne plus aimer">Retirer</button>
+					</form>
+				</div>
+			</div><?php
+
+		}
+	}
+	?>
 	<!-- Affichage des réponses -->
 	 <?php 
     $count_Max = $_Forum_->compteReponse($id);
@@ -218,7 +270,7 @@ if(isset($_GET['id']))
 				<button type="submit" class="btn btn-primary">Signaler !</button>
 			</form></div>
 			<?php 
-			$countlike = $_Forum_->compteLike($answerd[$i]['id'], $count);
+			$countlike = $_Forum_->compteLike($answerd[$i]['id'], $count, 2);
 			if($count > 0)
 			{
 				if($count >= 3)
@@ -252,7 +304,7 @@ if(isset($_GET['id']))
 					echo ' aime ça </div>';
 				}
 			}
-			$countdislike = $_Forum_->compteDisLike($answerd[$i]['id'], $count);
+			$countdislike = $_Forum_->compteDisLike($answerd[$i]['id'], $count, 2);
 			if($count > 0)
 			{
 				if($count > 3)

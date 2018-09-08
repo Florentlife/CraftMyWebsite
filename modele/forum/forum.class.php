@@ -33,6 +33,11 @@ class Forum {
 	//Récupération de la dernière réponse 
 	public function derniereReponseForum($id)
 	{
+		$dernier_topic2 = $this->bdd->prepare('SELECT date_creation FROM cmw_forum_post WHERE id_categorie = :id ORDER BY date_creation DESC');
+		$dernier_topic2->execute(array(
+			'id' => $id
+		));
+		$dernier_topic_donnees = $dernier_topic2->fetch(PDO::FETCH_ASSOC);
 		$derniere_reponse_req = $this->bdd->prepare('SELECT cmw_forum_answer.pseudo AS pseudo, cmw_forum_answer.date_post AS date_post, cmw_forum_answer.id_topic AS id, cmw_forum_post.nom AS titre
 			FROM cmw_forum_answer 
 				INNER JOIN cmw_forum_post 
@@ -43,19 +48,21 @@ class Forum {
 			'id' => htmlspecialchars($id)
 			));
 		$derniere_reponse_donnees = $derniere_reponse_req->fetch(PDO::FETCH_ASSOC);
-		if(!isset($derniere_reponse_donnees['pseudo']))
+		if(!isset($derniere_reponse_donnees['pseudo']) OR strtotime($dernier_topic_donnees['date_creation']) > strtotime($derniere_reponse_donnees['date_post']))
 		{
-			$dernier_topic = $this->bdd->prepare('SELECT nom AS titre, id, pseudo, date_creation AS date_post, COUNT(id) AS count
+			$dernier_topic = $this->bdd->prepare('SELECT nom AS titre, id, pseudo, date_creation AS date_post
 			FROM cmw_forum_post 
-			WHERE id_categorie = :id');
+			WHERE id_categorie = :id ORDER BY date_creation DESC');
 			$dernier_topic->execute(array(
-				'id' => htmlspecialchars($id)
+				'id' => $id
 			));
-			$derniere_reponse_donnees = $dernier_topic->fetch(PDO::FETCH_ASSOC);
-			if($derniere_reponse_donnees['count'] == 0)
+			$derniere_topic_donnees = $dernier_topic->fetch(PDO::FETCH_ASSOC);
+			if(!isset($derniere_topic_donnees['titre']))
 				return FALSE;
 			else
-				return $derniere_reponse_donnees;
+			{
+				return $derniere_topic_donnees;
+			}
 		}
 		else
 			return $derniere_reponse_donnees;
@@ -174,20 +181,22 @@ class Forum {
 	}
 	
 	//compte les Like des answer 
-	public function compteLike($id, &$count)
+	public function compteLike($id, &$count, $type)
 	{
-		$like = $this->bdd->prepare('SELECT * AS count FROM cmw_forum_like WHERE id_answer = :id_answer AND Appreciation = 1');
+		$like = $this->bdd->prepare('SELECT id AS count, pseudo FROM cmw_forum_like WHERE id_answer = :id_answer AND Appreciation = 1 AND type = :type');
 		$like->bindParam(':id_answer', $id, PDO::PARAM_INT);
+		$like->bindParam(':type', $type, PDO::PARAM_INT);
 		$like->execute();
 		$count = $like->rowCount();
 		return $like->fetchAll();
 	}
 	
 	//Pareil pour DisLike :
-	public function compteDisLike($id, &$count)
+	public function compteDisLike($id, &$count, $type)
 	{
-		$dislike = $this->bdd->prepare('SELECT * FROM cmw_forum_like WHERE id_answer = :id_answer AND Appreciation = 2');
+		$dislike = $this->bdd->prepare('SELECT id, pseudo FROM cmw_forum_like WHERE id_answer = :id_answer AND Appreciation = 2 AND type = :type');
 		$dislike->bindParam(':id_answer', $id, PDO::PARAM_INT);
+		$dislike->bindParam(':type', $type, PDO::PARAM_INT);
 		$dislike->execute();
 		$count = $dislike->rowCount();
 		return $dislike->fetchAll();
@@ -196,7 +205,7 @@ class Forum {
 	//Vérifie si la personne a déjà réagit 
 	public function testVote($id, $joueur)
 	{
-		$test_vote = $this->bdd->prepare('SELECT COUNT(id) AS count FROM cmw_forum_like WHERE pseudo = :pseudo AND id_answer = :id_answer');
+		$test_vote = $this->bdd->prepare('SELECT COUNT(id) AS count FROM cmw_forum_like WHERE pseudo = :pseudo AND id_answer = :id_answer AND type = 2');
 		$test_vote->execute(array(
 			'pseudo' => $joueur,
 			'id_answer' => $id

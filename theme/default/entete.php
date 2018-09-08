@@ -95,7 +95,7 @@
 									}
 									$req_answer = $bddConnection->prepare('SELECT vu
 									FROM cmw_forum_like INNER JOIN cmw_forum_answer WHERE id_answer = cmw_forum_answer.id
-									AND cmw_forum_like.pseudo != :pseudo AND cmw_forum_answer.pseudo = :pseudo');
+									AND cmw_forum_like.pseudo != :pseudo AND cmw_forum_answer.pseudo = :pseudo AND type = 2');
 									$req_answer->execute(array(
 										'pseudo' => $_Joueur_['pseudo'],
 									));
