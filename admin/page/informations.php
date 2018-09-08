@@ -823,14 +823,18 @@ for($j = 0; $j < count($lecture['Json']); $j++)
   <?php }
 } ?>
 
-<?php for($i = 0; $i < count($lastAchatmcgpass); $i++) {
+<?php 
+if(isset($lastAchatmcgpass))
+{
+for($i = 0; $i < count($lastAchatmcgpass); $i++) {
   if(!empty($lastAchatmcgpass[$i]['date_achat'])) { ?>
   <a href="#" class="list-group-item">
     <span class="badge"><?php echo $lastAchatmcgpass[$i]['date_achat'].' ??:??:??'; ?></span>
     <i class="fa fa-fw fa-mobile"></i> Dernier achat sur mcgpass par : <strong><?php echo $lastAchatmcgpass[$i]['pseudo'].'</strong> au prix de <strong>'.$lastAchatmcgpass[$i]['payout'].'€</strong>'; ?>
   </a>
   <?php }
-} ?>
+} 
+}?>
 
 <?php for($i = 0; $i < count($lastOffre); $i++) {
  if(!empty($lastOffre[$i]['id'])) {
