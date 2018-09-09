@@ -15,6 +15,11 @@ if(isset($_GET['page']))
 			include('./admin/page/reseaux.php');
 		break;
 
+		case 'boutiquelist':
+			require_once('./admin/donnees/boutiquelist.php');
+			include('./admin/page/boutiquelist.php');
+		break;
+
 		case 'modifIP':
 			require_once('./admin/donnees/modifIP.php');
 			include('./admin/page/modifIP.php');

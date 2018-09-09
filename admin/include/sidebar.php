@@ -25,7 +25,11 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == true) { ?>
-    <a href="?page=boutique" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'boutique'){ echo 'active'; } ?>" role="button">Réglage boutique <i class="fa fa-shopping-cart cmw-fa-sidebar" aria-hidden="true"></i></a>
+        <a href="#collapseBoutique" data-toggle="collapse" style="margin-bottom: 5px;" aria-expanded="true" aria-controls="collapseBoutique" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?=(isset($pageadmin) && ($pageadmin == 'boutique' || $pageadmin == 'boutiquelist')) ? 'active' : ''?>" role="button">Boutique <i class="fa fa-shopping-cart cmw-fa-sidebar" aria-hidden="true"></i></a>
+        <div id="collapseBoutique" class="collapse <?=(isset($pageadmin) && ($pageadmin == 'boutique' || $pageadmin == 'boutiquelist')) ? 'in' : '';?>" style="margin-bottom: 5px; padding-left: 10px;">
+            <a href="?page=boutique" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'boutique'){ echo 'active'; } ?>" role="button">Réglage boutique <i class="fa fa-shopping-cart cmw-fa-sidebar" aria-hidden="true"></i></a>
+            <a href="?page=boutiquelist" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?=(isset($pageadmin) && $pageadmin == 'boutiquelist') ? 'active' : '';?>" role="button">Liste des achats <i class="fa fa-truck cmw-fa-sidebar" aria-hidden="true"></i></a>
+        </div>
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['showPage'] == true) { ?>

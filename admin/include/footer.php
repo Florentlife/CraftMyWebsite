@@ -113,6 +113,37 @@ function showOptions(type)
         $("#options"+type).addClass("d-none");
     }
 }
+
+function BoutiqueListePage(page)
+{
+    $.ajax({
+        method: "POST",
+        url: '?action=getBoutiqueListe',
+        data: { page : page }
+    }).done(function(donnees){
+        $('#boutiqueListe').html(donnees);
+    });
+}
+
+function showAvanceeBoutique(option)
+{
+    if($('#recherche'+option).hasClass("d-none"))
+        $("#recherche"+option).removeClass('d-none');
+    else
+        $("#recherche"+option).addClass('d-none');
+}
+
+function getBoutiqueListe(option)
+{
+    value = $("#"+option).val();
+    $.ajax({
+        method: "POST",
+        url: '?action=getBoutiqueListe',
+        data: { option: option, value: value }
+    }).done(function(donnees){
+        $('#boutiqueListe').html(donnees);
+    });
+}
 </script>
 </body>
 </html>
