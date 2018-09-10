@@ -59,7 +59,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		include("./include/version.php");
         include("./include/version_distant.php");
         if($versioncms != $versioncmsrelease && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['update']['showPage'] == 'on')) {?>
-        <div class="alert alert-warning alert-dismissible">
+        <div class="alert alert-warning alert-dismissible text-center" style="margin-bottom: 0px;">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             Une mise à jour est disponible (<a href="https://craftmywebsite.fr/telecharger" target="_blank" class="alert-link"><?= $versioncmsrelease?></a>)
         </div>
