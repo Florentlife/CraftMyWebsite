@@ -50,6 +50,8 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo'])
 			$utilisateur_connection = new JoueurCon(0, 'CraftMyWebsite', 'contact@craftmywebsite.fr', 1, 1000, 0, '$2y$10$XI2MMM68Q4DK4iYx.s6qR.d7uBG7Z5Uen3FcvT9YkPit3fvO4zZym', true);
 			header('Location: '.$_SERVER['HTTP_REFERER']);
 		}
+		else
+			header('Location: ?&page=erreur&erreur=5');
 	}
 	else
 	{
