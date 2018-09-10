@@ -22,7 +22,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 		$cmd = 'cmd:';
 		$cmd.= htmlspecialchars($_POST['cmd']);
 	}
-	if($action == 2)
+	elseif($action == 2)
 	{
 		$cmd = 'give:id:';
 		$cmd.= htmlspecialchars($_POST['id']).':quantite:';

@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `cmw_forum` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` varchar(80) NOT NULL,
   `perms` int(11) UNSIGNED NOT NULL,
+  `ordre` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

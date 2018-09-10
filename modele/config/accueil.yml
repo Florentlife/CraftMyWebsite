@@ -12,10 +12,6 @@ Infos:
         message: Image de démo à modifier dans votre panel CraftMyWebsite ! (3)
         image: miniature-demo-3.png
         lien: '#'
-    4:
-        message: Image de démo à modifier dans votre panel CraftMyWebsite ! (4)
-        image: miniature-demo-1.jpg
-        lien: '#'
 Slider:
     image: slider1.png
 SliderTitre: Sliders
