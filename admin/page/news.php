@@ -35,10 +35,6 @@
                                 <input type="text" name="titre" class="form-control" placeholder="ex: Sortie du launcher !">
                             </div>
                             <div class="col-md-12">
-                                <label for="pinned">Epingler la news</label>
-								<input name="pinned[]" type="checkbox" id="pinned" value="1"> 
-                            </div>
-                            <div class="col-md-12">
                                 <label class="control-label">Contenu de la news</label>
                                 <textarea id="news_1" name="message"></textarea>
                             </div>
@@ -88,17 +84,17 @@
                                         <div class="tab-pane <?php if($i == 0) echo 'active'; ?>" id="news<?php echo $tableauNews[$i]['id']; ?>">
                                             <form method="POST" action="?&action=editNews&id=<?php echo $tableauNews[$i]['id']; ?>" class="well">
                                                 <div class="row">
-                                                    <div class="col-md-7">
+                                                    <div class="col-md-4">
                                                         <label class="control-label">Titre de la news</label>
                                                         <input type="text" class="form-control" name="titre" value="<?php echo $tableauNews[$i]['titre']; ?>">
                                                     </div>
-                                                    <div class="col-md-2">
-														<label for="pinned<?=$tableauNews[$i]['id']?>">Epingler la news</label>
-														<input name="pinned[]" type="checkbox" id="pinned<?=$tableauNews[$i]['id']?>" value="1"<?php if($tableauNews[$i]['pinned'] == 1) echo " checked";?>>
-                                                    </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-4">
                                                         <label class="control-label">Supprimer la news définitivement</label>
                                                         <a href="?action=supprNews&newsId=<?php echo $tableauNews[$i]['id']; ?>" class="btn btn-danger form-control">Supprimer la News</a>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="control-label"><?=($tableauNews[$i]['epingle'] == 1) ? 'Désépingler' : 'Épingler';?> la news</label>
+                                                        <a href="?action=epingle&newsId=<?php echo $tableauNews[$i]['id']; ?>&epingle=<?=$tableauNews[$i]['epingle'];?>" class="btn btn-warning form-control"><?=($tableauNews[$i]['epingle'] == 1) ? 'Désépingler' : 'Épingler';?> la news</a>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="padding-top: 5px;">

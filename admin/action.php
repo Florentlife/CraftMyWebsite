@@ -12,6 +12,11 @@
 			$_SESSION['referrerAdmin'] = 'accueil';
 		break;
 
+		case 'epingle':
+			require('admin/actions/epingleNews.php');
+			$_SESSION['referrerAdmin'] = 'news';
+		break;
+
 		case 'getBoutiqueListe':
 			require('admin/actions/getBoutiqueListe.php');
 			exit();

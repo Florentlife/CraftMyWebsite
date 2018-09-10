@@ -21,6 +21,8 @@ ALTER TABLE cmw_forum_like ADD type INT UNSIGNED NOT NULL AFTER pseudo;
 
 ALTER TABLE cmw_boutique_reduction ADD categorie INT UNSIGNED, ADD debut INT UNSIGNED, ADD fin INT UNSIGNED, ADD expire INT UNSIGNED;
 
+ALTER TABLE cmw_news ADD epingle TINYINT UNSIGNED NOT NULL;
+
 ALTER TABLE cmw_users ADD signature TEXT;
 
 CREATE TABLE cmw_conversations (

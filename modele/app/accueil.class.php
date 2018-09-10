@@ -10,7 +10,7 @@ class AccueilData
 	
 	public function GetNews()
 	{
-		$news = $this->bdd->query('SELECT * FROM cmw_news ORDER BY pinned DESC, date DESC');
+		$news = $this->bdd->query('SELECT * FROM cmw_news ORDER BY epingle DESC, date DESC');
 		return $news;
 	}
 
