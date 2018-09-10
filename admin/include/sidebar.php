@@ -25,7 +25,11 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == true) { ?>
-    <a href="?page=boutique" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'boutique'){ echo 'active'; } ?>" role="button">Réglage boutique <i class="fa fa-shopping-cart cmw-fa-sidebar" aria-hidden="true"></i></a>
+        <a href="#collapseBoutique" data-toggle="collapse" style="margin-bottom: 5px;" aria-expanded="true" aria-controls="collapseBoutique" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?=(isset($pageadmin) && ($pageadmin == 'boutique' || $pageadmin == 'boutiquelist')) ? 'active' : ''?>" role="button">Boutique <i class="fa fa-shopping-cart cmw-fa-sidebar" aria-hidden="true"></i></a>
+        <div id="collapseBoutique" class="collapse <?=(isset($pageadmin) && ($pageadmin == 'boutique' || $pageadmin == 'boutiquelist')) ? 'in' : '';?>" style="margin-bottom: 5px; padding-left: 10px;">
+            <a href="?page=boutique" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'boutique'){ echo 'active'; } ?>" role="button">Réglage boutique <i class="fa fa-shopping-cart cmw-fa-sidebar" aria-hidden="true"></i></a>
+            <a href="?page=boutiquelist" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?=(isset($pageadmin) && $pageadmin == 'boutiquelist') ? 'active' : '';?>" role="button">Liste des achats <i class="fa fa-truck cmw-fa-sidebar" aria-hidden="true"></i></a>
+        </div>
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['showPage'] == true) { ?>
@@ -45,11 +49,24 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['showPage'] == true) { ?>
-    <a href="?page=voter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'voter'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> Vote <i class="fa fa-star cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <a href="#collapseVoter" data-toggle="collapse" style="margin-bottom: 5px;" aria-expanded="true" aria-controls="collapseVoter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && ($pageadmin == 'voter' || $pageadmin == 'configVoter')){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> Vote <i class="fa fa-star cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <div id="collapseVoter" class="collapse <?=(isset($pageadmin) && ($pageadmin == 'voter' || $pageadmin == 'configVoter')) ? 'in' : ''; ?>" style="margin-bottom: 5px; padding-left: 10px;">
+    	<a href="?page=voter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "voter") echo 'active'; ?>">Liens vote <i class="fa fa-link cmw-fa-sidebar"></i></a>
+    	<a href="?page=configVoter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "configVoter") echo 'active'; ?>">Récompenses Auto <i class="fa fa-trophy cmw-fa-sidebar"></i></a>
+    </div>
     <?php } ?>
 
-    <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == true) { ?>
-    <a href="?page=membres" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'membres'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> Membres <i class="fa fa-users cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == true OR $_PGrades_['PermsPanel']['newsletter']['showPage'] == true OR $_PGrades_['PermsPanel']['social']['showPage'] == true) { ?>
+    <a href="#collapseMembres" data-toggle="collapse" style="margin-bottom: 5px;" aria-expanded="true" aria-controls="collapseMembres" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && ($pageadmin == 'membres' OR $pageadmin == "newsletter" OR $pageadmin == "social" OR $pageadmin == "modifIP" OR $pageadmin == "ban")){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="false"></i> Membres <i class="fa fa-users cmw-fa-sidebar" aria-hidden="true"></i></a>
+     <div id="collapseMembres" class="collapse <?=(isset($pageadmin) && ($pageadmin == "membres" OR $pageadmin == "newsletter" OR $pageadmin == "social" OR $pageadmin == "modifIP" OR $pageadmin == "ban"))  ? 'in' : ''; ?> " style="margin-bottom: 5px; padding-left: 10px;">
+        <a href="?page=membres" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "membres") echo 'active'; ?>">Informations <i class="fa fa-address-card cmw-fa-sidebar"></i></a>
+        <a href="?page=social" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "social") echo 'active'; ?>">Social <i class="fa fa-address-book cmw-fa-sidebar"></i></a>
+        <?php if($_Joueur_['rang'] == 1 OR ($_PGrades_['PermsPanel']['info']['stats']['members']['showTable'] == true AND $_PGrades_['PermsPanel']['info']['stats']['members']['editLimitIp'] OR $_PGrades_['PermsPanel']['info']['stats']['members']['editEmail'] == true)) { ?>
+        <a href="?page=modifIP" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "modifIP") echo 'active'; ?>">Édition système IP/Mail <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a>
+        <?php } ?>
+        <a href="?page=newsletter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "newsletter") echo 'active'; ?>">Newsletter <i class="fa fa-newspaper-o cmw-fa-sidebar" aria-hidden="true"></i></a>
+        <?php if($_Joueur_['rang'] == 1) { ?><a href="?page=ban" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "ban") echo 'active'; ?>">Bannissement <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a><?php } ?>
+    </div>
     <?php } 
 
          if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['forum']['showPage'] == true) { ?>
@@ -68,9 +85,9 @@
     <a href="?page=maintenance" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'maintenance'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> Maintenance <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
-    <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['showPage'] == true) { ?>
+    <!-- <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['showPage'] == true) { ?>
     <a href="?page=newsletter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'newsletter'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> NewsLetter <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a>
-    <?php } ?>
+    <?php } ?> -->
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['showPage'] == true) { ?>
     <a href="?page=upload" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'upload'){ echo 'active'; } ?>" role="button">Upload <i class="fa fa-upload cmw-fa-sidebar" aria-hidden="true"></i> </a>

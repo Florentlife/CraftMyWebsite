@@ -1,18 +1,1 @@
 #Ce fichier contiens la config de base du serveur---
-Json:
-    - 
-        adresse: **************
-        localhost: false
-        port: "********"
-        utilisateur: ********
-        mdp: *********
-        salt: ""
-        nom: survie
-    - 
-        adresse: ***********
-        localhost: false
-        port: "*******"
-        utilisateur: ********
-        mdp: ********
-        salt: ""
-        nom: test2

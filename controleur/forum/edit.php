@@ -15,7 +15,9 @@ if(isset($_POST['id'], $_POST['objet'], $_Joueur_))
 	elseif($AdminForum->verifEdit($objet, $id, $_Joueur_, $_PGrades_) && isset($_POST['contenue']))
 	{
 		$contenue = htmlspecialchars($_POST['contenue']);
-		$AdminForum->editObjet($objet, $id, $_Joueur_['pseudo'], $contenue, $id_topic);
+		if(isset($_POST['titre']))
+			$titre = htmlspecialchars($_POST['titre']);
+		$AdminForum->editObjet($objet, $id, $_Joueur_['pseudo'], $contenue, $id_topic, $titre);
 		if($AdminForum->getErreurs($e) == 0)
 		{
 			header('Location: ?page='.$AdminForum->getPage(4, $id_topic));

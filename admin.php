@@ -1,5 +1,7 @@
 <?php
 error_reporting(0);
+date_default_timezone_set('Europe/Paris');
+ini_set('display_errors', 1);
 	// On appelle les classes du controleur qui instancies les objets principaux (BDD, config, JSONAPI...).
 	require_once('controleur/config.php');
 	require_once('controleur/connection_base.php');	

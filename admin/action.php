@@ -5,7 +5,64 @@
 	if(isset($_GET['action']) AND isset($_Joueur_['rang']) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['access'] == true))
 	{
 	switch ($_GET['action']) // on utilise ici un switch pour inclure telle ou telle page selon l'action.
-	{ 				
+	{ 
+		case 'dropVisits':
+			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['visitors']['showTable'] == true)
+				$bddConnection->exec('TRUNCATE cmw_visits');
+			$_SESSION['referrerAdmin'] = 'accueil';
+		break;
+
+		case 'epingle':
+			require('admin/actions/epingleNews.php');
+			$_SESSION['referrerAdmin'] = 'news';
+		break;
+
+		case 'getBoutiqueListe':
+			require('admin/actions/getBoutiqueListe.php');
+			exit();
+		break;
+
+		case 'supprMini':
+			require('admin/actions/supprMini.php');
+			$_SESSION['referrerAdmin'] = 'slidemini';
+		break;
+
+		case 'addSocial':
+			require('admin/actions/addSocial.php');
+			$_SESSION['referrerAdmin'] = 'social';
+		break;
+
+		case 'supprRecAuto':
+			require('admin/actions/supprRecAuto.php');
+			$_SESSION['referrerAdmin'] = 'configVoter';
+		break;
+
+		case 'creerRecompenseAuto':
+			require('admin/actions/creerRecompenseAuto.php');
+			$_SESSION['referrerAdmin'] = 'configVoter';
+		break;
+
+		case 'addBan':
+			require('admin/actions/addBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
+		case 'removeBan':
+			require('admin/actions/removeBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
+		case 'pageBan':
+			require('admin/actions/pageBan.php');
+			$_SESSION['referrerAdmin'] = 'ban';
+		break;
+
+		case 'removeSocial':
+			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['social']['showPage'])
+				$bddConnection->exec('ALTER TABLE cmw_reseaux DROP '.$_GET['nom']);
+			$_SESSION['referrerAdmin'] = 'social';
+		break;
+
 		case 'commande': 
 		require_once('admin/actions/commande.php');
 		break;
@@ -106,8 +163,8 @@
 		break;
 		
 		case 'modifierMembres': 
-		require_once('admin/actions/modifierMembres.php');
-		$_SESSION['referrerAdmin'] = 'membres';
+			require_once('admin/actions/modifierMembres.php');
+			$_SESSION['referrerAdmin'] = 'membres';
 		break;
 		
 		case 'creerPage': 
@@ -250,6 +307,11 @@
 		$_SESSION['referrerAdmin'] = 'slidemini';
 		break;
 		
+		case 'addRapNav': 
+		require_once('admin/actions/addRapNav.php');
+		$_SESSION['referrerAdmin'] = 'slidemini';
+		break;
+		
 		case 'newSlider':
 		require_once('admin/actions/newSlider.php');
 		$_SESSION['referrerAdmin'] = 'slidemini';
@@ -388,17 +450,17 @@
 
 		case 'switchSysMail': 
 		require_once('admin/actions/switchSysMail.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'modifIP';
 		break;
 
 		case 'editSysMail': 
 		require_once('admin/actions/editSysMail.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'modifIP';
 		break;
 
 		case 'editNbrPerIP': 
 		require_once('admin/actions/editNbrPerIP.php');
-		$_SESSION['referrerAdmin'] = 'accueil';
+		$_SESSION['referrerAdmin'] = 'modifIP';
 		break;
 
 		case 'supprGrade': 
@@ -412,7 +474,12 @@
 		break;
 
 		case 'editGrade': 
-		require_once('admin/actions/editGrade.php');
+		if(isset($_POST['Createur']))
+			require_once('admin/actions/nom.php');
+		elseif(isset($_POST['Joueur']))
+			require_once('admin/actions/nomJoueur.php');
+		else
+			require_once('admin/actions/editGrade.php');
 		$_SESSION['referrerAdmin'] = 'grade';
 		break;
 

@@ -1,3 +1,15 @@
+CREATE TABLE cmw_ban (
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `ip` VARCHAR(20) NOT NULL,
+  `pseudo` VARCHAR(16) 
+) ENGINE=InnoDB;
+
+CREATE TABLE cmw_ban_config (
+  `id` TINYINT(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `titre` VARCHAR(255) NOT NULL,
+  `texte` TEXT NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS `cmw_boutique_action` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `methode` int(2) NOT NULL,
@@ -35,6 +47,10 @@ CREATE TABLE IF NOT EXISTS `cmw_boutique_reduction` (
   `code_promo` char(8) NOT NULL,
   `pourcent` tinyint(3) UNSIGNED NOT NULL,
   `titre` varchar(60) NOT NULL,
+  `categorie` int(11) UNSIGNED,
+  `debut` int(11) UNSIGNED,
+  `fin` int(11) UNSIGNED,
+  `expire` int(11) UNSIGNED,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -46,6 +62,12 @@ CREATE TABLE IF NOT EXISTS `cmw_boutique_stats` (
   `pseudo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE cmw_conversations (
+  `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `pseudo1` VARCHAR(20) NOT NULL,
+  `pseudo2` VARCHAR(20) NOT NULL
+) ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `cmw_dedipass` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -61,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `cmw_dedipass` (
 CREATE TABLE IF NOT EXISTS `cmw_forum` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` varchar(80) NOT NULL,
+  `perms` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -93,12 +116,15 @@ CREATE TABLE IF NOT EXISTS `cmw_forum_categorie` (
   `sous-forum` tinyint(4) NOT NULL DEFAULT '0',
   `forum` int(11) NOT NULL,
   `close` tinyint(3) UNSIGNED NOT NULL,
+  `ordre` int(11) UNSIGNED NOT NULL,
+  `perms` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `cmw_forum_like` (
   `id` smallint(4) UNSIGNED NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(40) NOT NULL,
+  `type` tinyint(1) UNSIGNED NOT NULL,
   `id_answer` int(11) NOT NULL,
   `Appreciation` smallint(6) NOT NULL,
   `vu` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
@@ -129,6 +155,7 @@ CREATE TABLE IF NOT EXISTS `cmw_forum_post` (
   `epingle` tinyint(3) UNSIGNED NOT NULL,
   `affichage` int(10) UNSIGNED NOT NULL,
   `last_answer_temps` int(11) NOT NULL,
+  `perms` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -164,6 +191,9 @@ CREATE TABLE IF NOT EXISTS `cmw_forum_sous_forum` (
   `nom` varchar(40) NOT NULL,
   `description` varchar(300) DEFAULT NULL,
   `img` varchar(300) DEFAULT NULL,
+  `ordre` int(11) UNSIGNED NOT NULL,
+  `close` tinyint(1) UNSIGNED NOT NULL,
+  `perms` int(11) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -198,6 +228,15 @@ CREATE TABLE IF NOT EXISTS `cmw_jetons_paypal_offres` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE `cmw_log_DealJeton` ( 
+  `ID` INT NOT NULL AUTO_INCREMENT , 
+  `fromUser` VARCHAR(20) NOT NULL , 
+  `toUser` VARCHAR(20) NOT NULL , 
+  `amount` INT NOT NULL , 
+  `date` INT NOT NULL , 
+  PRIMARY KEY (`ID`)) 
+ENGINE = InnoDB;
+
 CREATE TABLE IF NOT EXISTS `cmw_maintenance` (
   `maintenanceId` int(1) NOT NULL AUTO_INCREMENT,
   `maintenanceMsg` text NOT NULL,
@@ -205,7 +244,25 @@ CREATE TABLE IF NOT EXISTS `cmw_maintenance` (
   `maintenanceTime` int(11) NOT NULL,
   `maintenancePref` int(1) NOT NULL,
   `maintenanceEtat` int(1) NOT NULL,
+  `dateFin` int(11) NOT NULL,
   PRIMARY KEY (`maintenanceId`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `cmw_mcgpass` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `pseudo` varchar(40) NOT NULL,
+  `tokens` int(11) NOT NULL,
+  `date_achat` date NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `cmw_messages` (
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `idConversation` smallint(5) UNSIGNED NOT NULL,
+  `expediteur` varchar(20) NOT NULL,
+  `message` text NOT NULL,
+  `date_envoie` datetime NOT NULL,
+  `lu` tinyint(1) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `cmw_news` (
@@ -215,6 +272,7 @@ CREATE TABLE IF NOT EXISTS `cmw_news` (
   `auteur` varchar(20) NOT NULL,
   `date` int(11) NOT NULL,
   `image` varchar(40) NOT NULL,
+  `epingle` tinyint(1) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -259,6 +317,12 @@ CREATE TABLE IF NOT EXISTS `cmw_postit` (
   `message` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE cmw_reseaux (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+  `idJoueur` INT UNSIGNED NOT NULL, 
+  `Skype` VARCHAR(30)) 
+ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `cmw_support` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -317,11 +381,12 @@ CREATE TABLE IF NOT EXISTS `cmw_users` (
   `rang` int(2) NOT NULL DEFAULT '1',
   `tokens` int(11) NOT NULL,
   `age` int(11) NOT NULL,
-  `skype` varchar(16) NOT NULL,
   `resettoken` varchar(32) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `CleUnique` varchar(32) NOT NULL,
   `ValidationMail` int(1) NOT NULL,
+  `show_email` tinyint(1) UNSIGNED NOT NULL,
+  `signature` text,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -353,6 +418,23 @@ CREATE TABLE IF NOT EXISTS `cmw_votes_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE `cmw_votes_temp` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `pseudo` varchar(16) NOT NULL,
+  `methode` tinyint(3) UNSIGNED NOT NULL,
+  `action` varchar(100) NOT NULL,
+  `serveur` tinyint(3) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `cmw_votes_recompense_auto_config` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `type` tinyint(3) UNSIGNED NOT NULL,
+  `valueType` varchar(50) NOT NULL,
+  `message` varchar(255) DEFAULT NULL,
+  `commande` varchar(255) NOT NULL,
+  `serveur` smallint(5) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 INSERT INTO `cmw_forum_prefix` (`id`, `span`, `nom`) VALUES
 (1, 'prefix prefixRed', 'Important'),
 (2, 'prefix prefixOrange', 'Refusée'),
@@ -367,3 +449,6 @@ INSERT INTO `cmw_sysip` (`id`, `idPerIP`, `nbrPerIP`) VALUES
 
 INSERT INTO `cmw_sysmail` (`idMail`, `fromMail`, `sujetMail`, `msgMail`, `strictMail`, `etatMail`) VALUES
 (1, 'exemple@exemple.fr', 'Activation du compte !', 'Bienvenue sur notre site {JOUEUR} !\r\n\r\nVous vous êtes inscrit sur le site officiel du serveur NOM_DU_SERVEUR.\r\nPour activer votre compte, veuillez cliquer sur le lien ci dessous ou copier/coller dans votre navigateur internet.\r\n\r\n{LIEN}\r\n\r\nInscription depuis cette adresse IP : {IP}\r\n---------------\r\nCeci est un mail automatique, merci de ne pas y répondre.', 1, 0);
+
+INSERT INTO `cmw_ban_config` (`id`, `titre`, `texte`) VALUES
+(1, 'Vous êtes bannis', 'Vous avez été bannis du site, veuillez prendre contact avec l\'administration pour les raisons de votre bannissement.');

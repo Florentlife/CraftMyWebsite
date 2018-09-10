@@ -1,36 +1,49 @@
 #Ce fichier contiens la config de base du serveur---
-installation: true
+installation: false
 licence: free-craftmywebsite.fr
 General:
-    url: https://cmw-developpement.tk/
-    name: CMW_TEST
+    url: 
+    name: 
     theme: default
     themeOption: bootstrap
-    description: cmw test
+    description: 
     bgType: 0
     permsPlugin: groupManager
     permsWorld: world
-    ipTexte: play.epicube.fr
-    ip: play.epicube.fr
-    port: "25565"
-    createur: Créateur
+    ipTexte: 
+    ip: 
+    port: 
+    statut: 2
+    createur: 
+        nom: Créateur
+        prefix: prefixCreateur
+        effets: style16
+    joueur: Joueur
 DataBase:
-    dbAdress: *********
-    dbName: *****
-    dbUser: ********
-    dbPassword: *********
-    dbPort: "3306"
+    dbAdress: 
+    dbName: 
+    dbUser: 
+    dbPassword: 
+    dbPort: 
 Payement:
     paypal: true
     mcgpass: true
-    mcgpass_id: "*******"
-    mcgpass_idSite: "*****"
+    dedipass: false
+    mcgpass_id: ""
+    mcgpass_idSite: ""
+    public_key: ""
+    private_key: ""
     paypalUser: ""
     paypalPass: ""
     paypalSignature: ""
-    paypalEmail: curvalle.florent@gmail.com
+    paypalEmail: 
     paypalMethodeAPI: "1"
 color:
-    main: '#ff0080'
-    hover: '#ff00ff'
-    focus: '#ff80c0'
+    theme:
+        main: '#0080c0'
+        hover: '#0080ff'
+        focus: '#2080c0'
+    panel:
+        main: '#ff8040'
+        hover: '#c16100'
+        focus: '#ffbc9b'

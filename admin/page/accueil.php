@@ -82,79 +82,145 @@
 
         <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['actions']['editMiniature'] == true) { ?>
 
-        <h3>Configuration de votre miniature</h3>
-
         <div class="panel panel-default">
-            <div class="panel-body">
-                <form method="POST" action="?&action=editRapNav">
-                    
-                        <ul class="nav nav-tabs">
-                            <?php for($i = 0;$i < 3;$i++) { ?>
-                            <li <?php if($i == 0) echo 'class="active"'; ?>><a href="#navRap<?php echo $i; ?>" data-toggle="tab">Lien rapide <?php echo $i + 1; ?></a></li>
-                            <?php } ?>
-                        </ul>
-                    
-                    
-                        <div class="tab-content">
-                            <?php for($i = 0;$i < 3;$i++) { ?>
-                            <div class="tab-pane well <?php if($i == 0) echo 'active'; ?>" id="navRap<?php echo $i; ?>">
-                                <h3>Miniature #<?php echo $i + 1; ?></h3>
-                                <div class="row">
-                                    <img class="col-md-4 thumbnail" src="theme/upload/navRap/<?php echo $lectureAccueil['Infos'][$i]['image']; ?>"/>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <label>Message</label>
-                                            <textarea class="form-control" placeholder="Petit message qui se situera en dessous de l'image ^^" rows="3" name="message<?php echo $i;?>"><?php echo $lectureAccueil['Infos'][$i]['message']; ?></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <label>Image</label>
-                                <select class="form-control" name="image<?php echo $i; ?>">
-                                    <?php for($j = 2;$j < count($images);$j++) {
-                                        if($images[$j] == $lectureAccueil['Infos'][$i]['image']) { ?>
-                                        <option value="<?php echo $images[$j]; ?>"><?php echo $images[$j]; ?></option>
-                                        <?php } ?>
-                                        <?php }
-                                        for($j = 2;$j < count($images);$j++) { ?>
-                                        <option value="<?php echo $images[$j]; ?>"><?php echo $images[$j]; ?></option>
-                                        <?php } ?>        
-                                    </select>
-                                    <label>Nom de la page (Option 1)</label>
-                                    <select name="page<?php echo $i; ?>" class="form-control">
-                                        <?php if($typeNavRap[$i] == 1) {
-                                            echo '<option value="'. $pageActive[$i] .'">'. $pageActive[$i] .'</option>';
-                                        } else {
-                                            echo '<option value="#">-- Page --</option>';
-                                        } ?>
-                                        <option value="boutique">Boutique</option>
-                                        <option value="support">Support</option>
-                                        <option value="voter">Voter</option>
-                                        <option value="tokens">Jetons</option>
-                                        <option value="forum">Forum</option>
-                                        <?php $j = 0;
-                                        while($j < count($pages)) { ?>
-                                        <option value="<?php echo $pages[$j]; ?>"><?php echo $pages[$j]; ?></option>
-                                        <?php $j++; } ?>
-                                    </select>
-                                    <label>Adresse du lien (Option 2)</label>
-                                    <input type="text" class="form-control" name="lien<?php echo $i;?>" value="<?php if($typeNavRap[$i] == 2) echo $lectureAccueil['Infos'][$i]['lien']; ?>" placeholder="http://minecraft.net/"/>
-                                    <h3>Choisissez quel mode de redirection vous souhaitez</h3>
-                                    <label>
-                                        <input type="radio" name="typeLien<?php echo $i; ?>" value="page" <?php if($typeNavRap[$i] == 1) echo 'checked'; ?>>
-                                        Option 1: Je souhaite rediriger vers une page existante
-                                    </label><br>
-                                    <label>
-                                        <input type="radio" name="typeLien<?php echo $i; ?>" value="lien" <?php if($typeNavRap[$i] == 2) echo 'checked'; ?>>
-                                        Option 2: Je souhaite rediriger vers un lien personnalisé
-                                    </label><br>
-                                </div>
-                                <?php } ?>
-                                <input type="submit" class="btn btn-warning" value="Modifier la navigation rapide"/>
-                            </div>
-                        
-                    </form>
-                </div>
+            <div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Ajouter une miniature</strong></h3>
             </div>
+            <div class="panel-body">
+                <form method="POST" action="?&action=addRapNav">
+					<h3>Miniature #<?= count($lectureAccueil['Infos']) + 1 ?></h3>
+					<div class="form-group">
+						<label>Message</label>
+						<textarea class="form-control" placeholder="Petit message qui se situera en dessous de l'image ^^" rows="3" name="message"></textarea>
+					</div>
+					<div class="row">
+						<div class="col-sm-9">
+							<label>Image</label>
+							<select class="form-control" name="image">
+							<?php for($j = 2;$j < count($images);$j++) { ?>
+								<option value="<?php echo $images[$j]; ?>"><?php echo $images[$j]; ?></option>
+							<?php } ?>        
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<label>Ordre</label>
+							<input type="number" name="ordre" class="form-control" value="<?= count($lectureAccueil['Infos']) + 1 ?>" required>
+						</div>
+					</div>
+							
+					<label>Nom de la page (Option 1)</label>
+					<select name="page" class="form-control">
+						<option value="#">-- Page --</option>
+						<option value="boutique">Boutique</option>
+						<option value="support">Support</option>
+						<option value="voter">Voter</option>
+						<option value="tokens">Jetons</option>
+                        <option value="forum">Forum</option>
+                        <?php $j = 0;
+                        while($j < count($pages)) { ?>
+                        <option value="<?php echo $pages[$j]; ?>"><?php echo $pages[$j]; ?></option>
+                        <?php $j++; } ?>
+					</select>
+					<label>Adresse du lien (Option 2)</label>
+					<input type="text" class="form-control" name="lien" />
+					<h3>Choisissez quel mode de redirection vous souhaitez</h3>
+					<label>
+						<input type="radio" name="typeLien" value="page">
+						Option 1: Je souhaite rediriger vers une page existante
+					</label><br>
+					<label>
+						<input type="radio" name="typeLien" value="lien">
+						Option 2: Je souhaite rediriger vers un lien personnalisé
+					</label><br>
+					<input type="submit" class="btn btn-warning" value="Ajouter la miniature"/>
+				</form>
+			</div>
+		</div>
+	
+	<div class="panel panel-default">
+            <div class="panel-heading cmw-panel-header">
+                <h3 class="panel-title"><strong>Modifier une miniature</strong></h3>
+            </div>
+            <div class="panel-body">
+                <?php if(!empty($lectureAccueil['Infos']))
+                {
+                    ?>
+                <form method="POST" action="?&action=editRapNav">
+                    <ul class="nav nav-tabs">
+					<?php for($i = 1;$i < count($lectureAccueil['Infos']) + 1;$i++) {?>
+						<li <?php if($i == 1) echo 'class="active"'; ?>><a href="#navRap<?=$i?>" data-toggle="tab">Miniature #<?=$i?></a></li>
+					<?php }?>
+					</ul>
+                    
+					<div class="tab-content">
+					<?php for($i = 1;$i < count($lectureAccueil['Infos']) + 1;$i++) {?>
+						<div class="tab-pane well<?php if($i == 1) echo ' active'?>" id="navRap<?=$i?>">
+							<h3>Miniature #<?=$i?></h3>
+                            <a style="float: right;" href="?action=supprMini&id=<?=$i;?>" class="btn btn-danger">Supprimer</a>
+							<div class="row">
+								<img class="col-md-4 thumbnail" src="theme/upload/navRap/<?php echo $lectureAccueil['Infos'][$i]['image']; ?>"/>
+								<div class="col-md-8">
+									<div class="form-group">
+										<label>Message</label>
+										<textarea class="form-control" placeholder="Petit message qui se situera en dessous de l'image ^^" rows="3" name="message<?=$i?>"><?php echo $lectureAccueil['Infos'][$i]['message']; ?></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-9">
+									<label>Image</label>
+									<select class="form-control" name="image<?=$i?>">
+									<?php for($j = 2;$j < count($images);$j++) { ?>
+									<option value="<?php echo $images[$j]; ?>"<?php if($images[$j] == $lectureAccueil['Infos'][$i]['image']) echo " selected"?>><?php echo $images[$j]; ?></option>
+									<?php } ?>       
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<label>Ordre</label>
+									<input type="number" name="ordre<?=$i?>" class="form-control" value="<?=$i?>" required>
+								</div>
+							</div>
+							
+							
+							<label>Nom de la page (Option 1)</label>
+							<select name="page<?=$i?>" class="form-control">
+							<?php if($typeNavRap[$i] == 1) {
+								echo '<option value="'. $pageActive[$i] .'">'. $pageActive[$i] .'</option>';
+							} else {
+								echo '<option value="#">-- Page --</option>';
+							} ?>
+								<option value="boutique">Boutique</option>
+								<option value="support">Support</option>
+                                <option value="voter">Voter</option>
+                                <option value="tokens">Jetons</option>
+                                <option value="forum">Forum</option>
+                                <?php $j = 0;
+                                while($j < count($pages)) { ?>
+                                <option value="<?php echo $pages[$j]; ?>"><?php echo $pages[$j]; ?></option>
+                                <?php $j++; } ?>
+							</select>
+							<label>Adresse du lien (Option 2)</label>
+							<input type="text" class="form-control" name="lien<?=$i?>" value="<?php if($typeNavRap[$i] == 2) echo $lectureAccueil['Infos'][$i]['lien']; ?>" placeholder="http://minecraft.net/"/>
+							<h3>Choisissez quel mode de redirection vous souhaitez</h3>
+							<label>
+							<input type="radio" name="typeLien<?=$i?>" value="page" <?php if($typeNavRap[$i] == 1) echo 'checked'; ?>>
+							Option 1: Je souhaite rediriger vers une page existante
+							</label><br>
+							<label>
+							<input type="radio" name="typeLien<?=$i?>" value="lien" <?php if($typeNavRap[$i] == 2) echo 'checked'; ?>>
+							Option 2: Je souhaite rediriger vers un lien personnalisé
+							</label><br>
+						</div>
+					<?php } ?>
+                        <input type="submit" class="btn btn-warning" value="Modifier la miniature"/>
+					</div>
+				</form>
+                <?php 
+            }
+            ?>
+			</div>
+		</div>
+	</div>
         </div>
 
         <?php } if($_Joueur_['rang'] == 1 OR ($_PGrades_['PermsPanel']['home']['actions']['editMiniature'] == true AND $_PGrades_['PermsPanel']['home']['actions']['addSlider'] == true)) { ?>

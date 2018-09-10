@@ -16,12 +16,14 @@ class OffresList
 				'id' => $tableauOffres['id'],
 				'nom' => $tableauOffres['nom'],
 				'description' => $tableauOffres['description'],
+				'nbre_vente' => $tableauOffres['nbre_vente'],
 				'prix' => $tableauOffres['prix'],
 				'categorie' => $tableauOffres['categorie_id'] );
 			$offres[$i] = array(
 				'id' => $tableauOffres['id'],
 				'nom' => $tableauOffres['nom'],
 				'description' => $tableauOffres['description'],
+				'nbre_vente' => $tableauOffres['nbre_vente'],
 				'prix' => $tableauOffres['prix'],
 				'categorie' => $tableauOffres['categorie_id'] );
 			$i++;
@@ -118,6 +120,7 @@ class OffresList
 		
 			$infos['offre']['nom'] = $infosOffres['nom'];
 			$infos['offre']['description'] = $infosOffres['description'];
+			$infos['offre']['nbre_vente'] = $infosOffres['nbre_vente'];
 			$infos['offre']['prix'] = $infosOffres['prix'];
 			$infos['offre']['categorie'] = $infosOffres['categorie_id'];
 

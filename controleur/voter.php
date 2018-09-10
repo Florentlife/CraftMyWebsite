@@ -2,7 +2,6 @@
 
 $id = $_POST['site'];
 require_once('modele/joueur/maj.class.php');
-include('controleur/topVoteurs.php');
 $joueurMaj = new Maj($_Joueur_['pseudo'], $bddConnection);
 $playerData = $joueurMaj->getReponseConnection();
 $playerData = $playerData->fetch(PDO::FETCH_ASSOC);	
@@ -29,89 +28,151 @@ $succes = false;
 		}
 		else
 		{
-			//$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $lectureVotes['quantite'], str_replace('{ID}', $lectureVotes['id'], $lectureVotes['message'])));
-			//$cmd = str_replace('{JOUEUR}', $_Joueur_['pseudo'], $lectureVotes['cmd']);
-			$action = explode(':', $lectureVotes['action'], 2);
-			if($action[0] == "give")
+			//Système de vérification des récompenses auto
+			$key = array_search($_Joueur_['pseudo'], $voteurs['pseudo']);
+			$verif = $RecompenseAuto->verifRecVotes($voteurs['nbre_votes'][$key]+1);
+			if(!empty($verif))
 			{
-				$action = explode(':', $action[1]);
-				$id = $action[1];
-				$quantite = $action[3];
+				foreach($verif as $value)
+				{
+					$action = explode(':', $value['commande'], 2);
+					if($action[0] == "give")
+					{
+						$action = explode(':', $action[1]);
+						$id = $action[1];
+						$quantite = $action[3];
+					}
+					elseif($action[0] == "jeton")
+					{
+						$quantite = $action[1];
+					}
+					$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, str_replace('&amp;', '§', $value['message']))));
+					if(!empty($value['message']))
+					{
+						$jsonCon[$value['serveur']]->SendBroadcast($message);
+					}
+					$req = $bddConnection->prepare('INSERT INTO cmw_votes_temp (pseudo, methode, action, serveur) VALUES (:pseudo, :methode, :action, :serveur)');
+					$req->execute(array(
+						'pseudo' => $_Joueur_['pseudo'],
+						'methode' => 2,
+						'action' => $value['commande'],
+						'serveur' => $value['serveur']
+					));
+				}
+			}
+			//Système de l'envoie du message
+			if(!empty($lectureVotes['message']))
+			{
+				$action = explode(':', $lectureVotes['action'], 2);
+				if($action[0] == "give")
+				{
+					$action = explode(':', $action[1]);
+					$id = $action[1];
+					$quantite = $action[3];
+				}
+				elseif($action[0] == "jeton")
+				{
+					$quantite = $action[1];
+				}
 				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, str_replace('&amp;', '§', $lectureVotes['message']))));
 				if($lectureVotes['methode'] == 2)
-				{
-					if(!empty($lectureVotes['message']))
-					{
-						$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
-					}
-					$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($id . ' ' .$quantite);
-					header('Location: ?&page=voter&success=true');
-				}
+					$jsonCon[$value['serveur']]->SendBroadcast($message);
 				else
-				{
 					for($j =0; $j < count($jsonCon); $j++)
-					{
-						if(!empty($lectureVotes['message']))
-						{
+						$jsonCon[$j]->SendBroadcast($message);
+			}
+			//Système de récupérer plus tard
+			$req = $bddConnection->prepare('INSERT INTO cmw_votes_temp (pseudo, methode, action, serveur) VALUES (:pseudo, :methode, :action, :serveur)');
+			$req->execute(array(
+				'pseudo' => $_Joueur_['pseudo'],
+				'methode' => $lectureVotes['methode'],
+				'action' => $lectureVotes['action'],
+				'serveur' => $lectureVotes['serveur']
+			));
+			header('Location: ?&page=voter&success=true');
+			//$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $lectureVotes['quantite'], str_replace('{ID}', $lectureVotes['id'], $lectureVotes['message'])));
+			//$cmd = str_replace('{JOUEUR}', $_Joueur_['pseudo'], $lectureVotes['cmd']);
+			// $action = explode(':', $lectureVotes['action'], 2);
+			// if($action[0] == "give")
+			// {
+			// 	$action = explode(':', $action[1]);
+			// 	$id = $action[1];
+			// 	$quantite = $action[3];
+			// 	$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, str_replace('&amp;', '§', $lectureVotes['message']))));
+			// 	if($lectureVotes['methode'] == 2)
+			// 	{
+			// 		if(!empty($lectureVotes['message']))
+			// 		{
+			// 			$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
+			// 		}
+			// 		$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($id . ' ' .$quantite);
+			// 		header('Location: ?&page=voter&success=true');
+			// 	}
+			// 	else
+			// 	{
+			// 		for($j =0; $j < count($jsonCon); $j++)
+			// 		{
+			// 			if(!empty($lectureVotes['message']))
+			// 			{
 
-							$jsonCon[$j]->SendBroadcast($message);
-						}
-						$jsonCon[$j]->GivePlayerItem($id . ' ' .$quantite);
-					}
-				header('Location: ?&page=voter&success=true');
-				}
-			}
-			elseif($action[0] == "jeton")
-			{
-				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $action[1], str_replace('&amp;', '§', $lectureVotes['message'])));
-				if($lectureVotes['methode'] == 2)
-				{
-					if(!empty($lectureVotes['message']))
-					{
-						$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
-					}
-					ajouterTokens($action[1]);
-					header('Location: ?&page=voter&success=true');
-				}
-				else
-				{
-					for($j =0; $j < count($jsonCon); $j++)
-					{
-						if(!empty($lectureVotes['message']))
-						{
-							$jsonCon[$j]->SendBroadcast($message);
-						}
-					}
-					ajouterTokens($action[1]);
-					header('Location: ?&page=voter&success=true');
-				}
-			}
-			else
-			{
-				$cmd = str_replace('{JOUEUR}', $_Joueur_['pseudo'], $action[1]);
-				$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{CMD}', $cmd, str_replace('&amp;', '§', $lectureVotes['message'])));
-				if($lectureVotes['methode'] == 2)
-				{
-					if(!empty($lectureVotes['message']))
-					{
-						$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
-					}
-					$jsonCon[$lectureVotes['serveur']]->runConsoleCommand($cmd);
-				header('Location: ?&page=voter&success=true');
-				}
-				else
-				{
-					for($j = 0; $j < count($jsonCon); $j++)
-					{
-						if(!empty($lectureVotes['message']))
-						{
-							$jsonCon[$j]->SendBroadcast($message);
-						}
-						$jsonCon[$j]->runConsoleCommand($cmd);
-					}
-					header('Location: ?&page=voter&success=true');
-				}
-			}
+			// 				$jsonCon[$j]->SendBroadcast($message);
+			// 			}
+			// 			$jsonCon[$j]->GivePlayerItem($id . ' ' .$quantite);
+			// 		}
+			// 	header('Location: ?&page=voter&success=true');
+			// 	}
+			// }
+			// elseif($action[0] == "jeton")
+			// {
+			// 	$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{QUANTITE}', $action[1], str_replace('&amp;', '§', $lectureVotes['message'])));
+			// 	if($lectureVotes['methode'] == 2)
+			// 	{
+			// 		if(!empty($lectureVotes['message']))
+			// 		{
+			// 			$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
+			// 		}
+			// 		ajouterTokens($action[1]);
+			// 		header('Location: ?&page=voter&success=true');
+			// 	}
+			// 	else
+			// 	{
+			// 		for($j =0; $j < count($jsonCon); $j++)
+			// 		{
+			// 			if(!empty($lectureVotes['message']))
+			// 			{
+			// 				$jsonCon[$j]->SendBroadcast($message);
+			// 			}
+			// 		}
+			// 		ajouterTokens($action[1]);
+			// 		header('Location: ?&page=voter&success=true');
+			// 	}
+			// }
+			// else
+			// {
+			// 	$cmd = str_replace('{JOUEUR}', $_Joueur_['pseudo'], $action[1]);
+			// 	$message = str_replace('{JOUEUR}', $_Joueur_['pseudo'], str_replace('{CMD}', $cmd, str_replace('&amp;', '§', $lectureVotes['message'])));
+			// 	if($lectureVotes['methode'] == 2)
+			// 	{
+			// 		if(!empty($lectureVotes['message']))
+			// 		{
+			// 			$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
+			// 		}
+			// 		$jsonCon[$lectureVotes['serveur']]->runConsoleCommand($cmd);
+			// 	header('Location: ?&page=voter&success=true');
+			// 	}
+			// 	else
+			// 	{
+			// 		for($j = 0; $j < count($jsonCon); $j++)
+			// 		{
+			// 			if(!empty($lectureVotes['message']))
+			// 			{
+			// 				$jsonCon[$j]->SendBroadcast($message);
+			// 			}
+			// 			$jsonCon[$j]->runConsoleCommand($cmd);
+			// 		}
+			// 		header('Location: ?&page=voter&success=true');
+			// 	}
+			// }
 		}
 	}
 	else 
@@ -119,14 +180,14 @@ $succes = false;
 		header('Location: ?&page=voter&erreur=2');
 	}
 
-	function ajouterTokens($number){
-		global $playerData, $joueurMaj, $_Joueur_;
-		$playerData['tokens'] = $playerData['tokens'] + $number;
-		$joueurMaj->setReponseConnection($playerData);
-		$joueurMaj->setNouvellesDonneesTokens($playerData);
-		$_Joueur_['tokens'] = $_Joueur_['tokens'] + $number;
-		$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
-	}
+	// function ajouterTokens($number){
+	// 	global $playerData, $joueurMaj, $_Joueur_;
+	// 	$playerData['tokens'] = $playerData['tokens'] + $number;
+	// 	$joueurMaj->setReponseConnection($playerData);
+	// 	$joueurMaj->setNouvellesDonneesTokens($playerData);
+	// 	$_Joueur_['tokens'] = $_Joueur_['tokens'] + $number;
+	// 	$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
+	// }
 
 	function RecupJoueur($pseudo, $id, $bddConnection)
 	{

@@ -10,6 +10,31 @@ if(isset($_GET['page']))
 		include('./admin/page/informations.php');
 		break;
 
+		case 'social':
+			require_once('./admin/donnees/reseaux.php');
+			include('./admin/page/reseaux.php');
+		break;
+
+		case 'boutiquelist':
+			require_once('./admin/donnees/boutiquelist.php');
+			include('./admin/page/boutiquelist.php');
+		break;
+
+		case 'modifIP':
+			require_once('./admin/donnees/modifIP.php');
+			include('./admin/page/modifIP.php');
+		break;
+
+		case 'configVoter':
+			require_once('./admin/donnees/configVoter.php');
+			include('./admin/page/configVoter.php');
+		break;
+
+		case 'ban':
+			require_once('./admin/donnees/ban.php');
+			include('./admin/page/ban.php');
+		break;
+
 		case 'forum':
 			require_once('./admin/page/forum.php');
 		break;

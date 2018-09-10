@@ -95,7 +95,7 @@
 									}
 									$req_answer = $bddConnection->prepare('SELECT vu
 									FROM cmw_forum_like INNER JOIN cmw_forum_answer WHERE id_answer = cmw_forum_answer.id
-									AND cmw_forum_like.pseudo != :pseudo AND cmw_forum_answer.pseudo = :pseudo');
+									AND cmw_forum_like.pseudo != :pseudo AND cmw_forum_answer.pseudo = :pseudo AND type = 2');
 									$req_answer->execute(array(
 										'pseudo' => $_Joueur_['pseudo'],
 									));
@@ -115,7 +115,8 @@
 										echo '<a href="?page=signalement" class="dropdown-item text-warning"><i class="fa fa-bell"></i> Signalement <span class="badge badge-pill badge-warning" id="signalement">' . $signalement . '</span></a>';
 									}
 								?>
-                                <a class="dropdown-item" href="?page=alert"><i class="fa fa-envelope"></i> Alertes :  <span class="badge badge-pill badge-primary" id="alerts"><?php echo $alerte; ?></span></a>
+                                <a class="dropdown-item" href="?page=alert"><i class="fa fa-bell"></i> Alertes :  <span class="badge badge-pill badge-primary" id="alerts"><?php echo $alerte; ?></span></a>
+                                <a class="dropdown-item" href="?page=messagerie"><i class="fa fa-envelope"></i> Messagerie</a>
                                 <a class="dropdown-item" href="?page=token"><i class="ion-cash"></i> Mon solde : <?php if(isset($_Joueur_['tokens'])) echo $_Joueur_['tokens'] . ' '; ?></a>
                                 <a class="dropdown-item text-danger" href="?action=deco"><i class="fas fa-sign-out-alt"></i> Se déconnecter</a>
                             </div>

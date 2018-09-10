@@ -287,10 +287,12 @@
                                         </div>
                                     </div>
                                 </form>
-                            <?php $j++;
+                            </div>
+                            <?php
+                                $j++; 
+                                }
                             }
-                        } ?>
-                    </div>
+                         ?>
                 </div>
             </div>
         </div>

@@ -3,7 +3,7 @@ if(isset($_Joueur_)) {
 	if($_Joueur_['rang'] == 1) {
 		$checkGradeName[] = array();
 		$editGradeName = true;
-		for($i = 2; $i <= end($lastGrade); $i++) {
+		for($i = 2; $i <= max($lastGrade); $i++) {
 			if(file_exists($dirGrades.$i.'.yml')) {
 				$grade = $dirGrades.$i.'.yml';
 				$editGrade = new Lire($grade);
@@ -56,6 +56,7 @@ if(isset($_Joueur_)) {
 				$editGrade['PermsPanel']['menus']['showPage'] = $_POST['permsPanelMenus'.$i];
 				$editGrade['PermsPanel']['vote']['showPage'] = $_POST['permsPanelVoter'.$i];
 				$editGrade['PermsPanel']['members']['showPage'] = $_POST['permsPanelMembres'.$i];
+				$editGrade['PermsPanel']['social']['showPage'] = $_POST['permsPanelSocial'.$i];
 				$editGrade['PermsPanel']['forum']['showPage'] = $_POST['permsPanelForum'.$i];
 				$editGrade['PermsPanel']['widgets']['showPage'] = $_POST['permsPanelWidgets'.$i];
 				$editGrade['PermsPanel']['support']['tickets']['showPage'] = $_POST['permsPanelTickets'.$i];

@@ -102,11 +102,11 @@ if(isset($_GET['id']))
 	<div class="row">
 		<div class="col-md-2">
 		<!-- Div de droite où on met le profil de l'auteur -->
-		<?php
+		<center><?php
 			$Img = new ImgProfil($topicd['pseudo'], 'pseudo');
 			?>
-			<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" />
-			<p class="username"> Pseudo : <?php echo $topicd['pseudo']; ?><br/>Grade :
+			<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" /></center>
+			<p class="username text-center"><?php echo $topicd['pseudo']; ?><br/>
 			<?php echo $_Forum_->gradeJoueur($topicd['pseudo']); ?> </p>
 		</div>
 		<div class="col-md-10">
@@ -116,11 +116,19 @@ if(isset($_GET['id']))
 			$contenue = BBCode($contenue, $bddConnection);
 			echo $contenue;
 			?></div><br/><div style="border-top: 0.5px grey solid;"></div>
+			<hr/>
+			<?php 
+			$signature = $_Forum_->getSignature($topicd['pseudo']);
+			$signature = espacement($signature);
+			$signature = BBCode($signature, $bddConnection);
+			echo $signature;
+			?>
 			<p class="text-right text-muted">Posté le <?php  echo $topicd['jour']; ?> <?php $mois = switch_date($topicd['mois']); echo $mois; ?> <?php echo $topicd['annee'];?>  <?php if($topicd['d_edition'] != NULL) { echo 'édité le '; $d_edition = explode('-', $topicd['d_edition']); echo $d_edition[2]; echo '/' .$d_edition[1]. '/' .$d_edition[0]. ''; } ?></p>
 		</div>
 	</div>
 	<div class="row">
-		<?php if(isset($_Joueur_)){?>
+		<?php
+		if(isset($_Joueur_)){?>
 		<div class="col-md-2">
 			<form action="?&action=signalement_topic" method="post">
 				<input type="hidden" name="id_topic2" value='<?php echo $id; ?>' />
@@ -156,6 +164,57 @@ if(isset($_GET['id']))
 		}
 	?>
 	</div>
+	<?php 
+	$countlike = $_Forum_->compteLike($topicd['id'], $count1, 1);
+	$countdislike = $_Forum_->compteDisLike($topicd['id'], $count2, 1);
+	if($count1 > 0 OR $count2 > 0)
+	{
+		echo '<div class="row justify-content-end"><div class="col-md-2">';
+		if($count1 > 0)
+			echo $count1.' personnes aiment ça.<br/>';
+	
+		if($count2 > 0)
+			echo $count2.' personnes n\'aiment pas ça';
+
+		echo '</div></div>';
+	}
+	if(isset($_Joueur_))
+	{
+		if(array_search($_Joueur_['pseudo'], array_column($countlike, 'pseudo')) === FALSE AND array_search($_Joueur_['pseudo'], array_column($countdislike, 'pseudo')) === FALSE AND $_Joueur_['pseudo'] != $topicd['pseudo'])
+		{
+			?>
+			<div class="row justify-content-end"><div class="col-md-1">
+					<form class="form-inline" action="?&action=like" method="post">
+						<input type="hidden" name="choix" value="1" />
+						<input type="hidden" name="type" value="1" />
+						<input type="hidden" name="id_answer" value="<?php echo $topicd['id']; ?>" />
+						<button type="submit" class="btn btn-primary" title="J'aime" ><i class="far fa-thumbs-up"></i></button>
+					</form></div><div class="col-md-1">
+					<form class="form-inline" action="?&action=like" method="post">
+						<input type="hidden" name="choix" value="2" />
+						<input type="hidden" name="type" value="1" />
+						<input type="hidden" name="id_answer" value="<?php echo $topicd['id']; ?>" />
+						<button type="submit" class="btn btn-primary" title="Je n'aime pas"><i class="far fa-thumbs-down"></i></button>
+					</form>
+				</div>
+			</div>
+			<?php
+		}
+		elseif(array_search($_Joueur_['pseudo'], array_column($countlike, 'pseudo')) !== FALSE OR array_search($_Joueur_['pseudo'], array_column($countdislike, 'pseudo')) !== FALSE)
+		{
+			?><div class="row justify-content-end">
+				<div class="col-md-1">
+					<form class='form-inline' action="?&action=unlike" method="post">
+						<input type="hidden" name="id_answer" value="<?php echo $topicd['id']; ?>" />
+						<input type="hidden" name="type" value="1" />
+						<button type="submit" class="btn btn-primary" title="Ne plus aimer">Retirer</button>
+					</form>
+				</div>
+			</div><?php
+
+		}
+	}
+	?>
 	<!-- Affichage des réponses -->
 	 <?php 
     $count_Max = $_Forum_->compteReponse($id);
@@ -177,12 +236,12 @@ if(isset($_GET['id']))
 		<div class="row">
 			<div class="col-md-2">
 				<div id="<?php echo $answerd[$i]['id']; ?>"> <!-- div de droite avec les infos joueurs -->
-					<?php 
+					<center><?php 
 					$Img = new ImgProfil($answerd[$i]['pseudo'], 'pseudo');
 					?>
-					<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" />
-					<p class="username">Pseudo : <?php echo $answerd[$i]['pseudo']; ?><br/>
-						Grade : <?php echo $_Forum_->gradeJoueur($answerd[$i]['pseudo']); ?>
+					<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" /></center>
+					<p class="username text-center"><?php echo $answerd[$i]['pseudo']; ?><br/>
+						<?php echo $_Forum_->gradeJoueur($answerd[$i]['pseudo']); ?>
 					</p>
 				</div>
 			</div>
@@ -192,7 +251,13 @@ if(isset($_GET['id']))
 				$answere = BBCode($answere, $bddConnection);
 				echo $answere;
 				?></div>
-				<br/><div style="border-top: 0.5px grey solid;"></div>
+				<hr/>
+				<?php 
+				$signature = $_Forum_->getSignature($answerd[$i]['pseudo']);
+				$signature = espacement($signature);
+				$signature = BBCode($signature, $bddConnection);
+				echo $signature;
+				?>
 				<p class="text-right text-muted"><?php echo $answerd[$i]['day']; ?> <?php $answerd[$i]['mois'] = switch_date($answerd[$i]['mois']); echo $answerd[$i]['mois']; ?> <?php echo $answerd[$i]['annee']; ?> <?php if($answerd[$i]['d_edition'] != NULL){ echo 'édité le '; $d_edition = explode('-', $answerd[$i]['d_edition']); echo '' .$d_edition[2]. '/' .$d_edition[1]. '/' .$d_edition[0]. ''; } ?> </p>
 			</div>
 		</div>
@@ -205,7 +270,7 @@ if(isset($_GET['id']))
 				<button type="submit" class="btn btn-primary">Signaler !</button>
 			</form></div>
 			<?php 
-			$countlike = $_Forum_->compteLike($answerd[$i]['id'], $count);
+			$countlike = $_Forum_->compteLike($answerd[$i]['id'], $count, 2);
 			if($count > 0)
 			{
 				if($count >= 3)
@@ -239,7 +304,7 @@ if(isset($_GET['id']))
 					echo ' aime ça </div>';
 				}
 			}
-			$countdislike = $_Forum_->compteDisLike($answerd[$i]['id'], $count);
+			$countdislike = $_Forum_->compteDisLike($answerd[$i]['id'], $count, 2);
 			if($count > 0)
 			{
 				if($count > 3)
@@ -325,8 +390,6 @@ if(isset($_GET['id']))
 			?>
 		</div>
 		<?php }
-		else
-			echo '<div class="alert alert-warning text-center">Connectez-vous pour pouvoir interragir ! </div>';
 		?>
 		</div><?php 
 	}
@@ -358,13 +421,23 @@ if(isset($_GET['id']))
 		<input type='hidden' name="id_topic" value="<?php echo $id; ?>"/>
 		<div class="form-group row">
 			<div class="col-md-12 text-center">
-				<?php 
-					$smileys = getDonnees($bddConnection);
-					for($i = 0; $i < count($smileys['symbole']); $i++)
-					{
-						echo '<a href="javascript:insertAtCaret(\'contenue\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
-					}
-				?>
+				<div class="dropdown" style="display: inline">
+				  	<a href="#" role="button" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				   	 <i style="text-decoration:none;" class="fas fa-smile"></i>
+				  	</a>
+					<div class="dropdown-menu borderrond" aria-labelledby="font">
+						<div class="topheaderdante" style="width: 500px">
+							<p class="topheadertext">Clique pour ajouter un smiley!</p>
+						</div>
+					<?php 
+						$smileys = getDonnees($bddConnection);
+						for($i = 0; $i < count($smileys['symbole']); $i++)
+						{
+							echo '<a class="dropdown-item" style="display: inline; padding: 0; white-space: normal;" href="javascript:insertAtCaret(\'contenue\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
+						}
+					?>
+					</div>
+				</div>
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en gras', 'ce texte sera en gras', 'b')" style="text-decoration: none;" title="gras"><i class="fas fa-bold" aria-hidden="true"></i></a>
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en italique', 'ce texte sera en italique', 'i')" style="text-decoration: none;" title="italique"><i class="fas fa-italic"></i></a>
 				<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en souligné', 'ce texte sera en souligné', 'u')" style="text-decoration: none;" title="souligné"><i class="fas fa-underline"></i></a>
@@ -388,12 +461,18 @@ if(isset($_GET['id']))
 				</div>
 				<!--<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en rouge', 'ce texte sera en rouge', 'color=red')" class="redactor_color_link" style="background-color: rgb(255, 0, 0);"></a>-->
 			</div><br/>
+			<div class="col-md-6">
 				<div class="col-md-12 text-center">
 					<label for="contenue" class="form-control-label">Contenue de votre réponse ( 10 000 caractères max ! ) : </label>
 				</div>
-			<div class="col-md-12">
-				<textarea class="form-control" name="contenue" id="contenue" maxlength="10000" rows="20" required></textarea>
+				<div class="col-md-12">
+					<textarea class="form-control" name="contenue" id="contenue" maxlength="10000" rows="20" oninput="previewTopic(this);" required></textarea>
+				</div>
 			</div>
+			<div class="col-md-6">
+				<center><label class="form-control-label">Prévisualisation</label></center>
+				<p style="height: auto; width: auto; background-color: white;" id="previewTopic"></p>
+			</div> 
 		</div>
 		<div class="form-group row">
 			<div class="col-md-12 text-center">

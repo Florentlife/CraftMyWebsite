@@ -24,9 +24,9 @@ function BBCode($contenue, $bdd)
 	while(preg_match('#\[spoiler(.*)\](.+)\[/spoiler\]#isU', $contenue))
 	{
 		$uniqueId = uniqid();
-		$contenue = preg_replace('#\[spoiler=(.+)\](.+)\[/spoiler\]#isU', '<a class="btn btn-primary" data-toggle="collapse" href="#spoiler'.$uniqueId.'" role="button" aria-expanded="false" aria-controls="spoiler'.$uniqueId.'">$1</a><div class="collapse" id="spoiler'.$uniqueId.'"><div class="card card-body">$2</div></div>', $contenue, 1);
+		$contenue = preg_replace('#\[spoiler=(.+)\](.+)\[/spoiler\]#isU', '<a class="btn btn-primary" data-toggle="collapse" href="#spoiler'.$uniqueId.'" role="button" aria-expanded="false" aria-controls="spoiler'.$uniqueId.'">$1</a><div class="collapse" id="spoiler'.$uniqueId.'"><div class="card card-body"<p style="margin-bottom: 0px;">$2</p></div></div>', $contenue, 1);
 		$uniqueId = uniqid();
-		$contenue = preg_replace('#\[spoiler\](.+)\[/spoiler\]#isU', '<a class="btn btn-primary" data-toggle="collapse" href="#spoiler'.$uniqueId.'" role="button" aria-expanded="false" aria-controls="spoiler'.$uniqueId.'">Spoiler</a><div class="collapse" id="spoiler'.$uniqueId.'"><div class="card card-body">$1</div></div>', $contenue, 1);
+		$contenue = preg_replace('#\[spoiler\](.+)\[/spoiler\]#isU', '<a class="btn btn-primary" data-toggle="collapse" href="#spoiler'.$uniqueId.'" role="button" aria-expanded="false" aria-controls="spoiler'.$uniqueId.'">Spoiler</a><div class="collapse" id="spoiler'.$uniqueId.'"><div class="card card-body"><p style="margin-bottom: 0px;">$1</p></div></div>', $contenue, 1);
 	}
 	if(preg_match("#\[url\](.+)\[/url\]#isU", $contenue))
 	{

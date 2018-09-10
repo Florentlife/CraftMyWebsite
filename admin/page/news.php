@@ -84,13 +84,17 @@
                                         <div class="tab-pane <?php if($i == 0) echo 'active'; ?>" id="news<?php echo $tableauNews[$i]['id']; ?>">
                                             <form method="POST" action="?&action=editNews&id=<?php echo $tableauNews[$i]['id']; ?>" class="well">
                                                 <div class="row">
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-4">
                                                         <label class="control-label">Titre de la news</label>
                                                         <input type="text" class="form-control" name="titre" value="<?php echo $tableauNews[$i]['titre']; ?>">
                                                     </div>
                                                     <div class="col-md-4">
                                                         <label class="control-label">Supprimer la news définitivement</label>
                                                         <a href="?action=supprNews&newsId=<?php echo $tableauNews[$i]['id']; ?>" class="btn btn-danger form-control">Supprimer la News</a>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label class="control-label"><?=($tableauNews[$i]['epingle'] == 1) ? 'Désépingler' : 'Épingler';?> la news</label>
+                                                        <a href="?action=epingle&newsId=<?php echo $tableauNews[$i]['id']; ?>&epingle=<?=$tableauNews[$i]['epingle'];?>" class="btn btn-warning form-control"><?=($tableauNews[$i]['epingle'] == 1) ? 'Désépingler' : 'Épingler';?> la news</a>
                                                     </div>
                                                 </div>
                                                 <div class="row" style="padding-top: 5px;">

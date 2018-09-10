@@ -13,11 +13,17 @@ $installEtape = $installEtape['etape'];
 
 
 if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote']) AND isset($_POST['nomBase']) AND isset($_POST['utilisateur']) AND isset($_POST['mdp']) AND isset($_POST['port']))
-	if(verifyPDO($_POST['hote'], $_POST['nomBase'], $_POST['utilisateur'], $_POST['mdp'], $_POST['port']))
+{
+	if(($testPDO = verifyPDO($_POST['hote'], $_POST['nomBase'], $_POST['utilisateur'], $_POST['mdp'], $_POST['port'])) === TRUE)
 	{
 		$sql = getPDO($_POST['hote'], $_POST['nomBase'], $_POST['utilisateur'], $_POST['mdp'], $_POST['port']);
 		require_once('installSQL.php');
-	}	
+	}
+	elseif($testPDO == 2)
+		$erreur = 'sql_mode';
+	else
+		$erreur = 'pass';
+}
 
 	if(isset($_GET['action']) AND $_GET['action'] == 'infos' AND isset($_POST['nom']) AND isset($_POST['adresse']) AND isset($_POST['description']))
 		require_once('installInfos.php');
@@ -43,10 +49,12 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 	}
 	include '../include/version.php';
 	?>
+	<!DOCTYPE html>
 	<html>
 	<head>
 		<title>CraftMyWebsite Setup #<?php echo $installEtape;?></title>	
 		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
 		<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 		<link href="css/style.css" rel="stylesheet" type="text/css">
 		<link href="css/animate.css" rel="stylesheet" type="text/css">
@@ -99,7 +107,7 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 					<p><a href="http://craftmywebsite.fr" class="btn btn-primary btn-installation" role="button">Aller sur CraftMyWebsite.fr</a></p>
 			</div>
 		<br>
-		<h4 class="text-center" style="padding:15px">Un probléme avec l'installation ? Accédez au tutoriel en cliquant ici : <a target="_blank" href="https://www.youtube.com/watch?v=nV4kRY-kYFo">Tutoriel Vidéo</a></h4>
+		<h4 class="text-center" style="padding:15px">Un probléme avec l'installation ? Accédez au tutoriel en cliquant ici : <a target="_blank" href="//www.youtube.com/watch?v=nV4kRY-kYFo">Tutoriel Vidéo</a></h4>
 		<br/>
 		<div class="p-install-form">
 			<div class="container" style="width: 90%; margin: 10px auto;">
@@ -133,7 +141,14 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 			<form method="post" action="<?php if($installEtape == 1) echo '?&action=sql'; elseif($installEtape == 2) echo '?&action=infos'; elseif($installEtape == 3) echo '?&action=compte'; ?>">
 
 				<div class="row">
-					<?php if($installEtape == 1) { ?>
+					<?php if($installEtape == 1) { 
+						if(isset($erreur))
+						{
+							if($erreur == 'sql_mode')
+								echo '<div class="alert alert-danger text-center">ATTENTION ! Votre base de donnée est mal configuré ! La configuration MySQL ne doit pas contenir de STRICT_ALL_TABLES dans son sql_mode. Si vous ne savez pas résoudre ce problème, contactez-nous sur discord : https://discord.gg/464zW3n .</div>';
+							elseif($erreur == 'pass')
+								echo '<div class="alert alert-danger text-center">ATTENTION ! Vos identifiants sont incorrects.</div>';
+						} ?>
 					<h3 style="font-family: material;text-align: center;margin-top: 40px;">Base de données <img style="width: 115px;margin-top: -33px;"src="img/logo-mysql.png"></h3>
 					<div class="form-group col-md-6">
 						<label>Adresse de la base de donnée</label>
@@ -159,8 +174,8 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 						<input type="submit" class="btn btn-success btn-installation btn-valider"/>
 					</div>	
 					<?php } 
-					elseif($installEtape == 2) { ?>
-
+					elseif($installEtape == 2) { 
+						?>
 					<h3>Configuration du site</h3>
 					<div class="form-group col-md-6">
 						<label>Adresse d'accès au site</label>
@@ -229,7 +244,7 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 			</form>
 		</div>
 		<div class="footer">
-			Copyright © <a href="http://craftmywebsite.fr">CraftMyWebsite</a> 2014-2016
+			Copyright © <a href="http://craftmywebsite.fr">CraftMyWebsite</a> 2014-2018
 		</div>
 	</div>
 	<script src="../theme/<?php echo $_Serveur_['General']['theme']; ?>/js/jquery.js"></script>
@@ -244,11 +259,16 @@ function verifyPDO($hote, $nomBase, $utilisateur, $mdp, $port)
 	{
 		$sql = new PDO('mysql:host='.$hote.';dbname='.$nomBase.';port='.$port, $utilisateur, $mdp);
 		$sql->exec("SET CHARACTER SET utf8");
-		return true;
+		$req = $sql->query('SELECT @@GLOBAL.sql_mode AS sql_mode');
+		$data = $req->fetch(PDO::FETCH_ASSOC);
+		if(empty($data['sql_mode']) OR strpos($data['sql_mode'], 'STRICT_ALL_TABLES') === FALSE)
+			return true;
+		else
+			return 2;
 	}
 	catch(Exception $e)
 	{
-		return false;
+		return 3;
 	}
 }
 

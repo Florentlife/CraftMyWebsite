@@ -46,6 +46,13 @@
 
                         <label class="control-label">Port de votre serveur Minecraft</label>
                         <input type="number" name="port" class="form-control text-center" placeholder="25565" value="<?php echo $lecture['General']['port']; ?>">
+
+                        <label class="control-label">Statut de votre serveur</label>
+                        <select name="statut" class="form-control text-center" style="text-align-last: center;">
+                            <option value="0" class="text-center" <?=($lecture['General']['statut'] == 0) ? 'selected' : '';?>>Hors-Ligne</option>
+                            <option value="1" class="text-center" <?=($lecture['General']['statut'] == 1) ? 'selected' : '';?>>En Ligne</option>
+                            <option value="2" class="test-center" <?=($lecture['General']['statut'] == 2) ? 'selected' : '';?>>En Maintenance</option>
+                        </select>
                 </div>
 
                 <div class="col-xs-12 col-md-6" style="padding: 10px;">

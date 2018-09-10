@@ -157,8 +157,14 @@
                                     <option value="3" <?=($action[0] == 'jeton') ? 'selected' : '';?>> Give de jetons site</option>
                                 </select></td><?php if($action[0] == "give")
                                     $item = explode(':', $action[1]);
+                                    if($action[0] == "jeton")
+                                        $quantite = $action[1];
+                                    elseif($action[0] == "give")
+                                        $quantite = $item[3];
+                                    else
+                                        $quantite = '';
                                 ?>
-                                <td><input type="text" name="quantite<?=$o;?>" class="form-control" value="<?=($action[0] == 'jeton') ? $action[1] : $item[3];?>" /></td>
+                                <td><input type="text" name="quantite<?=$o;?>" class="form-control" value="<?=$quantite;?>" /></td>
                                 <td><input type="text" name="cmd<?=$o;?>" class="form-control" value="<?=($action[0] == 'cmd') ? $action[1] : '';?>" /></td>
                                 <td><input type="text" name="id<?=$o;?>" class="form-control" value="<?=($action[0] == "give") ? $item[1] : '';?>" /></td>
                                 <td><input type="text" name="message<?=$o;?>" class="form-control" value="<?=$donnees[$o]['message'];?>" /></td>

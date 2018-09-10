@@ -100,8 +100,8 @@
 						</select>
 					</div>
 					<div class="form-group col-lg-12">
-						<label>Nombre de ventes possibles <small>(Laissez vide si aucune limite, max 9999)</small></label><br>
-						<input class="form-control" type="number" name="nbre_ventes" min="0" max="9999" />
+						<label>Nombre de ventes possibles <small>(-1 si aucune limite, max 9999)</small></label><br>
+						<input class="form-control" type="number" name="nbre_vente" min="-1" max="9999" required />
 					</div>
 					<hr>
 					<div class="form-group col-lg-12">
@@ -124,18 +124,79 @@
 					<strong>Ici vous pouvez créer des coupons de réduction pour votre boutique. La valeur des coupons est en %age. Il ne peut y avoir qu'un seul coupon utilisé par paiement, les coupons sont valables jusqu'à ce que vous les supprimiez et ils sont réutilisables. Il vous suffit simplement de rentrer un code de maximum 8 lettres, un pourcentage ainsi qu'un titre pour décrire votre remise, il apparaîtra dans la description du produit dans le panier.</strong>
 				</div>
 				<form action="?action=creerCoupon" method="POST">
-					<div class="form-group col-lg-6">
-						<label>Titre de la remise (description)</label>
-						<input type="text" class="form-control" name="titre" placeholder="Remise spécial CMW V1.7" required maxlength="60">
+					<div class="row">
+						<div class="form-group col-lg-6">
+							<label>Titre de la remise (description)</label>
+							<input type="text" class="form-control" name="titre" placeholder="Remise spécial CMW V1.7" required maxlength="60">
+						</div>
+						<div class="form-group col-lg-6">
+							<label> Pourcentage de remise </label>
+							<input type="number" name="pourcent" class="form-control" max="100" min="1" required >
+						</div>
+						<div class="form-group col-lg-6">
+							<label> Code de remise </label>
+							<input type="text" name="code" class="form-control" maxlength="8" placeholder="CMWV1.7">
+						</div>
 					</div>
-					<div class="form-group col-lg-6">
-						<label> Pourcentage de remise </label>
-						<input type="number" name="pourcent" class="form-control" max="100" min="1" required >
-					</div>
-					<div class="form-group col-lg-6">
-						<label> Code de remise </label>
-						<input type="text" name="code" class="form-control" maxlength="8" placeholder="CMWV1.7">
-					</div>
+					<div class="row" style="padding-right: 10px; padding-left: 10px;">
+						<button class="btn btn-info btn-block" data-toggle="collapse" type="button" data-target="#optionsAvancees" aria-expanded="false" aria-controls="optionsAvancees">Options Avancées</button>
+						<div class="collapse" id="optionsAvancees"><br/>
+							<div class="row">
+								<div class="form-group col-md-4">
+									<label>Activer l'option : "Code utilisable sur une seule catégorie"</label>
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" name="OuiCat" onChange="showOptions('Cat');" id="OuiCat">
+    									<label class="form-check-label" for="OuiCat">Oui</label>
+    								</div>
+    								<div id="optionsCat" class="d-none">
+    									<div class="form-group">
+    										<label> Quelle catégorie ?</label>
+    										<select name="cat" class="form-control">
+												<?php 
+												$i = 0;
+												while($i < count($categories))
+												{
+													?><option value="<?=$categories[$i]['id'];?>"><?=$categories[$i]['titre'];?></option><?php
+													$i++;
+												}
+												$i = 0;
+												?> 
+											</select>
+										</div>
+    								</div>
+    							</div>
+    							<div class="form-group col-md-4">
+									<label>Activer l'option : "Code utilisable sur une période de temps (début/fin)"</label>
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" name="OuiTemps" onChange="showOptions('Temps');" id="OuiTemps">
+    									<label class="form-check-label" for="OuiTemps">Oui</label>
+    								</div>
+    								<div id="optionsTemps" class="d-none">
+    									<div class="form-group">
+    										<label> Date de début (mm/jj/aaaa HH:MM) </label>
+    										<input type="text" class="form-control" name="dDebut" placeholder="mm/jj/aaaa HH:MM">
+    										<br/>
+    										<label> Date de fin (mm/jj/aaaa HH:MM) (le coupon sera automatiquement supprimé après)</label>
+    										<input type="text" class="form-control" name="dFin" placeholder="mm/jj/aaaa HH:MM">
+    									</div> 
+    								</div>
+    							</div>
+    							<div class="form-group col-md-4">
+									<label>Activer l'option : "Code utilisable un certain nombre de fois"</label>
+									<div class="form-check">
+										<input type="checkbox" class="form-check-input" name="OuiFois" onChange="showOptions('Fois');" id="OuiFois">
+    									<label class="form-check-label" for="OuiFois">Oui</label>
+    								</div>
+    								<div id="optionsFois" class="d-none">
+    									<div class="form-group">
+    										<label> Nombre de fois maximum d'utilisation (le coupon sera automatiquement supprimé après)</label>
+    										<input type="number" class="form-control" name="expire">
+    									</div>
+    								</div>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
 					<hr>
 					<div class="form-group col-lg-12">
 						<input type="submit" class="btn btn-success" value="Créer le code de remise">
@@ -158,10 +219,11 @@
 				</div>
 				<table class="table table-striped table-hover table-dark">
 					<tr>
-						<th>Titre / Description</th>
-						<th>Code de réduction</th>
-						<th>Pourcentage de réduction</th>
-						<th>Actions ...</th>
+						<th style="text-align: center;">Titre / Description</th>
+						<th style="text-align: center;">Code de réduction</th>
+						<th style="text-align: center;">Pourcentage de réduction</th>
+						<th style="text-align: center;">Options avancées</th>
+						<th style="text-align: center;">Actions ...</th>
 					</tr>
 					<?php $coupons = getCouponsReduc($bddConnection);
 						for($i = 0; $i < count($coupons); $i++)
@@ -170,6 +232,18 @@
 								<td><?php echo $coupons[$i]['titre']; ?></td>
 								<td><?php echo $coupons[$i]['code_promo']; ?></td>
 								<td><?php echo $coupons[$i]['pourcent']; ?>%</td>
+								<td><?php 
+								if(isset($coupons[$i]['categorie']) || isset($coupons[$i]['debut']) || isset($coupons[$i]['expire']))
+								{
+									echo 'Utilisable ';
+									if(isset($coupons[$i]['categorie']))
+										echo 'uniquement sur '.$categories[array_search($coupons[$i]['categorie'], array_column($categories, 'id'))]['titre'].' ';
+									if(isset($coupons[$i]['debut']))
+										echo 'du '.date('d/m/Y H:i', $coupons[$i]['debut']).' au '.date('d/m/Y H:i', $coupons[$i]['fin']).' ';
+									if(isset($coupons[$i]['expire']))
+										echo 'maximum '.$coupons[$i]['expire'].' fois';
+								}
+								?></td>
 								<td><a href="?action=supprCoupon&id=<?php echo $coupons[$i]['id']; ?>" class="btn btn-danger" title="Supprimer le coupon">Supprimer le coupon</a></td>
 							</tr><?php
 						}
@@ -220,13 +294,14 @@
 											<th>Description</th>
 											<th>Prix</th>
 											<th>catégorie</th>
+											<th>Nombre de ventes restantes</th>
 											<th>Ordre</th>
 											<th>Supprimer</th>
 											<th>Action</th>
 										</tr>
 										<?php $j = 0;
 										while($j < count($offres)) {
-											if($offres[$j]['categorie'] == $categories[$i]['id']) { ?>
+											if($offres[$j]['categorie'] == $categories[$i]['id']) {?>
 											<tr>
 												<td><input type="text" name="offresNom<?php echo $offres[$j]['id']; ?>" class="form-control" value="<?php echo $offres[$j]['nom']; ?>" /></td>
 												<td><input type="text" name="offresDescription<?php echo $offres[$j]['id']; ?>" class="form-control" value="<?php echo htmlspecialchars($offres[$j]['description']); ?>" /></td>
@@ -238,6 +313,7 @@
 															if($categories[$k]['titre'] != $offres[$j]['categorie']) echo '<option value="' .$categories[$k]['id']. '">' .$categories[$k]['titre']. '</option>'; $k++; } ?>
 														</select>
 												</td>
+												<td><input type="number" name="nbre_vente_<?php echo $offres[$j]['id']; ?>" class="form-control" value="<?php echo $offres[$j]['nbre_vente']; ?>" /></td>
 												<td><input type="number" name="offresOrdre<?php echo $offres[$j]['id']; ?>" class="form-control" value="<?php echo $offres[$j]['ordre']; ?>" /></td>
 												<td><input type="checkbox" name="suppr<?php echo $offres[$j]['id']; ?>" /></td>
 												<td><a class="btn btn-success" data-toggle="modal" data-target="#OffreAction<?php echo $offres[$j]['id']; ?>">Modifier</a></td>

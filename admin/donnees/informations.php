@@ -70,20 +70,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == tru
         $lastNews[$i] = $lastNewsDonnees;
         $i++;
     }
-    $nbrPerIPReq = $bddConnection->query('SELECT * FROM cmw_sysip ORDER BY idPerIP = 1');
-    $i = 0;
-    while($nbrPerIPDonnees = $nbrPerIPReq->fetch(PDO::FETCH_ASSOC))
-    {
-        $nbrPerIP[$i] = $nbrPerIPDonnees;
-        $i++;
-    }
-    $sysMailReq = $bddConnection->query('SELECT * FROM cmw_sysmail WHERE idMail = 1');
-    $i = 0;
-    while($sysMailDonnees = $sysMailReq->fetch(PDO::FETCH_ASSOC))
-    {
-        $sysMail[$i] = $sysMailDonnees;
-        $i++;
-    }
     $lastVoteReq = $bddConnection->query('SELECT * FROM cmw_votes ORDER BY date_dernier DESC LIMIT 1;');
     $i = 0;
     while($lastVoteDonnees = $lastVoteReq->fetch(PDO::FETCH_ASSOC))

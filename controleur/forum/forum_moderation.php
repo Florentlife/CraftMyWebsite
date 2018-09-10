@@ -10,7 +10,7 @@ if(isset($_GET['id_topic']) AND isset($_GET['choix']))
 		$close->execute(array(
 			'id' => $id
 		));
-		header('Location: ?&page=forum');
+		header('Location: ?&page=post&id='.$id);
 	}
 	elseif($choix == 2 && ($_PGrades_['PermsForum']['moderation']['deleteTopic'] == true OR $_Joueur_['rang'] == 1))
 	{
@@ -53,7 +53,10 @@ if(isset($_GET['id_topic']) AND isset($_GET['choix']))
 				$delete_post->execute(array(
 					'id' => $id 
 				));
-				header('Location: ?&page=forum');
+				if(isset($info_removed['sous_forum']))
+					header('Location: ?&page=forum_categorie&id='.$info_removed['id_categorie'].'&id_sous_forum='.$info_removed['sous_forum']);
+				else
+					header('Location: ?page=forum_categorie&id='.$info_removed['id_categorie']);
 			}
 			else
 				header('Location: ?page=erreur&erreur=0');
@@ -90,7 +93,7 @@ if(isset($_GET['id_topic']) AND isset($_GET['choix']))
 						'id' => $id
 					));
 				}
-				header('Location: ?&page=forum');
+				header('Location: ?&page=post&id='.$id);
 			}
 			else
 				header('Location: ?page=erreur&erreur=0');
@@ -103,7 +106,7 @@ if(isset($_GET['id_topic']) AND isset($_GET['choix']))
 		$ouvre->execute(array(
 			'id' => $id
 		));
-		header('Location: ' . $_Serveur_['General']['url'] . '?&page=forum');
+		header('Location: ?&page=post&id='.$id);
 	}
 	else
 		header('Location: ?page=erreur&erreur=');

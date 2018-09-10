@@ -20,7 +20,6 @@ $config['DataBase']['dbPort'] = $_POST['port'];
 
 $ecriture = new Ecrire('../modele/config/config.yml', $config);
 
-
 $installLecture = new Lire('install.yml');
 $installLecture = $installLecture->GetTableau();
 $installLecture['etape'] = 2;

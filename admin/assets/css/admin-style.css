@@ -31,13 +31,13 @@ body {
 
 .cmw-sidebar {margin-left: 0px;}
 
-.cmw-navbar {border-radius: 0px;background-color: #c0392b;max-width: 95% !important;width: 100%;margin: 0 auto;margin-bottom: 20px;}
-.cmw-left-navbar {background-color: #c0392b;padding: 10px;font-size: 21px;font-weight: bold;max-width: 100%;width: 100%;height: 50px;}
+.cmw-navbar {border-radius: 0px;background-color: var(--color-panel-main);max-width: 95% !important;width: 100%;margin: 0 auto;margin-bottom: 20px;}
+.cmw-left-navbar {background-color: var(--color-panel-main);padding: 10px;font-size: 21px;font-weight: bold;max-width: 100%;width: 100%;height: 50px;}
 .cmw-left-navbar a{color: white !important;text-decoration: none !important;}
-.cmw-right-navbar {color: white !important;background-color: #c0392b;padding: 9px;font-size: 21px;font-weight: bold;max-width: 100%;width: 100%;height: 50px;}
+.cmw-right-navbar {color: white !important;background-color: var(--color-panel-main);padding: 9px;font-size: 21px;font-weight: bold;max-width: 100%;width: 100%;height: 50px;}
 .cmw-right-navbar a{color: white !important;text-decoration: none !important;}
 
-.cmw-sidebar-btn {background-color: #c0392b;border-radius: 0px;font-size: 17px;padding: 7px;transition: 1s;border: 0px;text-align: left;color: white;}
+.cmw-sidebar-btn {background-color: var(--color-panel-main);border-radius: 0px;font-size: 17px;padding: 7px;transition: 1s;border: 0px;text-align: left;color: white;}
 .cmw-sidebar-btn:hover {transition: 1s;transform: scale(1.02);}
 
 .cmw-sidebar-panel {border-radius: 0px;}
@@ -71,7 +71,7 @@ body {
 }
 
 .cmw-footer {
-    background-color: #c0392b;
+    background-color: var(--color-panel-main);
     color: white;
     padding: 10px;
     text-align: center;
@@ -85,7 +85,7 @@ body {
 }
 
 .cmw-page-content-header {
-    background: #c0392b;
+    background: var(--color-panel-main);
     color: white;
     font-size: 23px;
     padding: 10px;
@@ -95,7 +95,7 @@ body {
 .cmw-panel {
 
 }
-.cmw-panel-header {background-color: #c0392b !important;color: white !important;}
+.cmw-panel-header {background-color: var(--color-panel-main) !important;color: white !important;}
 .cmw-panel-body {
 
 }
@@ -108,7 +108,7 @@ body {
 }
 
 a {color: #2c3e50;}
-a:hover {color:#c0392b;}
+a:hover {color:var(--color-panel-main);}
 
 
 #divScroll{
@@ -117,4 +117,15 @@ a:hover {color:#c0392b;}
 	bottom: 20px;
 	right: 20px;
 	cursor: pointer;
+}
+
+.hvr-bounce-to-right:before{
+	background-color: var(--color-panel-hover);
+}
+.btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
+	background-color: var(--color-panel-focus);
+}
+
+.d-none {
+    display: none;
 }

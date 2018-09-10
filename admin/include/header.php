@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+	<?php $configFile = new Lire('modele/config/config.yml');
+	$configFile = $configFile->GetTableau();
+	echo "<style>
+	:root {
+		--color-panel-main: ". $configFile["color"]["panel"]["main"] ."; 
+		--color-panel-hover: ". $configFile["color"]["panel"]["hover"] ."; 
+		--color-panel-focus: ". $configFile["color"]["panel"]["focus"] ."; 
+	}
+	</style>";?>
   <meta charset="UTF-8">
   <meta name="google" content="notranslate" />
   <meta name="content-language" content="fr,fr-fr">
-<meta name="language" content="fr,fr-fr">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="language" content="fr,fr-fr">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Panel administrateur CraftMyWebsite">

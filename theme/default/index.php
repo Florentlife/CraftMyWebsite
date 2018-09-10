@@ -5,15 +5,27 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 <!DOCTYPE html>
 <html>
 <head>
-	<?php $configFile = new Lire('modele/config/config.yml');
-	$configFile = $configFile->GetTableau();
-	echo "<style>
+	<style>
 	:root {
-		--color-main: ". $configFile["color"]["main"] ."; 
-		--color-hover: ". $configFile["color"]["hover"] ."; 
-		--color-focus: ". $configFile["color"]["focus"] ."; 
+		--color-main: <?=$_Serveur_["color"]["theme"]["main"]?>; 
+		--color-hover: <?=$_Serveur_["color"]["theme"]["hover"]?>; 
+		--color-focus: <?=$_Serveur_["color"]["theme"]["focus"]?>; 
 	}
-	</style>";?>
+	</style>
+	<meta name="theme-color" content="<?=$configFile["color"]["theme"]["main"]?>">
+	<meta name="msapplication-navbutton-color" content="<?=$configFile["color"]["theme"]["main"]?>">
+	<meta name="apple-mobile-web-app-statut-bar-style" content="<?=$configFile["color"]["theme"]["main"]?>">
+    <meta name="apple-mobile-web-app-capable" content="<?=$configFile["color"]["theme"]["main"]?>">
+	<meta property="og:title" content="<?=$_Serveur_['General']['name']?>">
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://<?=$_SERVER["SERVER_NAME"]?>">
+	<meta property="og:image" content="https://<?=$_SERVER["SERVER_NAME"]?>/favicon.ico">
+	<meta property="og:image:alt" content="<?=$_Serveur_['General']['description']?>">
+	<meta property="og:description" content="<?=$_Serveur_['General']['description']?>">
+	<meta property="og:site_name" content="<?=$_Serveur_['General']['name']?>" />
+	<meta name="twitter:title" content="<?=$_Serveur_['General']['name']?>">
+	<meta name="twitter:description" content="<?=$_Serveur_['General']['description']?>">
+	<meta name="twitter:image" content="https://<?=$_SERVER["SERVER_NAME"]?>/favicon.ico">
 	<meta charset="utf-8" />
 	<meta name="autor" content="CraftMyWebsite , TheTueurCiTy, <?php echo $_Serveur_['General']['name']; ?>" />
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -84,9 +96,11 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/toastr.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/snarl.min.js"></script>
 <script src="//api.mcgpass.com/v1/pay.js"></script>
+<script src="theme/<?=$_Serveur_['General']['theme'];?>/js/messagerie.js"></script>
+<?php if($_Serveur_['Payement']['dedipass'] == true) { ?> <script src="//api.dedipass.com/v1/pay.js"></script><?php } ?>
+<?php include('theme/'.$_Serveur_['General']['theme'].'/js/forum.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
 <script>
-
 window.onscroll = function() {divScroll()};
 
 function divScroll() {
@@ -266,6 +280,37 @@ function ajout_text_complement(textarea, entertext, tapetext, balise, complement
 			else insertAtCaret(textarea, '['+balise+']'+VarTxt+'[/'+balise+']'); 
 		}
 	}
+	else if(balise == 'img')
+	{
+		if (document.selection && document.selection.createRange().text != '')
+		{
+			complement = window.prompt(entertext, tapetext);
+			document.getElementById(textarea).focus();
+			VarTxt = document.selection.createRange().text;
+			if(VarTxt != null && VarTxt != '')
+				document.selection.createRange().text = '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']';
+			else
+				document.selection.createRange().text = '['+balise+']'+complement+'[/'+balise+']';
+		}
+		else if (document.getElementById(textarea).selectionEnd && (document.getElementById(textarea).selectionEnd - document.getElementById(textarea).selectionStart > 0))
+		{
+			complement = window.prompt(entertext, tapetext);
+			valeurDeb = document.getElementById(textarea).value.substring( 0 , document.getElementById(textarea).selectionStart );
+			valeurFin = document.getElementById(textarea).value.substring( document.getElementById(textarea).selectionEnd , document.getElementById(textarea).textLength );
+			objectSelected = document.getElementById(textarea).value.substring( document.getElementById(textarea).selectionStart , document.getElementById(textarea).selectionEnd );
+			if(objectSelected != null && objectSelected != '')
+				document.getElementById(textarea).value = valeurDeb+'['+balise+'='+complement+']'+objectSelected+'[/'+balise+']'+valeurFin;
+			else
+				document.getElementById(textarea).value = valeurDeb+'['+balise+']'+complement+'[/'+balise+']'+valeurFin;
+		}
+		else
+		{
+			VarTxt = window.prompt(complementTxt,complementtape);
+			complement = window.prompt(entertext, tapetext);
+			if ((VarTxt != null) && (VarTxt != '') && complement != null && complement != '') insertAtCaret(textarea, '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']');
+			else insertAtCaret(textarea, '['+balise+']'+complement+'[/'+balise+']'); 
+		}
+	}
 	else
 	{
 		if (document.selection && document.selection.createRange().text != '')
@@ -398,10 +443,10 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
             checked = $("input:checkbox[name=selection]:checked");
 
             if (checked.length > 0) {
-                $('#popover').removeClass('hide')
+                $('#popover').css('display', '')
             }
             else {
-                $('#popover').addClass('hide');
+                $('#popover').css('display', 'none');
             }
         })
     });
@@ -420,9 +465,25 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
 });
 </script>
 <?php 
+if($_GET['page'] == "profil")
+{
+?><script>previewTopic($("#signature"));</script><?php
+}
 if(isset($_GET['setTemp']) && $_GET['setTemp'] == 1)
 {
 	?><script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'Votre nouveau mot de passe vous a été envoyé par mail !', icon: '<span class=\'glyphicon glyphicon-ok\'></span>});});</script>;<?php
+}
+if(isset($_GET['send']))
+{
+	?><script>
+		$(document).ready(function() {
+			Snarl.addNotification({
+				title: "Messagerie",
+				text: "Votre message a bien été envoyé !",
+				icon: '<i class="far fa-paper-plane"></i>'
+			});
+		});
+		</script><?php
 }
 ?>
 </body>

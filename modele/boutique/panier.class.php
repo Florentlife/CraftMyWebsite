@@ -17,6 +17,7 @@ class Panier
 			$_SESSION['panier']['code'] = '';
 		}
 		$this->bdd = $bdd;
+		$this->supprExpire();
 	}
 
 	public function ajouterProduit($id, $quantite, $prix)
@@ -83,16 +84,31 @@ class Panier
 	public function montantGlobal()
 	{
 		$total = 0;
+		if(isset($_SESSION['panier']['reduction_categorie']))
+			$reduc = 1;
+		else
+			$reduc =0;
 		for($i = 0; $i < count($_SESSION['panier']['id']); $i++)
 		{
-			$req = $this->bdd->prepare('SELECT prix FROM cmw_boutique_offres WHERE id = :id');
+			$req = $this->bdd->prepare('SELECT prix, categorie_id FROM cmw_boutique_offres WHERE id = :id');
 			$req->execute(array(
 				'id' => htmlspecialchars($_SESSION['panier']['id'][$i])
 			));
 			$fetch = $req->fetch(PDO::FETCH_ASSOC);
-			$total += $_SESSION['panier']['quantite'][$i] * $fetch['prix'];
+			if($reduc == 1)
+			{
+				if($fetch['categorie_id'] == $_SESSION['panier']['reduction_categorie'])
+					$total += $_SESSION['panier']['quantite'][$i] * $fetch['prix'] * (1-$_SESSION['panier']['reduction']);
+				else
+					$total += $_SESSION['panier']['quantite'][$i] * $fetch['prix'];
+			}
+			else
+				$total += $_SESSION['panier']['quantite'][$i] * $fetch['prix'];
 		}
-		return $total*(1-$_SESSION['panier']['reduction']);
+		if($reduc == 1)
+			return $total;
+		else
+			return $total*(1-$_SESSION['panier']['reduction']);
 	}
 
 	public function compterArticle()
@@ -119,13 +135,15 @@ class Panier
 	public function ajouterReduction($code)
 	{
 		setcookie('titre', 1, time()+3600000);
-		if($this->verifReduction($code, $pourcent, $titre))
+		if($this->verifReduction($code, $pourcent, $titre, $expire, $categorie))
 		{
 			if($pourcent <= 100 && $pourcent > 0)
 			{
 				$_SESSION['panier']['reduction'] = $pourcent/100;
 				$_SESSION['panier']['reduction_titre'] = htmlspecialchars($titre);
 				$_SESSION['panier']['code'] = htmlspecialchars($code);
+				$_SESSION['panier']['reduction_expire'] = $expire;
+				$_SESSION['panier']['reduction_categorie'] = $categorie;
 			}
 		}
 	}
@@ -136,20 +154,67 @@ class Panier
 		$_SESSION['panier']['reduction_titre'] = '';
 	}
 
-	private function verifReduction($code, &$pourcent, &$titre)
+	public function verifExpire(&$aretirer)
 	{
-		$req = $this->bdd->prepare('SELECT pourcent, titre FROM cmw_boutique_reduction WHERE code_promo = :code');
+		$aretirer = false;
+		$req = $this->bdd->prepare('SELECT expire FROM cmw_boutique_reduction WHERE code_promo = :code');
+		$req->execute(array(
+			'code' => $_SESSION['panier']['code']
+		));
+		$fetch = $req->fetch(PDO::FETCH_ASSOC);
+		if($fetch['expire'] > 0)
+		{
+			if($fetch['expire'] == 1)
+			{
+				$req = $this->bdd->prepare('DELETE FROM cmw_boutique_reduction WHERE code_promo = :code');
+				$req->execute(array(
+					'code' => $_SESSION['panier']['code']
+				));
+				$aretirer = true;
+			}
+			else
+			{
+				$req = $this->bdd->prepare('UPDATE cmw_boutique_reduction SET expire = :expire WHERE code_promo = :code');
+				$req->execute(array(
+					'expire' => --$fetch['expire'],
+					'code' => $_SESSION['panier']['code']
+				));
+			}
+			return true;
+		}
+		else
+			return false;
+	}
+
+	private function verifReduction($code, &$pourcent, &$titre, &$expire, &$categorie)
+	{
+		$req = $this->bdd->prepare('SELECT pourcent, titre, categorie, debut, fin, expire FROM cmw_boutique_reduction WHERE code_promo = :code');
 		$req->execute(array(
 			'code' => htmlspecialchars($code)
 		));
 		$fetch = $req->fetch(PDO::FETCH_ASSOC);
 		if(isset($fetch['titre']) AND isset($fetch['pourcent']))
 		{
-			$pourcent = $fetch['pourcent'];
-			$titre = $fetch['titre'];
-			return true;
+			if(($fetch['debut'] != null AND time() > $fetch['debut'] AND time() < $fetch['fin']) OR $fetch['debut'] == null)
+			{
+				$pourcent = $fetch['pourcent'];
+				$titre = $fetch['titre'];
+				$expire = $fetch['expire'];
+				$categorie = $fetch['categorie'];
+				return true;
+			}
+			else
+				return false;
 		}
 		else
 			return false;
+	}
+
+	public function supprExpire()
+	{
+		$req = $this->bdd->prepare('DELETE FROM cmw_boutique_reduction WHERE fin < :fin');
+		$req->execute(array(
+			'fin' => time()
+		));
 	}
 }

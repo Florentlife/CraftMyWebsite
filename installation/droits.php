@@ -3,6 +3,7 @@ function SetHtpasswd() {
     $dir[0] = '../modele/.htpasswd';
     $dir[1] = '../controleur/.htpasswd';
     $dir[2] = '../admin/actions/.htpasswd';
+    $dir[3] = '../utilisateurs/.htpasswd';
     $rand = md5(uniqid(rand(), true)); 
 
     for($i = 0; $i < count($dir); $i++)
@@ -21,10 +22,10 @@ function VerifieChmod() {
     $dirR[3] = '../modele/config/configMenu.yml';
     $dirR[4] = '../modele/config/configServeur.yml';
     $dirR[5] = '../modele/config/configWidgets.yml';
-    $dirR[6] = '../modele/config/groups.yml';
-    $dirR[7] = '../modele/.htpasswd';
-    $dirR[8] = '../controleur/.htpasswd';
-    $dirR[9] = '../admin/actions/.htpasswd';
+    $dirR[6] = '../modele/.htpasswd';
+    $dirR[7] = '../controleur/.htpasswd';
+    $dirR[8] = '../admin/actions/.htpasswd';
+    $dirR[9] = '../utilisateurs/.htpasswd';
 
 
     $dir[0] = 'installation/install.yml';
@@ -33,13 +34,14 @@ function VerifieChmod() {
     $dir[3] = 'modele/config/configMenu.yml';
     $dir[4] = 'modele/config/configServeur.yml';
     $dir[5] = 'modele/config/configWidgets.yml';
-    $dir[6] = 'modele/config/groups.yml';
-    $dir[7] = 'modele/.htpasswd';
-    $dir[8] = 'controleur/.htpasswd';
-    $dir[9] = 'admin/actions/.htpasswd';
+    $dir[6] = 'modele/.htpasswd';
+    $dir[7] = 'controleur/.htpasswd';
+    $dir[8] = 'admin/actions/.htpasswd';
+    $dir[9] = 'utilisateurs/.htpasswd';
 
-    $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/', 'theme/upload/panel/');
+    $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/', '../theme/upload/panel/');
     $dirDossier[1] = array('../theme/smileys/');
+    $dirDossier[2] = array('../utilisateurs/');
 
     $err = null;
     for($i = 0; $i < count($dir); $i++)
@@ -95,13 +97,18 @@ function VerifieChmod() {
         $errDossier = explode(';', $errDossier);
         for($i = 0; $i < count($errDossier); $i++) 
         {    
-            $return['chmodDossier'][$i] = 'infèrieur à 777 sur certains fichiers';
+            $return['chmodDossier'][$i] = 'inférieur à 777 sur certains fichiers';
             $return['dirDossier'][$i] = $dirDossier[$errDossier[$i]][0];
         }
     }
 
+    if(!array_key_exists('ENV_HTACCESS_READING', $_SERVER))
+    {
+        $htaccess = true;
+        $return['htaccess'] = true;
+    }
 
-    if($err == null AND $errDossier == null)
+    if($err == null AND $errDossier == null AND $htaccess == null)
         return null;
     else
         return $return;
@@ -124,9 +131,15 @@ function DrawChmod($return)
     <center>
         Voiçi un tutoriel afin de vous aider dans l'installation de CraftMyWebsite <?php echo $versioncms; ?>:<br/>
         <br/>
-            <object style="max-width: 620px;width: 100%;max-height: 315px; height: 100%;" data="http://www.youtube.com/v/nV4kRY-kYFo"></object>
+            <object style="max-width: 620px;width: 100%;max-height: 315px; height: 100%;" data="//www.youtube.com/v/nV4kRY-kYFo"></object>
     </center>
 </div> 
+<?php
+ if ($return['htaccess'])
+{
+    ?><div class="alert alert-danger"><strong>ATTENTION</strong> : Erreur Critique, votre serveur est soumis aux failles htaccess. Veuillez les activez, en suivant ce tuto : https://www.aidoweb.com/tutoriaux/fichier-htaccess-qui-ne-fonctionne-pas-solutions-configuration-apache-648 ou nous contacter sur Discord : https://discord.gg/Tyfr6nC. </div><?php
+}
+?>
 <h4 style="font-family: material;text-align: center;">Voici la liste des chmod qui ne sont pas réglés correctements: </h4>
 
 <?php if(isset($return['chmodDossier'])) { ?>
@@ -161,18 +174,19 @@ function DrawChmod($return)
     </tr>
     <?php } ?>
 </table>
-<?php } ?>
-<center><a href="index.php" class="btn btn-primary btn-installation">Relancer la vérification</a><br/>
+<?php } 
+?>
+<center><a href="index.php" class="btn btn-primary btn-installation">Relancer la vérification</a><br/><br/>
 <a onclick="ajax_chmod();" class="btn btn-primary btn-installation">Tenter de modifier les chmod automatiquement</a></center>
 </div>
 <script src="../theme/default/js/jquery.min.js"></script>
 <script src="../theme/default/js/bootstrap.min.js"></script>
 <script>
-	function ajax_chmod(){
-		var url = 'chmod.php';
-		$.post(url, function(data){
+    function ajax_chmod(){
+        var url = 'chmod.php';
+        $.post(url, function(data){
         window.location = "index.php"
     });
-	}
+    }
 </script>
 <?php } ?>

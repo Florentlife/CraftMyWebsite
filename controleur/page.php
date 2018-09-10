@@ -14,6 +14,14 @@ if(isset($_GET['page']))
 			include('controleur/profil/index.php');	
 		break;	
 
+		case 'messagerie':
+			require('modele/app/messagerie.class.php');
+			if(isset($_Joueur_['pseudo']))
+				include('theme/' .$_Serveur_['General']['theme']. '/pages/messagerie.php');
+			else
+				header('Location: index.php');
+		break;
+
 		case 'chat':
 			require('modele/app/chat.class.php');
 			include('theme/'.$_Serveur_['General']['theme']. '/pages/chat.php');
@@ -86,7 +94,7 @@ if(isset($_GET['page']))
 		break;
 		
 		case 'voter': 
-			include('controleur/topVoteurs.php');
+			// include('controleur/topVoteurs.php');
 			include('theme/' .$_Serveur_['General']['theme']. '/pages/voter.php');
 		break;
 		

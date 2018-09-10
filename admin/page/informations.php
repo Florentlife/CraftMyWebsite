@@ -77,7 +77,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
               <div class="row">
                 <?php foreach ($serveurStats[$j]['joueurs'] as $cle => $element) { ?>
                 <a href="index.php?&page=profil&profil=<?php echo $serveurStats[$j]['joueurs'][$cle]; ?>" class="icon-player">
-                  <?php echo '<img src="http://cravatar.eu/helmhead/' .$serveurStats[$j]['joueurs'][$cle]. '/56.png" title="Voir le profil de ' .$serveurStats[$j]['joueurs'][$cle]. '">'; ?></a>
+                  <?php echo '<img src="https://cravatar.eu/helmhead/' .$serveurStats[$j]['joueurs'][$cle]. '/56.png" title="Voir le profil de ' .$serveurStats[$j]['joueurs'][$cle]. '">'; ?></a>
                   <?php } ?>
                 </div>
                 <hr>
@@ -544,7 +544,8 @@ for($j = 0; $j < count($lecture['Json']); $j++)
           setlocale(LC_TIME, 'fr.UTF-8', 'fr_FR.UTF-8', 'fr_FR.ISO8859-1');
           strftime("| %d %B %Y |"); ?>
         </h3>
-      </div>
+        </div><center>
+        <a class="btn btn-warning" href="?action=dropVisits">Supprimer les visites</a></center>
       <div class="panel-body">
         <p>
          <canvas id="visitsChart" style="width: 256px;height: 256px">
@@ -620,18 +621,18 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         <h3 class="panel-title"><i class=" fa fa-pencil-square-o"></i> Post-it (Pour ne rien oublier)
         </h3>
       </div>
-      <div class="panel-body" style="height: 155px; width: 100%;">
+      <div class="panel-body" id="post_contenue" style="height: 155px; width: 100%;">
         <?php 
         $all_message_postit = $bddConnection->query('SELECT id, auteur, message FROM cmw_postit ORDER BY id DESC LIMIT 0, 4');
         while ($message_postit = $all_message_postit->fetch(PDO::FETCH_ASSOC)) { ?>
-        	<p><strong>[<?php echo $message_postit['auteur']; ?>] </strong> <?php echo $message_postit['message']; ?>&nbsp;&nbsp; <a href="?&action=supprPostit&id=<?php echo $message_postit['id']; ?>"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
+        	<p id="<?=$message_postit['id'];?>"><strong>[<?php echo $message_postit['auteur']; ?>] </strong> <?php echo $message_postit['message']; ?>&nbsp;&nbsp; <a onclick="ajaxSupprPostIt(<?=$message_postit['id'];?>);"><i class="fa fa-trash" aria-hidden="true"></i></a></p>
        <?php } ?>
 
       </div>
       <div class="panel-footer">
-        <form method="POST" action="?&action=creerPostit">
-          <span class="pull-left"><input type="text" name="post-it_message" placeholder="Message (max 50 caractères)" class="form-control" maxlength="50"></span>
-          <span class="pull-right"><button type="submit" class="btn btn-success pull-right">Envoyer !</button></span>
+        <form method="POST" onsubmit="ajaxPostIt(); return false;" id="formPostIt">
+          <span class="pull-left"><input type="text" name="post-it_message" id="post_message" placeholder="Message (max 50 caractères)" class="form-control" maxlength="50"></span>
+          <span class="pull-right"><button type="submit" class="btn btn-success pull-right" onClick="ajaxPostIt;">Envoyer !</button></span>
         </form>
       <div class="clearfix"></div>
     </div>
@@ -694,7 +695,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
   </table>
 </div>
 <div class="text-center">
- Ceci sont les 8 derniers membres inscrits. <span class="fa fa-credit-card-alt"></span>
+ Ceci sont les 8 derniers membres inscrits. <span class="fa fa-address-book"></span>
 </div>
 </div>
 </div>
@@ -702,130 +703,6 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 <?php } ?>
 
 <!-- /.row -->
-<?php if($_Joueur_['rang'] == 1 OR ($_PGrades_['PermsPanel']['info']['stats']['members']['showTable'] == true AND $_PGrades_['PermsPanel']['info']['stats']['members']['editLimitIp'] OR $_PGrades_['PermsPanel']['info']['stats']['members']['editEmail'] == true)) { ?>
-<div class="modal fade" id="modifPerIP" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="gridSystemModalLabel"><B> Modifications </B></h4>
-      </div>
-      <div class="modal-body">
-        <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['members']['editLimitIp'] == true) {
-          for($i = 0; $i < count($nbrPerIP); $i++) { ?>
-          <form method="POST" action="?&action=editNbrPerIP&idPerIP=<?php echo $nbrPerIP[$i]['id']; ?>">
-            <div class="col-lg-offset-2 text-center">
-              <div class="row">
-                <div class="col-lg-10">
-                  <h4>Système d'API : IP de vérification</h4>
-                  <div class="row">
-                    <div class="alert alert-success">
-                      <strong>Modifiez ici le nombres <span style="color: red;">limite</span> d'inscriptions par IP.</strong>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <input type="number" style="text-align: center;" name="nbrPerIP" class="form-control" placeholder="1" value="<?php echo $nbrPerIP[$i]['nbrPerIP']; ?>"/>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <input type="submit" class="btn btn-info" value="Valider" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-          <?php }
-        }
-        if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['members']['editEmail'] == true) {
-          for($i = 0; $i < count($sysMail); $i++) { ?>
-          <hr>
-          <div class="col-lg-offset-2 text-center">
-            <div class="row">
-              <div class="col-lg-10">
-                <h4>Système d'API : Email de vérification</h4>
-                <?php if($sysMail[$i]['etatMail'] == "0") { ?>
-                <div class="row">
-                  <div class="alert-danger">
-                    <strong>L'API est actuellement désactivé.</strong>
-                  </div>
-                </div>
-                <?php } else { ?>
-                <form method="POST" action="?&action=editSysMail&idMail=<?php echo $sysMail[$i]['idMail']; ?>">
-                  <div class="row">
-                    <div class="alert alert-success">
-                      <strong>Modifiez ici le nombres <span style="color: red;">limite</span> d'utilisation d'une email par compte.</strong>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <input type="number" style="text-align: center;" name="strictMail" class="form-control" placeholder="1" value="<?php echo $sysMail[$i]['strictMail']; ?>">
-                  </div>
-                <br>
-                <div class="row">
-                  <div class="alert alert-success">
-                    <strong>Activer/Désactiver L'API, et modifier sont contenus.</strong>
-                  </div>
-                </div>
-                <h4>Email</h4>
-                <div class="row">
-                  <input type="text" style="text-align: center;" class="form-control" name="fromMail" value="<?php echo $sysMail[$i]['fromMail']; ?>" placeholder="no-reply@infectedz.fr">
-                </div>
-                <h4>Sujet</h4>
-                <div class="row">
-                  <input type="text" style="text-align: center;" class="form-control" name="sujetMail" value="<?php echo $sysMail[$i]['sujetMail']; ?>" placeholder="Votre lien d'activation !">
-                </div>
-                <h4>Message</h4>
-                <div class="row">
-                  <div class="alert alert-info">
-                    <strong><i class="fa fa-question-circle"></i> Détails importants <i class="fa fa-question-circle"></i></strong>
-                    <div class="row">
-                      Voici les syntaxes à respecter dans votre message :<br>
-                      - <B>{JOUEUR}</B> = Au nom du joueur. (Optionnel.)<br>
-                      - <B>{LIEN}</B> = Au lien pour confirmer l'inscription. (<B>Obligatoire !</B>)<br>
-                      - <B>{MDP}</B> = Au mot de passe du joueur. (Optionnel.)<br>
-                      - <B>{IP}</B> = A l'adresse IP de l'endroit où à étais effectué l'inscription. (Optionnel.)
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <textarea style="resize: vertical;height: 250px" class="form-control" name="msgMail" placeholder="Bienvenue[...] Voici votre lien d'activation..."><?php echo $sysMail[$i]['msgMail']; ?></textarea>
-                </div>
-                <hr>
-                <div class="row">
-                  <input type="submit" class="btn btn-info" value="Valider" />
-                </div>
-              </form>
-              <?php } ?>
-              <div class="row">
-                <form method="POST" action="?&action=switchSysMail&idMail=<?php echo $sysMail[$i]['idMail']; ?>">
-                  <hr>
-                  <div class="row">
-                    <?php if ($sysMail[$i]['etatMail'] == "0") {
-                      echo '<button type="submit" name="etatMail" class="btn btn-success" value="1" />Activer L\'API</button>';
-                    } else {
-                      echo '<button type="submit" name="etatMail" class="btn btn-danger" value="0" />Désactiver L\'API</button>';
-                    } ?>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <?php } ?>
-        <?php } ?>
-      </div>
-      <div class="modal-footer">
-        <div class="col-lg-offset-3 text-center">
-          <div class="row">
-            <div class="col-lg-8">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<?php } ?>
 <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['activity']['showTable'] == true) { ?>
 <div class="col-lg-4">
   <div class="panel panel-default cmw-panel">
@@ -946,14 +823,18 @@ for($j = 0; $j < count($lecture['Json']); $j++)
   <?php }
 } ?>
 
-<?php for($i = 0; $i < count($lastAchatmcgpass); $i++) {
+<?php 
+if(isset($lastAchatmcgpass))
+{
+for($i = 0; $i < count($lastAchatmcgpass); $i++) {
   if(!empty($lastAchatmcgpass[$i]['date_achat'])) { ?>
   <a href="#" class="list-group-item">
     <span class="badge"><?php echo $lastAchatmcgpass[$i]['date_achat'].' ??:??:??'; ?></span>
     <i class="fa fa-fw fa-mobile"></i> Dernier achat sur mcgpass par : <strong><?php echo $lastAchatmcgpass[$i]['pseudo'].'</strong> au prix de <strong>'.$lastAchatmcgpass[$i]['payout'].'€</strong>'; ?>
   </a>
   <?php }
-} ?>
+} 
+}?>
 
 <?php for($i = 0; $i < count($lastOffre); $i++) {
  if(!empty($lastOffre[$i]['id'])) {
@@ -979,7 +860,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 
 </div>
 <div class="text-center">
- Ceci sont les 10 dernières activités. <span class="fa fa-credit-card-alt"></span>
+ Ceci sont les 10 dernières activités. <span class="fa fa-briefcase"></span>
 </div>
 </div>
 </div>

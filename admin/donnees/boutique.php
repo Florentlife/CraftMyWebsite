@@ -15,10 +15,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 		$i = 0;
 		while($fetch = $req->fetch(PDO::FETCH_ASSOC))
 		{
-			$coupons[$i]['id'] = $fetch['id'];
-			$coupons[$i]['titre'] = $fetch['titre'];
-			$coupons[$i]['code_promo'] = $fetch['code_promo'];
-			$coupons[$i]['pourcent'] = $fetch['pourcent'];
+			$coupons[$i] = $fetch;
 			$i++;
 		}
 		return $coupons;
@@ -54,6 +51,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['showPage'] == tru
 			$offres[$i]['nom'] = $donnees['nom'];
 			$offres[$i]['description'] = $donnees['description'];
 			$offres[$i]['prix'] = $donnees['prix'];
+			$offres[$i]['nbre_vente'] = $donnees['nbre_vente'];
 			$offres[$i]['categorie'] = $donnees['categorie_id'];
 			$i++;
 		}

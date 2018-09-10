@@ -19,7 +19,7 @@ while($td = $req_topic->fetch(PDO::FETCH_ASSOC))
 }
 $req_answer = $bddConnection->prepare('SELECT cmw_forum_like.pseudo AS pseudo_likeur, Appreciation, id_answer, cmw_forum_answer.pseudo
 AS pseudo_posteur, id_topic, vu, new FROM cmw_forum_like INNER JOIN cmw_forum_answer WHERE id_answer = cmw_forum_answer.id
-AND cmw_forum_like.pseudo != :pseudo AND cmw_forum_answer.pseudo = :pseudop');
+AND cmw_forum_like.pseudo != :pseudo AND cmw_forum_answer.pseudo = :pseudop AND type = 2');
 $req_answer->execute(array(
 	'pseudo' => $_Joueur_['pseudo'],
 	'pseudop' => $_Joueur_['pseudo']
@@ -29,7 +29,7 @@ while($answer_liked = $req_answer->fetch(PDO::FETCH_ASSOC))
 	if($answer_liked['vu'] == 0 AND $answer_liked['new'] == 0)
 	{
 		$new++;
-		$update = $bddConnection->prepare('UPDATE cmw_forum_like SET new = 1 WHERE id_answer = :id AND pseudo = :pseudo ');
+		$update = $bddConnection->prepare('UPDATE cmw_forum_like SET new = 1 WHERE id_answer = :id AND pseudo = :pseudo AND type = 2');
 		$update->execute(array(
 			'id' => $answer_liked['id_answer'],
 			'pseudo' => $answer_liked['pseudo_likeur']

@@ -36,7 +36,7 @@ if(isset($_Joueur_)) {
 			}
 		}
 
-		for($i = 2; $i <= end($lastGrade); $i++) {
+		for($i = 2; $i <= max($lastGrade); $i++) {
 			$checkGrade = new Lire($dirGrades.$i.'.yml');
 			$checkGrade = $checkGrade->GetTableau();
 			$compareGrade = $checkGrade['Grade'];
@@ -48,10 +48,10 @@ if(isset($_Joueur_)) {
 			header('Location: admin.php?page=grade&gradeNameAlreadyUsed=true');
 			exit();
 		} else {
-			if(end($lastGrade) == -1) {
-			    $numGrade = end($lastGrade) + 3;
+			if(max($lastGrade) == -1) {
+			    $numGrade = max($lastGrade) + 3;
 		    } else {
-			    $numGrade = end($lastGrade) + 1;
+			    $numGrade = max($lastGrade) + 1;
 		    }
 			if(!file_exists($dirGrades.'NOT_TOUCH/default.yml')) {
 				createGradeDefault();
