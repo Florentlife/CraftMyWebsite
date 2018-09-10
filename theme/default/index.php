@@ -175,6 +175,7 @@ function securPass()
 			if($("#correspondance").hasClass("text-danger"))
 				$("#correspondance").removeClass("text-danger");
 			$("#correspondance").html("Les mots de passes rentrés correspondent !!!");
+			$("#InscriptionBtn").removeAttr("disabled");
 		}
 		else
 		{
@@ -183,11 +184,7 @@ function securPass()
 				$("#correspondance").removeClass("text-success");
 			$("#correspondance").html("Les mots de passes rentrés ne correspondent pas !!!");
 		}
-		if($("#MdpInscriptionForm").val() == $("#MdpConfirmInscriptionForm").val() && result['score'] == 4)
-		{
-			$("#InscriptionBtn").removeAttr("disabled");
-		}
-		else
+		if($("#MdpInscriptionForm").val() != $("#MdpConfirmInscriptionForm").val())
 		{
 			$("#InscriptionBtn").attr("disabled", true);
 		}
