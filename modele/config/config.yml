@@ -13,7 +13,7 @@ General:
     ipTexte: 
     ip: 
     port: 
-    statut: 1
+    statut: 2
     createur: 
         nom: Créateur
         prefix: prefixCreateur
@@ -40,9 +40,9 @@ Payement:
     paypalMethodeAPI: "1"
 color:
     theme:
-        main: '#ff0080'
-        hover: '#ff00ff'
-        focus: '#ff80c0'
+        main: '#0080c0'
+        hover: '#0080ff'
+        focus: '#2080c0'
     panel:
         main: '#ff8040'
         hover: '#c16100'

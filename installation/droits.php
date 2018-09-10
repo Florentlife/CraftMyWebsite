@@ -3,6 +3,7 @@ function SetHtpasswd() {
     $dir[0] = '../modele/.htpasswd';
     $dir[1] = '../controleur/.htpasswd';
     $dir[2] = '../admin/actions/.htpasswd';
+    $dir[3] = '../utilisateurs/.htpasswd';
     $rand = md5(uniqid(rand(), true)); 
 
     for($i = 0; $i < count($dir); $i++)
@@ -24,6 +25,7 @@ function VerifieChmod() {
     $dirR[6] = '../modele/.htpasswd';
     $dirR[7] = '../controleur/.htpasswd';
     $dirR[8] = '../admin/actions/.htpasswd';
+    $dirR[9] = '../utilisateurs/.htpasswd';
 
 
     $dir[0] = 'installation/install.yml';
@@ -35,9 +37,11 @@ function VerifieChmod() {
     $dir[6] = 'modele/.htpasswd';
     $dir[7] = 'controleur/.htpasswd';
     $dir[8] = 'admin/actions/.htpasswd';
+    $dir[9] = 'utilisateurs/.htpasswd';
 
     $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/', '../theme/upload/panel/');
     $dirDossier[1] = array('../theme/smileys/');
+    $dirDossier[2] = array('../utilisateurs/');
 
     $err = null;
     for($i = 0; $i < count($dir); $i++)

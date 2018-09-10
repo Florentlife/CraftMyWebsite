@@ -63,9 +63,24 @@ CREATE TABLE IF NOT EXISTS `cmw_dedipass` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+CREATE TABLE `cmw_votes_temp` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `pseudo` varchar(16) NOT NULL,
+  `methode` tinyint(3) UNSIGNED NOT NULL,
+  `action` varchar(100) NOT NULL,
+  `serveur` tinyint(3) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+CREATE TABLE `cmw_votes_recompense_auto_config` (
+  `id` smallint(5) UNSIGNED NOT NULL,
+  `type` tinyint(3) UNSIGNED NOT NULL,
+  `valueType` varchar(50) NOT NULL,
+  `message` varchar(255) DEFAULT NULL,
+  `commande` varchar(255) NOT NULL,
+  `serveur` smallint(5) UNSIGNED NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 INSERT INTO `cmw_ban_config` (`id`, `titre`, `texte`) VALUES
 (1, 'Vous êtes bannis', 'Vous avez été bannis du site, veuillez prendre contact avec l\'administration pour les raisons de votre bannissement.');
 
 ALTER TABLE cmw_forum_categorie ADD ordre INT UNSIGNED NOT NULL;
-
-ALTER TABLE `cmw_news` ADD `pinned` BOOLEAN NOT NULL DEFAULT FALSE AFTER `image`;
