@@ -671,7 +671,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
           if($result_etatMail == "1") { ?>
           <th>Etat</th>
           <?php } ?>
-          <th>Adresse IP <button data-toggle="modal" data-target="#modifPerIP">Editer</button></th>
+          <th>Adresse IP</th>
         </tr>
       </thead>
       <tbody>

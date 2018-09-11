@@ -2,7 +2,7 @@
 admin/actions/.htpasswd
 controleur/.htpasswd
 modele/.htpasswd
-*.yml
+modele/config/
 modele/.htpasswd
 modele/config/config.yml
 modele/config/configServeur.yml

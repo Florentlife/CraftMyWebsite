@@ -25,7 +25,6 @@ function VerifieChmod() {
     $dirR[6] = '../modele/.htpasswd';
     $dirR[7] = '../controleur/.htpasswd';
     $dirR[8] = '../admin/actions/.htpasswd';
-    $dirR[9] = '../utilisateurs/.htpasswd';
 
 
     $dir[0] = 'installation/install.yml';
@@ -37,7 +36,6 @@ function VerifieChmod() {
     $dir[6] = 'modele/.htpasswd';
     $dir[7] = 'controleur/.htpasswd';
     $dir[8] = 'admin/actions/.htpasswd';
-    $dir[9] = 'utilisateurs/.htpasswd';
 
     $dirDossier[0] = array('../theme/upload/', '../theme/upload/slider/', '../theme/upload/panel/');
     $dirDossier[1] = array('../theme/smileys/');
