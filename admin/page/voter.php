@@ -84,7 +84,7 @@
                         </div>
                         <div class="row">
                             <label class="control-label">Lien de vote</label>
-                            <input type="text" name="lien" placeholder="ex: http://serveurs-minecraft.com/...../" class="form-control" />
+                            <input type="url" name="lien" placeholder="ex: http://serveurs-minecraft.com/...../" class="form-control" />
                         </div>
                         <div class="row">
                             <label class="control-label">Titre du lien</label>

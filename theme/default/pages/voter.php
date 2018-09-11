@@ -19,7 +19,14 @@
 				}
 				elseif(isset($_GET['success']))
 				{
-					?><div class="alert alert-success">Votre récompense arrive, si vous n'avez pas vu de fenêtre s'ouvrir pour voter, la fenêtre à dû s'ouvrir derrière votre navigateur, validez le vote et profitez de votre récompense In-Game !<a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a><script>$(".alert").alert()</script></div><?php
+					if($_GET['success'] != 'recupTemp')
+					{
+						?><div class="alert alert-success">Votre récompense arrive, si vous n'avez pas vu de fenêtre s'ouvrir pour voter, la fenêtre à dû s'ouvrir derrière votre navigateur, validez le vote et profitez de votre récompense In-Game !<a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a><script>$(".alert").alert()</script></div><?php
+					}
+					else
+					{
+						?><div class="alert alert-success">Votre(vos) récompense(s) arrive(nt), profitez de votre(vos) récompense(s) In-Game !<a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a><script>$(".alert").alert()</script></div><?php
+					}
 				}
 				?>	
 
@@ -105,7 +112,7 @@
 								while($liensVotes = $req_vote->fetch(PDO::FETCH_ASSOC))
 								{
 									?>
-										<button type="submit" class="btn btn-primary bouton-vote" name="site" value="<?php echo $liensVotes['id']; ?>" onclick="window.open('<?php echo $liensVotes['lien']; ?>','Fiche','toolbar=no,status=no,width=1350 ,height=900,scrollbars=yes,location=no,resize=yes,menubar=yes')" >
+										<button type="submit" style="cursor: pointer;" class="btn btn-primary bouton-vote" name="site" value="<?php echo $liensVotes['id']; ?>" onclick="window.open('<?php echo $liensVotes['lien']; ?>','Fiche','toolbar=no,status=no,width=1350 ,height=900,scrollbars=yes,location=no,resize=yes,menubar=yes')" >
 											<?php echo $liensVotes['titre']; ?>
 				                        </button>					
 								<?php								

@@ -386,6 +386,7 @@ CREATE TABLE IF NOT EXISTS `cmw_users` (
   `ip` varchar(40) NOT NULL,
   `CleUnique` varchar(32) NOT NULL,
   `ValidationMail` int(1) NOT NULL,
+  `img_extension` char(4) NOT NULL,
   `show_email` tinyint(1) UNSIGNED NOT NULL,
   `signature` text,
   PRIMARY KEY (`id`)
