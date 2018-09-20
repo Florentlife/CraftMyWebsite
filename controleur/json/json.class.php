@@ -170,18 +170,14 @@ class JsonCon
 		$serveurStats['version'] = substr($serveurStats['version'], 0, 6);
 
 		$serveurStats['usedMemoryServer'] = $this->call("server.performance.memory.used");
-		$serveurStats['usedMemoryServer'] = formatSize($serveurStats['usedMemoryServer'][0]["success"]);
-		
 	    $serveurStats['totalMemoryServer'] = $this->call("server.performance.memory.total");
-	    $serveurStats['totalMemoryServer'] = formatSize($serveurStats['totalMemoryServer'][0]["success"]);
-		
 	    $serveurStats['usedDiskSizeServer'] = $this->call("server.performance.disk.used");
-	    $serveurStats['usedDiskSizeServer'] = formatSize($serveurStats['usedDiskSizeServer'][0]["success"]);
-
 	    $serveurStats['totalDiskSizeServer'] = $this->api->call("server.performance.disk.size");
+	    $serveurStats['freeDiskSizeServer'] = formatSize($serveurStats['totalDiskSizeServer'][0]["success"] - $serveurStats['usedDiskSizeServer'][0]["success"]);
+		$serveurStats['usedMemoryServer'] = formatSize($serveurStats['usedMemoryServer'][0]["success"]);
+	    $serveurStats['totalMemoryServer'] = formatSize($serveurStats['totalMemoryServer'][0]["success"]);
+	    $serveurStats['usedDiskSizeServer'] = formatSize($serveurStats['usedDiskSizeServer'][0]["success"]);
 	    $serveurStats['totalDiskSizeServer'] = formatSize($serveurStats['totalDiskSizeServer'][0]["success"]);
-
-	    $serveurStats['freeDiskSizeServer'] = formatSize($serveurStats['totalDiskSizeServer'] - $serveurStats['usedDiskSizeServer']);
 	    return $serveurStats;
 	}
 }
