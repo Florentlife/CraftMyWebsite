@@ -195,14 +195,14 @@ for($j = 0; $j < count($lecture['Json']); $j++)
            <h4>Gérer le serveur</h4>
            <div class="row">
             <?php for($i = 0;$i < count($serveurStats); $i++) { ?>
-            <div class="row>">
+            <div>
               <strong>Version du serveur : <?php echo $serveurStats[$i]['version']; ?></strong>
             </div>
-            <div class="row>">
-              <strong>Mémoire du serveur : <?php echo $serveurStats[$i]['usedMemoryServer'] .$serveurStats[$i]['uMS'] . ' / ' .$serveurStats[$i]['totalMemoryServer'] .$serveurStats[$i]['tMS'] . '.'; ?></strong>
+            <div>
+              <strong>Mémoire du serveur : <?php echo $serveurStats[$i]['usedMemoryServer'] . ' / ' .$serveurStats[$i]['totalMemoryServer']; ?></strong>
             </div>
-            <div class="row>">
-              <strong>Disque de la machine : <?php echo $serveurStats[$i]['usedDiskSizeServer'] .$serveurStats[$i]['uDSS'] . ' / ' .$serveurStats[$i]['totalDiskSizeServer'] .$serveurStats[$i]['tDSS'] . ' (' .$serveurStats[$i]['freeDiskSizeServer'] .$serveurStats[$i]['fDSS'] . ' de libre.)'; ?></strong>
+            <div>
+              <strong>Disque de la machine : <?php echo $serveurStats[$i]['usedDiskSizeServer'] . ' / ' .$serveurStats[$i]['totalDiskSizeServer'] . ' (' .$serveurStats[$i]['freeDiskSizeServer'] . ' de libre.)'; ?></strong>
             </div>
             <div class="row">
               <div class="col-md-4 text-center">
