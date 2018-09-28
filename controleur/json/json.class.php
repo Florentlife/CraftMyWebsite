@@ -169,20 +169,20 @@ class JsonCon
 		$serveurStats['version'] = $serveurStats['version'][0]['success'];
 		$serveurStats['version'] = substr($serveurStats['version'], 0, 6);
 
-		$serveurStats['usedMemoryServer'] = $this->call("server.performance.memory.used");
-	    $serveurStats['totalMemoryServer'] = $this->call("server.performance.memory.total");
-	    $serveurStats['usedDiskSizeServer'] = $this->call("server.performance.disk.used");
+		$serveurStats['usedMemoryServer'] = $this->api->call("server.performance.memory.used");
+	    $serveurStats['totalMemoryServer'] = $this->api->call("server.performance.memory.total");
+	    $serveurStats['usedDiskSizeServer'] = $this->api->call("server.performance.disk.used");
 	    $serveurStats['totalDiskSizeServer'] = $this->api->call("server.performance.disk.size");
-	    $serveurStats['freeDiskSizeServer'] = formatSize($serveurStats['totalDiskSizeServer'][0]["success"] - $serveurStats['usedDiskSizeServer'][0]["success"]);
-		$serveurStats['usedMemoryServer'] = formatSize($serveurStats['usedMemoryServer'][0]["success"]);
-	    $serveurStats['totalMemoryServer'] = formatSize($serveurStats['totalMemoryServer'][0]["success"]);
-	    $serveurStats['usedDiskSizeServer'] = formatSize($serveurStats['usedDiskSizeServer'][0]["success"]);
-	    $serveurStats['totalDiskSizeServer'] = formatSize($serveurStats['totalDiskSizeServer'][0]["success"]);
+	    $serveurStats['freeDiskSizeServer'] = $this->formatSize($serveurStats['totalDiskSizeServer'][0]["success"] - $serveurStats['usedDiskSizeServer'][0]["success"]);
+		$serveurStats['usedMemoryServer'] = $this->formatSize($serveurStats['usedMemoryServer'][0]["success"]);
+	    $serveurStats['totalMemoryServer'] = $this->formatSize($serveurStats['totalMemoryServer'][0]["success"]);
+	    $serveurStats['usedDiskSizeServer'] = $this->formatSize($serveurStats['usedDiskSizeServer'][0]["success"]);
+	    $serveurStats['totalDiskSizeServer'] = $this->formatSize($serveurStats['totalDiskSizeServer'][0]["success"]);
 	    return $serveurStats;
 	}
-}
 
-function formatSize($nb){
-	return ($nb < 1024) ? round($nb, 2) ."Mo" : round($nb/1024, 2) ."Go";
+	public function formatSize($nb){
+		return ($nb < 1024) ? round($nb, 2) ."Mo" : round($nb/1024, 2) ."Go";
+}
 }
 ?>

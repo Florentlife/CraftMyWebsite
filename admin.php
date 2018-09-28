@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 date_default_timezone_set('Europe/Paris');
 ini_set('display_errors', 1);
 	// On appelle les classes du controleur qui instancies les objets principaux (BDD, config, JSONAPI...).
@@ -8,6 +8,15 @@ ini_set('display_errors', 1);
 
 	// On démarre les sessions sur la page pour récupérer les variables globales(les données du joueur...).
 	session_start();
+
+	if(isset($_COOKIE['id'], $_COOKIE['pass']))
+	{
+		require_once('controleur/joueur/connexion_cookie.php');
+		require_once ('controleur/joueur/joueur.class.php');
+        $globalJoueur = new Joueur();
+        // Cette variable contiens toutes les informations du joueur.
+        $_Joueur_ = $globalJoueur->getArrayDonneesUtilisateur();
+	}
 
 	// On récupère la variable globale des grades $_PGrades_
 	$switch = true;
@@ -43,7 +52,7 @@ ini_set('display_errors', 1);
 	}
 	else
 	{
-		header('Location: index.php');
+		//header('Location: index.php');
 	}
 	
 ?>
