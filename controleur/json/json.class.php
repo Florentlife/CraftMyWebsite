@@ -169,75 +169,20 @@ class JsonCon
 		$serveurStats['version'] = $serveurStats['version'][0]['success'];
 		$serveurStats['version'] = substr($serveurStats['version'], 0, 6);
 
-                                # Ajout par Sprik07 #
-#==============================================================================================#
-		$serveurStats['uMS'] = array('Mo', 'Go');
-		$serveurStats['tMS'] = array('Mo', 'Go');
-		$serveurStats['usedMemoryServer'] = $this->api->call("server.performance.memory.used");
-		$serveurStats['usedMemoryServer'] = $serveurStats['usedMemoryServer'][0]["success"];
-		$serveurStats['usedMemoryServer'] = round($serveurStats['usedMemoryServer']);
-		if ($serveurStats['usedMemoryServer'] < 1000) { //Taille en Mo
-		//$serveurStats['totalMemoryServer'] = round($serveurStats['totalMemoryServer']/(1024*1024),2);
-			$serveurStats['uMS'] = $serveurStats['uMS'][0];
-	    } else { //Taille en Go
-	    	$serveurStats['usedMemoryServer'] = round($serveurStats['usedMemoryServer']/1024,2);
-	    	$serveurStats['usedMemoryServer'] = round($serveurStats['usedMemoryServer']);
-	    	$serveurStats['uMS'] = $serveurStats['uMS'][1];
-	    }
-
-	    $serveurStats['totalMemoryServer'] = $this->api->call("server.performance.memory.total");
-	    $serveurStats['totalMemoryServer'] = $serveurStats['totalMemoryServer'][0]["success"];
-	    $serveurStats['totalMemoryServer'] = round($serveurStats['totalMemoryServer']);
-		if ($serveurStats['totalMemoryServer'] < 1000) { //Taille en Mo
-		//$serveurStats['totalMemoryServer'] = round($serveurStats['totalMemoryServer']/(1024*1024),2);
-			$serveurStats['tMS'] = $serveurStats['tMS'][0];
-	    } else { //Taille en Go
-	    	$serveurStats['totalMemoryServer'] = round($serveurStats['totalMemoryServer']/1024,2);
-	    	$serveurStats['totalMemoryServer'] = round($serveurStats['totalMemoryServer']);
-	    	$serveurStats['tMS'] = $serveurStats['tMS'][1];
-	    }
-#==============================================================================================#
-	    $serveurStats['uDSS'] = array('Mo', 'Go');
-	    $serveurStats['tDSS'] = array('Mo', 'Go');
-	    $serveurStats['fDSS'] = array('Mo', 'Go');
-	    $serveurStats['usedDiskSizeServer'] = $this->api->call("server.performance.disk.used");
-	    $serveurStats['usedDiskSizeServer'] = $serveurStats['usedDiskSizeServer'][0]["success"];
-	    $serveurStats['usedDiskSizeServer'] = round($serveurStats['usedDiskSizeServer']);
-		if ($serveurStats['usedDiskSizeServer'] < 1000) { //Taille en Mo
-		//$serveurStats['totalMemoryServer'] = round($serveurStats['totalMemoryServer']/(1024*1024),2);
-			$serveurStats['uDSS'] = $serveurStats['uDSS'][0];
-	    } else { //Taille en Go
-	    	$serveurStats['usedDiskSizeServer'] = round($serveurStats['usedDiskSizeServer']/1024,2);
-	    	$serveurStats['usedDiskSizeServer'] = round($serveurStats['usedDiskSizeServer']);
-	    	$serveurStats['uDSS'] = $serveurStats['uDSS'][1];
-	    }
-
+		$serveurStats['usedMemoryServer'] = $this->call("server.performance.memory.used");
+	    $serveurStats['totalMemoryServer'] = $this->call("server.performance.memory.total");
+	    $serveurStats['usedDiskSizeServer'] = $this->call("server.performance.disk.used");
 	    $serveurStats['totalDiskSizeServer'] = $this->api->call("server.performance.disk.size");
-	    $serveurStats['totalDiskSizeServer'] = $serveurStats['totalDiskSizeServer'][0]["success"];
-	    $serveurStats['totalDiskSizeServer'] = round($serveurStats['totalDiskSizeServer']);
-		if ($serveurStats['totalDiskSizeServer'] < 1000) { //Taille en Mo
-		//$serveurStats['totalMemoryServer'] = round($serveurStats['totalMemoryServer']/(1024*1024),2);
-			$serveurStats['tDSS'] = $serveurStats['tDSS'][0];
-	    } else { //Taille en Go
-	    	$serveurStats['totalDiskSizeServer'] = round($serveurStats['totalDiskSizeServer']/1024,2);
-	    	$serveurStats['totalDiskSizeServer'] = round($serveurStats['totalDiskSizeServer']);
-	    	$serveurStats['tDSS'] = $serveurStats['tDSS'][1];
-	    }
-
-	    $serveurStats['freeDiskSizeServer'] = $this->api->call("server.performance.disk.free");
-	    $serveurStats['freeDiskSizeServer'] = $serveurStats['freeDiskSizeServer'][0]["success"];
-	    $serveurStats['freeDiskSizeServer'] = round($serveurStats['freeDiskSizeServer']);
-		if ($serveurStats['freeDiskSizeServer'] < 1000) { //Taille en Mo
-		//$serveurStats['totalMemoryServer'] = round($serveurStats['totalMemoryServer']/(1024*1024),2);
-			$serveurStats['fDSS'] = $serveurStats['fDSS'][0];
-	    } else { //Taille en Go
-	    	$serveurStats['freeDiskSizeServer'] = round($serveurStats['freeDiskSizeServer']/1024,2);
-	    	$serveurStats['freeDiskSizeServer'] = round($serveurStats['freeDiskSizeServer']);
-	    	$serveurStats['fDSS'] = $serveurStats['fDSS'][1];
-	    }
-#==============================================================================================#
+	    $serveurStats['freeDiskSizeServer'] = formatSize($serveurStats['totalDiskSizeServer'][0]["success"] - $serveurStats['usedDiskSizeServer'][0]["success"]);
+		$serveurStats['usedMemoryServer'] = formatSize($serveurStats['usedMemoryServer'][0]["success"]);
+	    $serveurStats['totalMemoryServer'] = formatSize($serveurStats['totalMemoryServer'][0]["success"]);
+	    $serveurStats['usedDiskSizeServer'] = formatSize($serveurStats['usedDiskSizeServer'][0]["success"]);
+	    $serveurStats['totalDiskSizeServer'] = formatSize($serveurStats['totalDiskSizeServer'][0]["success"]);
 	    return $serveurStats;
 	}
 }
 
+function formatSize($nb){
+	return ($nb < 1024) ? round($nb, 2) ."Mo" : round($nb/1024, 2) ."Go";
+}
 ?>

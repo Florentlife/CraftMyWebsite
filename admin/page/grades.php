@@ -147,67 +147,22 @@
                                             <label class="control-label">Nom du grade</label>
                                             <input class="form-control" name="gradeName<?php echo $i; ?>" type="text" style="text-align: center;" value="<?php echo $idGrade[$i]['Grade']; ?>" placeholder="Modérateur"/>
                                             <label class="control-label">Couleur du Grade</label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixPrimary" value="prefixPrimary" <?=($idGrade[$i]['prefix'] == "prefixPrimary") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixPrimary" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixSecondary" value="prefixSecondary" <?=($idGrade[$i]['prefix'] == "prefixSecondary") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixSecondary" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixRed" value="prefixRed" <?=($idGrade[$i]['prefix'] == "prefixRed") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixRed" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixGreen" value="prefixGreen" <?=($idGrade[$i]['prefix'] == "prefixGreen") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixGreen" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixOlive" value="prefixOlive"<?=($idGrade[$i]['prefix'] == "prefixOlive") ? 'checked' : ''; ?> >
-                                                <span class="prefix prefixOlive" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixLightGreen" value="prefixLightGreen" <?=($idGrade[$i]['prefix'] == "prefixLightGreen") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixLightGreen" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixBlue" value="prefixBlue" <?=($idGrade[$i]['prefix'] == "prefixBlue") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixBlue" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixRoyalBlue" value="prefixRoyalBlue" <?=($idGrade[$i]['prefix'] == "prefixRoyalBlue") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixRoyalBlue" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixSkyBlue" value="prefixSkyBlue" <?=($idGrade[$i]['prefix'] == "prefixSkyBlue") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixSkyBlue" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixGray" value="prefixGray" <?=($idGrade[$i]['prefix'] == "prefixGray") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixGray" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixSilver" value="prefixSilver" <?=($idGrade[$i]['prefix'] == "prefixSilver") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixSilver" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixYellow" value="prefixYellow" <?=($idGrade[$i]['prefix'] == "prefixYellow") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixYellow" style="height: 10px; width: 5px;"></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                              <input class="form-check-input" type="radio" name="prefix<?php echo $i; ?>" id="prefixOrange" value="prefixOrange" <?=($idGrade[$i]['prefix'] == "prefixOrange") ? 'checked' : ''; ?>>
-                                                <span class="prefix prefixOrange" style="height: 10px; width: 5px;"></span>
-                                            </label><br/>
+											
+											<?php for($a = 0; $a < count($prefixs); $a++) {?>
+                                                <label class="checkbox-inline">
+                                                    <input class="form-check-input" type="radio" name="prefixCreateur" id="<?=$prefixs[$a];?>" value="<?=$prefixs[$a];?>" <?=($idGrade[$i]['prefix'] == $prefixs[$a]) ? 'checked' : ''; ?>>
+                                                        <span class="prefix <?=$prefixs[$a];?>" style="height: 15px; width: 20px;">T</span>
+                                                </label>
+                                            <?php }?>
+                                            <br/>
                                             <label class="control-label">Effets</label>
-                                            <label class="checkbox-inline">
-                                                <input class="form-check-input" type="radio" name="effet<?php echo $i; ?>" id="spark" value="style5" <?=($idGrade[$i]['effets'] == "style5") ? 'checked' : ''; ?>>
-                                                    <span class="username"><span class="style5">Test</span></span>
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input class="form-check-input" type="radio" name="effet<?php echo $i; ?>" id="etoile" value="style16" <?=($idGrade[$i]['effets'] == "style16") ? 'checked' : ''; ?>>
-                                                    <span class="username"><span class="style16">Test</span></span>
-                                            </label>
+                                            <?php for($a =0; $a < count($effets); $a++) {?>
+												<label class="checkbox-inline">
+                                                    <input class="form-check-input" type="radio" name="effetCreateur" value="<?=$effets[$a];?>" <?=($idGrade[$i]['effets'] == $effets[$a]) ? 'checked' : ''; ?>>
+                                                        <span class="username"><span class="<?=$effets[$a];?>">Test</span></span>
+                                                </label><?php
+                                            }
+                                            ?>
                                         </div>
                                         <center><div class="checkbox">
                                             <label>

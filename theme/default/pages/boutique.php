@@ -52,7 +52,7 @@
 								<?php
 									foreach($categories as $key => $value)
 									{
-										$categories[$key]['offres'] == 0;
+										$categories[$key]['offres'] = 0;
 									}
 									for($i = 1; $i <= count($offresTableau); $i++)
 									{
@@ -85,7 +85,7 @@
 														} else { 
 															echo'<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-block" ><span class="fas fa-user"></span> Se connecter</a>';
 														}
-														echo '<button class="btn btn-success btn-block">Prix : ' . ($offresTableau[$i]['prix'] == '0' ? 'gratuit' : $offresTableau[$i]['prix'].'<i class="fas fa-gem">') . ' </i></button>
+														echo '<button class="btn btn-success btn-block">Prix : ' . ($offresTableau[$i]['prix'] == '0' ? 'gratuit' : $offresTableau[$i]['prix'].'<i class="fas fa-gem"></i>') . ' </button>
 													
 											</div>		';
 											$categories[$j]['offres']++;
