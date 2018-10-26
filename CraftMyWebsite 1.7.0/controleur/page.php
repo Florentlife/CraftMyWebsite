@@ -133,7 +133,7 @@ if(isset($_GET['page']))
 			if(!isset($pages) OR empty($pages))
 			{
 				include('controleur/erreur.php');
-				$erreur = (!isset($_GET['erreur'])) ? $erreur = 1500879564 : (int)$_GET['erreur'];
+				$erreur = (!isset($_GET['erreur'])) ? 1500879564 : (int)$_GET['erreur'];
 				unset($type);
 				unset($titre);
 				unset($contenue);
