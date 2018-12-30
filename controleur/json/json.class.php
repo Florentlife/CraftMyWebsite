@@ -22,12 +22,19 @@ class JsonCon
 		}
 		else
 		{
-			$api['query'] = new MinecraftQuery();
-			$api['query']->Connect($adresse, $post['query']);
-			$api['rcon'] = new SourceQuery();
-			$api['rcon']->Connect($adresse, $post['rcon'], 1, SourceQuery::SOURCE);
-			$api['rcon']->SetRconPassword($mdp);
-			$this->mode = 2;
+			try
+			{
+				$api['query'] = new MinecraftQuery();
+				$api['query']->Connect($adresse, $post['query']);
+				$api['rcon'] = new SourceQuery();
+				$api['rcon']->Connect($adresse, $post['rcon'], 1, SourceQuery::SOURCE);
+				$api['rcon']->SetRconPassword($mdp);
+				$this->mode = 2;
+			}
+			catch(Exception $e)
+			{
+				$api = null;
+			}
 		}
 		$this->api = $api;
 	}
@@ -43,7 +50,8 @@ class JsonCon
 			$c = $this->api->call("server.version");
 		else
 		{
-			$c = $this->api['query']->GetInfo();
+			if($this->api != null)
+				$c = $this->api['query']->GetInfo();
 		}
 		return $c;
 	}
@@ -68,7 +76,8 @@ class JsonCon
 		}
 		else
 		{
-			$this->api['rcon']->Rcon("say ".$message);
+			if($this->api != null)
+				$this->api['rcon']->Rcon("say ".$message);
 		}
 	}
 
@@ -80,7 +89,8 @@ class JsonCon
 		}
 		else
 		{
-			$data = $this->api['rcon']->Rcon('say '.$donnees);
+			if($this->api != null)	
+				$data = $this->api['rcon']->Rcon('say '.$donnees);
 		}
 		return $data;
 	}
@@ -101,8 +111,11 @@ class JsonCon
 		}
 		else
 		{
-			$data = $this->api['query']->GetInfo();
-			$plugins['Test'] = $data['Plugins'];
+			if($this->api != null)
+			{
+				$data = $this->api['query']->GetInfo();
+				$plugins['Test'] = $data['Plugins'];
+			}
 		}
 
 		return $plugins;
@@ -169,7 +182,8 @@ class JsonCon
 		}
 		else
 		{
-			$this->api['rcon']->Rcon($message);
+			if($this->api != null)
+				$this->api['rcon']->Rcon($message);
 		}		
 	}
 	
@@ -217,7 +231,8 @@ class JsonCon
 		}
 		else
 		{
-			$this->api['rcon']->Rcon('give '.$this->pseudo.' '.$commande);
+			if($this->api != null)
+				$this->api['rcon']->Rcon('give '.$this->pseudo.' '.$commande);
 		}
 	}
 
@@ -330,11 +345,13 @@ class JsonCon
 		}
 		else
 		{
-			$data = $this->api['query']->GetInfo();
-			$serveurStats['enLignes'] = $data['Players'];
-			$serveurStats['maxJoueurs'] = $data['MaxPlayers'];
-			$serveurStats['version'] = $data['Version'];
-			$serveurStats['joueurs'] = $this->api['query']->GetPlayers();
+			if($this->api != null)
+			{	$data = $this->api['query']->GetInfo();
+				$serveurStats['enLignes'] = $data['Players'];
+				$serveurStats['maxJoueurs'] = $data['MaxPlayers'];
+				$serveurStats['version'] = $data['Version'];
+				$serveurStats['joueurs'] = $this->api['query']->GetPlayers();
+			}
 		}
 	    return $serveurStats;
 	}
