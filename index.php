@@ -74,4 +74,8 @@ else
         require_once ('controleur/joueur/changerGrade.php');
     }
 }
+foreach($jsonCon as $instance)
+{
+    $instance->close();
+}
 ob_end_flush();
