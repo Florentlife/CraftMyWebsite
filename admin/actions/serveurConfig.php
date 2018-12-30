@@ -12,9 +12,16 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['server']['actions']['edit
 		else
 			$lecture['Json'][$i]['localhost'] = false;
 
-
-		$lecture['Json'][$i]['port'] = $_POST['JsonPort' . $i];
-		$lecture['Json'][$i]['utilisateur'] = $_POST['JsonUser' . $i];
+		if(isset($_POST['JsonPort'.$i]))
+		{
+			$lecture['Json'][$i]['port'] = $_POST['JsonPort' . $i];
+			$lecture['Json'][$i]['utilisateur'] = $_POST['JsonUser' . $i];
+		}
+		else
+		{
+			$lecture['Json'][$i]['port']['rcon'] = $_POST['RconPort'. $i];
+			$lecture['Json'][$i]['port']['query'] = $_POST['QueryPort'. $i];
+		}
 		$lecture['Json'][$i]['mdp'] = $_POST['JsonMdp' . $i];
 		$lecture['Json'][$i]['salt'] = $_POST['JsonSalt' . $i];
 		$lecture['Json'][$i]['nom'] = $_POST['JsonNom' . $i];

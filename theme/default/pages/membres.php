@@ -58,18 +58,18 @@
           <ul class="pagination">
 		  	<?php if($page > 1)
 		  	echo '<li class="page-item">
-		      <a class="page-link" href="?page=membre&page_membre='. ($page-1) .'" aria-label="Précédente">
+		      <a class="page-link" href="?page=membres&page_membre='. ($page-1) .'" aria-label="Précédente">
 		        <span aria-hidden="true">&laquo;</span>
 		        <span class="sr-only">Précédente</span>
 		      </a>
 		    </li>';
 		    for($i = 1; $i <= $Membres->nbPages; $i++)
 		    {
-		    	 ?><li class="page-item"><a class="page-link" href="?page=membre&page_membre=<?=$i;?>"><?=$i;?></a></li><?php
+		    	 ?><li class="page-item"><a class="page-link" href="?page=membres&page_membre=<?=$i;?>"><?=$i;?></a></li><?php
 		  	}
 			if($page < $Membres->nbPages)
 				echo '<li class="page-item">
-		      <a class="page-link" href="?page=membre&page_membre='. ($page+1) .'" aria-label="Suivante">
+		      <a class="page-link" href="?page=membres&page_membre='. ($page+1) .'" aria-label="Suivante">
 		        <span aria-hidden="true">&raquo;</span>
 		        <span class="sr-only">Suivante</span>
 		      </a>
