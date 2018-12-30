@@ -300,7 +300,7 @@ if(isset($_GET['id']))
 				{
 					echo '<div class="col-md-2">';
 					echo ' ';
-					echo $likedata[0]['pseudo'];
+					echo $countlike[0]['pseudo'];
 					echo ' aime ça </div>';
 				}
 			}
