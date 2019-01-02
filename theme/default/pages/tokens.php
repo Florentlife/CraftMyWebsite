@@ -65,7 +65,7 @@
 				<h3 class="panel-title text-center">Paiement par MCGPass</h3>
 			</div>
 			 <div class="panel-body">
-					<div class="alert alert-success">Vous pouvez payer par MCGPass, vous paierez ainsi avec votre forfait téléphonique, c'est donc un avantage important. D'un autre côté, vous serez déversé de moins de tokens qu'avec un payement paypal (qui sont beaucoup moins taxés).</div>
+					<div class="alert alert-success">Vous pouvez payer par MCGPass, vous paierez ainsi avec votre forfait téléphonique, c'est donc un avantage important. D'un autre côté, vous serez déversé de moins de jetons qu'avec un payement paypal (qui sont beaucoup moins taxés).</div>
 							<iframe src="https://secure.mcgpass.com/script_mv/v1/script_payment?id=<?php echo $_Serveur_['Payement']['mcgpass_idSite']; ?>&merchant_data=" width="100%" height="400" marginheight="0" marginwidth="0" style="border:0px" scrolling="yes"></iframe>		
 			</div>
 		</div>
@@ -79,7 +79,7 @@
 				<h3 class="panel-title text-center">Paiement par Dedipass</h3>
 			</div>
 			 <div class="panel-body">
-					<div class="alert alert-success">Vous pouvez payer par Dedipass, vous paierez ainsi avec votre forfait téléphonique, c'est donc un avantage important. D'un autre côté, vous serez déversé de moins de tokens qu'avec un payement paypal (qui sont beaucoup moins taxés).</div>
+					<div class="alert alert-success">Vous pouvez payer par Dedipass, vous paierez ainsi avec votre forfait téléphonique, c'est donc un avantage important. D'un autre côté, vous serez déversé de moins de jetons qu'avec un payement paypal (qui sont beaucoup moins taxés).</div>
 					<div data-dedipass="<?=$_Serveur_['Payement']['public_key'];?>" data-dedipass-custom=""></div>		
 			</div>
 		</div>
