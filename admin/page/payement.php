@@ -77,7 +77,7 @@
                     </div>
                     <div class="row">
                         <label class="control-label">User Paypal</label>
-                        <input type="text" name="paypalUser" class="form-control" value="<?php echo $lectureP['paypalUser']; ?>" placeholder="Demmandez une signature API pour connaitre cette donnée"/>
+                        <input type="text" name="paypalUser" class="form-control" value="<?php echo $lectureP['paypalUser']; ?>" placeholder="Demandez une signature API pour connaitre cette donnée"/>
                     </div>
                     <div class="row">
                         <label class="control-label">Mot de passe Paypal</label>
