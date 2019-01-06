@@ -2,7 +2,7 @@
 
 $email_paypal = $_Serveur_['Payement']['paypalEmail'];/*email associé au compte paypal du vendeur*/
 $item_prix = $offresTableau[$i]['prix'];    /*prix du produit*/
-$item_nom = $offresTableau[$i]['description'];; /*Nom du produit*/
+$item_nom = $offresTableau[$i]['nom'];; /*Nom du produit*/
 $url_retour = $_Serveur_['General']['url']. '/index.php?page=token&notif=0';/*page de remerciement à créer*/
 $url_cancel = $_Serveur_['General']['url']. '/index.php?page=token&notif=1'; /* page d'annulation d'achat SI RETOUR */
 $url_confirmation = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

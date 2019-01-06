@@ -1,4 +1,4 @@
-<div class="container-fluid"><div class="row"><div class="cmw-footer">CraftMyWebsite <?php echo $versioncms; ?> ©2014-2018</div></div></div>
+<div class="container-fluid"><div class="row"><div class="cmw-footer">CraftMyWebsite <?php echo $versioncms; ?> ©2014-2019</div></div></div>
 <script type="text/javascript">
     $("cmw-header-username").mouseenter(function(){
         $("<audio></audio>").attr({ 
