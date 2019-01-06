@@ -169,7 +169,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="control-label">Message de l'offre</label>
-                                    <input type="text" name="description" value="<?php echo $paypalOffres[$i]['description']; ?>" class="form-control" placeholder="ex: < img src=... / >"/>
+                                    <input type="text" name="description" value="<?php echo htmlspecialchars($paypalOffres[$i]['description']); ?>" class="form-control" placeholder="ex: < img src=... / >"/>
                                 </div>
                                 <div class="row">
                                     <label class="control-label">Prix de l'offre</label>
