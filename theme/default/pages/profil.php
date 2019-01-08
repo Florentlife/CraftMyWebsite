@@ -260,7 +260,7 @@
 						</tr>
 						<tr>
 							<td>Age</td>
-							<td><?php echo $joueurDonnees['age']; ?> ans.</td>
+							<td><?=$joueurDonnees['age'] ." ". ($joueurDonnees['age'] != "??" && $joueurDonnees['age'] > 1 ? "ans" : "an")?></td>
 						</tr>
 						<tr>
 							<td>Pseudo</td>
