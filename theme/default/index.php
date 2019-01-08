@@ -29,7 +29,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 	<meta charset="utf-8" />
 	<meta name="autor" content="CraftMyWebsite , TheTueurCiTy, <?php echo $_Serveur_['General']['name']; ?>" />
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/ionicons.min.css" rel="stylesheet" type="text/css">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/animate.css" rel="stylesheet" type="text/css">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/hover.min.css" rel="stylesheet" type="text/css">
@@ -45,7 +45,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 	if(file_exists('favicon.ico'))
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
 	?>
-	<title><?php echo $_Serveur_['General']['description'] ?></title>
+	<title><?=$_Serveur_['General']['name'] ." | ". (isset($_GET["page"]) ? $_GET["page"] : $_Serveur_['General']['description'])?></title>
 </head>
 
 <body>
