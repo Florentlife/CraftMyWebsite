@@ -12,10 +12,10 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		--color-focus: <?=$_Serveur_["color"]["theme"]["focus"]?>; 
 	}
 	</style>
-	<meta name="theme-color" content="<?=$configFile["color"]["theme"]["main"]?>">
-	<meta name="msapplication-navbutton-color" content="<?=$configFile["color"]["theme"]["main"]?>">
-	<meta name="apple-mobile-web-app-statut-bar-style" content="<?=$configFile["color"]["theme"]["main"]?>">
-    <meta name="apple-mobile-web-app-capable" content="<?=$configFile["color"]["theme"]["main"]?>">
+	<meta name="theme-color" content="<?=$_Serveur_["color"]["theme"]["main"]?>">
+	<meta name="msapplication-navbutton-color" content="<?=$_Serveur_["color"]["theme"]["main"]?>">
+	<meta name="apple-mobile-web-app-statut-bar-style" content="<?=$_Serveur_["color"]["theme"]["main"]?>">
+    <meta name="apple-mobile-web-app-capable" content="<?=$_Serveur_["color"]["theme"]["main"]?>">
 	<meta property="og:title" content="<?=$_Serveur_['General']['name']?>">
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://<?=$_SERVER["SERVER_NAME"]?>">
@@ -39,6 +39,8 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/snarl.min.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/forum.css">
 	<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/form.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 	<?php
 	if(file_exists('favicon.ico'))
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
@@ -101,6 +103,29 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <?php include('theme/'.$_Serveur_['General']['theme'].'/js/forum.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
 <script>
+
+// cookies consent
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+	"palette": {
+		"popup": {
+		"background": "#000"
+		},
+		"button": {
+			"background": "transparent",
+			"text": "var(--color-main)",
+			"border": "var(--color-main)"
+		}
+	},
+	"position": "bottom-left",
+	"content": {
+		"message": "Ce site utilise des cookies permettant d'améliorer votre expérience utilisateur.",
+		"dismiss": "J'ai compris",
+		"link": "Voir plus..."
+	}
+})});
+
+// bouton scroll to top
 window.onscroll = function() {divScroll()};
 
 function divScroll() {
@@ -117,6 +142,7 @@ function goToTop() {
 	}, 1000);
 }
 
+// fin bouton scroll to top
 function securPass()
 {
 	$("#progress").removeClass("d-none");
