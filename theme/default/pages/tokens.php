@@ -11,7 +11,7 @@
 	<?php } elseif(isset($_GET['success']) AND $_GET['success'] == 'false'){ ?>
 	<div class="alert alert-danger">Le code entré est incorrect, vous n'avez pas été crédité...</div>
 	<?php } 
-	if($_Serveur_['Payement']['paypal'] == true) 
+	if(isset($_Joueur_['pseudo']) && $_Serveur_['Payement']['paypal'] == true) 
 		{
 			?>
 	<div class="panel panel-primary">
@@ -57,7 +57,7 @@
 		</div>
 		<?php 
 	}
-	if($_Serveur_['Payement']['mcgpass'] == true)
+	if(isset($_Joueur_['pseudo']) && $_Serveur_['Payement']['mcgpass'] == true)
 		{
 			?>
 		<div class="panel panel-primary">
@@ -71,7 +71,7 @@
 		</div>
 			<?php 
 		}
-	if($_Serveur_['Payement']['dedipass'] == true)
+	if(isset($_Joueur_['pseudo']) && $_Serveur_['Payement']['dedipass'] == true)
 	{
 		?>
 		<div class="panel panel-primary">
@@ -85,6 +85,9 @@
 		</div>
 		<?php
 	}
-	?>
+	if(!isset($_Joueur_['pseudo'])) {?>
+		<h4>Veuillez vous connecter pour accéder à la boutique:</h4>
+		<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-user"></span> Connexion</a>
+	<?php }?>
 </div>
 </section>
