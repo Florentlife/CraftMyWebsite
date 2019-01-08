@@ -7,6 +7,10 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 			$_POST['mdp'] = htmlspecialchars($_POST['mdp']);
 			$_POST['mdpConfirm'] = htmlspecialchars($_POST['mdpConfirm']);
 			$_POST['email'] = htmlspecialchars($_POST['email']);
+			$_POST['age'] = (int) htmlspecialchars($_POST['age']);
+			if($_POST["age"] > 9999 || $_POST["age"] < 0) $_POST["age"] = 0;
+			
+			$_POST["show_email"] = !empty($_POST['show_email']) ? $_POST["show_email"] == "true" : false;
 			$get_CleUnique = md5(microtime(TRUE)*100000);
 			$get_Pseudo = $_POST['pseudo'];
 			$get_Mail = $_POST['email'];
@@ -109,7 +113,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 							} else {
 
 								require_once('modele/joueur/inscription.class.php');
-								$userInscription = new Inscription($_POST['pseudo'], $get_Mdp, $_POST['email'], time(), 1, 0, $getIp, $bddConnection);
+								$userInscription = new Inscription($_POST['pseudo'], $get_Mdp, $_POST['email'], time(), 1, 0, $_POST["age"], $getIp, $_POST["show_email"], $bddConnection);
 
 								require_once('modele/joueur/ScriptBySprik07/inscriptionValidateMail.class.php');
 								$userValidateMail = new UserValidateMail($get_Pseudo, $bddConnection);
