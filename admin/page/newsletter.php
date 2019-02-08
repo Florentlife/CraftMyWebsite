@@ -55,19 +55,19 @@
 					</div>
 					<div class="checkbox">
 					  	<label>
-					    	<input type="checkbox" value="tls" name="protocol" <?=(isset($_Serveur_['SMTP']['Protocol']) && $_Serveur_['SMTP']['Protocol'] == "tls") ? 'checked': '';?>>
+					    	<input type="checkbox" value="tls" name="protocol" <?=(isset($_Serveur_['SMTP']['Protocole']) && $_Serveur_['SMTP']['Protocole'] == "tls") ? 'checked': '';?>>
 					    	Protocole TLS (à cocher par défaut)
 					  	</label>
 					</div>
 					<div class="checkbox">
 					  	<label>
-					    	<input type="checkbox" value="ssl" name="protocol" <?=(isset($_Serveur_['SMTP']['Protocol']) && $_Serveur_['SMTP']['Protocol'] == "ssl") ? 'checked': '';?>>
+					    	<input type="checkbox" value="ssl" name="protocol" <?=(isset($_Serveur_['SMTP']['Protocole']) && $_Serveur_['SMTP']['Protocole'] == "ssl") ? 'checked': '';?>>
 					    	Protocole SSL (si vous êtes sur de vous !)
 					 	</label>
 					</div>
 					<div class="custom-control custom-checkbox">
-						  <input type="checkbox" class="custom-control-input" name="memoireSMTP" id="memoireSMTP">
-						  <label class="custom-control-label" for="memoireSMTP" <?=(isset($_Serveur_['SMTP'])) ? 'checked' : '';?>>Conserver ses informations pour une prochaine utilisation ?</label>
+						  <input type="checkbox" class="custom-control-input" <?=(isset($_Serveur_['SMTP'])) ? 'checked' : '';?> name="memoireSMTP" id="memoireSMTP">
+						  <label class="custom-control-label" for="memoireSMTP">Conserver ses informations pour une prochaine utilisation ?</label>
 					</div>
 					<input type="text" name="reply" class="form-control" placeholder="Adresse mail de réponse (laissez vide si même que celle d'envoi)">
 					<input type="text" name="sujet" class="form-control" placeholder="Le sujet de la newsletter"/>
