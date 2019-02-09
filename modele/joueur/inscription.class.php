@@ -3,9 +3,9 @@ class Inscription
 {
 	private $reponseConnection;
 	
-    public function __construct($pseudo, $mdp, $email, $temps, $newletter, $rang, $getIp, $bdd)
+    public function __construct($pseudo, $mdp, $email, $temps, $newletter, $rang, $age, $getIp, $show_email, $bdd)
     {	
-		$reponseConnection = $bdd->prepare('INSERT INTO cmw_users (pseudo, mdp, email, anciennete, newsletter, rang, ip) VALUES (:pseudo, :mdp, :email, :anciennete, :newsletter, :rang, :getIp)');
+		$reponseConnection = $bdd->prepare('INSERT INTO cmw_users (pseudo, mdp, email, anciennete, newsletter, rang, age, ip, show_email) VALUES (:pseudo, :mdp, :email, :anciennete, :newsletter, :rang, :age, :getIp, :show_email)');
 		$reponseConnection->execute(array(
 			'pseudo' => $pseudo,
 			'mdp' => $mdp,
@@ -13,7 +13,9 @@ class Inscription
 			'anciennete' => $temps,
 			'newsletter' => $newletter,
 			'rang' => $rang,
-			'getIp' => $getIp
+			'age' => $age,
+			'getIp' => $getIp,
+			'show_email' => $show_email
 			));
 	}
 	

@@ -87,27 +87,40 @@
       <div class="modal-body">
 		<center><div class="alert alert-warning" style="text-align: center;">Veuillez mettre une adresse email correcte !</div></center>
 		<div class="form-group row">
-			<label for="PseudoInscriptionForm" class="col-md-2 col-form-label">Pseudo</label>
+			<label for="PseudoInscriptionForm" class="col-md-2 col-form-label">* Pseudo</label>
 			<div class="col-md-8">
 				<input type="text" name="pseudo" class="form-control" id="PseudoInscriptionForm" placeholder="Votre pseudo exact In-Game">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="EmailInscriptionForm" class="col-md-2 col-form-label">Email</label>
+			<label for="EmailInscriptionForm" class="col-md-2 col-form-label">* Email</label>
 			<div class="col-md-8">
 				<input type="email" name="email" class="form-control" id="EmailInscriptionForm" placeholder="Merci d'entrer une adresse email valide">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="MdpInscriptionForm" class="col-md-2 col-form-label">Mot de passe</label>
+			<label for="MdpInscriptionForm" class="col-md-2 col-form-label">* Mot de passe</label>
 			<div class="col-md-8">
 				<input type="password" name="mdp" class="form-control" onKeyUp="securPass();" id="MdpInscriptionForm" placeholder="Votre mot de passe">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="MdpConfirmInscriptionForm" class="col-md-2 col-form-label">Mot de passe</label>
+			<label for="MdpConfirmInscriptionForm" class="col-md-2 col-form-label">* Mot de passe</label>
 			<div class="col-md-8">
 				<input type="password" name="mdpConfirm" onKeyUp="securPass();" class="form-control" id="MdpConfirmInscriptionForm" placeholder="Confirmez-le">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="MdpageForm" class="col-md-2 col-form-label">Age</label>
+			<div class="col-md-8">
+				<input type="number" name="age" id="MdpageForm" class="form-control" value="0" min="0" max="9999">
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-md-6">
+			  <div class="form-check">
+				<label class="form-check-label"><input type="checkbox" name="show_email" value="true"> Rendre votre adresse email publique</label>
+			  </div>
 			</div>
 		</div>
 		<div class="form-group row d-none" id="progress">
@@ -131,7 +144,7 @@
 		</div>	
 		<div class="form-group row">
 			<div class="col-md-6">
-				<label>Captcha:</label>
+				<label>* Captcha:</label>
 				<input type='text' name='CAPTCHA' placeholder='captcha' class="form-control"/>
 			</div>
 			<div class="col-md-6">
@@ -141,6 +154,7 @@
 				<br/>
 			</div>
 		</div>
+		Les champs obligatoires sont précédés par une étoile ( * )
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
