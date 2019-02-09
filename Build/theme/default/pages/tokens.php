@@ -85,10 +85,6 @@
 		</div>
 		<?php
 	}
-	if(!isset($_Joueur_['pseudo'])) {?>
-		<h4>Veuillez vous connecter pour accéder à la boutique:</h4>
-		<a data-toggle="modal" data-target="#ConnectionSlide" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-user"></span> Connexion</a>
-	<?php }?>
 	?>
 </div>
 </section>

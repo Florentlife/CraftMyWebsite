@@ -10,7 +10,7 @@ include './admin/include/header.php';
 
 				<div class="cmw-left-navbar">
 					<a class="hvr-wobble-horizontal" href="admin.php"> CraftMyWebsite - Gestion du site <?php echo $lecture['General']['name']; ?></a>
-					<a href="index.php" target="_blank" class="cmw-pull-right hvr-grow-shadow"><i class="fa fa-desktop" aria-hidden="true"></i> Voir le site</a>
+					<a href="index.php" class="cmw-pull-right hvr-grow-shadow"><i class="fa fa-desktop" aria-hidden="true"></i> Voir le site</a>
 				</div>
 
 			</div>
