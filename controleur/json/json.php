@@ -3,7 +3,7 @@
 
 $lecture = new Lire('modele/config/configServeur.yml');
 $lecture = $lecture->GetTableau();
-if($lecture['Json'][0]['utilisateur'] == NULL)
+if($lecture['Json'][0]['mdp'] == NULL)
 	unset($jsonCon);
 else
 {
@@ -15,9 +15,8 @@ else
 			$addr = $lecture['Json'][$i]['adresse'];
 
 		$jsonCon[$i] = new JsonCon($addr, $lecture['Json'][$i]['port'], $lecture['Json'][$i]['utilisateur'], $lecture['Json'][$i]['mdp'], $lecture['Json'][$i]['salt']);
-
 		$conEtablie[$i] = $jsonCon[$i]->GetConnection();
-		if(!isset($conEtablie[$i][0]['result']) OR $conEtablie[$i][0]['result'] == 'error')
+		if((!isset($conEtablie[$i][0]['result']) OR $conEtablie[$i][0]['result'] == 'error') AND !isset($conEtablie[$i]['Players']))
 		{
 			$conEtablie[$i] = false;
 			$serveurStats[$i]['enLignes'] = 0;

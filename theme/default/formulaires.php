@@ -184,13 +184,23 @@ if(isset($_GET['page']) && $_GET['page'] == "messagerie")
             <input type="text" class="form-control" name="destinataire" id="destinataire" required maxlength="20">
           </div>
           <div class="form-group">
-          	<?php 
-				$smileys = getDonnees($bddConnection);
-				for($i = 0; $i < count($smileys['symbole']); $i++)
-				{
-					echo '<a href="javascript:insertAtCaret(\'message\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
-				}
-			?>
+          	<div class="dropdown" style="display: inline">
+			  	<a href="#" role="button" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			   	 <i style="text-decoration:none;" class="fas fa-smile"></i>
+			  	</a>
+				<div class="dropdown-menu borderrond" aria-labelledby="font">
+					<div class="topheaderdante" style="width: 500px">
+						<p class="topheadertext">Clique pour ajouter un smiley!</p>
+					</div>
+				<?php 
+					$smileys = getDonnees($bddConnection);
+					for($i = 0; $i < count($smileys['symbole']); $i++)
+					{
+						echo '<a class="dropdown-item" style="display: inline; padding: 0; white-space: normal;" href="javascript:insertAtCaret(\'message\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
+					}
+				?>
+				</div>
+			</div>
 			<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en gras', 'ce texte sera en gras', 'b')" style="text-decoration: none;" title="gras"><i class="fas fa-bold" aria-hidden="true"></i></a>
 			<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en italique', 'ce texte sera en italique', 'i')" style="text-decoration: none;" title="italique"><i class="fas fa-italic"></i></a>
 			<a href="javascript:ajout_text('message', 'Ecrivez ici ce que vous voulez mettre en souligné', 'ce texte sera en souligné', 'u')" style="text-decoration: none;" title="souligné"><i class="fas fa-underline"></i></a>
@@ -243,13 +253,23 @@ if(isset($_GET['page']) && $_GET['page'] == "messagerie")
 			    </div><br/>
 			    <div class="container">
 			    	<h3>Répondre :</h3>
-			    	<?php 
-						$smileys = getDonnees($bddConnection);
-						for($i = 0; $i < count($smileys['symbole']); $i++)
-						{
-							echo '<a href=\'javascript:insertAtCaret("contenue","'.$smileys['symbole'][$i].' ")\'><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
-						}
-					?>
+			    	<div class="dropdown" style="display: inline">
+					  	<a href="#" role="button" id="font" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					   	 <i style="text-decoration:none;" class="fas fa-smile"></i>
+					  	</a>
+						<div class="dropdown-menu borderrond" aria-labelledby="font">
+							<div class="topheaderdante" style="width: 500px">
+								<p class="topheadertext">Clique pour ajouter un smiley!</p>
+							</div>
+						<?php 
+							$smileys = getDonnees($bddConnection);
+							for($i = 0; $i < count($smileys['symbole']); $i++)
+							{
+								echo '<a class="dropdown-item" style="display: inline; padding: 0; white-space: normal;" href="javascript:insertAtCaret(\'contenue\',\' '.$smileys['symbole'][$i].' \')"><img src="'.$smileys['image'][$i].'" alt="'.$smileys['symbole'][$i].'" title="'.$smileys['symbole'][$i].'" /></a>';
+							}
+						?>
+						</div>
+					</div>
 					<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en gras', 'ce texte sera en gras', 'b')" style="text-decoration: none;" title="gras"><i class="fas fa-bold" aria-hidden="true"></i></a>
 					<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en italique', 'ce texte sera en italique', 'i')" style="text-decoration: none;" title="italique"><i class="fas fa-italic"></i></a>
 					<a href="javascript:ajout_text('contenue', 'Ecrivez ici ce que vous voulez mettre en souligné', 'ce texte sera en souligné', 'u')" style="text-decoration: none;" title="souligné"><i class="fas fa-underline"></i></a>

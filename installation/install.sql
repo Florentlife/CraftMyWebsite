@@ -224,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `cmw_jetons_paypal_offres` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(100) NOT NULL,
   `description` text NOT NULL,
-  `prix` int(11) NOT NULL,
+  `prix` decimal(8,2) NOT NULL,
   `jetons_donnes` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -386,6 +386,7 @@ CREATE TABLE IF NOT EXISTS `cmw_users` (
   `ip` varchar(40) NOT NULL,
   `CleUnique` varchar(32) NOT NULL,
   `ValidationMail` int(1) NOT NULL,
+  `img_extension` char(4) NOT NULL,
   `show_email` tinyint(1) UNSIGNED NOT NULL,
   `signature` text,
   PRIMARY KEY (`id`)

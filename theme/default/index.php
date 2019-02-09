@@ -12,10 +12,10 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		--color-focus: <?=$_Serveur_["color"]["theme"]["focus"]?>; 
 	}
 	</style>
-	<meta name="theme-color" content="<?=$_Serveur_["color"]["theme"]["main"]?>">
-	<meta name="msapplication-navbutton-color" content="<?=$_Serveur_["color"]["theme"]["main"]?>">
-	<meta name="apple-mobile-web-app-statut-bar-style" content="<?=$_Serveur_["color"]["theme"]["main"]?>">
-    <meta name="apple-mobile-web-app-capable" content="<?=$_Serveur_["color"]["theme"]["main"]?>">
+	<meta name="theme-color" content="<?=$_Serveur_["color"]["theme"]["main"];?>">
+	<meta name="msapplication-navbutton-color" content="<?=$_Serveur_["color"]["theme"]["main"];?>">
+	<meta name="apple-mobile-web-app-statut-bar-style" content="<?=$_Serveur_["color"]["theme"]["main"];?>">
+    <meta name="apple-mobile-web-app-capable" content="<?=$_Serveur_["color"]["theme"]["main"];?>">
 	<meta property="og:title" content="<?=$_Serveur_['General']['name']?>">
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://<?=$_SERVER["SERVER_NAME"]?>">
@@ -51,12 +51,9 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 <body>
 	<?php if(isset($_Joueur_)) { ?>
 		<?php setcookie('pseudo', $_Joueur_['pseudo'], time() + 86400, null, null, false, true); ?>	
-		<?php } else { ?>
-			<?php } ?>
-			<?php 
+		<?php }  
 			include('theme/' .$_Serveur_['General']['theme']. '/entete.php');
-			?>
-			<?php tempMess(); ?>
+			 tempMess(); ?>
 		<?php
 		include("./include/version.php");
         include("./include/version_distant.php");

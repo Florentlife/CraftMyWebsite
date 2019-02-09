@@ -1,4 +1,4 @@
-<div class="container-fluid"><div class="row"><div class="cmw-footer">CraftMyWebsite <?php echo $versioncms; ?> ©2014-2018</div></div></div>
+<div class="container-fluid"><div class="row"><div class="cmw-footer">CraftMyWebsite <?php echo $versioncms; ?> ©2014-2019</div></div></div>
 <script type="text/javascript">
     $("cmw-header-username").mouseenter(function(){
         $("<audio></audio>").attr({ 
@@ -71,6 +71,19 @@ function updateFormRecompense(appel)
     }
     else
         $("#updateRecompense").html("<label class='control-label'>Quelle date ?</label><input type='date' name='date' class='form-control' /><label class='control-label'>Réinitialiser les votes après ?</label><select name='reinit' class='form-control'><option value='1'>Oui</option><option value='0'>Non</option></select><label class='control-label'>Rang de la personne</label><select name='rang' class='form-control'><option value='1'>Premier</option><option value='2'>Second</option><option value='3'>Troisième</option></select>");
+}
+function updateFormServeur(appel)
+{
+    if($(appel).val() == '2')
+    {
+        $("#updateFormServeurJSONAPI").css('display', 'none');
+        $("#updateFormServeurRcon").css('display', 'block');
+    }
+    else
+    {
+        $("#updateFormServeurRcon").css('display', 'none');
+        $("#updateFormServeurJSONAPI").css('display', 'block');
+    }
 }
 </script>
 <script>

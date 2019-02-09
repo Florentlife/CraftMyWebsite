@@ -9,6 +9,15 @@ ini_set('display_errors', 1);
 	// On démarre les sessions sur la page pour récupérer les variables globales(les données du joueur...).
 	session_start();
 
+	if(isset($_COOKIE['id'], $_COOKIE['pass']))
+	{
+		require_once('controleur/joueur/connexion_cookie.php');
+		require_once ('controleur/joueur/joueur.class.php');
+        $globalJoueur = new Joueur();
+        // Cette variable contiens toutes les informations du joueur.
+        $_Joueur_ = $globalJoueur->getArrayDonneesUtilisateur();
+	}
+
 	// On récupère la variable globale des grades $_PGrades_
 	$switch = true;
 	require_once('controleur/grades/grades.php');
@@ -43,7 +52,7 @@ ini_set('display_errors', 1);
 	}
 	else
 	{
-		header('Location: index.php');
+		//header('Location: index.php');
 	}
 	
 ?>

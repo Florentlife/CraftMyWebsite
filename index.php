@@ -3,6 +3,7 @@ ob_start();
 session_start();
 error_reporting(0);
 date_default_timezone_set('Europe/Paris');
+setlocale(LC_TIME, "fr_FR");
 ini_set('display_errors', 1);
 if(!isset($_SESSION["mode"])) $_SESSION["mode"] = false; // pour les admins du forum
 //ini_set('display_errors', 1);
@@ -72,5 +73,9 @@ else
         include ('theme/' . $_Serveur_['General']['theme'] . '/index.php');
         require_once ('controleur/joueur/changerGrade.php');
     }
+}
+foreach($jsonCon as $instance)
+{
+    $instance->close();
 }
 ob_end_flush();

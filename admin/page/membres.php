@@ -57,7 +57,7 @@
                                 <select name="rang<?php echo $i; ?>" size="1" class="form-control">
                                     <option value="0" <?php if($membres[$i]['rang'] == 0) { echo 'selected'; }?>>Joueur</option>
                                         <?php if($_Joueur_['rang'] == 1) { ?><option value="1" <?php if($membres[$i]['rang'] == 1) { echo 'selected'; }?>>Créateur</option><?php }
-                                            for($j = 2; $j <= end($lastGrade); $j++) {
+                                            for($j = 2; $j <= max($lastGrade); $j++) {
                                                 if(file_exists($dirGrades.$j.'.yml') && $idGrade[$j]['Grade']) { ?>
                                                     <option value="<?php echo $j; ?>" <?php if($membres[$i]['rang'] == $j) echo 'selected'?>><?=$idGrade[$j]['Grade']?></option>
                                                 <?php }

@@ -49,17 +49,17 @@ if(isset($_POST['contenu'], $_POST["sujet"]) && ($_Joueur_['rang'] == 1 || $_PGr
 			$mail->setFrom($_POST['from'], $_Serveur_['General']['name']);
 			$newsletter = $bddConnection->query('SELECT pseudo,email FROM cmw_users WHERE newsletter = 1');
 			while($dnewsletter = $newsletter->fetch(PDO::FETCH_ASSOC)){
-				$mail->addAddress($dnewsletter['email'], $dnewsletter['pseudo']);		
+				$mail->addBCC($dnewsletter['email'], $dnewsletter['pseudo']);		
 			}
 			if(!empty($_POST['reply']))
 				$mail->addReplyTo($_POST['reply'], $_Serveur_['General']['name']);
 			else
 				$mail->addReplyTo($_POST['from'], $_Serveur_['General']['name']);
 			$mail->isHTML(true);
-			$subject = htmlspecialchars($_POST["sujet"]);
+			$subject = $_POST["sujet"];
 			$mail->Subject = $subject;
 			$mail->Body = $_POST['contenu'];
-			$message = strip_tags($_POST["contenu"]);
+			$message = $_POST["contenu"];
 			$mail->AltBody = $message;
 			
 			$mail->send();
@@ -75,9 +75,9 @@ if(isset($_POST['contenu'], $_POST["sujet"]) && ($_Joueur_['rang'] == 1 || $_PGr
 		$newsletter = $bddConnection->query('SELECT pseudo,email FROM cmw_users WHERE newsletter = 1');
 		while($dnewsletter = $newsletter->fetch(PDO::FETCH_ASSOC)){
 			$to = $dnewsletter['email'];
-			$subject = htmlspecialchars($_POST["sujet"]);
-			$message = htmlspecialchars($_POST["contenu"]);
-			$headers = 'From: ' . htmlspecialchars($_POST["from"]) . "\r\n" .
+			$subject = $_POST["sujet"];
+			$message = $_POST["contenu"];
+			$headers = 'From: ' . $_POST["from"] . "\r\n" .
 					'Reply-To: EMAIL DE RÉPONSE ( pas forcément de serveur )' . "\r\n" .
 					'X-Mailer: PHP/' . phpversion();	
 					mail($to, $subject, $message, $headers);			

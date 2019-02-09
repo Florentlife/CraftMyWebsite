@@ -19,23 +19,39 @@
             </div>
             <div class="panel-body">
                 <div class="alert alert-success">
-                    <strong>Vous pouvez ajouter autant de serveurs minecraft que vous souhaitez. La connexion au(x) serveur(s) est essentielle !</strong>
+                    <strong>Vous pouvez ajouter autant de serveurs minecraft que vous souhaitez. La connexion au(x) serveur(s) est essentielle ! Si vous n'avez pas JSONAPI, une connexion RCON/Query est possible (mais privilégiez JSONAPI qui permettra plus de possibilités !(Par exemple la console ainsi que le système de grade temporaire seront impossible avec une connexion RCON/Query)). Pour vous  </strong>
                 </div>
                 <form method="POST" action="?&action=serveurJsonNew">
                     <h3>Ajout d'un serveur</h3>
 
                     <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Nom du serveur</label>
                     <input type="text" name="JsonNom" class="form-control" placeholder="Exemple: CraftMyCube"/>
+
+                    <label class="control-label" style="float: left; font-size: 15px;font-weight: bold;margin-top: 5px;">Type de connexion</label>
+                    <select name="type" class="form-control" onChange="updateFormServeur(this);">
+                        <option value="1">Jsonapi</option>
+                        <option value="2">RCON/Query</option>
+                    </select>
                     
                     <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">IP du serveur</label>
                     <input type="text" name="JsonAddr" placeholder="Exemple: play.craftmycube.fr ou 188.165.190.180" class="form-control"/>
                     
-                    <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port JSONAPI</label>
-                    <input type="text" name="JsonPort" class="form-control" placeholder="Exemple: 12548"/>
-                    
-                    <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">User JSONAPI</label>
-                    <input type="text" name="JsonUser" class="form-control" placeholder="Exemple: admin"/>
-                    
+                    <div id="updateFormServeurJSONAPI" style="display: block;">
+                        <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port JSONAPI</label>
+                        <input type="text" name="JsonPort" class="form-control" placeholder="Exemple: 12548"/>
+                        
+                        <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">User JSONAPI</label>
+                        <input type="text" name="JsonUser" class="form-control" placeholder="Exemple: admin"/>
+                    </div>
+
+                    <div id="updateFormServeurRcon" style="display: none;">
+                        <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port RCON</label>
+                        <input type="text" name="RconPort" class="form-control" placeholder="Exemple: 12548"/>
+
+                        <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port Query</label>
+                        <input type="text" name="QueryPort" class="form-control" placeholder="Exemple: 12548"/>
+                    </div>
+
                     <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Mot de passe</label>
                     <input type="password" name="JsonMdp" class="form-control" placeholder="Exemple: Trampoline"/>
                     
@@ -86,13 +102,25 @@
                             
                             <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Ip du serveur</label>
                             <input type="text" name="JsonAddr<?php echo $i; ?>" class="form-control" placeholder="Exemple: play.craftmycube.fr" value="<?php echo $lecture['Json'][$i]['adresse']; ?>">
-                            
-                            <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port JsonAPI</label>
-                            <input type="text" name="JsonPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $lecture['Json'][$i]['port']; ?>">
-                            
-                            <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">User JsonAPI</label>
-                            <input type="text" name="JsonUser<?php echo $i; ?>" class="form-control" placeholder="Exemple: admin" value="<?php echo $lecture['Json'][$i]['utilisateur']; ?>">
-                            
+
+                            <?php 
+                            if(isset($lecture['Json'][$i]['port']['query']))
+                            {
+                                ?><label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port Query</label>
+                                <input type="text" name="QueryPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $lecture['Json'][$i]['port']['query']; ?>">
+
+                                <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port Rcon</label>
+                                <input type="text" name="RconPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $lecture['Json'][$i]['port']['rcon']; ?>"> <?php
+                            }
+                            else
+                            {
+                                ?><label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port JsonAPI</label>
+                                <input type="text" name="JsonPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $lecture['Json'][$i]['port']; ?>">
+                                
+                                <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">User JsonAPI</label>
+                                <input type="text" name="JsonUser<?php echo $i; ?>" class="form-control" placeholder="Exemple: admin" value="<?php echo $lecture['Json'][$i]['utilisateur']; ?>"><?php 
+                            } ?>          
+                                              
                             <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Mot de passe</label>
                             <input type="text" name="JsonMdp<?php echo $i; ?>" class="form-control" placeholder="Exemple: Truelle" value="<?php echo $lecture['Json'][$i]['mdp']; ?>">
                             
