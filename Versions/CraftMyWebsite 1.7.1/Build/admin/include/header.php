@@ -42,9 +42,8 @@
   <link href="./admin/assets/css/bootstrap.css" rel="stylesheet">
   <link href="./admin/assets/css/plugins/morris.css" rel="stylesheet">
   <link href="./admin/assets/css/plugins/hover.css" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+  <link href="./admin/assets/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <link href="./admin/assets/css/admin-style.css" rel="stylesheet">
-  
   <link href="./admin/assets/css/forum.css" rel="stylesheet">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
