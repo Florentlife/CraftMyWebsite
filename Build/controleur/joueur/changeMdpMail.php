@@ -75,8 +75,7 @@ if(isset($_POST['email']) AND !empty($_POST['email']))
 			}
 			else
 	            mail($to,$subject,$txt);
-			setTempMess("<script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'Un mail de récupération a bien été envoyé !', icon: '<span class=\'glyphicon glyphicon-ok\'></span>});});</script>");
-			header('Location: index.php');
+			header('Location: index.php?envoieMail=true');
 		}
 		else header('Location: ?&page=erreur&erreur=4');
 	}
