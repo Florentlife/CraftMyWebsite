@@ -145,6 +145,13 @@ class JsonCon
 		else
 			return false;
 	}
+
+	public function getPermissionsGroups($pseudo) {
+		if($this->TryMode())
+			return $this->api->call("permissions.getGroups", Array($pseudo));
+		else
+			return '';
+	}
 	
 	public function SendMessage($donnees)
 	{

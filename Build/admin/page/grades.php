@@ -150,7 +150,7 @@
 											
 											<?php for($a = 0; $a < count($prefixs); $a++) {?>
                                                 <label class="checkbox-inline">
-                                                    <input class="form-check-input" type="radio" name="prefixCreateur" id="<?=$prefixs[$a];?>" value="<?=$prefixs[$a];?>" <?=($idGrade[$i]['prefix'] == $prefixs[$a]) ? 'checked' : ''; ?>>
+                                                    <input class="form-check-input" type="radio" name="prefix<?=$i;?>" id="<?=$prefixs[$a];?>" value="<?=$prefixs[$a];?>" <?=($idGrade[$i]['prefix'] == $prefixs[$a]) ? 'checked' : ''; ?>>
                                                         <span class="prefix <?=$prefixs[$a];?>" style="height: 15px; width: 20px;">T</span>
                                                 </label>
                                             <?php }?>
@@ -158,7 +158,7 @@
                                             <label class="control-label">Effets</label>
                                             <?php for($a =0; $a < count($effets); $a++) {?>
 												<label class="checkbox-inline">
-                                                    <input class="form-check-input" type="radio" name="effetCreateur" value="<?=$effets[$a];?>" <?=($idGrade[$i]['effets'] == $effets[$a]) ? 'checked' : ''; ?>>
+                                                    <input class="form-check-input" type="radio" name="effet<?=$i;?>" value="<?=$effets[$a];?>" <?=($idGrade[$i]['effets'] == $effets[$a]) ? 'checked' : ''; ?>>
                                                         <span class="username"><span class="<?=$effets[$a];?>">Test</span></span>
                                                 </label><?php
                                             }

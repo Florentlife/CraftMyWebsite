@@ -489,7 +489,50 @@ if($_GET['page'] == "profil")
 }
 if(isset($_GET['setTemp']) && $_GET['setTemp'] == 1)
 {
-	?><script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'Votre nouveau mot de passe vous a été envoyé par mail !', icon: '<span class=\'glyphicon glyphicon-ok\'></span>});});</script>;<?php
+	?><script> 
+		toastr['success']("Votre nouveau mot de passe vous a été envoyé par mail !", "Message Système")
+		toastr.options = {
+		  "closeButton": true,
+		  "debug": true,
+		  "newestOnTop": false,
+		  "progressBar": true,
+		  "positionClass": "toast-top-left",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "1000",
+		  "hideDuration": "1000",
+		  "timeOut": "5000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		}
+	</script>
+	<?php
+}
+if(isset($_GET['envoieMail']) && $_GET['envoieMail'] == true)
+{
+	?><script>
+		toastr['info']("Un mail de récupération a bien été envoyé !", "Message Système")
+		toastr.options = {
+		  "closeButton": true,
+		  "debug": true,
+		  "newestOnTop": false,
+		  "progressBar": true,
+		  "positionClass": "toast-top-left",
+		  "preventDuplicates": false,
+		  "onclick": null,
+		  "showDuration": "5000",
+		  "hideDuration": "1000",
+		  "timeOut": "5000",
+		  "extendedTimeOut": "1000",
+		  "showEasing": "swing",
+		  "hideEasing": "linear",
+		  "showMethod": "fadeIn",
+		  "hideMethod": "fadeOut"
+		}
+	</script><?php
 }
 if(isset($_GET['send']))
 {
