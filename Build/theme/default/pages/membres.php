@@ -6,7 +6,7 @@
 <section class="layout" id="page">
     <div class="container">
     	 <div class="text-center">
-            <h4 class="text-primary"><i class="fa fa-shopping-basket"></i> Membres</h4>
+            <h4 class="text-primary"><i class="fa fa-user"></i> Membres</h4>
             <p>Ici, vous pourrez consulter la liste des membres du site, voir leur profil ...</p>
         </div>
         <br>
