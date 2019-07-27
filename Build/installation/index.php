@@ -145,7 +145,7 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 						if(isset($erreur))
 						{
 							if($erreur == 'sql_mode')
-								echo '<div class="alert alert-danger text-center">ATTENTION ! Votre base de donnée est mal configuré ! La configuration MySQL ne doit pas contenir de STRICT_ALL_TABLES dans son sql_mode. Si vous ne savez pas résoudre ce problème, contactez-nous sur discord : https://discord.gg/464zW3n .</div>';
+								echo '<div class="alert alert-danger text-center">ATTENTION ! Votre base de donnée est mal configuré ! La configuration MySQL ne doit pas contenir de STRICT_ALL_TABLES dans son sql_mode. Si vous ne savez pas résoudre ce problème, contactez-nous sur discord : https://discord.gg/wMVAeug .</div>';
 							elseif($erreur == 'pass')
 								echo '<div class="alert alert-danger text-center">ATTENTION ! Vos identifiants sont incorrects.</div>';
 						} ?>
