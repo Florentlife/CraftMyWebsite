@@ -135,7 +135,7 @@ function DrawChmod($return)
 <?php
  if ($return['htaccess'])
 {
-    ?><div class="alert alert-danger"><strong>ATTENTION</strong> : Erreur Critique, votre serveur est soumis aux failles htaccess. Veuillez les activez, en suivant ce tuto : https://www.aidoweb.com/tutoriaux/fichier-htaccess-qui-ne-fonctionne-pas-solutions-configuration-apache-648 ou nous contacter sur Discord : https://discord.gg/Tyfr6nC. </div><?php
+    ?><div class="alert alert-danger"><strong>ATTENTION</strong> : Erreur Critique, votre serveur est soumis aux failles htaccess. Veuillez les activez, en suivant ce tuto : https://www.aidoweb.com/tutoriaux/fichier-htaccess-qui-ne-fonctionne-pas-solutions-configuration-apache-648 ou nous contacter sur Discord : https://discord.gg/wMVAeug. </div><?php
 }
 ?>
 <h4 style="font-family: material;text-align: center;">Voici la liste des chmod qui ne sont pas réglés correctements: </h4>
