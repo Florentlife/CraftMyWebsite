@@ -27,9 +27,9 @@ Si toutefois vous vous acharnez à vouloir utiliser ce répo comme source pour v
 
 ### Nos partenaires
 
--   AllsHeberg: Hébergeur web
--   MineStrator: Hébergeur de serveurs Minecraft
--   Serveurs Minecraft: Référencement de serveurs Minecraft
+-   WebStrator.fr: Hébergeur web
+-   MineStrator.com: Hébergeur de serveurs Minecraft
+-   Serveurs-minecraft.net: Référencement de serveurs Minecraft
 
 ### Copyright
 
