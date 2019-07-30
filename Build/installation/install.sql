@@ -20,6 +20,13 @@ CREATE TABLE IF NOT EXISTS `cmw_boutique_action` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `cmw_cache_json` (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `requete` varchar(255) NOT NULL,
+  `valeur`TEXT NOT NULL,
+  `temp`int(11)
+) ENGINE= InnoDB;
+
 CREATE TABLE IF NOT EXISTS `cmw_boutique_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(100) NOT NULL,
