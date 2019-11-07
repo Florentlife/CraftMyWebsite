@@ -106,7 +106,7 @@
             <div class="panel-body">
                 <div class="alert alert-success">
                     <strong>Une fois votre compte paypal configuré, vous allez devoir créer une offre paypal pour que les joueurs puissent l'acheter !</strong>
-                </div>      
+                </div>
                 <form method="POST" action="?&action=creerOffrePaypal">
                     <div class="col-md-12">
                         <h3>Créer une offre</h3>
@@ -173,7 +173,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="control-label">Prix de l'offre</label>
-                                    <input type="number" name="prix" value="<?php echo $paypalOffres[$i]['prix']; ?>" class="form-control" placeholder="ex: 5"/>
+                                    <input type="number" step="0.01" name="prix" value="<?php echo $paypalOffres[$i]['prix']; ?>" class="form-control" placeholder="ex: 5"/>
                                 </div>
                                 <div class="row">
                                     <label class="control-label">Jetons donnés</label>
@@ -193,7 +193,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
     <?php } ?>
     <?php } ?>
 </div>
