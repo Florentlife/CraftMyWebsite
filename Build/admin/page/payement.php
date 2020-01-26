@@ -19,13 +19,11 @@
     <div class="col-xs-12 col-md-6 text-center">
         <div class="panel panel-default cmw-panel">
             <div class="panel-heading cmw-panel-header">
-                <h3 class="panel-title"><strong>MCGPass/Dedipass/Paypal ID</strong></h3>
+                <h3 class="panel-title"><strong>Dedipass/Paypal ID</strong></h3>
             </div>
         <div class="panel-body">
             <div class="alert alert-success">
                 <strong>Vous trouverez ces informations sur le site officiel de votre méthode de paiement ! <br/>
-                    Pour MCGPass, voici un tuto : <a href="http://craftmywebsite.fr/forum/index.php?threads/installer-mcgpass-sur-craftmywebsite.4047/" title="Tuto MCGPass">Tuto MCGPass</a><br>
-                    Inscrivez-vous sur MCGPass avec ce lien pour gagner 2 centimes supplémentaires sur <strong>chaques transactions</strong> ! <a href="https://www.mcgpass.com/?p=CraftMyWebsite">https://mcgpass.com</a><br/>
                     Si les inscriptions ne sont pas ouvertes, vous pouvez prendre <a href="https://dedipass.com" title="Dedipass">Dedipass</a> en attendant :) : <a href="https://craftmywebsite.fr/forum/index.php?threads/1-5-0-tuto-configurer-le-paiement-par-d%C3%A9dipass.3184/" title="Tuto Dedipass">Tuto Dedipass</a></strong>
             </div>
             <form method="POST" action="?&action=editPayement">
@@ -36,20 +34,8 @@
                             <input type="checkbox" name="paypal" <?php if($lectureP['paypal'] == true) echo 'checked'; ?>/> Paypal
                         </label>
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="mcgpass" <?php if($lectureP['mcgpass'] == true) echo 'checked'; ?>> MCGPass
-                        </label>
-                        <label class="checkbox-inline">
                             <input type="checkbox" name="dedipass" <?php if($lectureP['dedipass'] == true) echo 'checked'; ?>> Dedipass
                         </label>
-                    </div>
-                    <h3>MCGPass</h3>
-                    <div class="row">
-                        <label class="control-label">MCGPass ID client</label>
-                         <input type="text" name="mcgpass_id" class="form-control" value="<?php echo $lectureP['mcgpass_id']; ?>" placeholder="Trouvez le sur votre panel MCGPass..." >
-                    </div>
-                    <div class="row">
-                        <label class="control-label">MCGPass ID du script</label>
-                         <input type="text" name="mcgpass_idSite" class="form-control" value="<?php echo $lectureP['mcgpass_idSite']; ?>" placeholder="Egalement sur votre panel MCGPass" >
                     </div>
                     <h3>Dedipass</h3>
                     <div class="row">
