@@ -249,14 +249,6 @@ CREATE TABLE IF NOT EXISTS `cmw_maintenance` (
   PRIMARY KEY (`maintenanceId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `cmw_mcgpass` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `pseudo` varchar(40) NOT NULL,
-  `tokens` int(11) NOT NULL,
-  `date_achat` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 CREATE TABLE `cmw_messages` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `idConversation` smallint(5) UNSIGNED NOT NULL,
