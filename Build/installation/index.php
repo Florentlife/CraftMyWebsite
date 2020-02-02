@@ -244,7 +244,7 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 			</form>
 		</div>
 		<div class="footer">
-			Copyright © <a href="http://craftmywebsite.fr">CraftMyWebsite</a> 2014-2018
+			Copyright © <a href="http://craftmywebsite.fr">CraftMyWebsite</a> 2014-2020
 		</div>
 	</div>
 	<script src="../theme/<?php echo $_Serveur_['General']['theme']; ?>/js/jquery.js"></script>

@@ -2,10 +2,10 @@
 
 CraftMyWebsite est un CMS Minecraft 100% gratuit proposant des fonctionnalités de qualité parmi lesquelles:
 
--   Boutique avec support MCGPass/Dedipass/Paypal et des rangs temporaires
+-   Boutique avec support Dedipass/Paypal et des rangs temporaires
 -   Système de news
 -   Votes avec récompenses
--   Gestion multi-serveur grâce à JSONApi et à RCON
+-   Gestion multi-serveur grâce à JSONAPI et à RCON
 -   Support
 -   Forum
 -   Et pleins d'autres !
@@ -27,12 +27,12 @@ Si toutefois vous vous acharnez à vouloir utiliser ce répo comme source pour v
 
 ### Nos partenaires
 
--   WebStrator.fr: Hébergeur web
--   MineStrator.com: Hébergeur de serveurs Minecraft
--   Serveurs-minecraft.net: Référencement de serveurs Minecraft
+-  [WebStrator.fr](WebStrator.fr): Hébergeur web
+-   [MineStrator.com](MineStrator.com): Hébergeur de serveurs Minecraft
+-   [Serveurs-minecraft.net](Serveurs-minecraft.net): Référencement de serveurs Minecraft
 
 ### Copyright
 
 CraftMyWebsite de [Vladimir.K](http://craftmywebsite.fr/cmw-lastest-build.php) est mis à disposition selon les termes de la [licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Pas de Modification 4.0 International](http://creativecommons.org/licenses/by-nc-nd/4.0/). Fondé(e) sur une œuvre à [https://craftmywebsite.fr/cmw-lastest-build.php](http://craftmywebsite.fr/cmw-lastest-build.php). Les autorisations au-delà du champ de cette licence peuvent être obtenues à [https://craftmywebsite.fr/cgu](https://craftmywebsite.fr/cgu/). 
 
-Copyright © CraftMyWebsite 2014-2019
+Copyright © CraftMyWebsite 2014-2020

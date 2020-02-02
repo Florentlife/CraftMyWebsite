@@ -37,7 +37,7 @@ function AfficherExtension($retour)
     </div>
     <div class="alert alert-success alert-chmod">
     <center>
-        Voiçi un tutoriel afin de vous aider dans l'installation de CraftMyWebsite <?php echo $versioncms; ?>:<br/>
+        Voici un tutoriel afin de vous aider dans l'installation de CraftMyWebsite <?php echo $versioncms; ?>:<br/>
         <br/>
             <object style="max-width: 620px;width: 100%;max-height: 315px; height: 100%;" data="http://www.youtube.com/v/nV4kRY-kYFo"></object>
     </center>
