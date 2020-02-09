@@ -27,10 +27,7 @@ DataBase:
     dbPort: 
 Payement:
     paypal: true
-    mcgpass: true
     dedipass: false
-    mcgpass_id: ""
-    mcgpass_idSite: ""
     public_key: ""
     private_key: ""
     paypalUser: ""
