@@ -100,13 +100,7 @@ function VerifieChmod() {
         }
     }
 
-    if(!array_key_exists('ENV_HTACCESS_READING', $_SERVER))
-    {
-        $htaccess = true;
-        $return['htaccess'] = true;
-    }
-
-    if($err == null AND $errDossier == null AND $htaccess == null)
+    if($err == null AND $errDossier == null)
         return null;
     else
         return $return;
@@ -132,12 +126,6 @@ function DrawChmod($return)
             <object style="max-width: 620px;width: 100%;max-height: 315px; height: 100%;" data="//www.youtube.com/v/nV4kRY-kYFo"></object>
     </center>
 </div> 
-<?php
- if ($return['htaccess'])
-{
-    ?><div class="alert alert-danger"><strong>ATTENTION</strong> : Erreur Critique, votre serveur est soumis aux failles htaccess. Veuillez les activez, en suivant ce tuto : https://www.aidoweb.com/tutoriaux/fichier-htaccess-qui-ne-fonctionne-pas-solutions-configuration-apache-648 ou nous contacter sur Discord : https://discord.gg/wMVAeug. </div><?php
-}
-?>
 <h4 style="font-family: material;text-align: center;">Voici la liste des chmod qui ne sont pas réglés correctements: </h4>
 
 <?php if(isset($return['chmodDossier'])) { ?>
