@@ -14,15 +14,14 @@ $installEtape = $installEtape['etape'];
 
 if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote']) AND isset($_POST['nomBase']) AND isset($_POST['utilisateur']) AND isset($_POST['mdp']) AND isset($_POST['port']))
 {
-	if(($testPDO = verifyPDO($_POST['hote'], $_POST['nomBase'], $_POST['utilisateur'], $_POST['mdp'], $_POST['port'])) === TRUE)
+	if(verifyPDO($_POST['hote'], $_POST['nomBase'], $_POST['utilisateur'], $_POST['mdp'], $_POST['port']))
 	{
 		$sql = getPDO($_POST['hote'], $_POST['nomBase'], $_POST['utilisateur'], $_POST['mdp'], $_POST['port']);
 		require_once('installSQL.php');
 	}
-	elseif($testPDO == 2)
-		$erreur = 'sql_mode';
 	else
 		$erreur = 'pass';
+		// 
 }
 
 	if(isset($_GET['action']) AND $_GET['action'] == 'infos' AND isset($_POST['nom']) AND isset($_POST['adresse']) AND isset($_POST['description']))
@@ -144,10 +143,12 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 					<?php if($installEtape == 1) { 
 						if(isset($erreur))
 						{
-							if($erreur == 'sql_mode')
+							if($erreur == 'pass')
 								echo '<div class="alert alert-danger text-center">ATTENTION ! Votre base de donnée est mal configuré ! La configuration MySQL ne doit pas contenir de STRICT_ALL_TABLES dans son sql_mode. Si vous ne savez pas résoudre ce problème, contactez-nous sur discord : https://discord.gg/wMVAeug .</div>';
-							elseif($erreur == 'pass')
-								echo '<div class="alert alert-danger text-center">ATTENTION ! Vos identifiants sont incorrects.</div>';
+							else{
+								echo '<div class="alert alert-danger text-center">ATTENTION ! Une erreur indetemminé s\'est produite durant l\'installation ! Veulliez contacter le support sur notre Discord ( https://discord.gg/fzYsNmv )</div>';
+							}
+
 						} ?>
 					<h3 style="font-family: material;text-align: center;margin-top: 40px;">Base de données <img style="width: 115px;margin-top: -33px;"src="img/logo-mysql.png"></h3>
 					<div class="form-group col-md-6">
