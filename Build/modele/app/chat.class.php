@@ -27,7 +27,7 @@ class Chat extends JsonCon
 	private function conEtablie($i)
 	{
 		$this->api = $this->json[$i]->api;
-		$connexion = $this->GetConnection();
+		$connexion = $this->json[$i]->GetConnection();
 		if(!isset($connexion[0]['result']) OR $connexion[0]['result'] == 'error')
 			$this->connecte[$i] = false;
 		else
