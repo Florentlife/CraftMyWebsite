@@ -33,6 +33,7 @@ class JsonCon
 			}
 			catch(Exception $e)
 			{
+				 echo 'Erreur connexion RCon/Query : '.$e->getMessage()."\n";
 				$api = null;
 			}
 		}
@@ -144,13 +145,6 @@ class JsonCon
 			return $this->api->call("server.power.restart");
 		else
 			return false;
-	}
-
-	public function getPermissionsGroups($pseudo) {
-		if($this->TryMode())
-			return $this->api->call("permissions.getGroups", Array($pseudo));
-		else
-			return '';
 	}
 	
 	public function SendMessage($donnees)
