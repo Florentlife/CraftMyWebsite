@@ -46,9 +46,10 @@ ini_set('display_errors', 1);
 		if(isset($_GET['action'])){
 			include('admin/donnees.php');
 			include('admin/action.php');
+		}else if(isset($_GET['page'])) {
+			$pageadmin = $_GET['page'];
+			include('admin/page.php');
 		}
-		$pageadmin = $_GET['page'];
-		include('admin/page.php');
 	}
 	else
 	{
