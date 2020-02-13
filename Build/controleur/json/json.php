@@ -14,7 +14,11 @@ else
 		else
 			$addr = $lecture['Json'][$i]['adresse'];
 
-		$jsonCon[$i] = new JsonCon($addr, $lecture['Json'][$i]['port'], $lecture['Json'][$i]['utilisateur'], $lecture['Json'][$i]['mdp'], $lecture['Json'][$i]['salt']);
+		if(isset($lecture['Json'][$i]['utilisateur'])) {
+			$jsonCon[$i] = new JsonCon($addr, $lecture['Json'][$i]['port'], $lecture['Json'][$i]['utilisateur'], $lecture['Json'][$i]['mdp'], $lecture['Json'][$i]['salt']);
+		} else {
+			$jsonCon[$i] = new JsonCon($addr, $lecture['Json'][$i]['port'], null, $lecture['Json'][$i]['mdp'], $lecture['Json'][$i]['salt']);
+		}
 		$conEtablie[$i] = $jsonCon[$i]->GetConnection();
 		if((!isset($conEtablie[$i][0]['result']) OR $conEtablie[$i][0]['result'] == 'error') AND !isset($conEtablie[$i]['Players']))
 		{
