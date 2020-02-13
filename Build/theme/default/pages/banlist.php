@@ -6,7 +6,7 @@
 <section class="layout" id="page">
 	<div class="container">		
 		<h3 class="header-bloc">Liste des joueurs bannis</h3>
-		<?php if(count($jsonCon) > 1) {
+		<?php if(count($jsonCon) > 0) {
 			require('modele/app/chat.class.php');
 			$Chat = new Chat($jsonCon);?>
 			<ul class="nav nav-tabs" style="margin-bottom:1vh;">
