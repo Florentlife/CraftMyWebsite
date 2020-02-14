@@ -29,7 +29,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 	<meta charset="utf-8" />
 	<meta name="autor" content="CraftMyWebsite , TheTueurCiTy, <?php echo $_Serveur_['General']['name']; ?>" />
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" rel="stylesheet">
+	<link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/ionicons.min.css" rel="stylesheet" type="text/css">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/animate.css" rel="stylesheet" type="text/css">
 	<link href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/hover.min.css" rel="stylesheet" type="text/css">
@@ -39,13 +39,11 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/snarl.min.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/forum.css">
 	<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/form.js"></script>
-	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
-	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 	<?php
 	if(file_exists('favicon.ico'))
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
 	?>
-	<title><?=$_Serveur_['General']['name'] ." | ". (isset($_GET["page"]) ? $_GET["page"] : $_Serveur_['General']['description'])?></title>
+	<title><?php echo $_Serveur_['General']['description'] ?></title>
 </head>
 
 <body>
@@ -100,27 +98,6 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <?php include('theme/'.$_Serveur_['General']['theme'].'/js/forum.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
 <script>
-	// cookies consent
-window.addEventListener("load", function(){
-window.cookieconsent.initialise({
-	"palette": {
-		"popup": {
-		"background": "#000"
-		},
-		"button": {
-			"background": "transparent",
-			"text": "var(--color-main)",
-			"border": "var(--color-main)"
-		}
-	},
-	"position": "bottom-left",
-	"content": {
-		"message": "Ce site utilise des cookies permettant d'améliorer votre expérience utilisateur.",
-		"dismiss": "J'ai compris",
-		"link": "Voir plus..."
-	}
-})});
-// bouton scroll to top
 window.onscroll = function() {divScroll()};
 
 function divScroll() {
@@ -136,8 +113,7 @@ function goToTop() {
 		scrollTop: 0
 	}, 1000);
 }
-//fin bouton scroll to top
-// vérification sécurité mot de passe inscription
+
 function securPass()
 {
 	$("#progress").removeClass("d-none");
@@ -483,56 +459,13 @@ if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_
 });
 </script>
 <?php 
-if($_GET['page'] == "profil")
+if(isset($_GET['page']) && $_GET['page'] == "profil")
 {
 ?><script>previewTopic($("#signature"));</script><?php
 }
 if(isset($_GET['setTemp']) && $_GET['setTemp'] == 1)
 {
-	?><script> 
-		toastr['success']("Votre nouveau mot de passe vous a été envoyé par mail !", "Message Système")
-		toastr.options = {
-		  "closeButton": true,
-		  "debug": true,
-		  "newestOnTop": false,
-		  "progressBar": true,
-		  "positionClass": "toast-top-left",
-		  "preventDuplicates": false,
-		  "onclick": null,
-		  "showDuration": "1000",
-		  "hideDuration": "1000",
-		  "timeOut": "5000",
-		  "extendedTimeOut": "1000",
-		  "showEasing": "swing",
-		  "hideEasing": "linear",
-		  "showMethod": "fadeIn",
-		  "hideMethod": "fadeOut"
-		}
-	</script>
-	<?php
-}
-if(isset($_GET['envoieMail']) && $_GET['envoieMail'] == true)
-{
-	?><script>
-		toastr['info']("Un mail de récupération a bien été envoyé !", "Message Système")
-		toastr.options = {
-		  "closeButton": true,
-		  "debug": true,
-		  "newestOnTop": false,
-		  "progressBar": true,
-		  "positionClass": "toast-top-left",
-		  "preventDuplicates": false,
-		  "onclick": null,
-		  "showDuration": "5000",
-		  "hideDuration": "1000",
-		  "timeOut": "5000",
-		  "extendedTimeOut": "1000",
-		  "showEasing": "swing",
-		  "hideEasing": "linear",
-		  "showMethod": "fadeIn",
-		  "hideMethod": "fadeOut"
-		}
-	</script><?php
+	?><script> $( document ).ready(function() { Snarl.addNotification({ title: '', text: 'Votre nouveau mot de passe vous a été envoyé par mail !', icon: '<span class=\'glyphicon glyphicon-ok\'></span>});});</script>;<?php
 }
 if(isset($_GET['send']))
 {
