@@ -33,6 +33,7 @@ class JsonCon
 			}
 			catch(Exception $e)
 			{
+				echo $e->getMessage();
 				$api = null;
 			}
 		}
@@ -128,8 +129,9 @@ class JsonCon
 		{
 			$console['Test'] = $this->api->call("getLatestConsoleLogsWithLimit", array($msg));
 			$console['Test'] = $console['Test'][0]["success"];
+			return $console;
 		}
-		return $console;
+		return null;
 	}
 
 	public function reloadServer() {
@@ -144,13 +146,6 @@ class JsonCon
 			return $this->api->call("server.power.restart");
 		else
 			return false;
-	}
-
-	public function getPermissionsGroups($pseudo) {
-		if($this->TryMode())
-			return $this->api->call("permissions.getGroups", Array($pseudo));
-		else
-			return '';
 	}
 	
 	public function SendMessage($donnees)
