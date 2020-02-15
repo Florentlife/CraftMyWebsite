@@ -27,15 +27,18 @@
 	</div>
 	<br>
 	<br>
+	
+	
 	<h3 class="text-center">Choisissez votre catégorie :</h3>
 		<div class="tabbable">
+			<?php if(isset($categories)) { ?>
+		
 			<ul class="nav nav-tabs" style="margin-bottom:5vh;">
-			<?php for($j = 0; $j < count($categories); $j++){?>
-				  
+			<?php for($j = 0; $j < count($categories); $j++){ ?>
 				<li class="nav-item">
-					<a href="#categorie-<?=$j?>" data-toggle="tab" class="nav-link <?php if($j == 0) echo 'active'; ?>"><?=$categories[$j]['titre']; ?></a>
+					<a href="#categorie-<?=$j?>" data-toggle="tab" class="nav-link <?php if($j == 0) { echo 'active'; }?>"><?=$categories[$j]['titre']; ?></a>
 				</li>
-			<?php } ?>
+			 <?php } ?>
 			</ul>
 			<div class="tab-content">
 			<?php for($j = 0; $j < count($categories); $j++){?>
@@ -103,8 +106,16 @@
 					</div>
 				</div>
 			<?php }?>	
+				
 			</div>
-		</div>						
+			<?php } else {?>
+				<div class="alert alert-dismissible alert-danger">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<center><strong>Oh zut !</strong> il n'y a pas de catégorie, ré-essayez plus tard !.</center>
+				</div>
+			<?php }?>	
+		</div>	
+		
 	<?php
 	if(isset($_GET['offre']))
 	{
