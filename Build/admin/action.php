@@ -2,6 +2,8 @@
 /*
 	Ce fichier PHP effectue telle ou telle action selon le contenu des gets envoyés par la theme(selon le lien sur lequel l'utilisateur à cliqué etc...).
 */
+
+	$Return=true;
 	if(isset($_GET['action']) AND isset($_Joueur_['rang']) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['access'] == true))
 	{
 	switch ($_GET['action']) // on utilise ici un switch pour inclure telle ou telle page selon l'action.
@@ -484,6 +486,7 @@
 		break;
 
 		case 'newsletter': 
+		$Return=false ;
 		require_once('admin/actions/newsletter.php');
 		$_SESSION['referrerAdmin'] = 'newsletter';
 		break;
@@ -495,11 +498,14 @@
 		
 		// Si le joueur a rentré un url contenant une valeur d'action innexistant?
 		default:
-		header('Location: admin.php');
+			header('Location: admin.php');
 	}
 }
-if(isset($_SESSION['referrerAdmin']))
-	header('Location: admin.php?page='.$_SESSION['referrerAdmin']);
-else
-	header('Location: admin.php');
+if($Return)
+{
+	if(isset($_SESSION['referrerAdmin']))
+		header('Location: admin.php?page='.$_SESSION['referrerAdmin']);
+	else
+		header('Location: admin.php');
+}
 ?>
