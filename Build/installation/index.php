@@ -19,10 +19,15 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 		$sql = getPDO($_POST['hote'], $_POST['nomBase'], $_POST['utilisateur'], $_POST['mdp'], $_POST['port']);
 		require_once('installSQL.php');
 	}
-	elseif($testPDO == 2)
-		$erreur = 'sql_mode';
+	else if($testPDO == 3)
+	{
+		$erreur['type'] = 'pass';
+	}
 	else
-		$erreur = 'pass';
+	{
+		$erreur['type'] = 'sql_mode';
+		$erreur['data'] = $testPDO;
+	}
 }
 
 	if(isset($_GET['action']) AND $_GET['action'] == 'infos' AND isset($_POST['nom']) AND isset($_POST['adresse']) AND isset($_POST['description']))
@@ -144,9 +149,9 @@ if(isset($_GET['action']) AND $_GET['action'] == 'sql' AND isset($_POST['hote'])
 					<?php if($installEtape == 1) { 
 						if(isset($erreur))
 						{
-							if($erreur == 'sql_mode')
-								echo '<div class="alert alert-danger text-center">ATTENTION ! Votre base de donnée est mal configuré ! La configuration MySQL ne doit pas contenir de STRICT_ALL_TABLES dans son sql_mode. Si vous ne savez pas résoudre ce problème, contactez-nous sur discord : https://discord.gg/wMVAeug .</div>';
-							elseif($erreur == 'pass')
+							if($erreur['type'] == 'sql_mode')
+								echo '<div class="alert alert-danger text-center">ATTENTION ! Votre base de donnée est mal configuré ! La configuration MySQL ne doit pas contenir de STRICT_ALL_TABLES dans son sql_mode. Si vous ne savez pas résoudre ce problème, contactez-nous sur discord : https://discord.gg/wMVAeug en envoyant l\'information suivante :\''.$erreur['data'].'\'.</div>';
+							elseif($erreur['type'] == 'pass')
 								echo '<div class="alert alert-danger text-center">ATTENTION ! Vos identifiants sont incorrects.</div>';
 						} ?>
 					<h3 style="font-family: material;text-align: center;margin-top: 40px;">Base de données <img style="width: 115px;margin-top: -33px;"src="img/logo-mysql.png"></h3>
@@ -259,12 +264,12 @@ function verifyPDO($hote, $nomBase, $utilisateur, $mdp, $port)
 	{
 		$sql = new PDO('mysql:host='.$hote.';dbname='.$nomBase.';port='.$port, $utilisateur, $mdp);
 		$sql->exec("SET CHARACTER SET utf8");
-		$req = $sql->query('SELECT @@GLOBAL.sql_mode AS sql_mode');
+		$req = $sql->query('SELECT @@GLOBAL.sql_mode AS sql_mode_global, @@SESSION.sql_mode AS sql_mode_session');
 		$data = $req->fetch(PDO::FETCH_ASSOC);
-		if(empty($data['sql_mode']) OR strpos($data['sql_mode'], 'STRICT_ALL_TABLES') === FALSE)
+		if((!isset($data['sql_mode_global']) | empty($data['sql_mode_global']) | strpos($data['sql_mode_global'], 'STRICT_ALL_TABLES') === FALSE) & (!isset($data['sql_mode_session']) | empty($data['sql_mode_session']) | strpos($data['sql_mode_session'], 'STRICT_ALL_TABLES') === FALSE))
 			return true;
 		else
-			return 2;
+			return '([GLOBAL.sql_mode: '.$data['sql_mode_globall'].'],[SESSION.sql_mode:'.$data['sql_mode_session'].'])';
 	}
 	catch(Exception $e)
 	{
