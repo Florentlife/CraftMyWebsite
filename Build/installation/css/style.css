@@ -17,7 +17,7 @@
 
 body {
 	background: url('../img/background.png') no-repeat center center fixed !important;
-	animation-play-state: running
+	animation-play-state: running;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center; 
