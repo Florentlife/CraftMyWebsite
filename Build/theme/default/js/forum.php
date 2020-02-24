@@ -41,7 +41,7 @@ function miseEnPage($str)
 	    '<span style="color: $1">$2</span>',
 	    '<hr/>',
 	    '<s>$2</s>',
-	    '<center>$1</center',
+	    '<center>$1</center>',
 	    '<span style="font-size:$1em;">$2</span>',
 	    '<p class="text-right" style="margin-bottom: 0px;">$1</p>',
 	    '<p class="text-left" style="margin-bottom: 0px;">$1</p>',
