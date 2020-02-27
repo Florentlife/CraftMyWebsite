@@ -9,7 +9,6 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     display: flex;
-    min-height: 100vh;
     flex-direction: column;
 }
 
@@ -127,7 +126,7 @@ section {
 #loader {
 	position : fixed;
 	z-index: 9999;
-	background : url('icon-loader.gif') 50% 50% no-repeat;
+	background : url('../img/gif-charge.gif') 50% 50% no-repeat;
 	top : 0px;
 	left : 0px;
 	height : 100%;
