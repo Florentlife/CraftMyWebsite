@@ -35,7 +35,7 @@ if(isset($_GET['id']))
 		<a class="nav-link" href="?&page=forum">Revenir à l'index du forum</a>
 	</nav><br/>
 	<nav aria-label="breadcrumb" role="navigation">
-		<ol class="breadcrumb" style="front-size: 20px;">
+		<ol class="breadcrumb" style="front-size"=20px;">
 			<li class="breadcrumb-item"><a href="/">Accueil</a></li>
 			<li class="breadcrumb-item"><a href="?page=forum">Forum</a></li>
 			<li class="breadcrumb-item"><a href="?&page=forum_categorie&id=<?php echo $topicd['id_categorie']; ?>"><?php echo $topicd['nom_categorie']; ?></a></li>
