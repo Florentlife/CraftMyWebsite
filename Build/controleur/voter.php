@@ -199,20 +199,24 @@ $succes = false;
 		return $donnees;
 	}
 	
-	function Vote($pseudo, $id, $bddConnection, $donnees, $temps)
-	{
-		if($donnees['date_dernier'] + $temps < time())
-		{
-			$req = $bddConnection->prepare('UPDATE cmw_votes SET nbre_votes = nbre_votes + 1, date_dernier = :tmp WHERE pseudo = :pseudo AND site = :site');
-			$req->execute(array(
-				'tmp' => time(),
-				'pseudo' => $pseudo,
-				'site' => $id	));
-			return true;
-		}
-		else 
-			return false;
-	}
+	function RecupJoueur($pseudo, $id, $bddConnection)
+    {
+        $line = $bddConnection->prepare('SELECT * FROM cmw_votes WHERE pseudo = :pseudo AND site = :site');
+        $line->execute(array(
+            'pseudo' => $pseudo,
+            'site' => $id    ));
+        $donnees = $line->fetch(PDO::FETCH_ASSOC);
+        $line2 = $bddConnection->prepare('SELECT id FROM cmw_votes_config WHERE id = :site');
+        $line2->execute(array(
+            'site' => $id
+        ));
+        $donnees2 = $line2->fetch(PDO::FETCH_ASSOC);
+        if($donnees2['id'] != $id)
+            $donnees["existe"] = false;
+        else
+            $donnees["existe"] = true;
+        return $donnees;
+    }
 	
 	function ExisteJoueur($pseudo, $id, $bddConnection)
 	{
