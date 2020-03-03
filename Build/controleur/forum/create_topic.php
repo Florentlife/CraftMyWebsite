@@ -1,7 +1,7 @@
-<?php 
+<?php
 if(isset($_Joueur_))
 {
-	if(!empty($_POST['nom']) AND !empty($_POST['contenue']))
+	if(!empty($_POST['nom']) AND !empty($_POST['contenue'] AND strlen($_POST['contenue']) <= 15000))
 	{
 		$nom = htmlspecialchars($_POST['nom']);
 		$contenue = htmlspecialchars($_POST['contenue']);
@@ -19,6 +19,9 @@ if(isset($_Joueur_))
 			'last_answer' => $pseudo,
 			'last_answer_temps' => time()
 			));
+		}
+		elseif(strlen($_POST['contenue']) <= 15000){
+			header('Location: ?page=erreur&erreur=20');				
 		}
 		else
 		{
@@ -45,6 +48,6 @@ if(isset($_Joueur_))
 	else
 		header('Location: ?page=erreur&erreur=0');
 }
-else 
+else
 	header('Location: ?page=erreur&erreur=7');
 ?>
