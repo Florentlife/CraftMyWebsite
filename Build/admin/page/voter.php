@@ -94,11 +94,23 @@
                             <label class="control-label">Temps de vote</label>
                             <input type="number" name="temps" placeholder="ex: 86400 pour 24h" class="form-control" />
                         </div>
+						 <div class="row">
+                            <label class="control-label">Id unique donné par le site web. *</label>
+                            <input type="number" name="idCustom" placeholder="ex: 54748" value="-1" class="form-control" />
+                        </div>
                         <hr>
                         <div class="row text-center">
                             <input type="submit" class="btn btn-success" value="Valider les changements !"/>
                         </div>
                     </div>
+					 <strong>* Un système de vérification de votes est intégré</strong><br/>
+               Les sites suivant sont compatible avec cette vérification:<ul>
+                    <li> serveur-prive.net</li>
+                    <li> serveurs-minecraft.org</li>
+                    <li> serveurs-minecraft.com</li>
+                    <li> serveursminecraft.fr</li>
+                    <li> liste-minecraft-serveurs.com</li>
+                </ul> A noté que certains service de recherche de serveur n'ont pas une API utilisable ! Pour que celle ci fonctionne sur le cms, vous devez remplir le champ "Id unique" par l'id donné par le site web ( généralement dans les onglets API ). Laisser "-1" pour le désactiver.
                 </div>
             </div>
         </div>
@@ -122,7 +134,7 @@
                             <h3 class="text-center">Gestion des votes</h3>
                         </div>
                         <form action="?action=modifierVote" method="post">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover " >
                             <tr>
                                 <th>Titre</th>
                                 <th>Lien de vote</th>
@@ -134,6 +146,7 @@
                                 <th>Id de l'item</th>
                                 <th>Message</th>
                                 <th>Temps entre chaque vote</th>
+								<th>Id unique</th>
                                 <th>Action</th>
                             </tr>
                         <?php $donnees = $req_donnees->fetchAll();
@@ -169,6 +182,7 @@
                                 <td><input type="text" name="id<?=$o;?>" class="form-control" value="<?=($action[0] == "give") ? $item[1] : '';?>" /></td>
                                 <td><input type="text" name="message<?=$o;?>" class="form-control" value="<?=$donnees[$o]['message'];?>" /></td>
                                 <td><input type="number" name="temps<?=$o;?>" class="form-control" value="<?=$donnees[$o]['temps'];?>" /></td>
+								<td><input type="number" name="idCustom<?=$o;?>" class="form-control" value="<?=$donnees[$o]['idCustom'];?>" /></td>
                                 <td><a href="?action=supprVote&id=<?=$donnees[$o]['id'];?>" class="btn btn-danger">Supprimer</a></td></tr>
                                 <?php 
                         }
