@@ -141,7 +141,7 @@
 						  <div class="form-group">
 						    <label for="inputPassword3" class="col-sm-2 control-label">Age</label>
 						    <div class="col-sm-8" style="display: inline-block;">
-						      <input type="number" name="age"class="form-control" placeholder="17" value="<?php if($joueurDonnees['age'] != 'inconnu') echo $joueurDonnees['age']; ?>" >
+						      <input type="number" name="age"class="form-control" min="0" max="99" placeholder="17" value="<?php if($joueurDonnees['age'] != 'inconnu') echo $joueurDonnees['age']; ?>" >
 						    </div>
 						  </div>
 						  <div class="form-group">
