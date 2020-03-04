@@ -12,13 +12,14 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 		$action = htmlspecialchars($_POST['action'.$i]);
 		$message = htmlspecialchars($_POST['message'.$i]);
 		$temps = htmlspecialchars($_POST['temps'.$i]);
+		$idCustom = htmlspecialchars($_POST['idCustom'.$i]);
 		if($action == 1)
 		{
 			$action = 'cmd';
 			$cmd = htmlspecialchars($_POST['cmd'.$i]);
 			if(!Verif($titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $cmd) == true)
 			{
-				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre WHERE id = :id');
+				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
 				$update->execute(array(
 					'message' => $message,
 					'methode' => $methode,
@@ -27,6 +28,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 					'lien' => $lien,
 					'temps' => $temps,
 					'titre' => $titre,
+					'idCustom' => $idCustom,
 					'id' => $data[$i]['id']
 				));
 			}
@@ -38,7 +40,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 			$id = htmlspecialchars($_POST['id'.$i]);
 			if(!Verif($titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $quantite, $id) == true)
 			{
-				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre WHERE id = :id');
+				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
 				$update->execute(array(
 					'message' => $message,
 					'methode' => $methode,
@@ -47,6 +49,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 					'lien' => $lien,
 					'temps' => $temps,
 					'titre' => $titre,
+					'idCustom' => $idCustom,
 					'id' => $data[$i]['id']
 				));
 			}
@@ -57,7 +60,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 			$quantite = htmlspecialchars($_POST['quantite'.$i]);
 			if(!Verif($titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $quantite) == true)
 			{
-				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre WHERE id = :id');
+				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
 				$update->execute(array(
 					'message' => $message,
 					'methode' => $methode,
@@ -66,6 +69,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 					'lien' => $lien,
 					'temps' => $temps,
 					'titre' => $titre,
+					'idCustom' => $idCustom,
 					'id' => $data[$i]['id']
 				));
 			}
