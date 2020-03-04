@@ -409,6 +409,7 @@ CREATE TABLE IF NOT EXISTS `cmw_votes_config` (
   `lien` varchar(255) NOT NULL,
   `temps` int(10) UNSIGNED NOT NULL,
   `titre` varchar(60) NOT NULL,
+  `idCustom` int(11) NOT NULL DEFAULT -1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
