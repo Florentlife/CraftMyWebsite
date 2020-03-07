@@ -26,7 +26,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 			}
 			else if(verifVote($lectureVotes['lien'], $lectureVotes['idCustom']))
 			{
-				if(isset($_Joueur_) AND $_Joueur_['pseudo'] == $pseudo)
+				if(isset($_Joueur_) && $_Joueur_['pseudo'] == $pseudo)
 				{
 					//Système de vérification des récompenses auto
 					$key = array_search($pseudo, $voteurs['pseudo']);
@@ -89,22 +89,20 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 						'action' => $lectureVotes['action'],
 						'serveur' => $lectureVotes['serveur']
 					));
+
+				
 				}else {
 					// give direct la récompense
-					if(!empty($lectureVotes['message']))
-					{
-						$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $lectureVotes['quantite'], str_replace('{ID}', $lectureVotes['id'], $lectureVotes['message'])));
-					}
-					$cmd = str_replace('{JOUEUR}', $pseudo, $lectureVotes['cmd']);
+					
 					 $action = explode(':', $lectureVotes['action'], 2);
 					 if($action[0] == "give")
 					 {
 						$action = explode(':', $action[1]);
-						$id = $action[1];
+						$idI = $action[1];
 						$quantite = $action[3];
 						if(!empty($lectureVotes['message']))
 						{
-							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, str_replace('&amp;', '§', $lectureVotes['message']))));
+							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $lectureVotes['message']))));
 						}
 						if($lectureVotes['methode'] == 2)
 						{
@@ -112,7 +110,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 							{
 								$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
 							}
-							$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($id . ' ' .$quantite);
+							$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($idI . ' ' .$quantite);
 				
 						}
 						else
@@ -129,7 +127,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 				
 						}
 					 }
-					elseif($action[0] == "jeton")
+					else if($action[0] == "jeton")
 					 {
 						 if(!empty($lectureVotes['message']))
 						{
@@ -202,15 +200,14 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 {
 	echo 'erreur-2';
 }
-
-	function ajouterTokens($number){
-		global $playerData, $joueurMaj, $_Joueur_;
-		$playerData['tokens'] = $playerData['tokens'] + $number;
-		$joueurMaj->setReponseConnection($playerData);
-	 	$joueurMaj->setNouvellesDonneesTokens($playerData);
-	 	$_Joueur_['tokens'] = $_Joueur_['tokens'] + $number;
-	 	$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
-	 }
+function ajouterTokens($number){
+	global $playerData, $joueurMaj, $_Joueur_;
+	$playerData['tokens'] = $playerData['tokens'] + $number;
+	$joueurMaj->setReponseConnection($playerData);
+	$joueurMaj->setNouvellesDonneesTokens($playerData);
+	$_Joueur_['tokens'] = $_Joueur_['tokens'] + $number;
+	$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
+}
 	
 	function verifVote($url, $id) {
 		if(strpos($url, 'serveur-prive.net') AND $id != -1)
