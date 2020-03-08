@@ -123,16 +123,20 @@
 										}
 										$donnees = RecupJoueur($pseudo, $id, $bddConnection);
 										$lectureVotes = LectureVote($id, $bddConnection); 
+										$action = explode(':', $lectureVotes['action'], 2);
 										if(!Vote($pseudo, $id, $bddConnection, $donnees, $lectureVotes['temps']))
 										{
 											echo '<button type="button" class="btn btn-success" style="margin-top:5px; margin-right:5px;" disabled>'.GetTempsRestant($donnees['date_dernier'], $lectureVotes['temps'], $donnees).'</button>';
 										}
-										else
+										else if($action[0] != "jeton" || isset($_Joueur_))
 										{
-											echo '<a href="'.$liensVotes['lien'].'" style="margin-top:5px;" id="btn-lien-'.$id.'" target="_blank" onclick="$(this).fadeOut(500);setTimeout(function(){ $(\'#btn-verif-'.$id.'\').fadeIn(500);}, 500);bouclevote('.$id.',\''.$pseudo.'\');" class="btn btn-primary" >'.$liensVotes['titre'].'</a>
+											echo '<a href="'.$liensVotes['lien'].'" style="margin-top:5px;" id="btn-lien-'.$id.'" target="_blank" onclick="document.getElementById(\'btn-lien-'.$id.'\').style.display=\'none\';document.getElementById(\'btn-verif-'.$id.'\').style.display=\'inline\';bouclevote('.$id.',\''.$pseudo.'\');" class="btn btn-primary" >'.$liensVotes['titre'].'</a>
 												  <button id="btn-verif-'.$id.'" style="margin-top:5px; display:none;" type="button" class="btn btn-danger" disabled>Vérification en cours ...</button>
 												  <button type="button" style="margin-top:5px; display:none;" id="btn-after-'.$id.'" class="btn btn-success" disabled>'.TempsTotal($lectureVotes['temps']).'</button>
 												';
+										} else {
+											echo '<button type="button" class="btn btn-danger" style="margin-top:5px; margin-right:5px;" disabled>Vous devez être connecté pour pouvoir voter sur ce site.</button>';
+										
 										}
 									}
 								}
@@ -184,7 +188,7 @@ function TempsTotal($tempsRestant)
 			$tempsM = $tempsM + 1;
 			$tempsRestant = $tempsRestant - 60;
 		}
-		if($tempsH ==0)
+		if($tempsH == 0)
 		{
 			return $tempsM.' minute(s)';
 		}
