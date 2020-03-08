@@ -26,7 +26,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 			}
 			else if(verifVote($lectureVotes['lien'], $lectureVotes['idCustom']))
 			{
-				if(isset($_Joueur_) AND $_Joueur_['pseudo'] == $pseudo)
+				if(isset($_Joueur_) && $_Joueur_['pseudo'] == $pseudo)
 				{
 					//Système de vérification des récompenses auto
 					$key = array_search($pseudo, $voteurs['pseudo']);
@@ -39,14 +39,14 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 							if($action[0] == "give")
 							{
 								$action = explode(':', $action[1]);
-								$id = $action[1];
+								$idI = $action[1];
 								$quantite = $action[3];
 							}
 							elseif($action[0] == "jeton")
 							{
 								$quantite = $action[1];
 							}
-							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, str_replace('&amp;', '§', $value['message']))));
+							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $value['message']))));
 							if(!empty($value['message']))
 							{
 								$jsonCon[$value['serveur']]->SendBroadcast($message);
@@ -67,14 +67,14 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 						if($action[0] == "give")
 						{
 							$action = explode(':', $action[1]);
-							$id = $action[1];
+							$idI = $action[1];
 							$quantite = $action[3];
 						}
 						elseif($action[0] == "jeton")
 						{
 							$quantite = $action[1];
 						}
-						$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, str_replace('&amp;', '§', $lectureVotes['message']))));
+						$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $lectureVotes['message']))));
 						if($lectureVotes['methode'] == 2)
 							$jsonCon[$value['serveur']]->SendBroadcast($message);
 						else
@@ -89,22 +89,26 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 						'action' => $lectureVotes['action'],
 						'serveur' => $lectureVotes['serveur']
 					));
+					
+					$req = $bddConnection->prepare('UPDATE cmw_votes SET nbre_votes = nbre_votes + 1, date_dernier = :tmp WHERE pseudo = :pseudo AND site = :site');
+					$req->execute(array(
+						'tmp' => time(),
+						'pseudo' => $pseudo,
+						'site' => $id));
+
+				
 				}else {
 					// give direct la récompense
-					if(!empty($lectureVotes['message']))
-					{
-						$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $lectureVotes['quantite'], str_replace('{ID}', $lectureVotes['id'], $lectureVotes['message'])));
-					}
-					$cmd = str_replace('{JOUEUR}', $pseudo, $lectureVotes['cmd']);
+					
 					 $action = explode(':', $lectureVotes['action'], 2);
 					 if($action[0] == "give")
 					 {
 						$action = explode(':', $action[1]);
-						$id = $action[1];
+						$idI = $action[1];
 						$quantite = $action[3];
 						if(!empty($lectureVotes['message']))
 						{
-							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $id, str_replace('&amp;', '§', $lectureVotes['message']))));
+							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $lectureVotes['message']))));
 						}
 						if($lectureVotes['methode'] == 2)
 						{
@@ -112,7 +116,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 							{
 								$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
 							}
-							$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($id . ' ' .$quantite);
+							$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($idI . ' ' .$quantite);
 				
 						}
 						else
@@ -129,7 +133,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 				
 						}
 					 }
-					elseif($action[0] == "jeton")
+					else if($action[0] == "jeton")
 					 {
 						 if(!empty($lectureVotes['message']))
 						{
