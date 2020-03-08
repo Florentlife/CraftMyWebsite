@@ -38,4 +38,3 @@ function bouclevote(id2, pseudo2) {
 		}
     });
 }
-
