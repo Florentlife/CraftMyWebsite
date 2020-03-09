@@ -190,14 +190,14 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 							
 						}
 					 }
-				
+					$req = $bddConnection->prepare('UPDATE cmw_votes SET nbre_votes = nbre_votes + 1, date_dernier = :tmp WHERE pseudo = :pseudo AND site = :site');
+					$req->execute(array(
+						'tmp' => time(),
+						'pseudo' => $pseudo,
+						'site' => $id));
 				}
-				$req = $bddConnection->prepare('UPDATE cmw_votes SET nbre_votes = nbre_votes + 1, date_dernier = :tmp WHERE pseudo = :pseudo AND site = :site');
-				$req->execute(array(
-					'tmp' => time(),
-					'pseudo' => $pseudo,
-					'site' => $id));
 				echo "success";
+				
 			}
 			else {
 				echo 'erreur-1';
