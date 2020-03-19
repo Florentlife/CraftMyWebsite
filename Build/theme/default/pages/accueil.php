@@ -3,7 +3,7 @@
         <div class="heading-mask">
             <div class="container" style="text-align:center;">
                 <h1 class="text-primary text-uppercase wow zoomInDown" data-wow-delay="0.6s"><?php echo $_Serveur_['General']['name']; ?></h1>
-                <p class="h6 wow fadeInUp" data-wow-delay="0.9s"><?php if($_Serveur_['General']['statut'] == 0)
+                <p class="h6 wow fadeInUp" data-wow-delay="0.9s"><?php if($_Serveur_['General']['statut'] == 0 || !$pingClass->Online)
                 {
                 	echo '<span class="badge badge-danger">Hors-Ligne</span>'; 
                 }

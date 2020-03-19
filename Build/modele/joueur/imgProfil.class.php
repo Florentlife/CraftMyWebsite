@@ -6,11 +6,14 @@ class ImgProfil
 	private $extension;
 	private $bdd;
 	private $id;
+	public $_Serveur_;
 	public $modif;
 
 	public function __construct($id, $mode='id')
 	{
 		global $bddConnection;
+		global $_Serveur_;
+		$this->_Serveur_ = $_Serveur_;
 		$this->bdd = $bddConnection;
 		if($mode == 'pseudo')
 		{
@@ -60,7 +63,9 @@ class ImgProfil
 				$pseudo = $this->id;
 			else
 				$pseudo = $this->getPseudo();
-			$this->img = "https://cravatar.eu/avatar/$pseudo/$size";
+			$this->img = $this->_Serveur_['General']['url'].'/include/SkinApi/skin.php?p='.$pseudo.'&type=head&size='.$size;
+			$width = $size;
+			$height = $size;
 			return $this->img;
 		}
 	}
@@ -84,7 +89,7 @@ class ImgProfil
 				$pseudo = $this->id;
 			else 
 				$pseudo = $this->getPseudo();
-			$this->img = "https://cravatar.eu/avatar/".$pseudo.".png";
+			$this->img = $this->_Serveur_['General']['url'].'/include/SkinApi/skin.php?p='.$pseudo.'&type=head';
 		}
 	}
 
