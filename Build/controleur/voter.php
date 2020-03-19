@@ -106,6 +106,9 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 						$action = explode(':', $action[1]);
 						$idI = $action[1];
 						$quantite = $action[3];
+						if(!isset($quantite) || $quantite == 0) {
+							$quantite = 1;
+						}
 						if(!empty($lectureVotes['message']))
 						{
 							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $lectureVotes['message']))));
@@ -116,7 +119,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 							{
 								$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
 							}
-							$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($idI . ' ' .$quantite);
+							$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($pseudo.' '.$idI . ' ' .$quantite);
 				
 						}
 						else
@@ -128,7 +131,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 
 									$jsonCon[$j]->SendBroadcast($message);
 								}
-								$jsonCon[$j]->GivePlayerItem($id . ' ' .$quantite);
+								$jsonCon[$j]->GivePlayerItem($pseudo.' '.$id . ' ' .$quantite);
 							}
 				
 						}
