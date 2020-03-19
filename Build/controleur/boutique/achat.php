@@ -108,15 +108,7 @@
 					    	$prix = $_SESSION['panier']['prix'][$a]*$_SESSION['panier']['quantite'][$a];
 					}
 					else
-						if(isset($_SESSION['panier']['reduction_expire']))
-					   	{
-					    	if($_Panier_->verifExpire($aretirer))
-					    		$prix = $_SESSION['panier']['prix'][$a]*$_SESSION['panier']['quantite'][$a]*(1-$_SESSION['panier']['reduction']);
-					    	else
-					    		$prix = $_SESSION['panier']['prix'][$a]*$_SESSION['panier']['quantite'][$a];
-					   	}
-					   	else
-					   		$prix = $_SESSION['panier']['prix'][$a]*$_SESSION['panier']['quantite'][$a]*(1-$_SESSION['panier']['reduction']);
+						$prix = $_SESSION['panier']['prix'][$a]*$_SESSION['panier']['quantite'][$a]*(1-$_SESSION['panier']['reduction']);
 					if($aretirer == true)
 						$_Panier_->retirerReduction();
 				    $stats->AddSell($_SESSION['panier']['id'][$a], $prix, $_Joueur_['pseudo']);
