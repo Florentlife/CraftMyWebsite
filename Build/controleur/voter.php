@@ -116,7 +116,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 							{
 								$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
 							}
-							$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($idI . ' ' .$quantite);
+							$jsonCon[$lectureVotes['serveur']]->GivePlayerItem($pseudo.' '.$idI . ' ' .$quantite);
 				
 						}
 						else
@@ -128,7 +128,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 
 									$jsonCon[$j]->SendBroadcast($message);
 								}
-								$jsonCon[$j]->GivePlayerItem($id . ' ' .$quantite);
+								$jsonCon[$j]->GivePlayerItem($pseudo.' '.$idI . ' ' .$quantite);
 							}
 				
 						}
