@@ -1,3 +1,3 @@
 <?php
-$versioncms = "1.7.1";
+$versioncms = "1.7.2";
 ?>
