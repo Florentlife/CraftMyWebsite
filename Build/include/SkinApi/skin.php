@@ -15,7 +15,7 @@ require('UUIDHelper.class.php');
 if(isset($_GET['p']))
 {
     $pseudo = $_GET['p'];
-    $size = isset($_GET['size']) ? $_GET['size'] : 3;
+    $size = 128;
     $type = isset($_GET['type']) ? $_GET['type'] : 'body';
     
     $api = new UUIDHelper($pseudo);
