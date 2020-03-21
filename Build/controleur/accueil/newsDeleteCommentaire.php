@@ -24,23 +24,28 @@ if(isset($_Joueur_)) {
     $get_CheckOwnerCommentaire = $rep_CheckOwnerCommentaire->fetch(PDO::FETCH_ASSOC);
     $CheckOwnerCommentaire = $get_CheckOwnerCommentaire['pseudo'];
 
-    if($ExistNews == "0") {
-    	header('Location: index.php?&NewsNotExist=true');
-    } else {
-    	if($ExistCommentaire == "0") {
-            header('Location: index.php?&CommentaireNotExist=true');
-        } else {
-            if(!$CheckOwnerCommentaire == $pseudo OR !$adminMode = true) {
-             header('Location: index.php?&SuppressionImpossible=true');
-         } else {
-            require_once('modele/accueil/deleteNews.class.php');
-            $req_DeleteInfo = new DeleteNews($bddConnection);
-            $req_DeleteInfo->DeleteOwnerCommentaire($id_news, $auteur, $id);
-            $req_DeleteInfo->DeleteOwnerReports($id, $id_news);
-            header('Location: index.php?&SuppressionCommentaire=true');
-        }
-    }
-}
+	if($CheckOwnerCommentaire == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1)
+	{
+		if($ExistNews == "0") {
+			header('Location: index.php?&NewsNotExist=true');
+		} else {
+			if($ExistCommentaire == "0") {
+				header('Location: index.php?&CommentaireNotExist=true');
+			} else {
+					if(!$CheckOwnerCommentaire == $pseudo OR !$adminMode = true) {
+					 header('Location: index.php?&SuppressionImpossible=true');
+				 } else {
+					require_once('modele/accueil/deleteNews.class.php');
+					$req_DeleteInfo = new DeleteNews($bddConnection);
+					$req_DeleteInfo->DeleteOwnerCommentaire($id_news, $auteur, $id);
+					$req_DeleteInfo->DeleteOwnerReports($id, $id_news);
+					header('Location: index.php?&SuppressionCommentaire=true');
+				}
+			}
+		}
+	}else {
+		header('Location: index.php?&SuppressionCommentaire=false');
+	}
 } else {
     header('Location: index.php?&NotOnline=true');
 }

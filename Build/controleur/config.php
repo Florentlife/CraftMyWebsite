@@ -9,6 +9,7 @@
 	// On récupère la classe permettant la lecture en YML. Les fichiers de config sont sous ce format.
 	require_once('./modele/config/yml.class.php');
 	require_once('./modele/ban.class.php');
+	require_once('./include/MinecraftPing/MinecraftPing.class.php');
 	
 	// On lit le fichier de config et on récupère les information dans un tableau. Celui-ci contiens la config générale.
 	$configLecture = new Lire('modele/config/config.yml');
@@ -48,8 +49,9 @@
 	}
 	else
 	{
-		$playeronline = file_get_contents('https://minecraft-api.com/api/ping/playeronline.php?ip='.$_Serveur_['General']['ip'].'&port='.$_Serveur_['General']['port']);
-		$maxPlayers = file_get_contents('https://minecraft-api.com/api/ping/maxplayer.php?ip='.$_Serveur_['General']['ip'].'&port='.$_Serveur_['General']['port']);
+		$pingClass = new MinecraftPing($_Serveur_['General']['ip'], $_Serveur_['General']['port']);
+		$playeronline = $pingClass->Players;
+		$maxPlayers = $pingClass->MaxPlayer;
 		setcookie('playeronline', $playeronline, time() + 300);
 		setcookie('maxPlayers', $maxPlayers, time() + 300);
 	}

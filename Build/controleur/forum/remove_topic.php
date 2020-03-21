@@ -1,6 +1,6 @@
 <?php 
 
-if(isset($_POST['id_topic']) AND isset($_Joueur_))
+if(isset($_POST['id_topic']) AND isset($_Joueur_) && ($_PGrades_['PermsForum']['moderation']['deleteTopic'] == true OR $_Joueur_['rang'] == 1))
 {
 	$id = htmlspecialchars($_POST['id_topic']);
 	$pseudo = htmlspecialchars($_Joueur_['pseudo']);
