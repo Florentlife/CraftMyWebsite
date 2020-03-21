@@ -38,5 +38,38 @@ class Joueur
 	{
 		return $this->_Joueur_;
 	}
+
+	//Mets à jours les données joueur 
+	public function updateArrayDonneesUtilisateur($bdd)
+	{
+		$req = $bdd->prepare('SELECT * FROM cmw_users WHERE pseudo = :pseudo');
+		$req->execute(array(
+			'pseudo' => $this->_Joueur_['pseudo']
+		));
+		$fetch = $req->fetch(PDO::FETCH_ASSOC);
+		if($fetch['pseudo'] != $this->_Joueur_['pseudo'])
+		{
+			session_destroy();
+			setcookie('id', 0, time(), '/', null, false, false);
+			setcookie('pass', 0, time(), '/', null, false, false);
+		}
+		else
+		{
+			$_SESSION['Player'] = array(
+				'id' => $fetch['id'],
+				'pseudo' => $fetch['pseudo'],
+				'email' => $fetch['email'],
+				'rang' => $fetch['rang'],
+				'tokens' => $fetch['tokens'],
+				'temp' => time() 
+			);
+			$this->_Joueur_ = array(
+				'id' => $_SESSION['Player']['id'],
+				'pseudo' => $_SESSION['Player']['pseudo'],
+				'rang' => $_SESSION['Player']['rang'],
+				'tokens' => $_SESSION['Player']['tokens']
+			);
+		}
+	}
 }
 ?>

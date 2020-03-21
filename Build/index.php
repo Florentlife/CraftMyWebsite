@@ -32,6 +32,8 @@ if ((isset($_SESSION['Player']['pseudo']) AND !empty($_SESSION['Player']['pseudo
     {	
         require_once ('controleur/joueur/joueur.class.php');
         $globalJoueur = new Joueur();
+        if($_SESSION['Player']['temp'] < time()+60)
+            $globalJoueur->updateArrayDonneesUtilisateur($bddConnection);
         // Cette variable contiens toutes les informations du joueur.
         $_Joueur_ = $globalJoueur->getArrayDonneesUtilisateur();
         $connection = true;
