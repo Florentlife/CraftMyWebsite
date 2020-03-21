@@ -33,11 +33,6 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 
 				if(empty($donneesJoueur['pseudo']))
 				{
-					require_once('modele/joueur/ScriptBySprik07/connectionPerIP.class.php');
-					$req_connexionPerIp = new ConnectionPerIP($getIp, $bddConnection);
-					$rep_connexionPerIp = $req_connexionPerIp->getReponseConnection();
-					$ConnectionPerIp = $rep_connexionPerIp->fetch(PDO::FETCH_ASSOC);
-
 					require_once('modele/joueur/ScriptBySprik07/countIpBDD.class.php');
 					$req_countIpBdd = new CountIpBdd($getIp, $bddConnection);
 					$rep_countIpBdd = $req_countIpBdd->getReponseConnection();
@@ -49,7 +44,7 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 					$get_limiteIpBdd = $rep_limiteIpBdd->fetch(PDO::FETCH_ASSOC);
 					$LimiteIpBdd = $get_limiteIpBdd['nbrPerIP'];
 
-					if($CountIpBdd < $LimiteIpBdd)
+					if($CountIpBdd < $LimiteIpBdd || $LimiteIpBdd == -1)
 					{
 						if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) 
 						{

@@ -26,7 +26,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['members'
       <form method="post" action="?action=editNbrPerIP&idPerIP=<?php echo $nbrPerIP[$i]['id'];?>">
       <div class="panel-body">
         <div class="row">
-          <label class="form-control-label">Modifiez ici le nombres <span style="color: red;">limite</span> d'inscriptions par IP.</label>
+          <label class="form-control-label">Modifiez ici le nombres <span style="color: red;">limite</span> d'inscriptions par IP. (Entrez -1 pour <span style="color: green">illimité</span>)</label>
           <input type="number" style="text-align: center;" name="nbrPerIP" class="form-control" placeholder="1" value="<?php echo $nbrPerIP[$i]['nbrPerIP']; ?>"/>
         </div>
         <div class="row text-center">
