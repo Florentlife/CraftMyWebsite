@@ -38,12 +38,14 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/toastr.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/snarl.min.css">
 	<link rel="stylesheet" href="theme/<?php echo $_Serveur_['General']['theme']; ?>/css/forum.css">
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
 	<script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/form.js"></script>
 	<?php
 	if(file_exists('favicon.ico'))
 			echo '<link rel="icon" type="image/x-icon" href="favicon.ico"></link>';
 	?>
-	<title><?php echo $_Serveur_['General']['description'] ?></title>
+	<title><?=$_Serveur_['General']['name'] ." | ". (isset($_GET["page"]) ? $_GET["page"] : $_Serveur_['General']['description'])?></title>
 </head>
 
 <body>
@@ -98,6 +100,29 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <?php include('theme/'.$_Serveur_['General']['theme'].'/js/forum.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
 <script>
+
+// cookies consent
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+	"palette": {
+		"popup": {
+		"background": "#000"
+		},
+		"button": {
+			"background": "transparent",
+			"text": "var(--color-main)",
+			"border": "var(--color-main)"
+		}
+	},
+	"position": "bottom-left",
+	"content": {
+		"message": "Ce site utilise des cookies permettant d'améliorer votre expérience utilisateur.",
+		"dismiss": "J'ai compris",
+		"link": "Voir plus..."
+	}
+})});
+
+// bouton scroll to top
 window.onscroll = function() {divScroll()};
 
 function divScroll() {
