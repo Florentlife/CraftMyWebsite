@@ -61,27 +61,4 @@ else
 	else
 		$titreEtat = 'DU SERVEUR';
 }
-
-require_once('controleur/perms/Permissions.class.php');
-require_once('modele/perms/PermissionsManager.class.php');
-
-if(isset($jsonCon[0]) AND $conEtablie[0])
-{
-    $groups = new Permissions();
-    $groups->hydrate($jsonCon[0], $_Serveur_['General']['permsPlugin'], $_Serveur_['General']['permsWorld']);
-
-    $rand = rand(1, 15);
-    
-    if($rand == 1)
-    {
-        $groups->readPermsServer();
-        $groups->permsToArray();
-        $groups->updateLocal();
-    }
-    else
-    {
-        $groups->readPermsLocal();
-    }
-    $groups = $groups->getPerms();
-}
 ?>

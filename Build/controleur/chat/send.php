@@ -17,8 +17,10 @@ if(isset($_Joueur_) && isset($_POST['i']) && isset($_POST['message']) && (!isset
 			header('Location: ?page=chat&erreur=send');
 	}
 	else
-		header('Location: ?page=erreur&erreur=18');
+	{
+		header('Location: ?page=erreur&erreur=19&type='+urlencode("Erreur Chat")+"&titre="+urlencode("Erreur Message")+"&contenue="+urlencode("Message trop long :/"));
+	}
 }
 else
-	header('Location: ?page=erreur&erreur=18');
+	header('Location: ?page=erreur&erreur=16');
 ?>

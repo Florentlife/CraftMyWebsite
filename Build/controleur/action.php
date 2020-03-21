@@ -297,7 +297,6 @@ if(isset($_GET['action']))
 		
 		case 'passRecoverConfirm':
             include('controleur/joueur/recuperationMailLink.php');
-            header('Location: index.php');
         break;
 
 		case 'passRecover':

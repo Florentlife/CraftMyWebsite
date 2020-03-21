@@ -57,7 +57,7 @@ if(isset($_POST['email']) AND !empty($_POST['email']))
 				$username = $_Serveur_['SMTP']['Username'];
 				$password = $_Serveur_['SMTP']['Password'];
 				$port = $_Serveur_['SMTP']['Port'];
-				$protocole = $_Serveur_['SMTP']['Protocole'];
+				$protocole = $_Serveur_['SMTP']['Protocol'];
 				$mail->isSMTP();
 				$mail->Host = $host;
 				$mail->SMTPAuth = true;
