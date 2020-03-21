@@ -84,7 +84,7 @@
 				
 				<?php if(!isset($_GET['player'])) { ?>	
 					<div class="panel-body" style="background-color:white;padding:10px;">
-						 <h4 class="panel-title text-center">Veuilliez rentrer votre pseudo éxact In-Game :</h4>
+						 <h4 class="panel-title text-center">Veuillez rentrer votre pseudo exact In-Game :</h4>
 							<form  id="forme-vote" role="form" method="GET" action="index.php">
 								<div style="width:60%;margin-right:20%; margin-left:20%;" >
 									<div class="row">

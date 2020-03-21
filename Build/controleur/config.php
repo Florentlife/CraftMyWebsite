@@ -36,8 +36,6 @@
     else
         $bgType = 'background: url(\'theme/upload/bg.png\') repeat scroll center top rgb(0, 0, 0);';
 
-    require_once('controleur/perms/Permissions.class.php');
-    require_once('modele/perms/PermissionsManager.class.php');
     require('modele/joueur/imgProfil.class.php');
 	
 	require_once('controleur/tempMess.class.php');
