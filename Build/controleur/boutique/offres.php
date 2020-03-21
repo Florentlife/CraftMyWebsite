@@ -12,7 +12,7 @@ $categories = $categoriesObj->GetTableauCategories();
 for($i = 0; $i < count($lecture['Json']); $i++)
 {
 	$enligne[$i] = false;
-	if(isset($_Joueur_['pseudo']) AND isset($serveurStats[$i]['joueurs']) AND in_array($_Joueur_['pseudo'], $serveurStats[$i]['joueurs']))
+	if(isset($_Joueur_['pseudo']) AND isset($serveurStats[$i]['joueurs']) AND $serveurStats[$i]['joueurs'] AND in_array($_Joueur_['pseudo'], $serveurStats[$i]['joueurs']))
 		$enligne[$i] = true;
 }
 

@@ -2,8 +2,8 @@
 include("controleur/paypal/fonction_api.php");
 $requete = construit_url_paypal($_Serveur_['Payement']['paypalUser'], $_Serveur_['Payement']['paypalPass'], $_Serveur_['Payement']['paypalSignature']);
 $requete = $requete."&METHOD=SetExpressCheckout".
-			"&CANCELURL=".urlencode("$_Serveur_['General']['url']/new/controleur/paypal/cancel.php").
-			"&RETURNURL=".urlencode("$_Serveur_['General']['url']/controleur/paypal/return.php?&offre=1").
+			"&CANCELURL=".urlencode($_Serveur_['General']['url'].'/new/controleur/paypal/cancel.php').
+			"&RETURNURL=".urlencode($_Serveur_['General']['url'].'/controleur/paypal/return.php?&offre=1').
 			"&AMT=" . $donneesActions['prix'] .
 			"&CURRENCYCODE=EUR".
 			"&DESC=".urlencode("Faire un don pour le serveur UnderGard. Des grades / items in-games peuvent être obtenu en échange de vos dons depuis le système de boutique !").

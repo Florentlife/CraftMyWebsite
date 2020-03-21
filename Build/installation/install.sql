@@ -256,14 +256,6 @@ CREATE TABLE IF NOT EXISTS `cmw_maintenance` (
   PRIMARY KEY (`maintenanceId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `cmw_mcgpass` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `pseudo` varchar(40) NOT NULL,
-  `tokens` int(11) NOT NULL,
-  `date_achat` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
 CREATE TABLE `cmw_messages` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `idConversation` smallint(5) UNSIGNED NOT NULL,
@@ -329,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `cmw_postit` (
 CREATE TABLE cmw_reseaux (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   `idJoueur` INT UNSIGNED NOT NULL, 
-  `Skype` VARCHAR(30)) 
+  `Discord` VARCHAR(30)) 
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `cmw_support` (
@@ -424,6 +416,7 @@ CREATE TABLE IF NOT EXISTS `cmw_votes_config` (
   `lien` varchar(255) NOT NULL,
   `temps` int(10) UNSIGNED NOT NULL,
   `titre` varchar(60) NOT NULL,
+  `idCustom` int(11) NOT NULL DEFAULT -1,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
