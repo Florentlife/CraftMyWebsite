@@ -64,7 +64,7 @@ class MinecraftPing {
 			$this->Online = true;
 		}
 		catch(Exception $e) {
-			echo $e->getMessage();
+			error_log($e->getMessage());
 		}
 		finally {
 		    @fclose($socket);
