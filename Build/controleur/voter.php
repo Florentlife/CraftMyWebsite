@@ -26,6 +26,11 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 			}
 			else if(verifVote($lectureVotes['lien'], $lectureVotes['idCustom']))
 			{
+				$req = $bddConnection->prepare('UPDATE cmw_votes SET nbre_votes = nbre_votes + 1, date_dernier = :tmp WHERE pseudo = :pseudo AND site = :site');
+					$req->execute(array(
+						'tmp' => time(),
+						'pseudo' => $pseudo,
+						'site' => $id));
 				if(isset($_Joueur_) && $_Joueur_['pseudo'] == $pseudo)
 				{
 					//Système de vérification des récompenses auto
@@ -89,12 +94,6 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 						'action' => $lectureVotes['action'],
 						'serveur' => $lectureVotes['serveur']
 					));
-					
-					$req = $bddConnection->prepare('UPDATE cmw_votes SET nbre_votes = nbre_votes + 1, date_dernier = :tmp WHERE pseudo = :pseudo AND site = :site');
-					$req->execute(array(
-						'tmp' => time(),
-						'pseudo' => $pseudo,
-						'site' => $id));
 
 				
 				}else {
@@ -190,11 +189,6 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 							
 						}
 					 }
-					$req = $bddConnection->prepare('UPDATE cmw_votes SET nbre_votes = nbre_votes + 1, date_dernier = :tmp WHERE pseudo = :pseudo AND site = :site');
-					$req->execute(array(
-						'tmp' => time(),
-						'pseudo' => $pseudo,
-						'site' => $id));
 				}
 				echo "success";
 				
@@ -217,15 +211,15 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 	 }
 	
 	function verifVote($url, $id) {
-		if(strpos($url, 'serveur-prive.net') AND $id != -1)
+		if(strpos($url, 'serveur-prive.net') AND $id != "-1")
 		{
 			$API_call = @file_get_contents("https://serveur-prive.net/api/vote/".$id."/".get_client_ip());
 			return $API_call == 1;
-		} else if(strpos($url, 'serveurs-minecraft.org') AND $id != -1)
+		} else if(strpos($url, 'serveurs-minecraft.org') AND $id != "-1")
 		{
 			$is_valid_vote = file_get_contents('https://www.serveurs-minecraft.org/api/is_valid_vote.php?id='.$id.'&ip='.get_client_ip().'&duration=5');
 			return $is_valid_vote > 0;
-		} else if(strpos($url, 'serveurs-minecraft.com') AND $id != -1)
+		} else if(strpos($url, 'serveurs-minecraft.com') AND $id != "-1")
 		{
 			$apiaddr = 'https://serveurs-minecraft.com/api.php?Classement=' . $id .'&ip=' . get_client_ip();
 			$apiResult = @file_get_contents($apiaddr);
@@ -240,7 +234,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 				}
 			}
 			return false;
-		} else if(strpos($url, 'serveursminecraft.fr') AND $id != -1)
+		} else if(strpos($url, 'serveursminecraft.fr') AND $id != "-1")
 		{
 			$data = file_get_contents ( "https://serveursminecraft.fr/api/api.php?IDServeur=" . $id . "&IP=" . get_client_ip());
 			if ( $data == false )
@@ -259,7 +253,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 					return false;
 				}
 			}
-		}else if(strpos($url, 'liste-minecraft-serveurs.com') AND $id != -1)
+		}else if(strpos($url, 'liste-minecraft-serveurs.com') AND $id != "-1")
 		{
 			$api = json_decode(file_get_contents("https://www.liste-minecraft-serveurs.com/Api/Worker/id_server/".$id."/ip/".get_client_ip()));
 			if($api->result == 202){
@@ -322,13 +316,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 	
 	function Vote($pseudo, $id, $bddConnection, $donnees, $temps)
     {
-        if($donnees['date_dernier'] + $temps < time() && $donnees["existe"])
-        {
-          
-            return true;
-        }
-        else 
-            return false;
+        return $donnees['date_dernier'] + $temps < time() && $donnees["existe"];
     }
 
 	

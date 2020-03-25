@@ -13,11 +13,12 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 		$message = htmlspecialchars($_POST['message'.$i]);
 		$temps = htmlspecialchars($_POST['temps'.$i]);
 		$idCustom = htmlspecialchars($_POST['idCustom'.$i]);
+		$enligne = $_POST['enligne'.$i] != null ? 1:0;
 		if($action == 1)
 		{
 			$action = 'cmd';
 			$cmd = htmlspecialchars($_POST['cmd'.$i]);
-			if(!Verif($titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $cmd) == true)
+			if(!Verif($idCustom, $enligne, $titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $cmd) == true)
 			{
 				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
 				$update->execute(array(
@@ -29,6 +30,8 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 					'temps' => $temps,
 					'titre' => $titre,
 					'idCustom' => $idCustom,
+					'enligne' => $enligne,
+					
 					'id' => $data[$i]['id']
 				));
 			}
@@ -38,7 +41,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 			$action = 'give';
 			$quantite = htmlspecialchars($_POST['quantite'.$i]);
 			$id = htmlspecialchars($_POST['id'.$i]);
-			if(!Verif($titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $quantite, $id) == true)
+			if(!Verif($idCustom, $enligne, $titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $quantite, $id) == true)
 			{
 				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
 				$update->execute(array(
@@ -50,6 +53,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 					'temps' => $temps,
 					'titre' => $titre,
 					'idCustom' => $idCustom,
+					'enligne' => $enligne,
 					'id' => $data[$i]['id']
 				));
 			}
@@ -58,7 +62,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 		{
 			$action = 'jeton';
 			$quantite = htmlspecialchars($_POST['quantite'.$i]);
-			if(!Verif($titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $quantite) == true)
+			if(!Verif($idCustom, $enligne, $titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $quantite) == true)
 			{
 				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
 				$update->execute(array(
@@ -70,13 +74,14 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 					'temps' => $temps,
 					'titre' => $titre,
 					'idCustom' => $idCustom,
+					'enligne' => $enligne,
 					'id' => $data[$i]['id']
 				));
 			}
 		}		
 	}
 }
-function Verif($titre, $lien, $serveur, $methode, $action, $message, $temps, $donnees, $arg1, $arg2 = null)
+function Verif($idCustom, $enligne, $titre, $lien, $serveur, $methode, $action, $message, $temps, $donnees, $arg1, $arg2 = null)
 {
 	$data_action = explode(':', $donnees['action'], 2);
 	if($data_action[0] != 'give')
@@ -90,7 +95,7 @@ function Verif($titre, $lien, $serveur, $methode, $action, $message, $temps, $do
 		$data_arg1 = $data_action2[3];
 		$data_arg2 = $data_action2[1];
 	}
-	if($titre == $donnees['titre'] && $lien == $donnees['lien'] && $serveur == $donnees['serveur'] && $methode == $donnees['methode'] && $action == $data_action[0] && $message == $donnees['message'] && $data_arg1 == $arg1 && $arg2 == $data_arg2)
+	if($idCustom == $donnees['idCustom'] && $enligne == $donnees['enligne'] && $id$titre == $donnees['titre'] && $lien == $donnees['lien'] && $serveur == $donnees['serveur'] && $methode == $donnees['methode'] && $action == $data_action[0] && $message == $donnees['message'] && $data_arg1 == $arg1 && $arg2 == $data_arg2)
 		return true;
 	else
 		return false;
