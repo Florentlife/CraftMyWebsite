@@ -96,7 +96,7 @@
                         </div>
 						 <div class="row">
                             <label class="control-label">Id unique donné par le site web. *</label>
-                            <input type="number" name="idCustom" placeholder="ex: 54748" value="-1" class="form-control" />
+                            <input type="text" name="idCustom" placeholder="ex: 54748" value="-1" class="form-control" />
                         </div>
                         <hr>
                         <div class="row text-center">
@@ -110,7 +110,7 @@
                     <li> serveurs-minecraft.com</li>
                     <li> serveursminecraft.fr</li>
                     <li> liste-minecraft-serveurs.com</li>
-                </ul> A noté que certains service de recherche de serveur n'ont pas une API utilisable ! Pour que celle ci fonctionne sur le cms, vous devez remplir le champ "Id unique" par l'id donné par le site web ( généralement dans les onglets API ). Laisser "-1" pour le désactiver.
+                </ul> À noter que certains service de recherche du serveur n'ont pas une API utilisable ! Pour que celle-ci fonctionne sur le cm, vous devez remplir le champ "Id unique" par l'id donner par le site web ( généralement dans les onglets API). Laisser "-1" pour le désactiver. Si l'id venait â être incorrecte, ne vous étonnez pas que les votes ne se valident pas : p
                 </div>
             </div>
         </div>
@@ -147,6 +147,7 @@
                                 <th>Message</th>
                                 <th>Temps entre chaque vote</th>
 								<th>Id unique</th>
+								<th>Doit être connecté sur le serveur</th>
                                 <th>Action</th>
                             </tr>
                         <?php $donnees = $req_donnees->fetchAll();
@@ -182,7 +183,8 @@
                                 <td><input type="text" name="id<?=$o;?>" class="form-control" value="<?=($action[0] == "give") ? $item[1] : '';?>" /></td>
                                 <td><input type="text" name="message<?=$o;?>" class="form-control" value="<?=$donnees[$o]['message'];?>" /></td>
                                 <td><input type="number" name="temps<?=$o;?>" class="form-control" value="<?=$donnees[$o]['temps'];?>" /></td>
-								<td><input type="number" name="idCustom<?=$o;?>" class="form-control" value="<?=$donnees[$o]['idCustom'];?>" /></td>
+								<td><input type="text" name="idCustom<?=$o;?>" class="form-control" value="<?=$donnees[$o]['idCustom'];?>" /></td>
+								<td><input type="checkbox" name="enligne<?=$o;?>" class="form-control" value="1" <? if($donnees[$o]['enligne'] == 1) { echo 'checked'; } ?>></td>
                                 <td><a href="?action=supprVote&id=<?=$donnees[$o]['id'];?>" class="btn btn-danger">Supprimer</a></td></tr>
                                 <?php 
                         }
