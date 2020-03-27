@@ -110,6 +110,7 @@
                     <li> serveurs-minecraft.com</li>
                     <li> serveursminecraft.fr</li>
                     <li> liste-minecraft-serveurs.com</li>
+		    <li> liste-serveurs.fr</li>
                 </ul> A noté que certains service de recherche de serveur n'ont pas une API utilisable ! Pour que celle ci fonctionne sur le cms, vous devez remplir le champ "Id unique" par l'id donné par le site web ( généralement dans les onglets API ). Laisser "-1" pour le désactiver.
                 </div>
             </div>
