@@ -267,6 +267,14 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 			}else{
 				return false;
 			}
+		}else if(strpos($url, 'liste-serveurs.fr') AND $id != -1)
+		{
+			$api = json_decode(file_get_contents("https://www.liste-serveurs.fr/api/checkVote/".$id."/".get_client_ip()));
+			if($api->result == true){
+				return true;
+			}else{
+				return false;
+			}
 		} else {
 			return true;
 		}
