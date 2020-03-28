@@ -18,8 +18,8 @@ class MinecraftPing {
 	public $Online = false;
 	
 	public function __construct($hostname, $port = 25565) {
+		$socket = null;
 		try {
-			
 		    $address = null;
 		    $timeout = 5; // variable
 			if($port < 1024 || $port > 65535) {
@@ -55,6 +55,7 @@ class MinecraftPing {
 
 			$socket = @fsockopen($address, $port, $errno, $errstr, $timeout);
 			if(!$socket) {
+				@fclose($socket);
 				throw new Exception("[MinecraftPing] Impossible de créé une connexion: $errstr");
 			}
 			stream_set_timeout($socket, $timeout);
@@ -62,12 +63,14 @@ class MinecraftPing {
 			$this->Ping($socket, $timeout, $address, $port);
 			
 			$this->Online = true;
+			
+			@fclose($socket);
 		}
 		catch(Exception $e) {
-			error_log($e->getMessage());
-		}
-		finally {
-		    @fclose($socket);
+			if($socket != null) {
+				@fclose($socket);
+			}
+ 			error_log($e->getMessage());
 		}
 
 	}
