@@ -320,7 +320,7 @@
 					protocol: document.getElementById('protocolTls').checked ? "tls" : "ssl",
 					reply: (document.getElementById('reply').value.length == 0) ? document.getElementById('from').value : document.getElementById('reply').value,
 					sujet: document.getElementById('sujet').value,
-					contenu: document.getElementById('contenuNewsLetter').innerHTML,
+					contenu: document.getElementsByClassName('cke_wysiwyg_frame').innerHTML,
 					data: 1
 				},function(data, status){
 					data = data.substring(data.indexOf('[DIV]')+5);
