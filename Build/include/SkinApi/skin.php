@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require('UUIDHelper.class.php');
 
 /* 
@@ -35,6 +32,7 @@ if(isset($_GET['p']))
             * @link https://github.com/mapcrafter/mapcrafter-playermarkers/blob/c583dd9157a041a3c9ec5c68244f73b8d01ac37a/playermarkers/player.php#L8-L19
 			* (body only)
             */ 
+			$size = $size/16;
             $img = imagecreatetruecolor(16, 32);
             imagealphablending($img, false);
             imagesavealpha($img, true);
@@ -66,7 +64,10 @@ if(isset($_GET['p']))
     } else if(file_exists($file)){
         header('Location:'.$file);
         die();
-    }
+    } else {
+		header('Location:./_default_'.$type.'_size_128.png');
+        die();
+	}
 }
 
 function CheckCache($file) 
