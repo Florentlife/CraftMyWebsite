@@ -21,7 +21,7 @@ class MinecraftPing {
 		$socket = null;
 		try {
 		    $address = null;
-		    $timeout = 5; // variable
+		    $timeout = 1; // variable
 			if($port < 1024 || $port > 65535) {
 				throw new Exception('[MinecraftPing] Port invalide');
 			}
