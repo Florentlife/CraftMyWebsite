@@ -81,10 +81,10 @@ class AdminForum extends Forum
 			$table = ($objet == 1) ? 'cmw_forum_post' : 'cmw_forum_answer';
 			$req = $this->bdd->prepare('SELECT pseudo FROM '.$table.' WHERE id = :id');
 			$req->execute(array(
-				'id' => $id
+				'id' => $id,
 			));
 			$fetch = $req->fetch(PDO::FETCH_ASSOC);
-			if($fetch['pseudo'] == $pseudo)
+			if($fetch['pseudo'] == $joueur['pseudo'])
 				return true;
 			else
 			{
