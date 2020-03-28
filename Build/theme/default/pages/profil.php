@@ -309,7 +309,7 @@
 					$Img = new ImgProfil($joueurDonnees['id']);
 					?>
 					<img src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="<?=htmlspecialchars($getprofil);?>" />
-					<img src="https://minotar.net/body/<?php echo htmlspecialchars($getprofil); ?>/200.png" style="padding-left: 30%;" alt="none" />
+					<img src="<?=$Img->getImgBodyToSize(128, $width, $height);?>" style="width: auto; height: 400px;padding-left: 30%;" alt="none" />
 				<div class="footer-bloc">
 				</div>
 			</div>

@@ -69,6 +69,36 @@ class ImgProfil
 			return $this->img;
 		}
 	}
+	
+	public function getImgBodyToSize($size, &$width, &$height)
+	{
+		$this->getImg();
+		if($this->modif)
+		{
+			// Constraints
+			$max_width = $size;
+			$max_height = $size;
+			list($width, $height) = getimagesize($this->img);
+			$ratioh = $max_height/$height;
+			$ratiow = $max_width/$width;
+			$ratio = min($ratioh, $ratiow);
+			// New dimensions
+			$width = intval($ratio*$width);
+			$height = intval($ratio*$height);
+			return $this->img;
+		}
+		else
+		{
+			if(!is_numeric($this->id))
+				$pseudo = $this->id;
+			else
+				$pseudo = $this->getPseudo();
+			$this->img = $this->_Serveur_['General']['url'].'/include/SkinApi/skin.php?p='.$pseudo.'&type=body&size='.$size;
+			$width = $size;
+			$height = $size;
+			return $this->img;
+		}
+	}
 
 	public function getImg()
 	{
