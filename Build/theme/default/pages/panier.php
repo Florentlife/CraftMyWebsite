@@ -1,3 +1,4 @@
+<?php if(isset($_Joueur_)){?>
 <header class="heading-pagination">
     <div class="container-fluid">
         <h1 class="text-uppercase wow fadeInRight" style="color:white;">Boutique</h1>
@@ -71,3 +72,4 @@
         </div>
     </div>
 </section>
+<?php }else{ header('Location: ?page=boutique'); }?>
