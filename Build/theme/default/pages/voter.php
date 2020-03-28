@@ -32,33 +32,57 @@
 			if(!empty($donneesVotesTemp))
 			{
 				echo '<div class="alert alert-success"><center><ul style="list-style-position: inside; padding-left: 0px;">';
+				$p=0;
+				$list = array();
+				$listNum = array();
 				foreach($donneesVotesTemp as $data)
 				{
-					echo '<li>';
-					$action = explode(':', $data['action'], 2);
-					if($action[0] == "give")
-					{
-						echo "Give de ";
-						$action = explode(':', $action[1]);
-						echo $action[3]. "x ".$action[1];
-						if($data['methode'] == 2)
-							echo ' sur le serveur '.$lecture['Json'][$data['serveur']]['nom'];
+					$flag = false;
+					$temp = '<li>';
+						$action = explode(':', $data['action'], 2);
+						if($action[0] == "give")
+						{
+							$temp .="Give de ";
+							$action = explode(':', $action[1]);
+							$temp .=$action[3]. "x ".$action[1];
+							if($data['methode'] == 2)
+								$temp .=' sur le serveur '.$lecture['Json'][$data['serveur']]['nom'];
+							else
+								$temp .=' sur tout les serveurs de jeu';
+						}
+						elseif($action[0] == "jeton")
+						{
+							$temp .="Give de ".$action[1]." jetons sur le site";
+						}
 						else
-							echo ' sur tout les serveurs de jeu';
+						{
+							$temp .="Vous récupérerez une surprise :D :P";
+						}
+
+					for($a=0;$a<count($list); $a++) {
+						if($list[$a] == $temp) {
+							$listNum[$a]++;
+							$flag=true;
+						}
 					}
-					elseif($action[0] == "jeton")
-					{
-						echo "Give de ".$action[1]." jetons sur le site";
+					if(!$flag) {
+						$list[$p] = $temp;
+						$listNum[$p]=1;
+						$p++;
 					}
-					else
-					{
-						echo "Vous récupérerez une surprise :D :P";
-					}
-					echo "</li>";
 				}
-				echo '</ul>';
+				
+				for($y=0; $y<$p;$y++) {
+					if($listNum[$y] > 1) {
+						echo $list[$y]." X".$listNum[$y]."</li>";
+					} else {
+						echo $list[$y]."</li>";
+					}
+				}
+				
 				echo "<a class='btn btn-success' href='?action=recupVotesTemp' title='Récupérer mes récompenses'>Récupérer mes récompenses (Connectez-vous sur le serveur)</a></center></div>";
-			}	
+			}
+
 		}
 		?>
 	</strong></p>
@@ -135,7 +159,7 @@
 										$action = explode(':', $lectureVotes['action'], 2);
 										if(!Vote($pseudo, $id, $bddConnection, $donnees, $lectureVotes['temps']))
 										{
-											echo '<button type="button" class="btn btn-succes}s" style="margin-top:5px; margin-right:5px;" disabled>'.GetTempsRestant($donnees['date_dernier'], $lectureVotes['temps'], $donnees).'</button>';
+											echo '<button type="button" class="btn btn-success" style="margin-top:5px; margin-right:5px;" disabled>'.GetTempsRestant($donnees['date_dernier'], $lectureVotes['temps'], $donnees).'</button>';
 										}
 										else if($action[0] != "jeton" || isset($_Joueur_))
 										{
