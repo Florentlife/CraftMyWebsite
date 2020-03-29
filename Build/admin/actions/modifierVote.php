@@ -13,7 +13,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 		$message = htmlspecialchars($_POST['message'.$i]);
 		$temps = htmlspecialchars($_POST['temps'.$i]);
 		$idCustom = htmlspecialchars($_POST['idCustom'.$i]);
-		$enligne = $_POST['enligne'.$i] != null ? 1:0;
+		$enligne = isset($_POST['enligne'.$i]) ? 1:0;
 		if($action == 1)
 		{
 			$action = 'cmd';
