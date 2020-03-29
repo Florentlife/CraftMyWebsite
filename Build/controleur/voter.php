@@ -210,7 +210,9 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 	 	$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
 	 }
 	
-	function verifVote($url, $id) {		if(isset($id) AND !empty($id) and $id != "")		{
+	function verifVote($url, $id) 
+	{		if(isset($id) AND !empty($id) and $id != "")
+		{
 			if(strpos($url, 'serveur-prive.net'))
 			{
 				$API_call = @file_get_contents("https://serveur-prive.net/api/vote/".$id."/".get_client_ip());
