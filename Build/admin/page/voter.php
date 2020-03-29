@@ -111,7 +111,7 @@
                     <li> serveursminecraft.fr</li>
                     <li> liste-minecraft-serveurs.com</li>
 					<li> liste-serveurs.fr</li>
-                </ul> À noter que certains service de recherche du serveur n'ont pas une API utilisable ! Pour que celle-ci fonctionne sur le cm, vous devez remplir le champ "Id unique" par l'id donner par le site web ( généralement dans les onglets API). Laisser "-1" pour le désactiver. Si l'id venait â être incorrecte, ne vous étonnez pas que les votes ne se valident pas : p
+                </ul> À noter que certains service de recherche du serveur n'ont pas une API utilisable ! Pour que celle-ci fonctionne sur le cm, vous devez remplir le champ "Id unique" par l'id donner par le site web ( généralement dans les onglets API). Laisser vide pour le désactiver. Si l'id venait â être incorrecte, ne vous étonnez pas que les votes ne se valident pas : p
                 </div>
             </div>
         </div>
