@@ -13,6 +13,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 		$message = htmlspecialchars($_POST['message'.$i]);
 		$temps = htmlspecialchars($_POST['temps'.$i]);
 		$idCustom = htmlspecialchars($_POST['idCustom'.$i]);
+
 		$enligne = isset($_POST['enligne'.$i]) ? 1:0;
 		if($action == 1)
 		{
@@ -20,7 +21,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 			$cmd = htmlspecialchars($_POST['cmd'.$i]);
 			if(!Verif($idCustom, $enligne, $titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $cmd) == true)
 			{
-				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
+				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom, enligne = :enligne WHERE id = :id');
 				$update->execute(array(
 					'message' => $message,
 					'methode' => $methode,
@@ -43,7 +44,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 			$id = htmlspecialchars($_POST['id'.$i]);
 			if(!Verif($idCustom, $enligne, $titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $quantite, $id) == true)
 			{
-				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
+				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom, enligne = :enligne WHERE id = :id');
 				$update->execute(array(
 					'message' => $message,
 					'methode' => $methode,
@@ -64,7 +65,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 			$quantite = htmlspecialchars($_POST['quantite'.$i]);
 			if(!Verif($idCustom, $enligne, $titre, $lien, $serveur, $methode, $action, $message, $temps, $data[$i], $quantite) == true)
 			{
-				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom WHERE id = :id');
+				$update = $bddConnection->prepare('UPDATE cmw_votes_config SET message = :message, methode = :methode, action = :action, serveur = :serveur, lien = :lien, temps = :temps, titre = :titre, idCustom = :idCustom, enligne = :enligne WHERE id = :id');
 				$update->execute(array(
 					'message' => $message,
 					'methode' => $methode,
@@ -95,7 +96,7 @@ function Verif($idCustom, $enligne, $titre, $lien, $serveur, $methode, $action, 
 		$data_arg1 = $data_action2[3];
 		$data_arg2 = $data_action2[1];
 	}
-	if($idCustom == $donnees['idCustom'] && $enligne == $donnees['enligne'] && $id$titre == $donnees['titre'] && $lien == $donnees['lien'] && $serveur == $donnees['serveur'] && $methode == $donnees['methode'] && $action == $data_action[0] && $message == $donnees['message'] && $data_arg1 == $arg1 && $arg2 == $data_arg2)
+	if($idCustom == $donnees['idCustom'] && $enligne == $donnees['enligne'] && $titre == $donnees['titre'] && $lien == $donnees['lien'] && $serveur == $donnees['serveur'] && $methode == $donnees['methode'] && $action == $data_action[0] && $message == $donnees['message'] && $data_arg1 == $arg1 && $arg2 == $data_arg2)
 		return true;
 	else
 		return false;
