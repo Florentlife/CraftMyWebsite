@@ -30,6 +30,9 @@ function bouclevote(id2, pseudo2) {
 		{
 			$("#vote-success").fadeIn(500);setTimeout(function(){ $("#vote-success").fadeOut(500);}, 5000);
 			$("#btn-verif-" + id2).fadeOut(500);setTimeout(function(){ $("#btn-after-" + id2).fadeIn(500);}, 500);
+			if(document.getElementById("nbr-vote-"+pseudo2)){
+				document.getElementById("nbr-vote-"+pseudo2).inner = (parseInt(document.getElementById("nbr-vote-"+pseudo2).inner) + 1);
+			} 
 		}
 		else {
 			setTimeout(function(){ 

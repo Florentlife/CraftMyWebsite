@@ -66,6 +66,8 @@ class UUIDHelper
         {
             if(array_keys($address)[0] == 'api.mojang.com' && array_values($address)[0] == 'red'){
                 return false;
+            }else if(array_keys($address)[0] == 'mojang.com' && array_values($address)[0] == 'red'){
+                return false;
             } else if(array_keys($address)[0] == 'sessionserver.mojang.com' && array_values($address)[0] == 'red'){
                 return false;
             } else if(array_keys($address)[0] == 'textures.minecraft.net' && array_values($address)[0] == 'red'){
