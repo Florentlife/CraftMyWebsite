@@ -210,60 +210,62 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 	 	$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
 	 }
 	
-	function verifVote($url, $id) {
-		if(strpos($url, 'serveur-prive.net') AND $id != "-1")
+	function verifVote($url, $id) 
+	{		if(isset($id) AND !empty($id) and $id != "")
 		{
-			$API_call = @file_get_contents("https://serveur-prive.net/api/vote/".$id."/".get_client_ip());
-			return $API_call == 1;
-		} else if(strpos($url, 'serveurs-minecraft.org') AND $id != "-1")
-		{
-			$is_valid_vote = file_get_contents('https://www.serveurs-minecraft.org/api/is_valid_vote.php?id='.$id.'&ip='.get_client_ip().'&duration=5');
-			return $is_valid_vote > 0;
-		} else if(strpos($url, 'serveurs-minecraft.com') AND $id != "-1")
-		{
-			$apiaddr = 'https://serveurs-minecraft.com/api.php?Classement=' . $id .'&ip=' . get_client_ip();
-			$apiResult = @file_get_contents($apiaddr);
-			if ($apiResult!==false) {
-				$apiResult = json_decode($apiResult, true);
-				$currentDate = new DateTime($apiResult['reqVote']['date']);
-				$voteDate = new DateTime($apiResult['lastVote']['date']);
-				$interval = $currentDate->diff($voteDate);
-				if ($interval->y==0 && $interval->m==0 && $interval->d<1 && !$apiResult['authorVote']) 
-				{
-					return true;
-				}
-			}
-			return false;
-		} else if(strpos($url, 'serveursminecraft.fr') AND $id != "-1")
-		{
-			$data = file_get_contents ( "https://serveursminecraft.fr/api/api.php?IDServeur=" . $id . "&IP=" . get_client_ip());
-			if ( $data == false )
+			if(strpos($url, 'serveur-prive.net'))
 			{
+				$API_call = @file_get_contents("https://serveur-prive.net/api/vote/".$id."/".get_client_ip());
+				return $API_call == 1;
+			} else if(strpos($url, 'serveurs-minecraft.org'))
+			{
+				$is_valid_vote = file_get_contents('https://www.serveurs-minecraft.org/api/is_valid_vote.php?id='.$id.'&ip='.get_client_ip().'&duration=5');
+				return $is_valid_vote > 0;
+			} else if(strpos($url, 'serveurs-minecraft.com'))
+			{
+				$apiaddr = 'https://serveurs-minecraft.com/api.php?Classement=' . $id .'&ip=' . get_client_ip();
+				$apiResult = @file_get_contents($apiaddr);
+				if ($apiResult!==false) {
+					$apiResult = json_decode($apiResult, true);
+					$currentDate = new DateTime($apiResult['reqVote']['date']);
+					$voteDate = new DateTime($apiResult['lastVote']['date']);
+					$interval = $currentDate->diff($voteDate);
+					if ($interval->y==0 && $interval->m==0 && $interval->d<1 && !$apiResult['authorVote']) 
+					{
+						return true;
+					}
+				}
 				return false;
-			}
-			else
+			} else if(strpos($url, 'serveursminecraft.fr'))
 			{
-				$data_decoded = json_decode($data,true);
-				if ( $data_decoded["DateVote"] >= $data_decoded["DateActuelle"] - 360 )
-				{
-					return true;
-				}
-				else
+				$data = file_get_contents ( "https://serveursminecraft.fr/api/api.php?IDServeur=" . $id . "&IP=" . get_client_ip());
+				if ( $data == false )
 				{
 					return false;
 				}
-			}
-		}else if(strpos($url, 'liste-minecraft-serveurs.com') AND $id != "-1")
-		{
-			$api = json_decode(file_get_contents("https://www.liste-minecraft-serveurs.com/Api/Worker/id_server/".$id."/ip/".get_client_ip()));
-			if($api->result == 202){
+				else
+				{
+					$data_decoded = json_decode($data,true);
+					if ( $data_decoded["DateVote"] >= $data_decoded["DateActuelle"] - 360 )
+					{
+						return true;
+					}
+					else
+					{
+						return false;
+					}
+				}
+			}else if(strpos($url, 'liste-minecraft-serveurs.com'))
+			{
+				$api = json_decode(file_get_contents("https://www.liste-minecraft-serveurs.com/Api/Worker/id_server/".$id."/ip/".get_client_ip()));
+				if($api->result == 202){
+					return true;
+				}else{
+					return false;
+				}
+			} else if(strpos($url, 'liste-serveurs.fr'))			{				$api = json_decode(file_get_contents("https://www.liste-serveurs.fr/api/checkVote/".$id."/".get_client_ip()));				if($api->result == true){					return true;				}else{					return false;				}			}else {
 				return true;
-			}else{
-				return false;
-			}
-		} else {
-			return true;
-		}
+			}		} else {			return true;		}
 	}
 	
 	function get_client_ip() {
