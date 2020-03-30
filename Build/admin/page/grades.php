@@ -331,6 +331,11 @@
                                                                                 <input type="checkbox" class="check<?=$i;?>-2" name="permsPanelSocial<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['social']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>membres -> Social</strong>
                                                                             </label>
                                                                         </div>
+																		 <div class="checkbox">
+                                                                            <label>
+                                                                                <input type="checkbox" class="check<?=$i;?>-2" name="permsPanelBan<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['ban']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>membres -> Bannissement</strong>
+                                                                            </label>
+                                                                        </div>
                                                                         <div class="checkbox">
                                                                             <label>
                                                                                 <input type="checkbox" class="check<?=$i;?>-2" name="permsPanelForum<?php echo $i; ?>" <?php if($idGrade[$i]['PermsPanel']['forum']['showPage'] == true) echo 'checked'; ?> /> Accès à la page <strong>forum</strong>

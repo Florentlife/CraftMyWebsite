@@ -1,6 +1,6 @@
 <div class="cmw-page-content-header"><strong>Membres</strong> - Gérez vos bannissement</div>
 
-<?php if($_Joueur_['rang'] != 1)
+<?php if($_Joueur_['rang'] != 1 OR $idGrade[$i]['PermsPanel']['ban']['showPage'] == true)
 {
 	echo '<div class="col-lg-6 col-lg-offset-3 text-center">
 		<div class="alert alert-danger">

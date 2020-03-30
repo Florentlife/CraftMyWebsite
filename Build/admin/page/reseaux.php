@@ -1,10 +1,10 @@
 <div class="cmw-page-content-header"><strong>Membres</strong> - Gérez vos réseaux sociaux</div>
 
-<?php if($_Joueur_['rang'] != 1 AND $_PGrades_['PermsPanel']['reseaux']['showPage'] == false)
+<?php if($_Joueur_['rang'] != 1 AND $_PGrades_['PermsPanel']['social']['showPage'] == false )
 {
 	echo '<div class="col-lg-6 col-lg-offset-3 text-center">
 		<div class="alert alert-danger">
-			<strong>Vous avez aucune permission pour accéder aux réglages de la boutique.</strong>
+			<strong>Vous avez aucune permission pour accéder aux réseaux sociaux</strong>
 		</div>
 	</div>';
 }
