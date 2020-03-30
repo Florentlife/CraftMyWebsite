@@ -26,11 +26,38 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo'])
 				$reconnexion = NULL;
 				if(isset($_POST['reconnexion']))
 					$reconnexion = 1;
-				$utilisateur_connection = new JoueurCon($donneesJoueur['id'], $donneesJoueur['pseudo'], $donneesJoueur['email'], $donneesJoueur['rang'], $donneesJoueur['tokens'], $reconnexion, $donneesJoueur['mdp']);
-				if(preg_match('#erreur#', $_SERVER['HTTP_REFERER']))
-					header('Location: index.php');
-				else
-					header('Location: '.$_SERVER['HTTP_REFERER']);
+				include('controleur/maintenance.php');
+				if($maintenance[$i]['maintenanceEtat'] == 1){
+					require_once('./modele/config/yml.class.php');
+					$directoryGrades = './modele/grades/';
+					if(is_dir($directoryGrades)) {
+						$grade = $directoryGrades.$donneesJoueur['rang'].'.yml';
+						if(file_exists($grade)) {
+							$gradeLecture = new Lire($grade);
+							$_PGrades_ = $gradeLecture->GetTableau();
+						}
+						else
+							$_PGrades_ = false;
+					}
+					if($donneesJoueur['rang'] == 1 OR $_PGrades_['PermsPanel']['access'] == true) { 
+						$utilisateur_connection = new JoueurCon($donneesJoueur['id'], $donneesJoueur['pseudo'], $donneesJoueur['email'], $donneesJoueur['rang'], $donneesJoueur['tokens'], $reconnexion, $donneesJoueur['mdp']);
+						if( $maintenance[$i]['maintenancePref'] == 0 ){ // Si la pref vaut 0 les admins ont accès au site avec l'entête en plus
+							include('theme/' .$_Serveur_['General']['theme']. '/maintenance/entete.php');
+						} elseif ( $maintenance[$i]['maintenancePref'] == 1 ) { // Si la maintenance vaut 1 les admins n'ont pas accès au site mais ils sont redirigés vers le panel admin
+							header('Location: admin.php');
+						}else { // Si le joueur n'est pas admin il est redirigé vers la page de maintenance
+							header('Location: index.php?&redirection=maintenance');
+						}
+					} else { // Si le joueur n'est pas connecté il est redirigé vers la page de maintenance
+						header('Location: index.php?&redirection=maintenance');
+					}
+				}else {
+					$utilisateur_connection = new JoueurCon($donneesJoueur['id'], $donneesJoueur['pseudo'], $donneesJoueur['email'], $donneesJoueur['rang'], $donneesJoueur['tokens'], $reconnexion, $donneesJoueur['mdp']);
+					if(preg_match('#erreur#', $_SERVER['HTTP_REFERER']))
+						header('Location: index.php');
+					else
+						header('Location: '.$_SERVER['HTTP_REFERER']);
+				}
 			}
 			else
 			{
