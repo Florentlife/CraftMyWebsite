@@ -219,7 +219,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-    CKEDITOR.replace( 'contenuNewsLetter' );
+    var editor = CKEDITOR.replace( 'contenuNewsLetter' );
 	
 
 	var $circle = document.querySelector('.circle-r-progress-bar > .circle-bar');
@@ -320,7 +320,7 @@
 					protocol: document.getElementById('protocolTls').checked ? "tls" : "ssl",
 					reply: (document.getElementById('reply').value.length == 0) ? document.getElementById('from').value : document.getElementById('reply').value,
 					sujet: document.getElementById('sujet').value,
-					contenu: document.getElementsByClassName('cke_wysiwyg_frame').innerHTML,
+					contenu: editor.getData(),
 					data: 1
 				},function(data, status){
 					data = data.substring(data.indexOf('[DIV]')+5);
