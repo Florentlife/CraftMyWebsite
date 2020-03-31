@@ -65,7 +65,7 @@
         <a href="?page=modifIP" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "modifIP") echo 'active'; ?>">Édition système IP/Mail <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a>
         <?php } ?>
         <a href="?page=newsletter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "newsletter") echo 'active'; ?>">Newsletter <i class="fa fa-newspaper-o cmw-fa-sidebar" aria-hidden="true"></i></a>
-        <?php if($_Joueur_['rang'] == 1 OR $idGrade[$i]['PermsPanel']['ban']['showPage'] == true) { ?><a href="?page=ban" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "ban") echo 'active'; ?>">Bannissement <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a><?php } ?>
+        <?php if($_Joueur_['rang'] == 1 OR $_PGrades_[$i]['PermsPanel']['ban']['showPage'] == true) { ?><a href="?page=ban" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "ban") echo 'active'; ?>">Bannissement <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a><?php } ?>
     </div>
     <?php } 
 

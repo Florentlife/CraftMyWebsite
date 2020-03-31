@@ -1,6 +1,6 @@
 <div class="cmw-page-content-header"><strong>Membres</strong> - Gérez vos bannissement</div>
 
-<?php if($_Joueur_['rang'] != 1 OR $idGrade[$i]['PermsPanel']['ban']['showPage'] == true)
+<?php if($_Joueur_['rang'] != 1 OR $_PGrades_[$i]['PermsPanel']['ban']['showPage'] == true)
 {
 	echo '<div class="col-lg-6 col-lg-offset-3 text-center">
 		<div class="alert alert-danger">
@@ -13,9 +13,7 @@ else
 		?><div class="alert alert-success">
 			<strong>Sur cette section, vous pouvez gérer les bannissements de votre site. (Cette page n'est visible que par les Créateurs)</strong>
 		</div>
-	<?php 
-	}
-?>
+
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-default cmw-panel">
@@ -93,3 +91,6 @@ else
         </div>
     </div>
 </div>
+	<?php 
+	}
+?>
