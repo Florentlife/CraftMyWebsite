@@ -98,6 +98,10 @@
                             <label class="control-label">Id unique donné par le site web. *</label>
                             <input type="text" name="idCustom" placeholder="ex: 54748" value="-1" class="form-control" />
                         </div>
+						<div class="row">
+                            <label class="control-label">Le joueur doit être connecté sur le serveur pour voter sur ce lien excepté si le pseudo rentré sur la page est le même que celui du compte du joueur sur votre site web ( cela aura pour conséquence de stocker ces récompenses )</label>
+                            <input type="text" name="enligne" value="1" class="form-control" />
+                        </div>
                         <hr>
                         <div class="row text-center">
                             <input type="submit" class="btn btn-success" value="Valider les changements !"/>
