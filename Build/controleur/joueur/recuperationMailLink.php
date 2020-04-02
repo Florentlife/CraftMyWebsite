@@ -1,10 +1,5 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require('include/phpmailer/Exception.php');
-require('include/phpmailer/PHPMailer.php');
-require('include/phpmailer/SMTP.php');
 
 $token = urldecode($_GET['token']);
 
@@ -28,7 +23,6 @@ else
     
     $mdp = genMdp();
 
-    $mail = new PHPMailer(true);
 	
     $chMdp = new Maj($donneesJoueur['pseudo'], $bddConnection);  
 	$chMdp->setNouvellesDonneesMdp(password_hash($mdp, PASSWORD_DEFAULT));
@@ -46,31 +40,14 @@ else
 			.'Il est inutile de répondre à ce mail automatique.'.$retourligne
 			.$retourligne
 			.'Cordialement, '.$_Serveur_['General']['name'].'.';
-	if(isset($_Serveur_['SMTP']))
+
+	require('include/phpmailer/MailSender.php');
+	if(MailSender::send($_Serveur_, $to, $subject, $txt))
 	{
-		$host = $_Serveur_['SMTP']['Host'];
-		$username = $_Serveur_['SMTP']['Username'];
-		$password = $_Serveur_['SMTP']['Password'];
-		$port = $_Serveur_['SMTP']['Port'];
-		$protocole = $_Serveur_['SMTP']['Protocol'];
-		$mail->isSMTP();
-		$mail->Host = $host;
-		$mail->SMTPAuth = true;
-		$mail->Username = $username;
-		$mail->Password = $password;
-		$mail->SMTPSecure = $protocole;
-		$mail->Port = $port;
-		$mail->setFrom('mot_de_passe_perdu@cmw-craftmywebsite.fr' , $_Serveur_['General']['name']);
-		$mail->AddAddress($to);
-		$mail->isHTML(true);
-		$mail->Subject = $subject;
-		$mail->Body = $txt;
-		$mail->AltBody = $txt;
-		$mail->send();
+		header('Location : index.php?setTemp=1');
+	} else {
+		header('Location: ?&page=erreur&erreur=21');
 	}
-	else
-        mail($to,$subject,$txt);
-	header('Location : index.php?setTemp=1');
 }
 
 function genMdp(){

@@ -78,7 +78,7 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['tickets']['showPage'] == true) { ?>
-    <a href="?page=support" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'support'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i> Support <i class="fa fa-life-ring cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <a href="?page=support" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'support'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fas fa-arrow-right" aria-hidden="true"></i> Support <i class="fa fa-life-ring cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['showPage'] == true) { ?>
@@ -94,7 +94,7 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['update']['showPage'] == true) { ?>
-    <a href="?page=maj" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'maj'){ echo 'active'; } ?>" role="button">Mise à jour <i class="fa fa-free-code-camp cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <a href="?page=maj" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'maj'){ echo 'active'; } ?>" role="button">Mise à jour <i class="fab fa-free-code-camp cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
   </div>
 </div>
