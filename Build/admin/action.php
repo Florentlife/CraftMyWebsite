@@ -14,6 +14,11 @@
 			$_SESSION['referrerAdmin'] = 'accueil';
 		break;
 
+		case 'editMail':
+			require('admin/actions/editMail.php');
+			$_SESSION['referrerAdmin'] = 'configsite';
+		break;
+		
 		case 'epingle':
 			require('admin/actions/epingleNews.php');
 			$_SESSION['referrerAdmin'] = 'news';

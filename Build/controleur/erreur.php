@@ -135,6 +135,12 @@ function get_erreur($erreur, &$type, &$titre, &$contenue)
 			$contenue = "Votre message contient trop de caractères";
 		break;
 
+		case '21':
+			$type = "Erreur mail";
+			$titre = "Le mail n'a pas pu être envoyé";
+			$contenue= "Veuilliez contacter l'administrateur de cette erreur.";
+		break;
+		
 		default:
 			$type = '404 Not Found';
 			$titre = 'Page introuvable';

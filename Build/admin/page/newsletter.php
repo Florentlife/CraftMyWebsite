@@ -167,35 +167,35 @@
 			</div>
 			<div class="panel-body">
 
-					<input id="from" type="text"  <?=(isset($_Serveur_['Mail']['from'])) ? 'value='.$_Serveur_['Mail']['from']: '';?> class="form-control" placeholder="Avec quel adresse e-mail voulez vous envoyer la newsletter" />
+					<input id="from" type="text"  <?=(isset($_Serveur_['Mail']['from'])) ? 'value="'.$_Serveur_['Mail']['from'].'"': '';?> class="form-control" placeholder="Avec quel adresse e-mail voulez vous envoyer la newsletter" />
 					
 					<div class="checkbox">
 						<label>
-							<input id="CheckSmtp" type="checkbox" class="custom-control-input"  OnClick="if(document.getElementById('CheckSmtp').checked) { document.getElementById('BlockSmtp').style.display='block'; } else { document.getElementById('BlockSmtp').style.display='none'; }" <?=(isset($_Serveur_['SMTP']['CheckSmtp']) && $_Serveur_['SMTP']['CheckSmtp'] == 1) ? 'checked' : '' ;?>>
+							<input id="CheckSmtp" type="checkbox" class="custom-control-input"  OnClick="if(document.getElementById('CheckSmtp').checked) { document.getElementById('BlockSmtp').style.display='block'; } else { document.getElementById('BlockSmtp').style.display='none'; }" <?=(isset($_Serveur_['SMTPNEWS']['CheckSmtp']) && $_Serveur_['SMTPNEWS']['CheckSmtp'] == 1) ? 'checked' : '' ;?>>
 							Utiliser un serveur SMTP ?
 						</label>
 						
 					</div>
-					<div id="BlockSmtp" class="animate-top" <?=(isset($_Serveur_['SMTP']['CheckSmtp']) && $_Serveur_['SMTP']['CheckSmtp'] == 1) ? '' : 'style="display:none"' ;?>>
-						<input type="text" id="host" class="form-control" placeholder="Serveur SMTP: exemple : smtp.google.com" <?=(isset($_Serveur_['SMTP']['Host'])) ? 'value='.$_Serveur_['SMTP']['Host']: '';?>>
-						<input type="text" id="username" class="form-control" placeholder="Utilisateur SMTP: exemple : adressemail@gmail.com" <?=(isset($_Serveur_['SMTP']['Username'])) ? 'value='.$_Serveur_['SMTP']['Username']: '';?>>
-						<input type="password" id="password" class="form-control" placeholder="Mot de passe SMTP: exemple: votremdpSMTP" <?=(isset($_Serveur_['SMTP']['Password'])) ? 'value='.$_Serveur_['SMTP']['Password']: '';?>>
+					<div id="BlockSmtp" class="animate-top" <?=(isset($_Serveur_['SMTPNEWS']['CheckSmtp']) && $_Serveur_['SMTPNEWS']['CheckSmtp'] == 1) ? '' : 'style="display:none"' ;?>>
+						<input type="text" id="host" class="form-control" placeholder="Serveur SMTP: exemple : smtp.google.com" <?=(isset($_Serveur_['SMTPNEWS']['Host'])) ? 'value="'.$_Serveur_['SMTPNEWS']['Host'].'"': '';?>>
+						<input type="text" id="username" class="form-control" placeholder="Utilisateur SMTP: exemple : adressemail@gmail.com" <?=(isset($_Serveur_['SMTPNEWS']['Username'])) ? 'value="'.$_Serveur_['SMTPNEWS']['Username'].'"': '';?>>
+						<input type="password" id="password" class="form-control" placeholder="Mot de passe SMTP: exemple: votremdpSMTP" <?=(isset($_Serveur_['SMTPNEWS']['Password'])) ? 'value="'.$_Serveur_['SMTPNEWS']['Password'].'"': '';?>>
 						<div class="form-group">
 							<label class="sr-only" for="exampleInputAmount">Port SMTP (exemple 587)</label>
 							<div class="input-group">
 							  <div class="input-group-addon">Port SMTP</div>
-							  <input type="number" class="form-control" id="port" placeholder="587" <?=(isset($_Serveur_['SMTP']['Port'])) ? 'value='.$_Serveur_['SMTP']['Port']: '';?>>
+							  <input type="number" class="form-control" id="port" placeholder="587" <?=(isset($_Serveur_['SMTPNEWS']['Port'])) ? 'value='.$_Serveur_['SMTPNEWS']['Port']: '';?>>
 							</div>
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" id="protocolTls" OnClick="if(document.getElementById('protocolTls').checked) { document.getElementById('protocolSsl').checked = false; } else { document.getElementById('protocolSsl').checked = true; }" <?=(isset($_Serveur_['SMTP']['Protocol']) && $_Serveur_['SMTP']['Protocol'] == "tls") ? 'checked': '';?>>
+								<input type="checkbox" id="protocolTls" OnClick="if(document.getElementById('protocolTls').checked) { document.getElementById('protocolSsl').checked = false; } else { document.getElementById('protocolSsl').checked = true; }" <?=(isset($_Serveur_['SMTPNEWS']['Protocol']) && $_Serveur_['SMTPNEWS']['Protocol'] == "tls") ? 'checked': '';?>>
 								Protocole TLS (à cocher par défaut)
 							</label>
 						</div>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox" value="ssl" id="protocolSsl" OnClick="if(document.getElementById('protocolSsl').checked) { document.getElementById('protocolTls').checked = false; } else { document.getElementById('protocolTls').checked = true; }" <?=(isset($_Serveur_['SMTP']['Protocol']) && $_Serveur_['SMTP']['Protocol'] == "ssl") ? 'checked': '';?>>
+								<input type="checkbox" value="ssl" id="protocolSsl" OnClick="if(document.getElementById('protocolSsl').checked) { document.getElementById('protocolTls').checked = false; } else { document.getElementById('protocolTls').checked = true; }" <?=(isset($_Serveur_['SMTPNEWS']['Protocol']) && $_Serveur_['SMTPNEWS']['Protocol'] == "ssl") ? 'checked': '';?>>
 								Protocole SSL (si vous êtes sur de vous !)
 							</label>
 						</div>

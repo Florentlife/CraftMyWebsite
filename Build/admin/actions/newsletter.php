@@ -8,11 +8,13 @@
 
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require('include/phpmailer/Exception.php');
 require('include/phpmailer/PHPMailer.php');
 require('include/phpmailer/SMTP.php');
+
 
 echo '[DIV]'; // pour séparer les erreurs php des valeurs que l'on veut retourner
 
@@ -25,15 +27,15 @@ if($_Joueur_['rang'] == 1 || $_PGrades_['PermsPanel']['news']['actions']['addNew
 			$_Serveur_['Mail']['reply'] = $_POST['reply'];
 			$_Serveur_['Mail']['from'] = $_POST['from'];
 			
-			$_Serveur_['SMTP']['CheckSmtp'] = $_POST['CheckSmtp'];
+			$_Serveur_['SMTPNEWS']['CheckSmtp'] = $_POST['CheckSmtp'];
 			if($_POST['CheckSmtp'] == 1)
 			{
-				$_Serveur_['SMTP']['Host'] = $_POST['host'];
-				$_Serveur_['SMTP']['Username'] = $_POST['username'];
-				$_Serveur_['SMTP']['Password'] = $_POST['password'];
-				$_Serveur_['SMTP']['Port'] = $_POST['port'];
-				$_Serveur_['SMTP']['Protocol'] = $_POST['protocol'];
-				$_Serveur_['SMTP']['CheckSmtp'] = $_POST['CheckSmtp'];
+				$_Serveur_['SMTPNEWS']['Host'] = $_POST['host'];
+				$_Serveur_['SMTPNEWS']['Username'] = $_POST['username'];
+				$_Serveur_['SMTPNEWS']['Password'] = $_POST['password'];
+				$_Serveur_['SMTPNEWS']['Port'] = $_POST['port'];
+				$_Serveur_['SMTPNEWS']['Protocol'] = $_POST['protocol'];
+				$_Serveur_['SMTPNEWS']['CheckSmtp'] = $_POST['CheckSmtp'];
 			}
 		}
 		$ecriture = new Ecrire('modele/config/config.yml', $_Serveur_);

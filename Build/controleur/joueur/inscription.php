@@ -100,8 +100,15 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND isset($_POST['mdpConfirm
 								$entete.= "MIME-Version: 1.0".$next_line;
 
 								$message= $next_line.$mail_txt.$next_line;
-
-								mail($destinataire, $sujet, $message, $entete);
+								
+								require('include/phpmailer/MailSender.php');
+								if(MailSender::send($_Serveur_, $destinataire, $sujet, $message))
+								{
+									header('Location: ?&WaitActivate=true');
+								} else {
+									header('Location: ?&page=erreur&erreur=21');
+								}
+								
 								header('Location: ?&WaitActivate=true');
 								exit();
 

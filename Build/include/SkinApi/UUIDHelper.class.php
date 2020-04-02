@@ -23,17 +23,25 @@ class UUIDHelper
     const SteveUUID = '8667ba71b85a4004af54457a9734eed7';
     
     private $ping;
+	private $session;
 
     
     public function __construct($Pseudo){
-        if(($this->ping = self::checkMojangApi()))
-        {
-            if(!($this->UUID = $this->getUUIDFromPseudo($Pseudo)))
-            {
-                $this->UUID = self::SteveUUID;
-            }
-            $this->url = self::getUrlTextureByUUID();
-        }
+		if($session = !isset($_SESSION["SkinApi"][$Pseudo]))
+		{
+			if(($this->ping = self::checkMojangApi()))
+			{
+				if(!($this->UUID = $this->getUUIDFromPseudo($Pseudo)))
+				{
+					$this->UUID = self::SteveUUID;
+				}
+				$_SESSION["SkinApi"][$Pseudo]['UUID'] = $this->UUID;
+				$this->url = $_SESSION["SkinApi"][$Pseudo]['URL'] = self::getUrlTextureByUUID();
+			}
+		}else {
+			$this->UUID = $_SESSION["SkinApi"][$Pseudo]['UUID'];
+			$this->url = $_SESSION["SkinApi"][$Pseudo]['URL'];
+		}
     }
         
     public function isApiEnable() {
@@ -42,15 +50,14 @@ class UUIDHelper
     
     
     private function getUrlTextureByUUID() {
-        $json = file_get_contents('https://sessionserver.mojang.com/session/minecraft/profile/'.$this->UUID);
-        $data = json_decode($json, true);
-        $data64 = json_decode(base64_decode($data['properties'][0]['value']), true);
-        return $data64['textures']['SKIN']['url'];
-        
+		$json = @file_get_contents('https://sessionserver.mojang.com/session/minecraft/profile/'.$this->UUID);
+		$data = json_decode($json, true);
+		$data64 = json_decode(base64_decode($data['properties'][0]['value']), true);
+		return $data64['textures']['SKIN']['url'];
     }
     
     private function getUUIDFromPseudo($pseudo) {
-        $json = file_get_contents('https://api.mojang.com/users/profiles/minecraft/'.$pseudo);
+        $json = @file_get_contents('https://api.mojang.com/users/profiles/minecraft/'.$pseudo);
         $data = json_decode($json, true);
         if(!isset($data)) {
             return false;
@@ -66,9 +73,7 @@ class UUIDHelper
         {
             if(array_keys($address)[0] == 'api.mojang.com' && array_values($address)[0] == 'red'){
                 return false;
-            }else if(array_keys($address)[0] == 'mojang.com' && array_values($address)[0] == 'red'){
-                return false;
-            } else if(array_keys($address)[0] == 'sessionserver.mojang.com' && array_values($address)[0] == 'red'){
+            }else if(array_keys($address)[0] == 'sessionserver.mojang.com' && array_values($address)[0] == 'red'){
                 return false;
             } else if(array_keys($address)[0] == 'textures.minecraft.net' && array_values($address)[0] == 'red'){
                 return false;
