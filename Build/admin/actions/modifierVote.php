@@ -14,7 +14,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 		$temps = htmlspecialchars($_POST['temps'.$i]);
 		$idCustom = htmlspecialchars($_POST['idCustom'.$i]);
 
-		$enligne = isset($_POST['enligne'.$i]) ? 1:0;
+		$enligne = $_POST['enligne'.$i];
 		if($action == 1)
 		{
 			$action = 'cmd';
@@ -56,6 +56,7 @@ if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote
 					'idCustom' => $idCustom,
 					'enligne' => $enligne,
 					'id' => $data[$i]['id']
+					
 				));
 			}
 		}

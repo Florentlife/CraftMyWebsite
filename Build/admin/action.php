@@ -44,6 +44,11 @@
 			$_SESSION['referrerAdmin'] = 'configVoter';
 		break;
 
+		case 'creerLienVote':
+			require('admin/actions/creerLienVote.php');
+			$_SESSION['referrerAdmin'] = 'voter';
+		break;
+
 		case 'creerRecompenseAuto':
 			require('admin/actions/creerRecompenseAuto.php');
 			$_SESSION['referrerAdmin'] = 'configVoter';
