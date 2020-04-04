@@ -39,7 +39,7 @@ else {
   } 
   else { 
     // Le code est invalide 
-    header('Location: index.php?page=tokens&success=false');
+    header('Location: index.php?page=token&success=false');
   } 
 } 
 ?>
