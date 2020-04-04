@@ -36,7 +36,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['addVot
 	$temps = htmlspecialchars($_POST['temps']);
 	$methode = htmlspecialchars($_POST['methode']);
 	$idCustom =htmlspecialchars($_POST['idCustom']);
-	$enligne = isset($_POST['enligne']) ? 1:0;
+	$enligne = $_POST['enligne'];
 
 	$req = $bddConnection->prepare('INSERT INTO cmw_votes_config(message, methode, action, serveur, lien, temps, titre, idCustom, enligne) VALUES (:message, :methode, :action, :serveur, :lien, :temps, :titre, :idCustom, :enligne) ');
 	$req->execute(array(

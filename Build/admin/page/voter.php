@@ -84,24 +84,27 @@
                         </div>
                         <div class="row">
                             <label class="control-label">Lien de vote</label>
-                            <input type="url" name="lien" placeholder="ex: http://serveurs-minecraft.com/...../" class="form-control" />
+                            <input type="url" name="lien" placeholder="ex: http://serveurs-minecraft.com/...../" class="form-control" required>
                         </div>
                         <div class="row">
                             <label class="control-label">Titre du lien</label>
-                            <input type="text" name="titre" placeholder="ex: Voter sur McServ !" class="form-control" />
+                            <input type="text" name="titre" placeholder="ex: Voter sur McServ !" class="form-control" required>
                         </div>
                         <div class="row">
                             <label class="control-label">Temps de vote</label>
-                            <input type="number" name="temps" placeholder="ex: 86400 pour 24h" class="form-control" />
+                            <input type="number" name="temps" placeholder="ex: 86400 pour 24h" class="form-control" required>
                         </div>
 						 <div class="row">
                             <label class="control-label">Id unique donné par le site web. *</label>
-                            <input type="text" name="idCustom" placeholder="ex: 54748" value="-1" class="form-control" />
+                            <input type="text" name="idCustom" placeholder="ex: 54748" value="" class="form-control" />
                         </div>
 						<div class="row">
                             <label class="control-label">Le joueur doit être connecté sur le serveur pour voter sur ce lien excepté si le pseudo rentré sur la page est le même que celui du compte du joueur sur votre site web ( cela aura pour conséquence de stocker ces récompenses )</label>
-                            <input type="text" name="enligne" value="1" class="form-control" />
-                        </div>
+                            <input type="radio" name="enligne" value="1" id="3" checked />
+                            <label for="3"> Oui </label>
+                            <input type="radio" name="enligne" value="0" id="4"/>
+                            <label for="4"> Non </label>
+							</div>
                         <hr>
                         <div class="row text-center">
                             <input type="submit" class="btn btn-success" value="Valider les changements !"/>
