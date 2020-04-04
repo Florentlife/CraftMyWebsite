@@ -1,10 +1,10 @@
 <?php 
 $code = isset($_POST['code']) ? preg_replace('/[^a-zA-Z0-9]+/', '', $_POST['code']) : ''; 
 if( empty($code) ) { 
-  header('Location: index.php?page=tokens&success=false');
+  header('Location: index.php?page=token&success=false');
 } 
 else { 
-  $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key=' . $_Serveur_['Payement']['public_key'] . '&private_key=' . $_Serveur_['Payement']['private_key'] . '&code=' . $code); 
+  $dedipass = file_get_contents('http://api.dedipass.com/v1/pay/?public_key=' . $_Serveur_['Payement']['public_key'] . '&private_key=' . $_Serveur_['Payement']['private_key'] . '&code=' . $code);
   $dedipass = json_decode($dedipass); 
   if($dedipass->status == 'success') { 
     // Le transaction est validée et payée. 
