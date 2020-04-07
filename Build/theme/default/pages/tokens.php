@@ -55,15 +55,6 @@
 				</div>
 			</div>
 		</div>
-		<?php 
-	}
-	if(isset($_Joueur_['pseudo']) && $_Serveur_['Payement']['mcgpass'] == true)
-		{
-			?>
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title text-center">Paiement par MCGPass</h3>
-			</div>
 			<?php 
 		}
 	if(isset($_Joueur_['pseudo']) && $_Serveur_['Payement']['dedipass'] == true)
