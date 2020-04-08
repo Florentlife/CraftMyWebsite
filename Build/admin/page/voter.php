@@ -111,14 +111,15 @@
                         </div>
                     </div>
 					 <strong>* Un système de vérification de votes est intégré</strong><br/>
-               Les sites suivant sont compatible avec cette vérification:<ul>
+               Les sites suivants sont compatibles avec cette vérification :<ul>
                     <li> serveur-prive.net</li>
                     <li> serveurs-minecraft.org</li>
                     <li> serveurs-minecraft.com</li>
                     <li> serveursminecraft.fr</li>
                     <li> liste-minecraft-serveurs.com</li>
 					<li> liste-serveurs.fr</li>
-                </ul> À noter que certains service de recherche du serveur n'ont pas une API utilisable ! Pour que celle-ci fonctionne sur le cm, vous devez remplir le champ "Id unique" par l'id donner par le site web ( généralement dans les onglets API). Laisser vide pour le désactiver. Si l'id venait â être incorrecte, ne vous étonnez pas que les votes ne se valident pas : p
+                    <li> Liste-Serveur.fr</li>
+                </ul> À noter que certains services de recherche du serveur n'ont pas une API utilisable ! Pour que celle-ci fonctionne sur le CMS, vous devez remplir le champ "ID unique" par l'ID donné par le site web (généralement dans les onglets API). Laisser vide pour le désactiver. Si l'ID venait à être incorrect, ne vous étonnez pas que les votes ne se valident pas :p
                 </div>
             </div>
         </div>

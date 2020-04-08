@@ -211,7 +211,8 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 	 }
 	
 	function verifVote($url, $id) 
-	{		if(isset($id) AND !empty($id) and $id != "")
+	{
+		if(isset($id) AND !empty($id) and $id != "")
 		{
 			if(strpos($url, 'serveur-prive.net'))
 			{
@@ -263,9 +264,28 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 				}else{
 					return false;
 				}
-			} else if(strpos($url, 'liste-serveurs.fr'))			{				$api = json_decode(file_get_contents("https://www.liste-serveurs.fr/api/checkVote/".$id."/".get_client_ip()));				if($api->success == true){					return true;				}else{					return false;				}			}else {
+			} else if(strpos($url, 'liste-serveurs.fr'))
+			{
+				$api = json_decode(file_get_contents("https://www.liste-serveurs.fr/api/checkVote/".$id."/".get_client_ip()));
+				if($api->success == true){
+					return true;
+				}else{
+					return false;
+				}
+			} elseif(strpos($url, 'liste-serveur.fr'))
+			{
+				$api = json_decode(file_get_contents("https://www.liste-serveur.fr/api/hasVoted/".$id."/".get_client_ip()));
+				if($api->hasVoted == true){
+					return true;
+				}else{
+					return false;
+				}
+			} else {
 				return true;
-			}		} else {			return true;		}
+			}
+		} else {
+			return true;
+		}
 	}
 	
 	function get_client_ip() {
