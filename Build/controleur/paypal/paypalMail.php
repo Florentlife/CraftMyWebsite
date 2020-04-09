@@ -5,16 +5,18 @@ $item_prix = $offresTableau[$i]['prix'];    /*prix du produit*/
 $item_nom = $offresTableau[$i]['nom'];; /*Nom du produit*/
 $url_retour = $_Serveur_['General']['url']. '/index.php?page=token&notif=0';/*page de remerciement à créer*/
 $url_cancel = $_Serveur_['General']['url']. '/index.php?page=token&notif=1'; /* page d'annulation d'achat SI RETOUR */
-$url_confirmation = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-$url_confirmation = substr($url_confirmation, 0, -12);
-$url_confirmation = $_Serveur_['General']['url'] .'/?action=verif_paypal&offre='. $offresTableau[$i]['id'];/*page de confirmation d'achat*/
+
+$url_confirmation = $_Serveur_['General']['url'] .'/?action=verif_paypal';
 /* fin déclaration des variables */
 
 $lien = 'https://www.paypal.com/cgi-bin/webscr';
 $postfields = array(
 	'cmd' => '_xclick',
+	'cn' => $_Serveur_['General']['description'],
 	'business' => $email_paypal,
-	'item_name' => "offre-paypal",
+	'item_name' => $offresTableau[$i]['nom'],
+	'item_number' => '1',
+	'quantity' => '1',
 	'amount' => $item_prix,
 	'currency_code' => 'EUR',
 	'no_note' => '1',
@@ -25,9 +27,10 @@ $postfields = array(
 	'notify_url' => $url_confirmation,
 	'cancel_return' => $url_cancel,
 	'return' => $url_retour,
-	'custom' => $_Joueur_['pseudo']
+	'custom' => $_Joueur_['pseudo'].','.$offresTableau[$i]['id']
 );
 ?>
+
 <form style="width: 50%; float: left;" action="<?php echo $lien; ?>" method="post">
 	<?php 
 	foreach($postfields as $cle => $valeur)

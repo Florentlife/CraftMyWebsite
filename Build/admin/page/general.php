@@ -1,6 +1,6 @@
 <div class="cmw-page-content-header"><strong>Réglages site</strong> - Modifiez votre accès MySQL ou les informations de votre site</div>
 
-<?php if($_Joueur_['rang'] != 1 AND $_PGrades_['PermsPanel']['general']['actions']['editGeneral'] == false) { ?>
+<?php if($_Joueur_['rang'] != 1 AND !$_PGrades_['PermsPanel']['general']['actions']['editGeneral']) { ?>
 
 <div class="text-center">
     <div class="alert alert-danger">
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['general']['actions']['editGeneral'] == true) { ?>
+<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['general']['actions']['editGeneral'] ) { ?>
 
 <form method="POST" action="?&action=general">
     <div class="text-center">
@@ -146,6 +146,8 @@
 				</div>
 				<div class="text-center">
 					<input type="submit" class="btn btn-danger" value="Mettre à jour l'envoie de mail"/>
+					<input type="button" id="btn-test" class="btn btn-primary" onClick="testMail()" value="Tester l'envoie de mail"/>
+					
 				</div>
 			</div>
 		</div>
@@ -153,5 +155,18 @@
 </div>
 <script type="text/javascript">
 CKEDITOR.replace( 'footer' );
+
+function testMail() {
+	document.getElementById('btn-text').disabled = true;
+	$.post("admin.php?action=testMail",{
+	},function(data, status){
+		if(data == "1") {
+			alert("Le mail a bien été envoyé !");
+		} else {
+			alert("Le mail n'a pas été envoyé, avez vous mis à jour les informations ? ou avez vous bien rentré les informations ?");
+		}
+		document.getElementById('btn-text').disabled = false;
+	}
+}
 </script>
 <?php } ?>
