@@ -514,7 +514,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
     <div class="panel-heading cmw-panel-header">
       <div class="row">
         <div class="col-xs-3">
-          <i class="fa fa-support fa-5x"></i>
+			<i class="fa fa-life-ring fa-5x" ></i>
         </div>
         <div class="col-xs-9 text-right">
           <div class="huge"><?php $req_nbrTickets2 = $bddConnection->query('SELECT * FROM cmw_support'); $Ticketstotal = $req_nbrTickets2->rowCount(); echo $Ticketstotal;?></div>

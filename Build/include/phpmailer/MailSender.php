@@ -12,10 +12,8 @@ require('include/phpmailer/SMTP.php');
 class MailSender
 {
    public static function send($arrayData, $to, $object, $body) {
-		echo $to;
         if(isset($arrayData['SMTP']))
         {
-			echo 'SMTP';
 			try {
 				$mail = new PHPMailer(true);
 				$mail->isSMTP();
@@ -39,7 +37,6 @@ class MailSender
 				return false;
 			}
         }else{
-			echo 'MAIL';
            return mail($to, $object, $body);
         }
     }

@@ -5,7 +5,7 @@
 	AJAX POST admin/page/newsletter.php
 
 */
-
+if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['newsletter']['actions']['send']) { 
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -83,5 +83,6 @@ if($_Joueur_['rang'] == 1 || $_PGrades_['PermsPanel']['news']['actions']['addNew
 	}
 } else {
 	echo 'Permission refusé.';
+}
 }
 ?>
