@@ -19,7 +19,11 @@
         </div>
         <div class="card card-inverse card-primary text-xs-center">
             <div class="card-block text-center text-uppercase">
-                Adresse : <?php echo '<b>'.$_Serveur_['General']['ipTexte'].'</b>'; ?>
+		<?php if(!empty($_Serveur_['General']['ipTexte'])){
+                	echo 'Adresse : <b>'.$_Serveur_['General']['ipTexte'].'</b>'; 
+		}else{
+			echo 'Adresse inexistante !';
+		}?>
             </div>
         </div>
     </header>
