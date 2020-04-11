@@ -3,7 +3,7 @@ function previewTopic(appel)
 {
 	post = $(appel).val();
 	contenue = nl2br(post);
-	Document.getDocumentById("previewTopic").inner = miseEnPage(contenue);
+	document.getElementById("previewTopic").innerText = miseEnPage(contenue);
 }
 
 function nl2br (str, is_xhtml) {
