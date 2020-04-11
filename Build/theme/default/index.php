@@ -94,7 +94,6 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/custom.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/toastr.min.js"></script>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/snarl.min.js"></script>
-<script src="//api.mcgpass.com/v1/pay.js"></script>
 <script src="theme/<?=$_Serveur_['General']['theme'];?>/js/messagerie.js"></script>
 <?php if($_Serveur_['Payement']['dedipass'] == true) { ?> <script src="//api.dedipass.com/v1/pay.js"></script><?php } ?>
 <?php include('theme/'.$_Serveur_['General']['theme'].'/js/forum.php'); ?>
