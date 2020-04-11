@@ -547,5 +547,31 @@ if(isset($_GET['send']))
 		});
 		</script><?php
 }
+if($_GET['page'] == "token" && $_GET['notif'] == 0)
+{
+	?><script>
+		$(document).ready(function() {
+			Snarl.addNotification({
+				title: "Paypal",
+				text: "Votre paiement a bien été effectué !",
+				icon: '<i class="fab fa-paypal"></i>',
+				timeout: null
+			});
+		});
+		</script><?php
+}
+if($_GET['page'] == "token" && $_GET['notif'] == 1)
+{
+	?><script>
+		$(document).ready(function() {
+			Snarl.addNotification({
+				title: "Paypal",
+				text: "Vous avez annulé votre paiement !",
+				icon: '<i class="fas fa-frown"></i>',
+				timeout: null
+			});
+		});
+		</script><?php
+}
 ?>
 </body>
