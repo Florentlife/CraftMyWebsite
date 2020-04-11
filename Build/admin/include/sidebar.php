@@ -13,7 +13,7 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['showPage'] == true) { ?>
-    <a href="?page=slidemini" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'slidemini'){ echo 'active'; } ?>" role="button">Slider & Miniature <i class="fa fa-file-image-o cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <a href="?page=slidemini" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'slidemini'){ echo 'active'; } ?>" role="button">Slider & Miniature <i class="fas fa-file-image cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['server']['showPage'] == true) { ?>
@@ -33,7 +33,7 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['showPage'] == true) { ?>
-    <a href="?page=paiement" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'paiement'){ echo 'active'; } ?>" role="button">Réglage paiement <i class="fa fa-credit-card-alt cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <a href="?page=paiement" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'paiement'){ echo 'active'; } ?>" role="button">Réglage paiement <i class="fas fa-credit-card cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['menus']['showPage'] == true) { ?>
@@ -74,7 +74,7 @@
     <?php }
 
          if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['widgets']['showPage'] == true) { ?>
-    <a href="?page=widgets" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'widgets'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i>  Widgets <i class="fa fa-share-square-o cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <a href="?page=widgets" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'widgets'){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="true"></i>  Widgets <i class="fas fa-share-square cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['tickets']['showPage'] == true) { ?>
