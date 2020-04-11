@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `cmw_boutique_stats` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE cmw_conversations (
+CREATE TABLE IF NOT EXISTS cmw_conversations (
   `id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `pseudo1` VARCHAR(20) NOT NULL,
   `pseudo2` VARCHAR(20) NOT NULL
@@ -236,7 +236,7 @@ CREATE TABLE IF NOT EXISTS `cmw_jetons_paypal_offres` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `cmw_log_DealJeton` ( 
+CREATE TABLE IF NOT EXISTS `cmw_log_DealJeton` ( 
   `ID` INT NOT NULL AUTO_INCREMENT , 
   `fromUser` VARCHAR(20) NOT NULL , 
   `toUser` VARCHAR(20) NOT NULL , 
@@ -256,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `cmw_maintenance` (
   PRIMARY KEY (`maintenanceId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `cmw_messages` (
+CREATE TABLE IF NOT EXISTS `cmw_messages` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `idConversation` smallint(5) UNSIGNED NOT NULL,
   `expediteur` varchar(20) NOT NULL,
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `cmw_postit` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE cmw_reseaux (
+CREATE TABLE IF NOT EXISTS cmw_reseaux (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
   `idJoueur` INT UNSIGNED NOT NULL, 
   `Discord` VARCHAR(30)) 
@@ -421,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `cmw_votes_config` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `cmw_votes_temp` (
+CREATE TABLE IF NOT EXISTS `cmw_votes_temp` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `pseudo` varchar(16) NOT NULL,
   `methode` tinyint(3) UNSIGNED NOT NULL,
@@ -430,7 +430,7 @@ CREATE TABLE `cmw_votes_temp` (
    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `cmw_votes_recompense_auto_config` (
+CREATE TABLE IF NOT EXISTS `cmw_votes_recompense_auto_config` (
   `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `type` tinyint(3) UNSIGNED NOT NULL,
   `valueType` varchar(50) NOT NULL,
