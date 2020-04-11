@@ -426,7 +426,8 @@ CREATE TABLE `cmw_votes_temp` (
   `pseudo` varchar(16) NOT NULL,
   `methode` tinyint(3) UNSIGNED NOT NULL,
   `action` varchar(100) NOT NULL,
-  `serveur` tinyint(3) UNSIGNED NOT NULL
+  `serveur` tinyint(3) UNSIGNED NOT NULL,
+   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `cmw_votes_recompense_auto_config` (
@@ -435,7 +436,8 @@ CREATE TABLE `cmw_votes_recompense_auto_config` (
   `valueType` varchar(50) NOT NULL,
   `message` varchar(255) DEFAULT NULL,
   `commande` varchar(255) NOT NULL,
-  `serveur` smallint(5) UNSIGNED NOT NULL
+  `serveur` smallint(5) UNSIGNED NOT NULL,
+   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 INSERT INTO `cmw_forum_prefix` (`id`, `span`, `nom`) VALUES
