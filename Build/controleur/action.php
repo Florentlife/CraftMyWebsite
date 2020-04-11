@@ -321,11 +321,7 @@ if(isset($_GET['action']))
 		
 		// Même principe que la boutique, mais sur la page "tokens" dans la section PayPal.
 		case 'verif_paypal':
-			if(function_exists('curl_version')) {
-				include('controleur/paypal/verif_paypal_curl.php');
-			} else {
-				include('controleur/paypal/verif_paypal_socket.php');
-			}
+			include('controleur/paypal/verif_paypal_curl.php');
 		break;
 		
 		// Lorsque paypal renvoie le Token au serveur(PHP Curl).
