@@ -422,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `cmw_votes_config` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `cmw_votes_temp` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(16) NOT NULL,
   `methode` tinyint(3) UNSIGNED NOT NULL,
   `action` varchar(100) NOT NULL,
@@ -431,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `cmw_votes_temp` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `cmw_votes_recompense_auto_config` (
-  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT,
   `type` tinyint(3) UNSIGNED NOT NULL,
   `valueType` varchar(50) NOT NULL,
   `message` varchar(255) DEFAULT NULL,
