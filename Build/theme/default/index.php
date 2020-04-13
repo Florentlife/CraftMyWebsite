@@ -546,7 +546,7 @@ if(isset($_GET['send']))
 		});
 		</script><?php
 }
-if($_GET['page'] == "token" && $_GET['notif'] == 0)
+if($_GET['page'] == "token" && $_GET['notif'] == 0 && isset($_GET['notif']))
 {
 	?><script>
 		$(document).ready(function() {
