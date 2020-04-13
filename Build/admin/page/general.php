@@ -138,7 +138,7 @@
 									Protocole SSL (si vous êtes sur de vous !)
 								</label>
 							</div>
-							<textarea id="footer" name="footer">(Footer des mails) HTML autorisé</textarea>
+							<textarea id="footer" name="footer"><?php if(isset($_Serveur_['SMTP']['Footer'])) { echo $_Serveur_['SMTP']['Footer']; } else { echo '(Footer des mails) HTML autorisé'; } ?></textarea>
 							
 						
 						</div>
