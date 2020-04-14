@@ -5,8 +5,6 @@
 	AJAX POST admin/page/newsletter.php
 
 */
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['newsletter']['actions']['send']) { 
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -14,6 +12,9 @@ use PHPMailer\PHPMailer\Exception;
 require('include/phpmailer/Exception.php');
 require('include/phpmailer/PHPMailer.php');
 require('include/phpmailer/SMTP.php');
+
+if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['newsletter']['actions']['send']) { 
+ 
 
 
 echo '[DIV]'; // pour séparer les erreurs php des valeurs que l'on veut retourner
