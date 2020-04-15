@@ -137,7 +137,9 @@
 								$pseudo = htmlspecialchars($_GET['player']);
 								
 								$enligne = false;
-								if(isset($pseudo) AND isset($serveurStats[$i]['joueurs']) AND $serveurStats[$i]['joueurs'] AND in_array($pseudo, $serveurStats[$i]['joueurs']))
+								foreach($serveurStats[$i]['joueurs'] as $key => $value)
+									$serveurStats[$i]['joueurs'][$key] = strtolower($value);
+								if(isset($pseudo) AND isset($serveurStats[$i]['joueurs']) AND $serveurStats[$i]['joueurs'] AND in_array(strtolower($pseudo), $serveurStats[$i]['joueurs']))
 								{
 									$enligne = true;
 								}
