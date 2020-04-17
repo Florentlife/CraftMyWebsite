@@ -34,7 +34,7 @@
                     </select>
                     
                     <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">IP du serveur</label>
-                    <input type="text" name="JsonAddr" placeholder="Exemple: play.craftmycube.fr ou 188.165.190.180" class="form-control"/>
+                    <input type="text" name="JsonAddr" placeholder="Exemple: 188.165.190.180 (pas d'ip en lettre)" class="form-control"/>
                     
                     <div id="updateFormServeurJSONAPI" style="display: block;">
                         <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port JSONAPI</label>
@@ -101,7 +101,7 @@
                             <input type="text" name="JsonNom<?php echo $i; ?>" class="form-control" placeholder="Exemple: CraftMyCube" value="<?php echo $lecture['Json'][$i]['nom']; ?>">
                             
                             <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Ip du serveur</label>
-                            <input type="text" name="JsonAddr<?php echo $i; ?>" class="form-control" placeholder="Exemple: play.craftmycube.fr" value="<?php echo $lecture['Json'][$i]['adresse']; ?>">
+                            <input type="text" name="JsonAddr<?php echo $i; ?>" class="form-control" placeholder="188.165.190.180 (pas d'ip en lettre)" value="<?php echo $lecture['Json'][$i]['adresse']; ?>">
 
                             <?php 
                             if(isset($lecture['Json'][$i]['port']['query']))
