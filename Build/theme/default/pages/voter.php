@@ -300,7 +300,11 @@ function RecupJoueur($pseudo, $id, $bddConnection)
 			$tempsM = $tempsM + 1;
 			$tempsRestant = $tempsRestant - 60;
 		}
-		if($tempsM <= 9)
+		if($tempsH == 0)
+		{
+			return $tempsM.' minute(s)';
+		}
+		else if ($tempsM <= 9)
 		{
 			return $tempsH. 'H0' .$tempsM;
 		}

@@ -8,6 +8,10 @@
 	{
 	switch ($_GET['action']) // on utilise ici un switch pour inclure telle ou telle page selon l'action.
 	{ 
+		case 'changeVoteCron':
+			require('admin/actions/changeVoteCron.php');
+			$_SESSION['referrerAdmin'] = 'voter';
+		break;
 		case 'dropVisits':
 			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['visitors']['showTable'] == true)
 				$bddConnection->exec('TRUNCATE cmw_visits');

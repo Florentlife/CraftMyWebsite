@@ -15,6 +15,10 @@ if(isset($_GET['action']))
 			header('Location: index.php');
 		break;
 
+		case 'voteCron':
+			include('controleur/voteCron.php');
+			exit();
+		break;
 		case 'dedipass':
 			include('controleur/dedipass.php');
 		break;
