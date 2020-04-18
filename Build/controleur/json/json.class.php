@@ -184,8 +184,13 @@ class JsonCon
 	public function SendMessage($donnees)
 	{
 		if($this->TryMode())
-			$c = $this->api->call("players.name.send_message", $donnees);
-		return $c;
+		{
+			$this->api->call("players.name.send_message", $donnees);
+		}
+		else {
+			if($this->api != null)	
+				$data = $this->api['rcon']->Rcon('msg '.$donnees[0].' '.$donnees[1]);
+		}
 	}
 
 	public function getGroups()
