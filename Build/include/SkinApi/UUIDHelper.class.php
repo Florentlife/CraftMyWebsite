@@ -28,7 +28,7 @@ class UUIDHelper
     
     public function __construct($Pseudo){
 		$this->ping = self::checkMojangApi();
-		if($session = !isset($_SESSION["SkinApi"][$Pseudo]))
+		if(!($session = isset($_SESSION["SkinApi"][$Pseudo])))
 		{
 			if($this->ping)
 			{
