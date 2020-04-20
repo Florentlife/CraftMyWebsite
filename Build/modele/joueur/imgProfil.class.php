@@ -83,7 +83,7 @@ class ImgProfil
 			mkdir("include/SkinApi/cache/", 0777, true);
 		}
 		
-		if(isset($this->api->url) && !$this->CheckCache($file) && $this->api->isApiEnable() )
+		if($this->api->session || (isset($this->api->url) && !$this->CheckCache($file) && $this->api->isApiEnable() ))
 		{
 			$url = @imagecreatefrompng($this->api->url);
 			if($type == 'body') 
