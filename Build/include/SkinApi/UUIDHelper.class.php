@@ -23,13 +23,14 @@ class UUIDHelper
     const SteveUUID = '8667ba71b85a4004af54457a9734eed7';
     
     private $ping;
-	private $session;
+	public $session;
 
     
     public function __construct($Pseudo){
-		if($session = !isset($_SESSION["SkinApi"][$Pseudo]))
+		$this->ping = self::checkMojangApi();
+		if(!($session = isset($_SESSION["SkinApi"][$Pseudo])))
 		{
-			if(($this->ping = self::checkMojangApi()))
+			if($this->ping)
 			{
 				if(!($this->UUID = $this->getUUIDFromPseudo($Pseudo)))
 				{
