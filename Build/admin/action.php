@@ -8,6 +8,9 @@
 	{
 	switch ($_GET['action']) // on utilise ici un switch pour inclure telle ou telle page selon l'action.
 	{ 
+		case 'getJsonMember':
+			require('admin/actions/getJsonMember.php');
+			exit();
 		case 'changeVoteCron':
 			require('admin/actions/changeVoteCron.php');
 			$_SESSION['referrerAdmin'] = 'voter';
@@ -175,17 +178,17 @@
 		
 		case 'supprMembre': 
 		require_once('admin/actions/supprMembre.php');
-		$_SESSION['referrerAdmin'] = 'membres';
+		exit();
 		break;
 		
 		case 'validMail': 
 		require_once('admin/actions/validMail.php');
-		$_SESSION['referrerAdmin'] = 'membres';
+		exit();
 		break;
 		
 		case 'modifierMembres': 
 			require_once('admin/actions/modifierMembres.php');
-			$_SESSION['referrerAdmin'] = 'membres';
+			exit();
 		break;
 		
 		case 'creerPage': 
