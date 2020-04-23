@@ -20,7 +20,7 @@ if(isset($_Joueur_))
 			'last_answer_temps' => time()
 			));
 		}
-		elseif(strlen($_POST['contenue']) <= 15000){
+		elseif(strlen($_POST['contenue']) > 15000){
 			header('Location: ?page=erreur&erreur=20');				
 		}
 		else
