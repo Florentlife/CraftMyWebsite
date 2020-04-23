@@ -1,6 +1,23 @@
 <?php
+
+
 if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['actions']['editMember'] == true) { 
-	for($i = 0; $i < $_POST['nombreUsers']; $i++)
+
+	$allChange= explode('_', $_POST['allid']);
+	
+	foreach ($allChange as $id)
+	{
+		echo $id;
+		ValiderChangement($_POST['pseudo'.$id], $_POST['email'.$id], $_POST['rang'.$id], $_POST['tokens'.$id], $id, $bddConnection);
+		if(isset($_POST['password' . $id]) && !empty($_POST['password' . $id]) && $_POST['password' . $id] != "" && $_POST['password' . $id] != " ")
+		{
+			ChangerMdp($_POST['password' . $id], $id, $bddConnection);
+		}
+	}
+}	
+	
+
+/*	for($i = 0; $i < $_POST['nombreUsers']; $i++)       ----- OLD
 	{
 		if(isset($_POST['pseudo' . $i]) AND isset($_POST['email' . $i]) AND isset($_POST['rang' . $i]) AND isset($_POST['jetons' . $i]))
 		{
@@ -24,7 +41,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['actions']['edi
 			}
 		}
 	}
-}
+} */
 function ValiderChangement($pseudo, $email, $rang, $jetons, $id, $bdd)
 {
 	$reqMajJoueur = $bdd->prepare('UPDATE cmw_users SET pseudo = :pseudo, email = :email, rang = :rang, tokens = :tokens WHERE id = :id');
@@ -45,5 +62,5 @@ function ChangerMdp($mdp, $id, $bdd)
 		'mdp' => $mdp,
 		'id' => $id
 	));
-}
+}  
 ?>
