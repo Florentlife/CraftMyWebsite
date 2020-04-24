@@ -6,7 +6,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == 
 		$i = 0;
 		if($_POST['axeType'] == 'DESC')
 		{
-			$allmembresReq = $bddConnection->query('SELECT id, id as \'id2\', pseudo, email, rang, tokens, ValidationMail FROM cmw_users WHERE rang = 0');
+			$allmembresReq = $bddConnection->query('SELECT id, id as \'id2\', pseudo, email, rang, tokens, ValidationMail FROM cmw_users WHERE rang = 0 AND pseudo LIKE \''.$_POST['search'].'%\'');
 			while($allmembresDonnees = $allmembresReq->fetch(PDO::FETCH_ASSOC))
 			{
 				$i++;
@@ -23,7 +23,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == 
 				}
 			}
 		}
-		$allmembresReq = $bddConnection->query('SELECT id, id as \'id2\', pseudo, email, rang, tokens, ValidationMail FROM cmw_users WHERE rang != 0 ORDER BY rang '.$_POST['axeType']);
+		$allmembresReq = $bddConnection->query('SELECT id, id as \'id2\', pseudo, email, rang, tokens, ValidationMail FROM cmw_users WHERE rang != 0 AND pseudo LIKE \''.$_POST['search'].'%\' ORDER BY rang '.$_POST['axeType']);
 		
 		while($allmembresDonnees = $allmembresReq->fetch(PDO::FETCH_ASSOC))
 		{
@@ -42,7 +42,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == 
 		}
 		if($_POST['axeType'] == 'ASC')
 		{
-			$allmembresReq = $bddConnection->query('SELECT id, id as \'id2\', pseudo, email, rang, tokens, ValidationMail FROM cmw_users WHERE rang = 0');
+			$allmembresReq = $bddConnection->query('SELECT id, id as \'id2\', pseudo, email, rang, tokens, ValidationMail FROM cmw_users WHERE rang = 0 AND pseudo LIKE \''.$_POST['search'].'%\'');
 			while($allmembresDonnees = $allmembresReq->fetch(PDO::FETCH_ASSOC))
 			{
 				$i++;
@@ -61,7 +61,7 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['showPage'] == 
 		}
 	} else {
 		$i = 0;
-		$allmembresReq = $bddConnection->query('SELECT id, id as \'id2\', pseudo, email, rang, tokens, ValidationMail FROM cmw_users ORDER BY '.$_POST["axe"].' '.$_POST["axeType"]);
+		$allmembresReq = $bddConnection->query('SELECT id, id as \'id2\', pseudo, email, rang, tokens, ValidationMail FROM cmw_users WHERE pseudo LIKE \''.$_POST['search'].'%\' ORDER BY '.$_POST["axe"].' '.$_POST["axeType"]);
 		while($allmembresDonnees = $allmembresReq->fetch(PDO::FETCH_ASSOC))
 		{
 			$i++;
