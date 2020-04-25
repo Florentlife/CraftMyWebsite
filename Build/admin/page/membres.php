@@ -28,6 +28,7 @@
                         </div>
                          <div class="col-lg-6 col-ms-6 col-xs-6">
                             <h5 >Nombre de joueurs/pages: <input style="margin-top:3px;" type="number" onchange="setMaxShow('input-changemax')" id="input-changemax" min="1" max="<?php echo count($membres); ?>" step="1" class="input-disabled form-control"  value="<?php echo count($membres)>50 ? '50':count($membres) ; ?>" ></h5>
+							<h5  style="margin-top:20px;">Rechercher un joueur: <input style="margin-top:3px;" type="text" onkeyup="updateList();" id="input-search" class="input-disabled form-control"  placeholder="ex: Vladimir" ></h5>
                          </div>
                         <div class="col-lg-12">
                             <h3>Modifier des membres</h3>
@@ -51,9 +52,9 @@
                     </table>
                     <div class="row">
 						<div class="col-md-12 text-center" style="margin-top: 5px;display:inline;">
-							<button style="float:left;" class="btn btn-success" onclick="lessIndex();" id="left" ><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+							<button type="button" style="float:left;" class="btn btn-success" onclick="lessIndex();" id="left" ><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
 							<input class="btn btn-success" style="text-align:center;" min="0" step="1" max ="9999" onchange="setIndex();" id="block" type="number" value="0"/>
-							<button style="float:right;" class="btn btn-success" onclick="moreIndex();" id="right" ><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+							<button type="button" style="float:right;" class="btn btn-success" onclick="moreIndex();" id="right" ><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                         </div>
                          <div class="col-md-12 text-center" style="margin-top: 5px;">
                             <button class="btn btn-success animated bounce infinite" id="confirm-change" onclick="sendChange()" disabled>Modifier le / les comptes</button>
@@ -139,6 +140,7 @@ function updateList()
         axe: axe,
         axeType: axeType,
         index: index,
+		search: document.getElementById("input-search").value,
         max: maxShow
     }, function(data, status){
         if(status != "success")
