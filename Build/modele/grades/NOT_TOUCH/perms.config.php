@@ -68,6 +68,9 @@ const Perms = array(
 				"editTypeBackground" => "Edition du type de fond d'écran"
 			)
 		),
+		"sliderMini" => array(
+			"showPage" => "Accès à la page <strong>Slider & Miniatures</strong>"
+		),
 		"home" => array(
 			"showPage" => "Accès à la page <strong>Accueil</strong>",
 			"actions" => array(
@@ -100,11 +103,17 @@ const Perms = array(
 			)
 		),
 		"shop" => array(
-			"showPage" => "Accès à la page <strong>Boutique</strong>",
+			"showPage" => "Accès à la page <strong>Réglage Boutique</strong>",
 			"actions" => array(
 				"addCategorie" => "Ajouter une catégorie",
 				"addOffre" => "Ajouter une offre",
 				"editCategorieOffre" => "Edition des offres/catégories"
+			),
+			"achatEvo" => array(
+				"showPage" => "Accès à la page <strong>Réglage des achats évolutifs</strong>"
+			),
+			"boutiqueList" => array(
+				"showPage" => "Accès à la page <strong>Historique des achats</strong>"
 			)
 		),
 		"payment" => array(
@@ -130,6 +139,9 @@ const Perms = array(
 				"addVote" => "Ajouter un lien de vote",
 				"resetVote" => "Réinitialiser les votes",
 				"deleteVote" => "Supprimer un lien de vote"
+			),
+			"recompenseAuto" => array(
+				"showPage" => "Accès à la page <strong>Réglage des récompenses auto</strong>"
 			)
 		),
 		"members" => array(
@@ -168,7 +180,8 @@ const Perms = array(
 					"editDefaultMessage" => "Edition du message par défaut",
 					"editAdminMessage" => "Edition du message adressé aux admins",
 					"editEtatMaintenance" => "Changer l'état de la maintenance",
-					"switchRedirectMode" => "Changer le mode de redirection"
+					"switchRedirectMode" => "Changer le mode de redirection",
+					"connexionAdmin" => "Peut se connecter pendant une maintenance"
 				)
 			)
 		),
