@@ -33,7 +33,7 @@ function AfficherExtension($retour)
         <h2 style="font-family: material;text-align: center;">Il manque des extensions ! <small> Veuillez les installer !</small></h2>
     <br>
     <div class="alert alert-success alert-chmod">Il vous manques des extensions pour que ce cms fonctionne sur votre site web, il faut les installer.
-	Si vous ne savez pas comment, n'hésitez pas à venir sur le formum présent <a href="http//craftmywebsite.fr/forum">ici</a>
+	Si vous ne savez pas comment, n'hésitez pas à venir sur le forum présent <a href="http//craftmywebsite.fr/forum">ici</a> ou sur notre discord <a href="https://discord.gg/wMVAeug">ICI</a>
     </div>
     <div class="alert alert-success alert-chmod">
     <center>
