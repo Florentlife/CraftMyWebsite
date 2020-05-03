@@ -19,7 +19,7 @@
         <div class="col-md-12">
         <div class="panel panel-default cmw-panel">
             <div class="panel-heading cmw-panel-header">
-                <h3 class="panel-title"><strong>Édition des membres</strong></h3>
+                <h3 class="panel-title"><strong>Édition des membres</strong><small id="infoState">(Croissant sur ID)</small></h3>
             </div>
             <div class="panel-body">
                     <div class="row">
@@ -52,9 +52,9 @@
                     </table>
                     <div class="row">
 						<div class="col-md-12 text-center" style="margin-top: 5px;display:inline;">
-							<button type="button" style="float:left;" class="btn btn-success" onclick="lessIndex();" id="left" ><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+							<button type="button" style="float:left;" class="btn btn-success"  onclick="lessIndex();" id="left" ><i  class="fa fa-chevron-left" aria-hidden="true"></i></button>
 							<input class="btn btn-success" style="text-align:center;" min="0" step="1" max ="9999" onchange="setIndex();" id="block" type="number" value="0"/>
-							<button type="button" style="float:right;" class="btn btn-success" onclick="moreIndex();" id="right" ><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+							<button type="button" style="float:right;" class="btn btn-success" onclick="moreIndex();"  id="right" ><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
                         </div>
                          <div class="col-md-12 text-center" style="margin-top: 5px;">
                             <button class="btn btn-success animated bounce infinite" id="confirm-change" onclick="sendChange()" disabled>Modifier le / les comptes</button>
@@ -100,8 +100,9 @@ function setIndex(){
     if(nb <= PlayerTotal / maxShow){
         index = nb;
     } else {
-        valindex.value = index =  Math.trunc(PlayerTotal / maxShow);
+        valindex.value = index =  Math.trunc(PlayerTotal / maxShow) ;
     }
+	
     updateIndex();
 }
 
@@ -124,17 +125,24 @@ function updateIndex() {
 }
 
 function lessIndex() {
-    valindex.value = index--;
+	index--;
+    valindex.value = index;
     setIndex();
 }
 
 function moreIndex() {
-    valindex.value = index++;
+	index++;
+    valindex.value = index;
     setIndex();
+}
+
+function updateState() {
+	document.getElementById("infoState").innerHTML="("+(axeType == "DESC" ? "Décroissant" : "Croissant")+" sur "+axe+")";
 }
 
 function updateList()
 {
+	updateState();
     $.post("admin.php?action=getJsonMember",
     {
         axe: axe,

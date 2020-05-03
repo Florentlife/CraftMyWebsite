@@ -300,7 +300,7 @@
 		
 	function sendMail() {
 		i = $indexMailPlayer;
-		if(i < allEMail.length-2)
+		if(i <= allEMail.length-2)
 		{
 			if(stopRequest)
 			{
