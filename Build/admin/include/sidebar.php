@@ -85,7 +85,7 @@
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['newsletter']['showPage'] == true) { ?>
-    <a href="?page=newsletter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'newsletter'){ echo 'active'; } ?>" role="button">NewsLetter <i class="fa fa-wrench cmw-fa-sidebar" aria-hidden="true"></i></a>
+    <a href="?page=newsletter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'newsletter'){ echo 'active'; } ?>" role="button">NewsLetter <i class="fas fa-newspaper cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
     <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['support']['maintenance']['showPage'] == true) { ?>
