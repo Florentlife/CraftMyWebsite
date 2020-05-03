@@ -6,7 +6,7 @@
 
 */
 
-const Perms = array(
+const PERMS = array(
 	"PermsDefault" => array(
 		"news" => array(
 			"deleteMemberComm" => "Suppression des commentaires dans les nouveautés",

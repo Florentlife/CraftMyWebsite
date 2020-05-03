@@ -278,8 +278,10 @@
 							<td>Email</td>
 							<td><?php if($joueurDonnees['show_email'] == 0)
 								echo $joueurDonnees['email'];
+							elseif($joueurDonnees['show_email'] == 1)
+								echo 'privée'; 
 							else
-								echo 'inconnue'; ?></td>
+								echo 'inconnue';?></td>
 						</tr>
 						<?php 
 						foreach($listeReseaux as $value)
