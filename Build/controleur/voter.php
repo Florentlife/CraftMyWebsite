@@ -224,7 +224,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 	 	$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
 	 }
 	
-	function verifVote($url, $id) 
+	function verifVote($url, $id)
 	{
 		if(isset($id) AND !empty($id) and $id != "")
 		{
@@ -261,39 +261,20 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 				else
 				{
 					$data_decoded = json_decode($data,true);
-					if ( $data_decoded["DateVote"] >= $data_decoded["DateActuelle"] - 360 )
-					{
-						return true;
-					}
-					else
-					{
-						return false;
-					}
+					if ( $data_decoded["DateVote"] >= $data_decoded["DateActuelle"] - 360 ){return true;}else{return false;}
 				}
 			}else if(strpos($url, 'liste-minecraft-serveurs.com'))
 			{
 				$api = json_decode(file_get_contents("https://www.liste-minecraft-serveurs.com/Api/Worker/id_server/".$id."/ip/".get_client_ip()));
-				if($api->result == 202){
-					return true;
-				}else{
-					return false;
-				}
+				if($api->result == 202){return true;}else{return false;}
 			} else if(strpos($url, 'liste-serveurs.fr'))
 			{
 				$api = json_decode(file_get_contents("https://www.liste-serveurs.fr/api/checkVote/".$id."/".get_client_ip()));
-				if($api->success == true){
-					return true;
-				}else{
-					return false;
-				}
+				if($api->success == true){return true;}else{return false;}
 			}else if(strpos($url, 'liste-serveurs.fr'))
 			{
 				$api = json_decode(file_get_contents("https://www.liste-serveur.fr/api/hasVoted/".$id."/".get_client_ip()));
-				if($api->hasVoted == true){
-					return true;
-				}else{
-					return false;
-				}
+				if($api->hasVoted == true){return true;}else{return false;}
 			}else {
 				return true;
 			}
