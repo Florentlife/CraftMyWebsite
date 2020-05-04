@@ -48,7 +48,7 @@ const PERMS = array(
 				),
 				"activity" => array(
 					"showTable" => "Voir les stats des activités"
-				)
+				),
 				"shop" => array(
 					"showTable" => "Voir les stats de la boutique"
 				)
