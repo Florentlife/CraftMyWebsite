@@ -39,10 +39,8 @@
 							<?php } ?>
 
 							<td class="text-center align-middle">
-								<?php 
-								$Img = new ImgProfil($tickets['auteur'], 'pseudo');
-								?>
-								<a href="index.php?&page=profil&profil=<?php echo $tickets['auteur'] ?>"><img class="icon-player-topbar" src="<?=$Img->getImgToSize(32, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" /> <?php echo $tickets['auteur'] ?></a>
+							
+								<a href="index.php?&page=profil&profil=<?php echo $tickets['auteur'] ?>"><img class="icon-player-topbar" src="<?=$_ImgProfil_->getUrlHeadByPseudo($tickets['auteur']);?>" style="width: 32px; height: 32px;" /> <?php echo $tickets['auteur'] ?></a>
 							</td>
 						
 							<td class="text-center align-middle">
@@ -109,9 +107,8 @@
 									$message = espacement($tickets['message']);
 									$message = BBCode($message, $bddConnection);
 									echo $message; 
-									$Img = new ImgProfil($tickets['auteur'], 'pseudo');
 									?></p>
-									<p class="text-right">Ticket de : <img src="<?=$Img->getImgToSize(16, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /> <?php echo $tickets['auteur']; ?></p>
+									<p class="text-right">Ticket de : <img src="<?=$_ImgProfil_->getUrlHeadByPseudo($tickets['auteur']);?>" style="width: 16px; height: 16px;" alt="none" /> <?php echo $tickets['auteur']; ?></p>
 									<br>
 									<hr>
 									
@@ -132,10 +129,8 @@
 										<div class="panel-body">
     										<div class="ticket-commentaire">
 											<div class="left-ticket-commentaire">
-												<?php 
-													$Img = new ImgProfil($ticketCommentaires[$tickets['id']][$i]['auteur'], 'pseudo');
-													?>
-												<span class="img-ticket-commentaire"><img src="<?=$Img->getImgToSize(32, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /></span>
+
+												<span class="img-ticket-commentaire"><img src="<?=$_ImgProfil_->getUrlHeadByPseudo($ticketCommentaires[$tickets['id']][$i]['auteur']);?>" style="width:32px; height:32px;" alt="none" /></span>
 												<span class="desc-ticket-commentaire">
 													<span class="ticket-commentaire-auteur"><?php echo $ticketCommentaires[$tickets['id']][$i]['auteur']; ?></span>
 													<span class="ticket-commentaire-date"><?php echo 'Le ' .$ticketCommentaires[$tickets['id']][$i]['jour']. '/' .$ticketCommentaires[$tickets['id']][$i]['mois']. ' à ' .$ticketCommentaires[$tickets['id']][$i]['heure']. ':' .$ticketCommentaires[$tickets['id']][$i]['minute']; ?></span>

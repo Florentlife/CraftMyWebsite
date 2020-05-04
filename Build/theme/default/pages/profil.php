@@ -233,8 +233,7 @@
 					<div class="col-md-6">
 						<h3 class="header-bloc">Photo de profil actuelle</h3>
 						<?php
-						$Img = new ImgProfil($_Joueur_['id']);
-						echo "<center><img src='".$Img->getImgToSize(128, $width, $height)."' style='width: ".$width."px; height: ".$height."px;' alt='Profil' /></center>";
+						echo "<center><img src='".$_ImgProfil_->getUrlHeadByPseudo($_Joueur_['pseudo'])."' style='width: 128px; height: 128px;' alt='Profil' /></center>";
 						if($Img->modif)
 						{
 							echo '<center><a class="btn btn-danger" style="margin-top: 10px;" href="?action=removeImgProfil">Supprimer</a></center>';
@@ -305,11 +304,9 @@
 			</div>
 			<div class="col-md-6 unite-bloc">
 				<h3 class="header-bloc"><?php echo htmlspecialchars($getprofil); ?></h3>
-					<?php 
-					$Img = new ImgProfil($joueurDonnees['id']);
-					?>
-					<img src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="<?=htmlspecialchars($getprofil);?>" />
-					<img src="<?=$Img->getImgBodyToSize(128, $width, $height);?>" style="width: auto; height: 400px;padding-left: 30%;" alt="none" />
+
+					<img src="<?=$_ImgProfil_->getUrlHeadByPseudo($getprofil);?>" style="width: 128px; height: 128px;" alt="<?=htmlspecialchars($getprofil);?>" />
+					<img src="<?=$_ImgProfil_->getUrlBodyByPseudo($getprofil);?>" style="width: auto; height: 400px;padding-left: 30%;" alt="none" />
 				<div class="footer-bloc">
 				</div>
 			</div>

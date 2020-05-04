@@ -97,13 +97,12 @@
 												//}
 												echo '</a>';
 											}
-											unset($Img);
-											$Img = new ImgProfil($news[$i]['auteur'], 'pseudo');
+
 											?>
 									</div>
 									<div class="card-footer text-muted" style="height: 41px;">
 										<div style="float: left;"><?php echo 'Posté le '.date('d/m/Y', $news[$i]['date']).' &agrave; '.date('H:i:s', $news[$i]['date']); ?></div>
-											<div style="float: right;">Auteur : <a href="?page=profil&profil=<?php echo $news[$i]['auteur']; ?>" alt="aller voir le profil de l'auteur"><img src="<?=$Img->getImgToSize(24, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="auteur"/> <?php echo $news[$i]['auteur']; ?></a></div>
+											<div style="float: right;">Auteur : <a href="?page=profil&profil=<?php echo $news[$i]['auteur']; ?>" alt="aller voir le profil de l'auteur"><img src="<?=$_ImgProfil_->getUrlHeadByPseudo($news[$i]['auteur']);?>" style="width: 24px; height: 24px;" alt="auteur"/> <?php echo $news[$i]['auteur']; ?></a></div>
 									</div>
 								</div>
 							</div>
@@ -158,14 +157,13 @@
 											$getCountReportsVictimes = $accueilNews->countReportsVictimes($newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);
 											$countReportsVictimes = $getCountReportsVictimes->rowCount();
 										}
-										unset($Img);
-										$Img = new ImgProfil($newsComments['pseudo'], 'pseudo');
+
 										?>
 
 										<div class="container">
 											<div class="row">
 													<div class="col-md-4 col-lg-4 col-sm-12">
-														<img class="rounded" src="<?=$Img->getImgToSize(64, $width, $height);?>" style="margin-left: auto; margin-right: auto; display: block; width: <?=$width;?>px; height: <?=$height;?>px;" alt="Auteur" />
+														<img class="rounded" src="<?=$_ImgProfil_->getUrlHeadByPseudo($newsComments['pseudo']);?>" style="margin-left: auto; margin-right: auto; display: block; width: 64px; height: 64px;" alt="Auteur" />
 														<p class="text-muted text-center username"><?php echo '<B> '.$newsComments['pseudo'].'</B>'; ?><br/>
 															<?php echo  '<b>'.gradeJoueur($newsComments['pseudo'], $bddConnection).'</b><br/>'; ?>
 															<?php echo '<B>Le '.date('d/m', $newsComments['date_post']).' à '.date('H:i:s', $newsComments['date_post']).'</B>'; ?></p>

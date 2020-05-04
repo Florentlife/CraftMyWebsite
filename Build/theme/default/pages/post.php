@@ -103,9 +103,9 @@ if(isset($_GET['id']))
 		<div class="col-md-2">
 		<!-- Div de droite où on met le profil de l'auteur -->
 		<center><?php
-			$Img = new ImgProfil($topicd['pseudo'], 'pseudo');
+	
 			?>
-			<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" /></center>
+			<img class="rounded" src="<?=$_ImgProfil_->getUrlHeadByPseudo($topicd['pseudo']);?>" style="width: 128px; height: 128px;" alt="avatar de l'auteur" title="<?php echo $topicd['pseudo']; ?>" /></center>
 			<p class="username text-center"><?php echo $topicd['pseudo']; ?><br/>
 			<?php echo $_Forum_->gradeJoueur($topicd['pseudo']); ?> </p>
 		</div>
@@ -237,9 +237,8 @@ if(isset($_GET['id']))
 			<div class="col-md-2">
 				<div id="<?php echo $answerd[$i]['id']; ?>"> <!-- div de droite avec les infos joueurs -->
 					<center><?php 
-					$Img = new ImgProfil($answerd[$i]['pseudo'], 'pseudo');
 					?>
-					<img class="rounded" src="<?=$Img->getImgToSize(128, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" /></center>
+					<img class="rounded" src="<?=$_ImgProfil_->getUrlHeadByPseudo($answerd[$i]['pseudo']);?>" style="width: 128px; height: 128px;" alt="avatar de l'auteur" title="<?php echo $answerd[$i]['pseudo']; ?>" /></center>
 					<p class="username text-center"><?php echo $answerd[$i]['pseudo']; ?><br/>
 						<?php echo $_Forum_->gradeJoueur($answerd[$i]['pseudo']); ?>
 					</p>

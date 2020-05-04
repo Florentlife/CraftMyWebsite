@@ -184,9 +184,8 @@
 								?><td><input name="selection" type="checkbox" value="<?php echo $topicd[$i]['id']; ?>"/></td>
 										<?php 
 							} 
-							$Img = new ImgProfil($topicd[$i]['pseudo'], 'pseudo');
 							?>
-						<td><a href="?page=profil&profil=<?=$topicd[$i]['pseudo'];?>"><img src="<?=$Img->getImgToSize(42, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $topicd[$i]['pseudo']; ?>"/></a>
+						<td><a href="?page=profil&profil=<?=$topicd[$i]['pseudo'];?>"><img src="<?=$_ImgProfil_->getUrlHeadByPseudo($topicd[$i]['pseudo']);?>" style="width: 42px; height: 42px;" alt="avatar de l'auteur" title="<?php echo $topicd[$i]['pseudo']; ?>"/></a>
 						</td>
 						<td><a href="?&page=post&id=<?php echo $topicd[$i]['id']; ?>"><?php if(isset($topicd[$i]['prefix']) && $topicd[$i]['prefix'] != 0)
 						{
