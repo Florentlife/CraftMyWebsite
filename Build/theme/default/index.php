@@ -49,7 +49,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 </head>
 
 <body>
-	<?php if(isset($_Joueur_)) { ?>
+	<?php if(Permission::getInstance()->verifPerm("connect")) { ?>
 		<?php setcookie('pseudo', $_Joueur_['pseudo'], time() + 86400, null, null, false, true); ?>	
 		<?php }  
 			include('theme/' .$_Serveur_['General']['theme']. '/entete.php');
@@ -57,7 +57,7 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		<?php
 		include("./include/version.php");
         include("./include/version_distant.php");
-        if($versioncms != $versioncmsrelease && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['update']['showPage'] == 'on')) {?>
+        if($versioncms != $versioncmsrelease && Permission::getInstance()->verifPerm('PermsPanel', 'update', 'showPage')) {?>
         <div class="alert alert-warning alert-dismissible text-center" style="margin-bottom: 0px;">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             Une mise à jour est disponible (<a href="https://craftmywebsite.fr/telecharger" target="_blank" class="alert-link"><?= $versioncmsrelease?></a>)
@@ -412,7 +412,7 @@ if(isset($modal))
 	<script>  	$('#myModal').modal('toggle') 	</script>	
 	<?php
 }
-if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_['rang'] == 1)
+if(Permission::getInstance()->verifPerm('PermsForum', 'moderation', 'seeSignalement'))
 {
 	?>
 	<script>

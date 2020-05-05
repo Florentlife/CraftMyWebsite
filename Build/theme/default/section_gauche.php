@@ -14,7 +14,7 @@
 			<?php if($_Widgets_['Widgets'][$i]['type'] == 0) { ?>
 				<ul class="nav nav-pills nav-stacked">
 					  <?php
-					if($_Joueur_['rang'] == 1)
+					if(Permission::getInstance()->verifPerm("PermsPanel", 'access'))
 						echo '<li class="active"><a href="admin.php"><span class="glyphicon glyphicon-cog"></span> Administration</a></li>';
 					
 					?>

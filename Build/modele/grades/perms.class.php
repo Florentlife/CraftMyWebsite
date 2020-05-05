@@ -66,6 +66,8 @@ class Permission {
 				{
 					if($TableauPerm[$value] == 'on' || $TableauPerm[$value] === true)
 						$retour = true;
+					elseif(is_numeric($TableauPerm[$value]))
+						return $TableauPerm[$value];
 				}
 				else
 					$TableauPerm = $TableauPerm[$value];

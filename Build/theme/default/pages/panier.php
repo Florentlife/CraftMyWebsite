@@ -1,4 +1,4 @@
-<?php if(isset($_Joueur_)){?>
+<?php if(Permission::getInstance()->verifPerm("connect")){?>
 <header class="heading-pagination">
     <div class="container-fluid">
         <h1 class="text-uppercase wow fadeInRight" style="color:white;">Boutique</h1>

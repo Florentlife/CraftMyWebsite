@@ -11,7 +11,7 @@
 	<?php } elseif(isset($_GET['success']) AND $_GET['success'] == 'false'){ ?>
 	<div class="alert alert-danger">Le code entré est incorrect, vous n'avez pas été crédité...</div>
 	<?php } 
-	if(isset($_Joueur_['pseudo']) && $_Serveur_['Payement']['paypal'] == true) 
+	if($_Serveur_['Payement']['paypal'] == true) 
 		{
 			?>
 	<div class="panel panel-primary">
@@ -57,7 +57,7 @@
 		</div>
 			<?php 
 		}
-	if(isset($_Joueur_['pseudo']) && $_Serveur_['Payement']['dedipass'] == true)
+	if($_Serveur_['Payement']['dedipass'] == true)
 	{
 		?>
 		<div class="panel panel-primary">

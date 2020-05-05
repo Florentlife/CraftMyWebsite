@@ -55,7 +55,7 @@
 				?>
 				</div>
 			<?php 
-			if(isset($_Joueur_))
+			if(Permission::getInstance()->verifPerm("connect"))
 			{
 				?>
 				<form action="?action=sendChat" method="POST">	

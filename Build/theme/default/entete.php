@@ -69,7 +69,7 @@
 							echo '<li class="nav-item' .$active. ' wow fadeInDown" data-wow-delay"'. $i/10 .'s"><a href="' .$_Menu_['MenuLien'][$i]. '" class="nav-link">' .$_Menu_['MenuTexte'][$i]. '</a></li>';
 						}
 					}
-					if(isset($_Joueur_))
+					if(Permission::getInstance()->verifPerm("connect"))
 					{
 					?>
 					<div class="btn-group dropdown-hover" role="group" aria-label="Dropdown Membres">
@@ -105,9 +105,9 @@
 											$alerte++;
 										}
 									}
-									if($_PGrades_['PermsPanel']['access'] == "on" OR $_Joueur_['rang'] == 1)
+									if(Permission::getInstance()->verifPerm('PermsPanel', 'access'))
 										echo '<a href="admin.php" class="dropdown-item text-success"><i class="fas fa-tachometer-alt"></i> Administration</a>';
-									if($_PGrades_['PermsForum']['moderation']['seeSignalement'] == true OR $_Joueur_['rang'] == 1)
+									if(Permission::getInstance()->verifPerm('PermsForum', 'moderation', 'seeSignalement'))
 									{
 										$req_report = $bddConnection->query('SELECT id FROM cmw_forum_report WHERE vu = 0');
 										$signalement = $req_report->rowCount();

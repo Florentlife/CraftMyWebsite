@@ -81,7 +81,7 @@
 										<p class="card-text"><?php echo $news[$i]['message']; ?></p>
 										<!--<a href="news.html" class="card-link btn btn-primary">Lire plus</a>-->
 										<?php
-											if(isset($_Joueur_)) {
+											if(Permission::getInstance()->verifPerm("connect")) {
 												$reqCheckLike = $accueilNews->checkLike($_Joueur_['pseudo'], $news[$i]['id']);
 												$getCheckLike = $reqCheckLike->fetch(PDO::FETCH_ASSOC);
 												$checkLike = $getCheckLike['pseudo'];
@@ -112,13 +112,13 @@
 							</div>
 							<?php 
 							unset($Img);
-							if(isset($_Joueur_)) {
+							if(Permission::getInstance()->verifPerm("connect")) {
 								$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
 								while($newsComments = $getNewsCommentaires->fetch(PDO::FETCH_ASSOC)) {
 									$reqEditCommentaire = $accueilNews->editCommentaire($newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);
 									$getEditCommentaire = $reqEditCommentaire->fetch(PDO::FETCH_ASSOC);
 									$editCommentaire = $getEditCommentaire['commentaire'];
-									if($newsComments['pseudo'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1) {  ?>
+									if($newsComments['pseudo'] == $_Joueur_['pseudo'] OR Permission::getInstance()->verifPerm("createur")) {  ?>
 										<div class="modal fade" id="news<?php echo $news[$i]['id'].'-'.$newsComments['id'].'-edit'; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-support">
 												<div class="modal-content modal-lg">
@@ -153,7 +153,7 @@
 									<?php
 									$getNewsCommentaires = $accueilNews->newsCommentaires($news[$i]['id']);
 									while($newsComments = $getNewsCommentaires->fetch(PDO::FETCH_ASSOC)) {
-										if(isset($_Joueur_)) {
+										if(Permission::getInstance()->verifPerm("connect")) {
 											
 											$getCheckReport = $accueilNews->checkReport($_Joueur_['pseudo'], $newsComments['pseudo'], $news[$i]['id'], $newsComments['id']);
 											$checkReport = $getCheckReport->rowCount();
@@ -171,12 +171,12 @@
 														<p class="text-muted text-center username"><?php echo '<B> '.$newsComments['pseudo'].'</B>'; ?><br/>
 															<?php echo  '<b>'.gradeJoueur($newsComments['pseudo'], $bddConnection).'</b><br/>'; ?>
 															<?php echo '<B>Le '.date('d/m', $newsComments['date_post']).' à '.date('H:i:s', $newsComments['date_post']).'</B>'; ?></p>
-														<?php if(isset($_Joueur_)) { ?>
+														<?php if(Permission::getInstance()->verifPerm("connect")) { ?>
 															<span style="color: red;"><?php if($newsComments['nbrEdit'] != "0"){echo 'Nombre d\'édition: '.$newsComments['nbrEdit'].' | ';}if($countReportsVictimes != "0"){echo '<B>'.$countReportsVictimes.' Signalement</B> |';} ?></span>
 															<div class="dropdown">
 																<button class="btn btn-info" data-toggle="dropdown" style="font-size: 10px;">Action <b class="caret"></b></button>
 																<ul class="dropdown-menu">
-																	<?php if($newsComments['pseudo'] == $_Joueur_['pseudo'] OR $_Joueur_['rang'] == 1) {
+																	<?php if($newsComments['pseudo'] == $_Joueur_['pseudo'] OR Permission::getInstance()->verifPerm("createur")) {
 																		echo '<li><a href="#" data-toggle="modal" data-target="#news'.$news[$i]['id'].'-'.$newsComments['id'].'-edit">Editer</a></li>';
 																		echo '<li><a href="?&action=delete_news_commentaire&id_comm='.$newsComments['id'].'&id_news='.$news[$i]['id'].'&auteur='.$newsComments['pseudo'].'">Supprimer</a></li>';
 																	}
@@ -199,7 +199,7 @@
 											<?php } ?>
 									</div> <!-- Modal-Body -->
 										<?php
-										if(isset($_Joueur_)) { ?>
+										if(Permission::getInstance()->verifPerm("connect")) { ?>
 											<div class="modal-footer w-100">
 												<form action="?&action=post_news_commentaire&id_news=<?php echo $news[$i]['id']; ?>" method="post" class="w-100">
 													<textarea name="commentaire" class="form-control w-100" required></textarea>
