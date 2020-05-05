@@ -246,7 +246,7 @@ if(isset($_GET['action']))
 		break;
 		
 		case 'mode_joueur':
-			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsForum']['general']['modeJoueur'] == true)
+			if(Permission::getInstance()->verifPerm('PermsForum', 'general', 'modeJoueur'))
 			{
 				$_SESSION['mode'] = ($_SESSION['mode'] == 1) ? false : true;
 				header('Location: ?page=forum');

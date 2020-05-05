@@ -90,7 +90,7 @@ if(isset($_GET['page']))
 
 		
 		case 'token': 
-			if(isset($_Joueur_['pseudo']))
+			if(Permission::getInstance()->verifPerm("connect"))
 				include('theme/' .$_Serveur_['General']['theme']. '/pages/tokens.php');
 			else
 				header('Location: ?page=erreur&erreur=19&titre='.urlencode("Erreur d'accès")."&type=".urlencode("Connexion requise")."&contenue=".urlencode("Vous devez être connecté pour accéder à cette page !"));
