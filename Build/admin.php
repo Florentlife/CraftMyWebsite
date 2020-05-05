@@ -22,6 +22,8 @@ ini_set('display_errors', 1);
 	$switch = true;
 	require_once('controleur/grades/grades.php');
 	
+	require('modele/joueur/imgProfil.class.php');
+	$_ImgProfil_ = new ImgProfil($bddConnection);
 	/* Si l'utilisateur est connecté, on met ses informations dans un tableau global, qui sera utilisable que 
 	   le laps de temps du chargement de la page contrairement aux sessions. */
 	if(isset($_SESSION['Player']['pseudo']) AND ($_SESSION['Player']['rang'] == 1 OR $_PGrades_['PermsPanel']['access'] == true))
