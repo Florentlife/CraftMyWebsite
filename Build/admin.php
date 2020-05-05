@@ -22,18 +22,20 @@ ini_set('display_errors', 1);
 	$_ImgProfil_ = new ImgProfil($bddConnection);
 	/* Si l'utilisateur est connecté, on met ses informations dans un tableau global, qui sera utilisable que 
 	   le laps de temps du chargement de la page contrairement aux sessions. */
-	if(Permission::getInstance()->verifPerm("PermsPanel","access"))
+  /* On instancie un joueur, et on récupère le tableau de données. $_Joueur_ sera donc utilisable 
+	   sur toutes les pages grâce au système de GET sur l'index.*/
+	if((isset($_SESSION['Player']['pseudo']) AND !empty($_SESSION['Player']['pseudo'])))
 	{
-		/* On instancie un joueur, et on récupère le tableau de données. $_Joueur_ sera donc utilisable 
-		   sur toutes les pages grâce au système de GET sur l'index.*/
 		require_once('controleur/joueur/joueur.class.php');
-		
+	
 		$globalJoueur = new Joueur();
-		
 		// Cette variable contiens toutes les informations du joueur.
 		$_Joueur_ = $globalJoueur->getArrayDonneesUtilisateur();
 		$connection = true;
-		
+	}
+
+	if(Permission::getInstance()->verifPerm("PermsPanel","access"))
+	{
 		require_once('controleur/json/json.php');
 		
 		$admin = true;
