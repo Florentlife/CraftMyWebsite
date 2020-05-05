@@ -51,7 +51,7 @@ class Permission {
 			if($perm[0] == "connect")
 				return true;
 			if(isset($this->_Perm_))
-				$TableauPerm = $_Perm_;
+				$TableauPerm = $this->_Perm_;
 			else
 			{
 				$TableauPerm = $this->readPerm($grade);
