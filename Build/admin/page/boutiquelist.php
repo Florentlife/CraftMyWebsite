@@ -8,7 +8,7 @@
 		</div>
 	</div>';
 } 
-elseif(Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'showPage']))
+elseif(Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'boutiqueList', 'showPage'))
 {
 	?>
 <div class="row">

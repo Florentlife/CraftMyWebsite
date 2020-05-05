@@ -60,6 +60,8 @@ class Permission {
 			$retour = false;
 			foreach($perm as $value)
 			{
+				if(!array_key_exists($value, $TableauPerm))
+					return false;
 				if(!is_array($TableauPerm[$value]))
 				{
 					if($TableauPerm[$value] == 'on' || $TableauPerm[$value] === true)

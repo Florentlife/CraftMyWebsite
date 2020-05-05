@@ -30,8 +30,9 @@
             <a href="?page=boutique" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'boutique'){ echo 'active'; } ?>" role="button">Réglage boutique <i class="fa fa-shopping-cart cmw-fa-sidebar" aria-hidden="true"></i></a>
             <?php if(Permission::getInstance()->verifPerm("PermsPanel", 'shop', 'boutiqueList', 'showPage')) { ?>
             <a href="?page=boutiquelist" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?=(isset($pageadmin) && $pageadmin == 'boutiquelist') ? 'active' : '';?>" role="button">Liste des achats <i class="fa fa-truck cmw-fa-sidebar" aria-hidden="true"></i></a>
+        <?php } ?>
         </div>
-    <?php } } ?>
+    <?php } ?>
 
     <?php if(Permission::getInstance()->verifPerm('PermsPanel', 'payment', 'showPage')) { ?>
     <a href="?page=paiement" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'paiement'){ echo 'active'; } ?>" role="button">Réglage paiement <i class="fas fa-credit-card cmw-fa-sidebar" aria-hidden="true"></i></a>
@@ -55,8 +56,9 @@
     	<a href="?page=voter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "voter") echo 'active'; ?>">Liens vote <i class="fa fa-link cmw-fa-sidebar"></i></a>
         <?php if(Permission::getInstance()->verifPerm("PermsPanel", "vote", "recompenseAuto", "showPage")) { ?>
     	<a href="?page=configVoter" role="button" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && $pageadmin == "configVoter") echo 'active'; ?>">Récompenses Auto <i class="fa fa-trophy cmw-fa-sidebar"></i></a>
+    <?php } ?>
     </div>
-    <?php } } ?>
+    <?php } ?>
 
     <?php if(Permission::getInstance()->verifPerm('PermsPanel', 'members', 'showPage') OR Permission::getInstance()->verifPerm('PermsPanel', 'social', 'showPage') OR Permission::getInstance()->verifPerm("PermsPanel", 'ban', 'showPage')) { ?>
     <a href="#collapseMembres" data-toggle="collapse" style="margin-bottom: 5px;" aria-expanded="true" aria-controls="collapseMembres" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin) && ($pageadmin == 'membres' OR $pageadmin == "social" OR $pageadmin == "modifIP" OR $pageadmin == "ban")){ echo 'active'; } ?>" role="button"><strong>Gestion </strong><i class="fa fa-arrow-right" aria-hidden="false"></i> Membres <i class="fa fa-users cmw-fa-sidebar" aria-hidden="true"></i></a>
