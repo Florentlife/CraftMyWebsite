@@ -204,9 +204,8 @@
 						if(isset($topVoteurs))
 						{
 							for($i = 0; $i < count($topVoteurs) AND $i < 10; $i++) {
-								$Img = new ImgProfil($topVoteurs[$i]['pseudo'], 'pseudo');
 							 ?>
-							<tr><td><?php echo $i+1 ?></td><td><img src="<?=$Img->getImgToSize(30, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="none" /> <strong><?php echo $topVoteurs[$i]['pseudo']; ?></strong></td><td id="nbr-vote-<?php echo $topVoteurs[$i]['pseudo']; ?>"><?php echo $topVoteurs[$i]['nbre_votes']; ?></td></tr>
+							<tr><td><?php echo $i+1 ?></td><td><img src="<?=$_ImgProfil_->getUrlHeadByPseudo($topVoteurs[$i]['pseudo']);?>" style="width:30px; height: 30px;" alt="none" /> <strong><?php echo $topVoteurs[$i]['pseudo']; ?></strong></td><td id="nbr-vote-<?php echo $topVoteurs[$i]['pseudo']; ?>"><?php echo $topVoteurs[$i]['nbre_votes']; ?></td></tr>
 							<?php }
 						} ?>
 				</table>

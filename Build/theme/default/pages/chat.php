@@ -39,10 +39,9 @@
 								foreach($messages as $value)
 								{
 									//var_dump($value);
-									$Img = new ImgProfil($value['player'], 'pseudo');
 
 									?>
-										<p class="username"><img class="rounded" src="<?=$Img->getImgToSize(32, $width, $height);?>" style="width: <?=$width;?>px; height: <?=$height;?>px;" alt="avatar de l'auteur" title="<?php echo $value['player']; ?>" /> <?=($value['player'] == '') ? 'Console': $value['player'].', '.$_Forum_->gradeJoueur($value['player']);?> à <span class="font-weight-light"><?=date('H:i:s', $value['time']);?></span> -> <?=$Chat->formattage(htmlspecialchars($value['message']));?></p>
+										<p class="username"><img class="rounded" src="<?=$_ImgProfil_->getUrlHeadByPseudo($value['player']);?>" style="width: 32px; height: 32px;" alt="avatar de l'auteur" title="<?php echo $value['player']; ?>" /> <?=($value['player'] == '') ? 'Console': $value['player'].', '.$_Forum_->gradeJoueur($value['player']);?> à <span class="font-weight-light"><?=date('H:i:s', $value['time']);?></span> -> <?=$Chat->formattage(htmlspecialchars($value['message']));?></p>
 									<?php
 								}
 							}

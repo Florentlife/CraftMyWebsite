@@ -1,5 +1,5 @@
 <?php
-
+echo '[DIV]';
 if(isset($_POST['id']) AND isset($_POST['pseudo']))
 {
 	$id = $_POST['id'];
@@ -46,12 +46,16 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 								$action = explode(':', $action[1]);
 								$idI = $action[1];
 								$quantite = $action[3];
+								$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $value['message']))));
 							}
 							elseif($action[0] == "jeton")
 							{
 								$quantite = $action[1];
+								$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $action[1], str_replace('&amp;', '§', $lectureVotes['message'])));
+							}else {
+								$cmd = str_replace('{JOUEUR}', $pseudo, $action[1]);
+								$message = str_replace('{JOUEUR}', $pseudo, str_replace('{CMD}', $cmd, str_replace('&amp;', '§', $lectureVotes['message'])));
 							}
-							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $value['message']))));
 							if(!empty($value['message']))
 							{
 								$jsonCon[$value['serveur']]->SendBroadcast($message);
@@ -74,17 +78,27 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 							$action = explode(':', $action[1]);
 							$idI = $action[1];
 							$quantite = $action[3];
+							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $lectureVotes['message']))));
 						}
 						elseif($action[0] == "jeton")
 						{
 							$quantite = $action[1];
+							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $action[1], str_replace('&amp;', '§', $lectureVotes['message'])));
+						} else {
+							$cmd = str_replace('{JOUEUR}', $pseudo, $action[1]);
+							$message = str_replace('{JOUEUR}', $pseudo, str_replace('{CMD}', $cmd, str_replace('&amp;', '§', $lectureVotes['message'])));
 						}
-						$message = str_replace('{JOUEUR}', $pseudo, str_replace('{QUANTITE}', $quantite, str_replace('{ID}', $idI, str_replace('&amp;', '§', $lectureVotes['message']))));
 						if($lectureVotes['methode'] == 2)
-							$jsonCon[$value['serveur']]->SendBroadcast($message);
+						{
+							$jsonCon[$lectureVotes['serveur']]->SendBroadcast($message);
+						}
 						else
+						{
 							for($j =0; $j < count($jsonCon); $j++)
+							{
 								$jsonCon[$j]->SendBroadcast($message);
+							}
+						}
 					}
 					//Système de récupérer plus tard
 					$req = $bddConnection->prepare('INSERT INTO cmw_votes_temp (pseudo, methode, action, serveur) VALUES (:pseudo, :methode, :action, :serveur)');
@@ -210,8 +224,9 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 	 	$_SESSION['Player']['tokens'] = $_Joueur_['tokens']; 
 	 }
 	
-	function verifVote($url, $id) 
-	{		if(isset($id) AND !empty($id) and $id != "")
+	function verifVote($url, $id)
+	{
+		if(isset($id) AND !empty($id) and $id != "")
 		{
 			if(strpos($url, 'serveur-prive.net'))
 			{
@@ -246,34 +261,26 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 				else
 				{
 					$data_decoded = json_decode($data,true);
-					if ( $data_decoded["DateVote"] >= $data_decoded["DateActuelle"] - 360 )
-					{
-						return true;
-					}
-					else
-					{
-						return false;
-					}
+					if ( $data_decoded["DateVote"] >= $data_decoded["DateActuelle"] - 360 ){return true;}else{return false;}
 				}
 			}else if(strpos($url, 'liste-minecraft-serveurs.com'))
 			{
 				$api = json_decode(file_get_contents("https://www.liste-minecraft-serveurs.com/Api/Worker/id_server/".$id."/ip/".get_client_ip()));
-				if($api->result == 202){
-					return true;
-				}else{
-					return false;
-				}
-			} else if(strpos($url, 'liste-serveurs.fr'))			{				$api = json_decode(file_get_contents("https://www.liste-serveurs.fr/api/checkVote/".$id."/".get_client_ip()));				if($api->success == true){					return true;				}else{					return false;				}			}else if(strpos($url, 'liste-serveurs.fr'))
+				if($api->result == 202){return true;}else{return false;}
+			} else if(strpos($url, 'liste-serveurs.fr'))
+			{
+				$api = json_decode(file_get_contents("https://www.liste-serveurs.fr/api/checkVote/".$id."/".get_client_ip()));
+				if($api->success == true){return true;}else{return false;}
+			}else if(strpos($url, 'liste-serveurs.fr'))
 			{
 				$api = json_decode(file_get_contents("https://www.liste-serveur.fr/api/hasVoted/".$id."/".get_client_ip()));
-				if($api->hasVoted == true){
-					return true;
-				}else{
-					return false;
-				}
+				if($api->hasVoted == true){return true;}else{return false;}
 			}else {
 				return true;
-			}		} else {			return true;		}
+			}
+		} else {
+			return true;
+		}
 	}
 	
 	function get_client_ip() {

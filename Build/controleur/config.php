@@ -24,7 +24,7 @@
 		$_Menu_['MenuTexteBB'][$i] = $_Menu_['MenuTexte'][$i];
 	}
 
-
+	
 	$configLecture = new Lire('modele/config/configWidgets.yml');
 	$_Widgets_ = $configLecture->GetTableau();
 	
@@ -36,7 +36,6 @@
     else
         $bgType = 'background: url(\'theme/upload/bg.png\') repeat scroll center top rgb(0, 0, 0);';
 
-    require('modele/joueur/imgProfil.class.php');
 	
 	require_once('controleur/tempMess.class.php');
 	

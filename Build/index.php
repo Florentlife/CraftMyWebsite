@@ -16,6 +16,8 @@ require_once ('controleur/connection_base.php');
 //Les fonctions de mises en pages 
 require('modele/forum/miseEnPage.php'); 
 //la class Panier pour la boutique
+require('modele/joueur/imgProfil.class.php');
+$_ImgProfil_ = new ImgProfil($bddConnection);
 require('modele/boutique/panier.class.php');
 $_Panier_ = new Panier($bddConnection);
 // On démarre les sessions sur la page pour récupérer les variables globales(les données du joueur...).*

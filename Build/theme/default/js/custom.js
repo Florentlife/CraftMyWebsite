@@ -26,6 +26,7 @@ function bouclevote(id2, pseudo2) {
 		pseudo: pseudo2
 	},function(data, status){ 
 		console.log(data);
+		data = data.substring(data.indexOf('[DIV]')+5);
 		if(data == "success")
 		{
 			$("#vote-success").fadeIn(500);setTimeout(function(){ $("#vote-success").fadeOut(500);}, 5000);
