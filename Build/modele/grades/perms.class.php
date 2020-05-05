@@ -5,6 +5,8 @@ class Permission {
 
 	private $joueur;
 	private $bdd;
+	private $_Perm_;
+	private $grade;
 
 	private static $instance = null; //Instance de la classe singleton
 
@@ -27,7 +29,13 @@ class Permission {
 
 	public function verifPerm(...$perm)
 	{
-		$grade = $this->getGrade();
+		if(isset($this->grade))
+			$grade = $this->grade;
+		else
+		{
+			$grade = $this->getGrade();
+			$this->grade = $grade;
+		}
 		if($grade == 0)
 		{
 			if($perm[0] == "connect")
@@ -42,7 +50,13 @@ class Permission {
 		{
 			if($perm[0] == "connect")
 				return true;
-			$TableauPerm = $this->readPerm($grade);
+			if(isset($this->_Perm_))
+				$TableauPerm = $_Perm_;
+			else
+			{
+				$TableauPerm = $this->readPerm($grade);
+				$this->_Perm_ = $TableauPerm;
+			}
 			$retour = false;
 			foreach($perm as $value)
 			{
