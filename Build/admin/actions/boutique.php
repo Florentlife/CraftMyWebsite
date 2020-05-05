@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['editCategorieOffre'] == true) {
+if(Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'actions', 'editCategorieOffre')) {
 	$lecture = new Lire('modele/config/config.yml');
 	$configLecture = new Lire('modele/config/config.yml');
 	$_Serveur_ = $configLecture->GetTableau();

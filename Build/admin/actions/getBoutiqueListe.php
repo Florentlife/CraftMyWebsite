@@ -1,6 +1,5 @@
 <?php 
-
-if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 || $_PGrades_['PermsPanel']['shop']['showPage']))
+if(Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'showPage'))
 {
 	if(isset($_POST['page']))
 	{

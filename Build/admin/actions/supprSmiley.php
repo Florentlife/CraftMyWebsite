@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['forum']['actions']['seeSmileys'])
+if(Permission::getInstance()->verifPerm('PermsPanel', 'forum', 'actions', 'seeSmileys']))
 {
 	if(isset($_GET['image'], $_GET['id']))
 	{

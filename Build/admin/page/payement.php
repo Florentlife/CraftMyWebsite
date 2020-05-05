@@ -1,7 +1,7 @@
 <div class="cmw-page-content-header"><strong>Réglages Paiement</strong> - Paramétrez les modes de paiement</div>
 
 <div class="row">
-    <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['payment']['actions']['editPayment'] == false AND $_PGrades_['PermsPanel']['payment']['actions']['editOffrePaypal'] == false AND $_PGrades_['PermsPanel']['payment']['actions']['addOffrePaypal'] == false)) { ?>
+    <?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'payment', 'actions', 'editPayment') AND !Permission::getInstance()->verifPerm('PermsPanel', 'payment', 'actions', 'editOffrePaypal') AND !Permission::getInstance()->verifPerm('PermsPanel', 'payment', 'actions', 'addOffrePaypal')) { ?>
     <div class="col-xs-12 text-center">
         <div class="alert alert-danger">
             <strong>Vous avez aucune permission pour accéder aux réglages des paiements.</strong>
@@ -14,7 +14,7 @@
         </div>
     </div>
     <?php }
-    if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['actions']['editPayment'] == true) { ?>
+    if(Permission::getInstance()->verifPerm('PermsPanel', 'payment', 'actions', 'editPayment')) { ?>
 
     <div class="col-xs-12 col-md-6 text-center">
         <div class="panel panel-default cmw-panel">
@@ -83,7 +83,7 @@
     </div>
 </div>
     <?php }
-    if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['actions']['addOffrePaypal'] == true) { ?>
+    if(Permission::getInstance()->verifPerm('PermsPanel', 'payment', 'actions', 'addOffrePaypal')) { ?>
     <div class="col-xs-12 col-md-6 text-center">
         <div class="panel panel-default cmw-panel">
             <div class="panel-heading cmw-panel-header">
@@ -122,7 +122,7 @@
         </div>
     </div>
     <?php }
-    if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['payment']['actions']['editOffrePaypal'] == true) { ?>
+    if(Permission::getInstance()->verifPerm('PermsPanel', 'payment', 'actions', 'editOffrePaypal')) { ?>
     <div class="col-xs-12 text-center">
         <div class="panel panel-default cmw-panel">
             <div class="panel-heading cmw-panel-header">

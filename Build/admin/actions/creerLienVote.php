@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['addVote'] == true) {
+if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'addVote')) {
 	$lectureServs = new Lire('modele/config/configServeur.yml');
 	$lectureServs = $lectureServs->GetTableau();
 

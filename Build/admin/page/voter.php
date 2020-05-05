@@ -2,14 +2,14 @@
 <!-- Page Heading -->
 <div class="row" style="margin-top:10px;">
 	<div class="col-lg-12">
-        <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['vote']['actions']['editSettings'] == false AND $_PGrades_['PermsPanel']['vote']['actions']['addVote'] == false)) { ?>
+        <?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'editSettings') AND Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'addVote')) { ?>
             <div class="col-lg-12 text-center">
                 <div class="alert alert-danger">
                     <strong>Vous avez aucune permission pour accéder aux votes.</strong>
                 </div>
             </div>
         <?php }
-        if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['editSettings'] == true) { ?>
+        if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'editSettings')) { ?>
         <div class="col-lg-12 text-justify">
             <div class="alert alert-success">
                 <strong>Dans cette section vous pourrez configurer vos votes.</strong><br/>
@@ -198,20 +198,20 @@
 			}
 		</script>
     <?php }
-    if($_Joueur_['rang'] == 1 OR ($_PGrades_['PermsPanel']['vote']['actions']['resetVote'] == true OR $_PGrades_['PermsPanel']['vote']['actions']['deleteVote'] == true)) { ?>
+    if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'resetVote') OR Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'deleteVote')) { ?>
         <div class="col-lg-12">
             <div class="panel panel-default cmw-panel">
                 <div class="panel-heading cmw-panel-header">
                     <h3 class="panel-title"><strong>Edition des votes</strong></h3>
                 </div>
                 <div class="panel-body">
-                    <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['resetVote'] == true) { ?>
+                    <?php if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'resetVote')) { ?>
                         <div class="row text-center">
                             <h3>Réinitialisation</h3>
                             <a href="?action=resetVotes" class="btn btn-danger">Réinitialiser les votes</a>
                         </div>
                     <?php }
-                    if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['deleteVote'] == true) { ?>
+                    if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'deleteVote')) { ?>
                         <div class="row" style="margin-top:10px;">
                             <h3 class="text-center">Gestion des votes</h3>
                         </div>

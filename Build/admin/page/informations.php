@@ -53,7 +53,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 </div>
 </div>
 
-<?php if($_Joueur_['rang'] == 1 OR ($_PGrades_['PermsPanel']['info']['details']['player'] == true OR $_PGrades_['PermsPanel']['info']['details']['console'] == true OR $_PGrades_['PermsPanel']['info']['details']['command'] == true OR $_PGrades_['PermsPanel']['info']['details']['plugins'] == true OR $_PGrades_['PermsPanel']['info']['details']['server'] == true)) { ?>
+<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'player') OR Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'console') OR Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'command') OR Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'plugins') OR Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'server')) { ?>
 <div class="modal fade" id="infoServeur" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document" style="max-width: 1000px;width: 100%;">
     <div class="modal-content">
@@ -65,7 +65,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         <div class="col-lg-offset-1 text-center">
           <div class="row">
             <div class="col-lg-11">
-              <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['details']['player'] == true) { ?>
+              <?php if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'player')) { ?>
               <h4>Joueur(s)</h4>
               <div class="row">
                 <?php for($i = 0;$i < count($serveurStats);$i++) {
@@ -82,7 +82,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                 </div>
                 <hr>
                 <?php }
-                if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['details']['console'] == true) { ?>
+                if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'console')) { ?>
                 <h4>Console</h4>
                 <div class="row">
                   <script type="text/javascript">
@@ -110,7 +110,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                 </div>'; ?>
               </div>
               <?php }
-              if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['details']['command'] == 1) { ?>
+              if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'command')) { ?>
               <div class="row">
                 <script type="text/javascript">
                   $(document).ready(function() {
@@ -160,7 +160,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
               </div>
               <hr>
               <?php }
-              if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['details']['plugins'] == true) { ?>
+              if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'plugins')) { ?>
               <div class="panel panel-default">
                 <div class="panel-heading">Plugins
                   <button class="cmw-spoiler" title="Afficher les plugins" type="button" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Dérouler la liste des plugins</button>
@@ -191,7 +191,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
              </div>
            </div>
            <?php }
-           if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['details']['server'] == true) { ?>
+           if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'server')) { ?>
            <h4>Gérer le serveur</h4>
            <div class="row">
             <?php for($i = 0;$i < count($serveurStats); $i++) { ?>
@@ -236,7 +236,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 </div>
 <?php } ?> 
 
-<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['details']['command'] == 1) { ?>
+<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'command')) { ?>
 <div class="modal fade" id="giveSpec" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
  <div class="modal-dialog" style="width: 35%">
   <div class="modal-content">
@@ -534,7 +534,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 </div>
 <!-- /.row -->
 
-<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['visitors']['showTable'] == true) { ?>
+<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'stats', 'visitors', 'showTable')) { ?>
 <div class="row">
   <div class="col-lg-8">
     <div class="panel panel-default cmw-panel">
@@ -650,7 +650,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 
 
 <div class="row">
-  <?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['members']['showTable'] == true) { ?>
+  <?php if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'stats', 'members', 'showTable')) { ?>
   <div class="col-lg-4">
     <div class="panel panel-default cmw-panel">
      <div class="panel-heading cmw-panel-header">
@@ -685,7 +685,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
         <?php if($result_etatMail == "1") { ?>
         <td><?php if($membresStats[$i]['ValidationMail'] == "1"){echo "Valide";}else{echo "Invalide";} ?></td>
         <?php } ?>
-		<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['members']['showIP']){?>
+		<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'stats', 'members', 'showIP')){?>
         <td><?php echo $membresStats[$i]['ip']; ?></td>
 		<?php }?>
       </tr>
@@ -703,7 +703,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
 <?php } ?>
 
 <!-- /.row -->
-<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['activity']['showTable'] == true) { ?>
+<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'stats', 'activity', 'showTable')) { ?>
 <div class="col-lg-4">
   <div class="panel panel-default cmw-panel">
     <div class="panel-heading cmw-panel-header">
@@ -867,7 +867,7 @@ for($i = 0; $i < count($lastAchatmcgpass); $i++) {
 </div>
 <?php } ?>
 
-<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['shop']['showTable'] == true) { ?>
+<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'stats', 'shop', 'showTable')) { ?>
 <div class="col-lg-4">
   <div class="panel panel-default cmw-panel">
    <div class="panel-heading cmw-panel-header">

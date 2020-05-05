@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1) {
+if(Permission::getInstance()->verifPerm("createur")) {
 	$grade = urldecode($_GET['grade']);
 	$gradeDir = fopen('./modele/grades/'.$grade.'.yml', 'a');
 	if($gradeDir) {

@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['pages']['actions']['editPage'] == true) {
+if(Permission::getInstance()->verifPerm('PermsPanel', 'pages', 'actions', 'editPage')) {
 	$req = $bddConnection->prepare('SELECT * FROM cmw_pages WHERE id = :id');
 	$req->execute(array('id' => $_GET['page'] ));
 	$donnees = $req->fetch(PDO::FETCH_ASSOC);

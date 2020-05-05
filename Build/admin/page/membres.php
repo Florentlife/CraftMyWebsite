@@ -1,19 +1,17 @@
 <div class="cmw-page-content-header"><strong>Gestion</strong> - Gérez vos Membres</div>
 <div class="row">
-        <?php if($_Joueur_['rang'] != 1 AND $_PGrades_['PermsPanel']['members']['actions']['editMember'] == false) { ?>
+        <?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'members', 'actions', 'editMember')) { ?>
             <div class="col-md-12 text-center">
                 <div class="alert alert-danger">
                     <strong>Vous avez aucune permission pour accéder aux membres.</strong>
                 </div>
             </div>
            <?php } else { ?>
-                   <div class="col-md-12 text-center">
-                       <div class="alert alert-success">
-                           <strong>Modifiez ici les informations concernant les membres de votre site.</strong>
-                       </div>
-                   </div>
-               <?php }
-               if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['members']['actions']['editMember'] == true) { ?>
+    <div class="col-md-12 text-center">
+        <div class="alert alert-success">
+            <strong>Modifiez ici les informations concernant les membres de votre site.</strong>
+        </div>
+    </div>
     </div>
     <div class="row">
         <div class="col-md-12">

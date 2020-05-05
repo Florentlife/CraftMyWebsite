@@ -30,7 +30,7 @@ class Permission {
 		$grade = $this->getGrade();
 		if($grade == 0)
 		{
-			if($perm == "connect")
+			if($perm[0] == "connect")
 				return true;
 			return false;
 		}
@@ -40,6 +40,8 @@ class Permission {
 			return true;
 		else
 		{
+			if($perm[0] == "connect")
+				return true;
 			$TableauPerm = $this->readPerm($grade);
 			$retour = false;
 			foreach($perm as $value)

@@ -1,5 +1,5 @@
 <?php
-if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['deleteVote'] == true))
+if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'deleteVote'))
 {
 	$req_donnees = $bddConnection->query('SELECT * FROM cmw_votes_config');
 	$data = $req_donnees->fetchAll();

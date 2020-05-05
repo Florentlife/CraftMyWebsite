@@ -84,7 +84,7 @@
 </style>
 <div class="cmw-page-content-header"><strong>Gestion</strong> - NewsLetter</div>
 <div class="row">
-	<?php if($_Joueur_['rang'] != 1 AND !$_PGrades_['PermsPanel']['newsletter']['actions']['send']) { ?>
+	<?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'newsletter', 'actions', 'send')) { ?>
 	<div class="col-md-12 text-center">
 		<div class="alert alert-danger">
 			<strong>Vous avez aucune permission pour accéder aux newsletter.</strong>

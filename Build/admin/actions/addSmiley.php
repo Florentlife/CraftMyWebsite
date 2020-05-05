@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['forum']['actions']['addSmiley'] == true)
+if(Permission::getInstance()->verifPerm('PermsPanel', 'forum', 'actions', 'addSmiley'))
 {
 	if(isset($_FILES['image']) && $_FILES['image']['error'] == 0 && isset($_POST['symbole']))
 	{

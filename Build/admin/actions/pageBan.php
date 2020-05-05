@@ -1,5 +1,5 @@
 <?php
-if(isset($_Joueur_) && $_Joueur_['rang'] == 1)
+if(Permission::getInstance()->verifPerm("createur"))
 {
 	if(isset($_POST['titre'], $_POST['texte']))
 	{

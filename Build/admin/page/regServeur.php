@@ -4,13 +4,13 @@
 <div class="row">
 
 
-    <?php if($_Joueur_['rang'] != 1 AND ($_PGrades_['PermsPanel']['server']['actions']['addServer'] == false AND $_PGrades_['PermsPanel']['server']['actions']['editServer'] == false)) { ?>
+    <?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'server', 'actions', 'addServer') AND !Permission::getInstance()->verifPerm('PermsPanel', 'server', 'actions', 'editServer')) { ?>
 
         <div class="alert alert-danger">
             <strong>Vous avez aucune permission pour accéder aux réglages du/des serveur(s).</strong>
         </div>
 
-    <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['server']['actions']['addServer'] == true) { ?>
+    <?php } if(Permission::getInstance()->verifPerm('PermsPanel', 'server', 'actions', 'addServer')) { ?>
 
     <div class="col-xs-12 col-md-6 text-center">
         <div class="panel panel-default cmw-panel">
@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    <?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['server']['actions']['editServer'] == true) { ?>
+    <?php } if(Permission::getInstance()->verifPerm('PermsPanel', 'server', 'actions', 'editServer')) { ?>
 
     <div class="col-xs-12 col-md-6 text-center">
         <div class="panel panel-default cmw-panel">

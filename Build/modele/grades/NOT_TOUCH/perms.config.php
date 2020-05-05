@@ -141,7 +141,11 @@ const PERMS = array(
 				"deleteVote" => "Supprimer un lien de vote"
 			),
 			"recompenseAuto" => array(
-				"showPage" => "Accès à la page <strong>Réglage des récompenses auto</strong>"
+				"showPage" => "Accès à la page <strong>Réglage des récompenses auto</strong>",
+				"actions" => array(
+					"resetRecompense" => "Supprimer une récompense auto",
+					"addRecompense" => "Créer une récompense auto"
+				)
 			)
 		),
 		"members" => array(
@@ -171,7 +175,8 @@ const PERMS = array(
 				"showPage" => "Accès à la page <strong>Tickets</strong>",
 				"actions" => array(
 					"editEtatTicket" => "Changer l'état des tickets",
-					"deleteTicket" => "Supprimer un ticket"
+					"deleteTicket" => "Supprimer un ticket",
+					"deleteAllTicket" => "Supprimer tout les tickets"
 				)
 			),
 			"maintenance" => array(

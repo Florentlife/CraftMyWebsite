@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['menus']['actions']['editDropAndLinkMenu'] == true) {
+if(Permission::getInstance()->verifPerm('PermsPanel', 'menus', 'actions', 'editDropAndLinkMenu')) {
 	$id = $_GET['id'];
 
 	if($_POST['methode'] == 1)

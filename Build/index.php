@@ -44,9 +44,6 @@ if ((isset($_SESSION['Player']['pseudo']) AND !empty($_SESSION['Player']['pseudo
         $connection = false;
 }  else $connection = false;
 require_once ('controleur/json/json.php');
-// Système des permissions pour les nouveaux grades rajoutés dans le CMS
-// Récupération des permissions du grade avec la variable globale $_PGrades_
-require_once ('controleur/grades/grades.php');
 //le fichier controle des récompenses Auto
 require('controleur/recompenseAuto.php');
 // système de Get(tout le site passe par index.php).

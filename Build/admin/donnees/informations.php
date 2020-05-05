@@ -1,6 +1,6 @@
 <?php
 
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['showPage'] == true) {
+if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'showPage')) {
 //Statistiques de la Boutique
 
     $boutiquesStatsReq = $bddConnection->query('SELECT * FROM cmw_boutique_stats ORDER BY id DESC LIMIT 0, 12;');

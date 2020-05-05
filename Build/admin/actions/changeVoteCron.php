@@ -1,4 +1,4 @@
-<?php if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['editSettings'] == true) { 
+<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'editSettings')) { 
 
 	$_Serveur_['VoteCron']['sendtoall'] = isset($_POST['sendtoall']) ? 1:0;
 	$_Serveur_['VoteCron']['msgdeny'] = $_POST['msgdeny'];

@@ -10,6 +10,9 @@
 	require_once('./modele/config/yml.class.php');
 	require_once('./modele/ban.class.php');
 	require_once('./include/MinecraftPing/MinecraftPing.class.php');
+
+	//Récupération de la classe Permission
+	require_once("modele/grades/perms.class.php");
 	
 	// On lit le fichier de config et on récupère les information dans un tableau. Celui-ci contiens la config générale.
 	$configLecture = new Lire('modele/config/config.yml');

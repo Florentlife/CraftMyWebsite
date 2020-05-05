@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['shop']['actions']['addCategorie'] == true) {
+if(Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'actions', 'addCategorie')) {
 	$req = $bddConnection->prepare('INSERT INTO cmw_boutique_categories(titre, message, ordre, serveur, connection) VALUES(:titre, :message, :ordre, :serveur, :connection)');
 	$req->execute(Array(
 		'titre' => $_POST['titre'],

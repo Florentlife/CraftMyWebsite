@@ -1,5 +1,5 @@
 <?php
-if($_Joueur_['rang'] == 1 && isset($_POST['nom']))
+if(Permission::getInstance()->verifPerm("createur") && isset($_POST['nom']))
 {
 	$_Serveur_['General']['createur']['nom'] = htmlspecialchars($_POST['nomCreateur']);
 	$_Serveur_['General']['createur']['effets'] = htmlspecialchars($_POST['effetCreateur']);

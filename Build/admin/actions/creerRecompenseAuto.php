@@ -1,6 +1,6 @@
 <?php 
 
-if(isset($_Joueur_) && ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['editSettings'] == true))
+if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'editSettings'))
 {
 	$type = intval(htmlspecialchars($_POST['type']));
 	if($type == 1)

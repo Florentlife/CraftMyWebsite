@@ -1,6 +1,6 @@
 <div class="cmw-page-content-header"><strong>Réglages site</strong> - Modifiez votre accès MySQL ou les informations de votre site</div>
 
-<?php if($_Joueur_['rang'] != 1 AND !$_PGrades_['PermsPanel']['general']['actions']['editGeneral']) { ?>
+<?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'general', 'actions', 'editGeneral')) { ?>
 
 <div class="text-center">
     <div class="alert alert-danger">
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<?php } if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['general']['actions']['editGeneral'] ) { ?>
+<?php } if(Permission::getInstance()->verifPerm('PermsPanel', 'general', 'actions', 'editGeneral')) { ?>
 
 <form method="POST" action="?&action=general">
     <div class="text-center">

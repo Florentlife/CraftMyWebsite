@@ -4,7 +4,7 @@
 */
 
 
-	if(isset($_GET['action']) AND isset($_Joueur_['rang']) AND ($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['access'] == true))
+	if(isset($_GET['action']) AND Permission::getInstance()->verifPerm("PermsPanel", "access"))
 	{
 	switch ($_GET['action']) // on utilise ici un switch pour inclure telle ou telle page selon l'action.
 	{ 
@@ -16,7 +16,7 @@
 			$_SESSION['referrerAdmin'] = 'voter';
 		break;
 		case 'dropVisits':
-			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['info']['stats']['visitors']['showTable'] == true)
+			if(Permission::getInstance()->verifPerm("PermsPanel", "info", "stats", "visitors", "showTable"))
 				$bddConnection->exec('TRUNCATE cmw_visits');
 			$_SESSION['referrerAdmin'] = 'accueil';
 		break;
@@ -82,7 +82,7 @@
 		break;
 
 		case 'removeSocial':
-			if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['social']['showPage'])
+			if(Permission::getInstance()->verifPerm('PermsPanel', 'social', 'showPage'))
 				$bddConnection->exec('ALTER TABLE cmw_reseaux DROP '.$_GET['nom']);
 			$_SESSION['referrerAdmin'] = 'social';
 		break;
@@ -427,7 +427,7 @@
 		break;
 
 		case 'resetVotes':
-		if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['vote']['actions']['resetVote'] == true)
+		if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'resetVote'))
 			$bddConnection->exec('DELETE FROM cmw_votes');
 		$_SESSION['referrerAdmin'] = 'voter';
 		break;
