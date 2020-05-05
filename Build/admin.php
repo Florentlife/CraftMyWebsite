@@ -18,6 +18,8 @@ ini_set('display_errors', 1);
         $_Joueur_ = $globalJoueur->getArrayDonneesUtilisateur();
 	}
 	
+	require('modele/joueur/imgProfil.class.php');
+	$_ImgProfil_ = new ImgProfil($bddConnection);
 	/* Si l'utilisateur est connecté, on met ses informations dans un tableau global, qui sera utilisable que 
 	   le laps de temps du chargement de la page contrairement aux sessions. */
 	if(Permission::getInstance()->verifPerm("PermsPanel","access"))
