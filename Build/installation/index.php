@@ -266,7 +266,7 @@ function verifyPDO($hote, $nomBase, $utilisateur, $mdp, $port)
 		$sql->exec("SET CHARACTER SET utf8");
 		$req = $sql->query('SELECT @@GLOBAL.sql_mode AS sql_mode_global, @@SESSION.sql_mode AS sql_mode_session');
 		$data = $req->fetch(PDO::FETCH_ASSOC);
-		if((!isset($data['sql_mode_global']) | empty($data['sql_mode_global']) | strpos($data['sql_mode_global'], 'STRICT_ALL_TABLES') === FALSE) & (!isset($data['sql_mode_session']) | empty($data['sql_mode_session']) | strpos($data['sql_mode_session'], 'STRICT_ALL_TABLES') === FALSE))
+		if((!isset($data['sql_mode_global']) || empty($data['sql_mode_global']) || strpos($data['sql_mode_global'], 'STRICT_ALL_TABLES') === FALSE) && (!isset($data['sql_mode_session']) || empty($data['sql_mode_session']) || strpos($data['sql_mode_session'], 'STRICT_ALL_TABLES') === FALSE) && (!isset($data['sql_mode_global']) || empty($data['sql_mode_global']) || strpos($data['sql_mode_global'], 'STRICT_TRANS_TABLES') === FALSE) && (!isset($data['sql_mode_session']) || empty($data['sql_mode_session']) || strpos($data['sql_mode_session'], 'STRICT_TRANS_TABLES') === FALSE))
 			return true;
 		else
 			return '([GLOBAL.sql_mode: '.$data['sql_mode_globall'].'],[SESSION.sql_mode:'.$data['sql_mode_session'].'])';
