@@ -28,6 +28,7 @@ const PERMS = array(
 	"PermsPanel" => array(
 		"access" => "Accès au panel",
 		"info" => array(
+			"page" => "Informations",
 			"showPage" => "Accès à la page <strong>informations</strong>",
 			"details" => array(
 				"player" => "Voir les joueurs en ligne",
@@ -55,12 +56,14 @@ const PERMS = array(
 			)
 		),
 		"general" => array(
+			"page" => "Réglage site",
 			"showPage" => "Accès à la page <strong>Réglage Site</strong>",
 			"actions" => array(
 				"editGeneral" => "Edition des réglages sites (base de donnée, IP minecraft ...)"
 			)
 		),
 		"theme" => array(
+			"page" => "Thème",
 			"showPage" => "Accès à la page <strong>Thème</strong>",
 			"actions" => array(
 				"editTheme" => "Edition du thème",
@@ -69,9 +72,11 @@ const PERMS = array(
 			)
 		),
 		"sliderMini" => array(
+			"page" => "Slider & Miniature",
 			"showPage" => "Accès à la page <strong>Slider & Miniatures</strong>"
 		),
 		"home" => array(
+			"page" => "Accueils & Stats",
 			"showPage" => "Accès à la page <strong>Accueil</strong>",
 			"actions" => array(
 				"uploadSlider" => "Uploader un slider",
@@ -82,6 +87,7 @@ const PERMS = array(
 			)
 		),
 		"server" => array(
+			"page" => "Réglage JSONAPI",
 			"showPage" => "Accès à la page <strong>Réglage Serveur</strong>",
 			"actions" => array(
 				"addServer" => "Ajouter un serveur",
@@ -89,6 +95,7 @@ const PERMS = array(
 			)
 		),
 		"pages" => array(
+			"page" => "Pages personnalisées",
 			"showPage" => "Accès à la page <strong>Pages Personnalisées</strong>",
 			"actions" => array(
 				"editPage" => "Edition des pages",
@@ -96,6 +103,7 @@ const PERMS = array(
 			)
 		),
 		"news" => array(
+			"page" => "News",
 			"showPage" => "Accès à la page <strong>Nouveautés</strong>",
 			"actions" => array(
 				"addNews" => "Ajouter une nouveauté",
@@ -103,6 +111,7 @@ const PERMS = array(
 			)
 		),
 		"shop" => array(
+			"page" => "Boutique",
 			"showPage" => "Accès à la page <strong>Réglage Boutique</strong>",
 			"actions" => array(
 				"addCategorie" => "Ajouter une catégorie",
@@ -117,6 +126,7 @@ const PERMS = array(
 			)
 		),
 		"payment" => array(
+			"page" => "Paiements",
 			"showPage" => "Accès à la page <strong>Payement</strong>",
 			"actions" => array(
 				"editPayment" => "Edition des paiements",
@@ -125,6 +135,7 @@ const PERMS = array(
 			)
 		),
 		"menus" => array(
+			"page" => "Menus Personnalisées",
 			"showPage" => "Accès à la page <strong>Menus</strong>",
 			"actions" => array(
 				"addLinkMenu" => "Ajouter un lien menu",
@@ -133,6 +144,7 @@ const PERMS = array(
 			)
 		),
 		"vote" => array(
+			"page" => "Vote",
 			"showPage" => "Accès à la page <strong>Voter</strong>",
 			"actions" => array(
 				"editSettings" => "Edition des réglages",
@@ -141,6 +153,7 @@ const PERMS = array(
 				"deleteVote" => "Supprimer un lien de vote"
 			),
 			"recompenseAuto" => array(
+				"page" => "Récompenses Automatique",
 				"showPage" => "Accès à la page <strong>Réglage des récompenses auto</strong>",
 				"actions" => array(
 					"resetRecompense" => "Supprimer une récompense auto",
@@ -149,12 +162,14 @@ const PERMS = array(
 			)
 		),
 		"members" => array(
+			"page" => "Membres",
 			"showPage" => "Accès à la page <strong>Membres=>Informations</strong>",
 			"actions" => array(
 				"editMember" => "Edition des membres"
 			)
 		),
 		"forum" => array(
+			"page" => "Forum",
 			"showPage" => "Accès à la page <strong>Forum</strong>",
 			"actions" => array(
 				"addSmiley" => "Ajout de smileys",
@@ -164,6 +179,7 @@ const PERMS = array(
 			)
 		),
 		"widgets" => array(
+			"page" => "Widgets",
 			"showPage" => "Accès à la page <strong>Widgets</strong>",
 			"actions" => array(
 				"addWidgets" => "Ajouter un Widget",
@@ -172,37 +188,43 @@ const PERMS = array(
 		),
 		"support" => array(
 			"tickets" => array(
+				"page" => "tickets",
 				"showPage" => "Accès à la page <strong>Tickets</strong>",
 				"actions" => array(
 					"editEtatTicket" => "Changer l'état des tickets",
 					"deleteTicket" => "Supprimer un ticket",
 					"deleteAllTicket" => "Supprimer tout les tickets"
 				)
-			),
-			"maintenance" => array(
-				"showPage" => "Accès à la page <strong>Maintenance</strong>",
-				"actions" => array(
-					"editDefaultMessage" => "Edition du message par défaut",
-					"editAdminMessage" => "Edition du message adressé aux admins",
-					"editEtatMaintenance" => "Changer l'état de la maintenance",
-					"switchRedirectMode" => "Changer le mode de redirection",
-					"connexionAdmin" => "Peut se connecter pendant une maintenance"
-				)
+			)
+		),
+		"maintenance" => array(
+			"page" => "Maintenance",
+			"showPage" => "Accès à la page <strong>Maintenance</strong>",
+			"actions" => array(
+				"editDefaultMessage" => "Edition du message par défaut",
+				"editAdminMessage" => "Edition du message adressé aux admins",
+				"editEtatMaintenance" => "Changer l'état de la maintenance",
+				"switchRedirectMode" => "Changer le mode de redirection",
+				"connexionAdmin" => "Peut se connecter pendant une maintenance"
 			)
 		),
 		"update" => array(
+			"page" => "Mise à jours",
 			"showPage" => "Accès à la page <strong>Mise à jours</strong>"
 		),
 		"social" => array(
+			"page" => "Réseaux",
 			"showPage" => "Accès à la page <strong>Membres=>Social</strong>"
 		),
 		"newsletter" => array(
+			"page" => "Newsletter",
 			"showPage" => "Accès à la page <strong>Newsletter</strong>",
 			"actions" => array(
 				"send" => "Peut envoyer une newsletter"
 			)
 		),
 		"upload" => array(
+			"page" => "Upload",
 			"showPage" => "Accès à la page <strong>Upload</strong>",
 			"manager" => "Peut gérer l'upload d'images"
 		)
