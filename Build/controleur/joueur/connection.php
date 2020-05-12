@@ -28,8 +28,11 @@ if(isset($_POST['pseudo']) AND isset($_POST['mdp']) AND !empty($_POST['pseudo'])
 					$reconnexion = 1;
 				$utilisateur_connection = new JoueurCon($donneesJoueur['id'], $donneesJoueur['pseudo'], $donneesJoueur['email'], $donneesJoueur['rang'], $donneesJoueur['tokens'], $reconnexion, $donneesJoueur['mdp']);
 				if(preg_match('#erreur#', $_SERVER['HTTP_REFERER']))
+				{
 					header('Location: index.php');
+				}
 				else
+				{
 					header('Location: '.$_SERVER['HTTP_REFERER']);
 				}
 			}

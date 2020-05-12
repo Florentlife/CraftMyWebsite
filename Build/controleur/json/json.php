@@ -3,7 +3,7 @@
 
 $lecture = new Lire('modele/config/configServeur.yml');
 $lecture = $lecture->GetTableau();
-if($lecture['Json'][0]['mdp'] == NULL)
+if(!isset($lecture['Json'][0]['mdp']))
 	unset($jsonCon);
 else
 {
