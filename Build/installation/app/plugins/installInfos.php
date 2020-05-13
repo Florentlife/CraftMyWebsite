@@ -13,11 +13,11 @@ $config = new Ecrire('../modele/config/config.yml', $config);
 
 
 
-$installLecture = new Lire('install.yml');
+$installLecture = new Lire('app/data/install.yml');
 $installLecture = $installLecture->GetTableau();
 $installLecture['etape'] = 3;
 
-$ecriture = new Ecrire('install.yml', $installLecture);
+$ecriture = new Ecrire('app/data/install.yml', $installLecture);
 
 header('Location: index.php');
 ?>
