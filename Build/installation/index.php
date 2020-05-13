@@ -1,5 +1,5 @@
 <?php
-error_reporting();
+error_reporting(0);
 require_once('../modele/config/yml.class.php');
 $configLecture = new Lire('../modele/config/config.yml');
 $_Serveur_ = $configLecture->GetTableau();
