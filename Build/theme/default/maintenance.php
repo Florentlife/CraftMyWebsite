@@ -13,6 +13,10 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');
 <head>
 	<?php $configFile = new Lire('modele/config/config.yml');
 	$configFile = $configFile->GetTableau();
+	
+	$_Theme_ = new Lire('theme/' . $_Serveur_['General']['theme'] . "/config/config.yml");
+	$_Theme_ = $_Theme_->GetTableau();
+	
 	echo "<style>
 	:root {
 		--color-main: ". $configFile["color"]['theme']["main"] ."; 
