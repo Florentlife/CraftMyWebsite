@@ -77,6 +77,26 @@ class Permission {
 
 	}
 
+	public function getNom($grade = -1)
+	{
+		global $_Serveur_;
+		if(isset($this->grade) && $grade == -1)
+		{
+			if(!isset($this->_Perm_))
+				$this->_Perm_ = $this->readPerm($this->grade);
+			return "<span class='prefix ".$this->_Perm_['prefix']." ".$this->_Perm_['effets']."'>".$this->_Perm_['Grade']."</span>";
+		}
+		elseif($grade != -1)
+		{
+			if($grade == 0)
+				return $_Serveur_['General']['joueur'];
+			if($grade == 1)
+				return "<span class='prefix ".$_Serveur_['General']['createur']['prefix']." ".$_Serveur_['General']['createur']['effets']." ''>".$_Serveur_['General']['createur']['nom']."</span></p>";
+			$recup = $this->readPerm($grade);
+			return "<span class='prefix ".$recup['prefix']." ".$recup['effets']."'>".$recup['Grade']."</span>";
+		}
+	}
+
 	private function readPerm($grade)
 	{
 		$lecture = new Lire('modele/grades/'.$grade.'.yml');
