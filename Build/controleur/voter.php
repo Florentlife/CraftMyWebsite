@@ -271,13 +271,23 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 			{
 				$api = json_decode(file_get_contents("https://www.liste-serveurs.fr/api/checkVote/".$id."/".get_client_ip()));
 				if($api->success == true){return true;}else{return false;}
-			}else if(strpos($url, 'liste-serveurs.fr'))
+			}else if(strpos($url, 'liste-serveur.fr'))
 			{
 				$api = json_decode(file_get_contents("https://www.liste-serveur.fr/api/hasVoted/".$id."/".get_client_ip()));
 				if($api->hasVoted == true){return true;}else{return false;}
+			}else if(strpos($url, 'top-serveurs.net'))  {
+				$api = json_decode(file_get_contents("https://api.top-serveurs.net/v1/votes/check-ip?server_token=".$id."&ip=".get_client_ip()));
+				if($api->success == true){return true;}else{return false;}
+			}else if(strpos($url, 'serveursminecraft.org'))  {
+				$api =file_get_contents("https://www.serveursminecraft.org/sm_api/peutVoter.php?id=".$id."&ip=".get_client_ip());
+				if($api == "true"){return true;}else{return false;}
+			}else if(strpos($url, 'https://serveur-multigames.net'))  {
+				$api =file_get_contents("https://serveur-multigames.net/api/v2/vote/true/".$id."/".get_client_ip()););
+				if($api == "1"){return true;}else{return false;}
 			}else {
 				return true;
 			}
+
 		} else {
 			return true;
 		}
