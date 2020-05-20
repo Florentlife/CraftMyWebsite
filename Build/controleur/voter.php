@@ -281,6 +281,9 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 			}else if(strpos($url, 'serveursminecraft.org'))  {
 				$api =file_get_contents("https://www.serveursminecraft.org/sm_api/peutVoter.php?id=".$id."&ip=".get_client_ip());
 				if($api == "true"){return true;}else{return false;}
+			}else if(strpos($url, 'https://serveur-multigames.net'))  {
+				$api =file_get_contents("https://serveur-multigames.net/api/v2/vote/true/".$id."/".get_client_ip()););
+				if($api == "1"){return true;}else{return false;}
 			}else {
 				return true;
 			}
