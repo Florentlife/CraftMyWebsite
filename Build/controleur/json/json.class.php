@@ -53,6 +53,7 @@ class JsonCon
 	public function GetConnection()
 	{
 		$key = $this->verifyReq("server.version");
+		unset($c);
 		if($key !== false)
 		{
 			return json_decode($this->cache[$key]['valeur'], true);
