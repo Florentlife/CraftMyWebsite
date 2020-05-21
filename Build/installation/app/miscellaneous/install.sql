@@ -440,6 +440,30 @@ CREATE TABLE IF NOT EXISTS `cmw_votes_recompense_auto_config` (
    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+CREATE TABLE cmw_paysafecard_offres (
+  id smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  montant text NOT NULL,
+  jetons varchar(32) NOT NULL,
+  description text NOT NULL,
+  statut tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE cmw_paysafecard_historique (
+  id smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  pseudo varchar(32) NOT NULL,
+  code char(16) NOT NULL,
+  offre smallint(5) UNSIGNED NOT NULL,
+  statut tinyint(1) NOT NULL DEFAULT '0',
+  CONSTRAINT cle_offre 
+  FOREIGN KEY (offre) 
+  REFERENCES cmw_paysafecard_offres(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `cmw_paysafecard_offres` (`id`, `montant`, `jetons`, `description`, `statut`) VALUES
+(1, '10', '100', 'Offre 10€ = 10 jetons', 1),
+(2, '25', '25', 'Offre 25€ = 25 jetons', 1),
+(3, '50', '50', 'Offre 50€ = 50 jetons', 1);
+
 INSERT INTO `cmw_forum_prefix` (`id`, `span`, `nom`) VALUES
 (1, 'prefix prefixRed', 'Important'),
 (2, 'prefix prefixOrange', 'Refusée'),

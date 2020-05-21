@@ -14,13 +14,17 @@ if(isset($_GET['action']))
 			setcookie('pass', 0, time(), '/', null, false, false);
 			header('Location: index.php');
 		break;
-
 		case 'voteCron':
 			include('controleur/voteCron.php');
 			exit();
 		break;
+
 		case 'dedipass':
 			include('controleur/dedipass.php');
+		break;
+
+		case 'buyPaysafecard':
+			include('controleur/tokens/paysafecard.php');
 		break;
 
 		case  'getConversations':

@@ -559,7 +559,7 @@ if(isset($_GET['page']) && $_GET['page'] == "token" && isset($_GET['notif']) && 
 		});
 		</script><?php
 }
-if(isset($_GET['page']) && $_GET['page'] == "token" && isset($_GET['notif']) && $_GET['notif'] == 1)
+elseif(isset($_GET['page']) && $_GET['page'] == "token" && isset($_GET['notif']) && $_GET['notif'] == 1)
 {
 	?><script>
 		$(document).ready(function() {
@@ -567,6 +567,19 @@ if(isset($_GET['page']) && $_GET['page'] == "token" && isset($_GET['notif']) && 
 				title: "Paypal",
 				text: "Vous avez annulé votre paiement !",
 				icon: '<i class="fas fa-frown"></i>',
+				timeout: null
+			});
+		});
+		</script><?php
+}
+elseif($_GET['page'] == "token" && $_GET['notif'] == 2)
+{
+	?><script>
+		$(document).ready(function() {
+			Snarl.addNotification({
+				title: "Paysafecard",
+				text: "Votre paiement est en attente ! Il sera traité par un admin prochainement.",
+				icon: '<i class="fas fa-receipt"></i>',
 				timeout: null
 			});
 		});

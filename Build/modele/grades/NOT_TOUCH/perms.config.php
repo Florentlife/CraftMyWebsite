@@ -132,7 +132,9 @@ const PERMS = array(
 				"editPayment" => "Edition des paiements",
 				"addOffrePaypal" => "Ajouter une offre PayPal",
 				"editOffrePaypal" => "Edition des offres PayPal",
-				"editOffrePaysafeCard" => "Edition des offres PaysafeCard"
+				"editOffrePaysafeCard" => "Edition des offres PaysafeCard",
+				"editOffrePaysafeCard" => "Edition des offres Paysafecard",
+				"verifPaysafecard" => "Vérifier les transactions Paysafecard"
 			)
 		),
 		"menus" => array(

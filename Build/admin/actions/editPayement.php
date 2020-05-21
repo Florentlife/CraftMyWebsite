@@ -11,6 +11,10 @@ if(Permission::getInstance()->verifPerm('PermsPanel', 'payment', 'actions', 'edi
 		$lecture['Payement']['dedipass'] = true;
 	else
 		$lecture['Payement']['dedipass'] = false;
+	if(isset($_POST['paysafecard']))
+		$lecture['Payement']["paysafecard"] = true;
+	else
+		$lecture['Payement']['paysafecard'] = false;
 	
 	$lecture['Payement']['public_key'] = $_POST['public_key'];
 	$lecture['Payement']['private_key'] = $_POST['private_key'];

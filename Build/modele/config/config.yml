@@ -28,6 +28,7 @@ DataBase:
 Payement:
     paypal: true
     dedipass: false
+    paysafecard: false
     public_key: ""
     private_key: ""
     paypalUser: ""

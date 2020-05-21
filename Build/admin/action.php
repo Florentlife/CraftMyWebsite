@@ -26,6 +26,21 @@
 			exit();
 		break;
 
+		case 'validerPaysafecard':
+			require('admin/actions/validerPaysafecard.php');
+			$_SESSION['referrerAdmin'] = "paiement";
+		break;
+
+		case 'supprHistoPaysafecard':
+			require('admin/actions/supprHistoPaysafecard.php');
+			$_SESSION['referrerAdmin'] = 'paiement';
+		break;
+
+		case 'modifierOffrePaysafecard':
+			require('admin/actions/paysafecard.php');
+			$_SESSION['referrerAdmin'] = 'paiement';
+		break;
+
 		case 'editMail':
 			require('admin/actions/editMail.php');
 			$_SESSION['referrerAdmin'] = 'configsite';

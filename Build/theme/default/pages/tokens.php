@@ -71,6 +71,53 @@
 		</div>
 		<?php
 	}
+	include('modele/tokens/paysafecard.php');
+	if(isset($_Joueur_) && $_Serveur_['Payement']['paysafecard'] == true && !empty($paysafecardTab))
+	{
+		?>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h3 class="panel-title text-center">Paiement par Paysafecard</h3>
+			</div>
+			 <div class="panel-body">
+					<div class="alert alert-success">Vous pouvez payer par Paysafecard, vous paierez ainsi avec une carte prépayé que vous pouvez acheter en bureau tabac. Cependant, ces paiements nécessitent une vérification manuelle par l'administrateur, vos jetons ne seront donc pas directement crédités !</div>
+					<div class="row">
+						<?php 
+						foreach($paysafecardTab as $key => $value)
+						{
+							?><div class="col-md-4 offre-boutique">
+								<div class="well offre-contenu">
+									<div class="contenuBoutique">
+										<h3 class="titre-offre"><?=$value['montant'];?></h3>
+										<?=espacement($value['description']);?>
+									</div>
+									<div class="footer-offre"> 
+										<a class="btn btn-primary" data-toggle="collapse" href="#paysafecard<?=$value['id'];?>" role="button" aria-expanded="false" aria-controls="paysafecard<?=$value['id'];?>">Acheter : </a>
+										<div class="collapse" id="paysafecard<?=$value['id'];?>">
+										  <div class="card card-body container">
+										  	<form action="?action=buyPaysafecard" method="POST">
+										  			<input type="hidden" name="offre" value="<?=$value['id'];?>">
+												  	<div class="row">
+												    	<label class="control-label">Entrez votre code</label>
+												    </div>
+											    	<div class="row">
+											    		<input type="number" name="code" class="form-control" required size="16" />
+											    	</div>
+											    	<div class="row text-center">
+											    		<button type="submit" class="btn btn-success">Envoyer !</button>
+											    	</div>
+											</form>
+										  </div>
+										</div>
+									</div>
+								</div>
+							</div>
+				  <?php } ?>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
 	?>
 </div>
 </section>
