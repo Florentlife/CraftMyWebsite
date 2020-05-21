@@ -1,6 +1,6 @@
 <div class="cmw-page-content-header"><strong>Boutique</strong> - Visualisez les achats effectués</div>
 
-<?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'showPage'))
+<?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'boutiqueList', 'showPage'))
 {
 	echo '<div class="col-lg-6 col-lg-offset-3 text-center">
 		<div class="alert alert-danger">
