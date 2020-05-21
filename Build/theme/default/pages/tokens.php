@@ -20,34 +20,31 @@
 		</div>
 		<div class="panel-body">
 			<div class="alert alert-success">Deux possibilités s'offrent à vous pour les dons, vous pouvez payer par PayPal, soit avec votre compte PayPal soit avec votre Carte Bleu de manière sécurisée depuis le site PayPal (le payement ne s'effectue donc pas sur notre serveur/site). L'avantage de PayPal est que le joueur reçoit plus de Jetons qu'avec un payement téléphonique (qui sont surtaxés).</div>
-			<?php 
-			require_once('controleur/tokens/paypal.php'); 
-			?>
 			<div class="row">
 				<?php
 				if(isset($offresTableau))
-					for($i = 0; $i < count($offresTableau); $i++)
-					{
-						echo '
-						<div class="col-md-4 offre-boutique">
-							<div class="well offre-contenu">
-								<div class="contenuBoutique">
-									<h3 class="titre-offre">'. $offresTableau[$i]['nom'] .'</h3>
-									' .espacement($offresTableau[$i]['description']). '
-								</div>
-								<div class="footer-offre"> ';
-									if(isset($_Joueur_)) {
-										if($lienPaypal[$i] == 'viaMail')
-											require('controleur/paypal/paypalMail.php');
-										else
-											echo '<a href="'. $lienPaypal[$i] .'" class="btn btn-primary">Acheter !</a>';
-									}
-									else { echo'<a href="?&page=connection" class="btn btn-danger">Connexion..</a>'; }
-									echo '
-									<button class="btn btn-info pull-right">' .$offresTableau[$i]['prix']. ' euro</button>
-								</div>
+					foreach($offresTableau as $tab)
+					{ ?>
+					<div class="col-md-4 offre-boutique">
+						<div class="well offre-contenu">
+							<div class="contenuBoutique">
+								<h3 class="titre-offre"><?=$tab['nom'];?></h3>
+								<?=espacement($tab['description']);?>
 							</div>
-						</div>		';
+							<div class="footer-offre">
+								<form action="<?php echo $lien; ?>" method="post">
+									<?php 
+									foreach($tab['paramPaypal'] as $cle => $valeur)
+									{
+										echo '<input type="hidden" name="'. $cle .'" value="'. $valeur .'" />';
+									}
+									?>
+									<input type="submit" class="btn btn-primary" value="Acheter !" />
+								</form>
+								<button class="btn btn-info pull-right"><?=$tab['prix'];?> euro</button>
+							</div>
+						</div>
+					</div><?php
 					}
 					else
 						echo '<div style="margin-left: 15px;margin-right: 15px;" class="alert alert-danger"><strong>Aucune offre de payement par paypal n\'est disponible pour le moment...</strong></div>';
@@ -71,8 +68,7 @@
 		</div>
 		<?php
 	}
-	include('modele/tokens/paysafecard.php');
-	if(isset($_Joueur_) && $_Serveur_['Payement']['paysafecard'] == true && !empty($paysafecardTab))
+	if($_Serveur_['Payement']['paysafecard'] == true && !empty($paysafecardTab))
 	{
 		?>
 		<div class="panel panel-primary">

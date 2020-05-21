@@ -51,30 +51,8 @@
                     </div>
                     <h3>PayPal</h3>
                     <div class="row">
-                        <label class="control-label">
-                            <input type="radio" name="paypalMethodeAPI" value="1"<?php if($lectureP['paypalMethodeAPI'] == 1) echo ' checked'; ?>/>Utiliser mon email pour être payé par paypal.
-                        </label>
-                    </div>
-                    <div class="row">
                         <label class="control-label">Email paypal</label>
                         <input type="text" name="paypalEmail" class="form-control" value="<?php echo $lectureP['paypalEmail']; ?>" placeholder="L'email lié à votre compte paypal."/>
-                    </div>
-                    <div class="row">
-                        <label>
-                            <input type="radio" name="paypalMethodeAPI" value="2"<?php if($lectureP['paypalMethodeAPI'] == 2) echo ' checked'; ?>/>Utiliser mon compte buisness paypal pour être payé.
-                        </label>
-                    </div>
-                    <div class="row">
-                        <label class="control-label">User Paypal</label>
-                        <input type="text" name="paypalUser" class="form-control" value="<?php echo $lectureP['paypalUser']; ?>" placeholder="Demander une signature API pour connaitre cette donnée"/>
-                    </div>
-                    <div class="row">
-                        <label class="control-label">Mot de passe Paypal</label>
-                        <input type="text" name="paypalPass" class="form-control" value="<?php echo $lectureP['paypalPass']; ?>"/>
-                    </div>
-                    <div class="row">
-                        <label class="control-label">Signature API Paypal</label>
-                        <input type="text" name="paypalSignature" class="form-control" value="<?php echo $lectureP['paypalSignature']; ?>"/>
                     </div>
                     <hr>
                     <div class="row">
