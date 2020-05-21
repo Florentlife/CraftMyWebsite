@@ -15,6 +15,9 @@ else
 		</div>
 
 <div class="row">
+<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'ban', 'actions', 'removeBan'))
+{
+	?>
 	<div class="col-md-6">
 		<div class="panel panel-default cmw-panel">
 			<div class="panel-heading cmw-panel-header">
@@ -40,6 +43,9 @@ else
             </div>
         </div>
    	</div>
+   <?php } 
+   if(Permission::getInstance()->verifPerm('PermsPanel', 'ban', 'actions', 'addBan'))
+   	{ ?>
    	<div class="col-md-6">
 		<div class="panel panel-default cmw-panel">
 			<div class="panel-heading cmw-panel-header">
@@ -64,7 +70,11 @@ else
             </div>
         </div>
    	</div>
+   <?php } ?>
 </div>
+<?php 
+if(Permission::getInstance()->verifPerm('PermsPanel', 'ban', 'actions', 'editBanPage'))
+	{ ?>
 <div class="row">
 	<div class="col-md-12">
 		<div class="panel panel-default cmw-panel">
@@ -93,4 +103,5 @@ else
 </div>
 	<?php 
 	}
+}
 ?>

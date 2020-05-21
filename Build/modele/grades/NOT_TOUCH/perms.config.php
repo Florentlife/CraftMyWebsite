@@ -225,6 +225,15 @@ const PERMS = array(
 				"send" => "Peut envoyer une newsletter"
 			)
 		),
+		"ban" => array(
+			"page" => "Bannissement",
+			"showPage" => "Accès à la page <strong>Bannissement</strong>",
+			"actions" => array(
+				"removeBan" => "Permet de supprimer un utilisateur banni",
+				"addBan" => "Permet d'ajouter un utilisateur à la banlist",
+				"editBanPage" => "Permet l'édition de la page des bannis"
+			)
+		),
 		"upload" => array(
 			"page" => "Upload",
 			"showPage" => "Accès à la page <strong>Upload</strong>",

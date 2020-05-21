@@ -1,5 +1,5 @@
 <?php
-if(Permission::getInstance()->verifPerm("createur"))
+if(Permission::getInstance()->verifPerm("PermsPanel", 'ban', 'actions', 'editBanPage'))
 {
 	if(isset($_POST['titre'], $_POST['texte']))
 	{
