@@ -12,8 +12,8 @@
             <strong>Vous avez aucune permission pour accéder aux réglagles de l'accueil.</strong>
         </div>
 
-        <?php } else { ?>
-        <?php } if(Permission::getInstance()->verifPerm('PermsPanel', 'home', 'actions', 'uploadSlider') OR Permission::getInstance()->verifPerm('PermsPanel', 'home', 'actions', 'editSlider')) { ?>
+        <?php }
+        if(Permission::getInstance()->verifPerm('PermsPanel', 'home', 'actions', 'uploadSlider') OR Permission::getInstance()->verifPerm('PermsPanel', 'home', 'actions', 'editSlider')) { ?>
 
         <h2>Slider</h2>
 
