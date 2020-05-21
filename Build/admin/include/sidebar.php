@@ -94,7 +94,7 @@
     <a href="?page=newsletter" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'newsletter'){ echo 'active'; } ?>" role="button">NewsLetter <i class="fas fa-newspaper cmw-fa-sidebar" aria-hidden="true"></i></a>
     <?php } ?>
 
-    <?php if(Permission::getInstance()->verifPerm('PermsPanel', 'support', 'maintenance', 'showPage')) { ?>
+    <?php if(Permission::getInstance()->verifPerm('PermsPanel', 'upload', 'showPage')) { ?>
     <a href="?page=upload" class="btn btn-default btn-block cmw-sidebar-btn hvr-bounce-to-right <?php if(isset($pageadmin)&& $pageadmin == 'upload'){ echo 'active'; } ?>" role="button">Upload <i class="fa fa-upload cmw-fa-sidebar" aria-hidden="true"></i> </a>
     <?php } ?>
 
