@@ -2,7 +2,7 @@
 
 CraftMyWebsite est un CMS Minecraft 100% gratuit proposant des fonctionnalités de qualité parmi lesquelles:
 
--   Boutique avec support Dedipass/Paypal et des rangs temporaires
+-   Boutique supportant Dedipass/Paypal en validation automatique et Paysafecard en validation manuelle et des rangs temporaires
 -   Système de news
 -   Votes avec récompenses et systèmes de vérifications intégrés !
 -   Gestion multi-serveur grâce à JSONAPI et à RCON
