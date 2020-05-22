@@ -1,5 +1,5 @@
 <?php
-require('theme/'. $_Serveur_['General']['theme'] . '/preload.php'); 
+require('theme/'. $_Serveur_['General']['theme'] . '/preload.php');
 require('include/version.php');
 require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 <!DOCTYPE html>
@@ -7,9 +7,9 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 <head>
 	<style>
 	:root {
-		--color-main: <?=$_Serveur_["color"]["theme"]["main"]?>; 
-		--color-hover: <?=$_Serveur_["color"]["theme"]["hover"]?>; 
-		--color-focus: <?=$_Serveur_["color"]["theme"]["focus"]?>; 
+		--color-main: <?=$_Serveur_["color"]["theme"]["main"]?>;
+		--color-hover: <?=$_Serveur_["color"]["theme"]["hover"]?>;
+		--color-focus: <?=$_Serveur_["color"]["theme"]["focus"]?>;
 	}
 	</style>
 	<meta name="theme-color" content="<?=$_Serveur_["color"]["theme"]["main"];?>">
@@ -50,8 +50,8 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 
 <body>
 	<?php if(Permission::getInstance()->verifPerm("connect")) { ?>
-		<?php setcookie('pseudo', $_Joueur_['pseudo'], time() + 86400, null, null, false, true); ?>	
-		<?php }  
+		<?php setcookie('pseudo', $_Joueur_['pseudo'], time() + 86400, null, null, false, true); ?>
+		<?php }
 			include('theme/' .$_Serveur_['General']['theme']. '/entete.php');
 			 tempMess(); ?>
 		<?php
@@ -81,10 +81,10 @@ require('theme/'. $_Serveur_['General']['theme'] . '/config/configTheme.php');?>
 		<br>
 	<br>
 </div></section>
-<?php } else { include('controleur/page.php'); } 
+<?php } else { include('controleur/page.php'); }
 include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <!-- Les formulaires pop-up -->
-<?php include('theme/' .$_Serveur_['General']['theme']. '/formulaires.php'); 
+<?php include('theme/' .$_Serveur_['General']['theme']. '/formulaires.php');
 ?>
 <div id="divScroll" class="btn btn-primary" onclick="goToTop()"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/jquery.min.js"></script>
@@ -98,8 +98,36 @@ include('theme/' .$_Serveur_['General']['theme']. '/pied.php'); ?>
 <?php if($_Serveur_['Payement']['dedipass'] == true) { ?> <script src="//api.dedipass.com/v1/pay.js"></script><?php } ?>
 <?php include('theme/'.$_Serveur_['General']['theme'].'/js/forum.php'); ?>
 <script src="theme/<?php echo $_Serveur_['General']['theme']; ?>/js/zxcvbn.js"></script><!-- <3 à eux -->
+<?php
+if(!empty($_Serveur_['General']['ipTexte'])){
+		echo '<script>
+		function copierIP() {
+			var copyText = document.getElementById("iptexte");
+			copyText.select();
+			document.execCommand("copy");
+			toastr["success"]("Vous avez copier l\'adresse IP du serveur !", "Succés");
+			toastr.options = {
+				"closeButton": true,
+				"debug": false,
+				"newestOnTop": false,
+				"progressBar": true,
+				"positionClass": "toast-bottom-left",
+				"preventDuplicates": false,
+				"onclick": null,
+				"showDuration": "1000",
+				"hideDuration": "1000",
+				"timeOut": "5000",
+				"extendedTimeOut": "1000",
+				"showEasing": "swing",
+				"hideEasing": "linear",
+				"showMethod": "fadeIn",
+				"hideMethod": "fadeOut"
+			}
+		}
+		</script>
+		';
+	} ?>
 <script>
-
 // cookies consent
 window.addEventListener("load", function(){
 window.cookieconsent.initialise({
@@ -220,12 +248,12 @@ function securPass()
 </script>
 <script>
 function insertAtCaret (textarea, icon)
-{ 
+{
 	if (document.getElementById(textarea).createTextRange && document.getElementById(textarea).caretPos)
-	{ 
-		var caretPos = document.getElementById(textarea).caretPos; 
-		selectedtext = caretPos.text; 
-		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == '' ? icon + '' : icon; 
+	{
+		var caretPos = document.getElementById(textarea).caretPos;
+		selectedtext = caretPos.text;
+		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == '' ? icon + '' : icon;
 		caretPos.text = caretPos.text + selectedtext;
 	}
 	else if (document.getElementById(textarea).textLength > 0)
@@ -238,8 +266,8 @@ function insertAtCaret (textarea, icon)
 	{
 		document.getElementById(textarea).value = document.getElementById(textarea).value + icon;
 	}
-	
-	document.getElementById(textarea).focus(); 
+
+	document.getElementById(textarea).focus();
 }
 
 
@@ -268,7 +296,7 @@ function ajout_text(textarea, entertext, tapetext, balise)
 function ajout_text_complement(textarea, entertext, tapetext, balise, complementTxt, complementtape)
 {
 	if(balise == 'url')
-	{	
+	{
 		if (document.selection && document.selection.createRange().text != '')
 		{
 			complement = window.prompt(entertext, tapetext);
@@ -295,7 +323,7 @@ function ajout_text_complement(textarea, entertext, tapetext, balise, complement
 			VarTxt = window.prompt(complementTxt,complementtape);
 			complement = window.prompt(entertext, tapetext);
 			if ((VarTxt != null) && (VarTxt != '') && complement != null && complement != '') insertAtCaret(textarea, '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']');
-			else insertAtCaret(textarea, '['+balise+']'+VarTxt+'[/'+balise+']'); 
+			else insertAtCaret(textarea, '['+balise+']'+VarTxt+'[/'+balise+']');
 		}
 	}
 	else if(balise == 'img')
@@ -326,7 +354,7 @@ function ajout_text_complement(textarea, entertext, tapetext, balise, complement
 			VarTxt = window.prompt(complementTxt,complementtape);
 			complement = window.prompt(entertext, tapetext);
 			if ((VarTxt != null) && (VarTxt != '') && complement != null && complement != '') insertAtCaret(textarea, '['+balise+'='+complement+']'+VarTxt+'[/'+balise+']');
-			else insertAtCaret(textarea, '['+balise+']'+complement+'[/'+balise+']'); 
+			else insertAtCaret(textarea, '['+balise+']'+complement+'[/'+balise+']');
 		}
 	}
 	else
@@ -362,7 +390,7 @@ function ajout_text_complement(textarea, entertext, tapetext, balise, complement
 	}
 }
 </script>
-<?php 
+<?php
 include('controleur/notifications.php');
 if(isset($_Joueur_))
 {
@@ -409,7 +437,7 @@ function ajax_new_alerts(){
 if(isset($modal))
 {
 	?>
-	<script>  	$('#myModal').modal('toggle') 	</script>	
+	<script>  	$('#myModal').modal('toggle') 	</script>
 	<?php
 }
 if(Permission::getInstance()->verifPerm('PermsForum', 'moderation', 'seeSignalement'))
@@ -448,7 +476,7 @@ if(Permission::getInstance()->verifPerm('PermsForum', 'moderation', 'seeSignalem
 		});
 	}
 	</script>
-	<?php 
+	<?php
 }
 ?>
 <script>$('document').ready(function() {
@@ -482,14 +510,14 @@ if(Permission::getInstance()->verifPerm('PermsForum', 'moderation', 'seeSignalem
 
 });
 </script>
-<?php 
+<?php
 if(isset($_GET['page']) && $_GET['page'] == "profil")
 {
 ?><script>previewTopic($("#signature"));</script><?php
 }
 if(isset($_GET['setTemp']) && $_GET['setTemp'] == 1)
 {
-	?><script> 
+	?><script>
 		toastr['success']("Votre nouveau mot de passe vous a été envoyé par mail !", "Message Système")
 		toastr.options = {
 		  "closeButton": true,

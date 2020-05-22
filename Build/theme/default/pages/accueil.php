@@ -12,32 +12,6 @@
               echo '<span class="badge badge-success">En Ligne</span> : '.$playeronline.' / '.$maxPlayers;
               if(!empty($_Serveur_['General']['ipTexte'])){
                 echo '<input type="text" value="'.$_Serveur_['General']['ipTexte'].'" id="iptexte" style="opacity:0;display:block">';
-                echo '<script>
-                function copierIP() {
-                  var copyText = document.getElementById("iptexte");
-                  copyText.select();
-                  document.execCommand("copy");
-                  toastr["success"]("Vous avez copier l\'adresse IP du serveur !", "Succés");
-                  toastr.options = {
-                    "closeButton": true,
-                    "debug": false,
-                    "newestOnTop": false,
-                    "progressBar": true,
-                    "positionClass": "toast-bottom-left",
-                    "preventDuplicates": false,
-                    "onclick": null,
-                    "showDuration": "1000",
-                    "hideDuration": "1000",
-                    "timeOut": "5000",
-                    "extendedTimeOut": "1000",
-                    "showEasing": "swing",
-                    "hideEasing": "linear",
-                    "showMethod": "fadeIn",
-                    "hideMethod": "fadeOut"
-                  }
-                }
-                </script>
-                ';
               }
             }
             else
