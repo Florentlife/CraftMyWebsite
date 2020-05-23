@@ -5,6 +5,8 @@ echo $notedevdistant;
 
 Contributeurs:
 
+1.6.x: Lucerno, DogeMVP, SawnFx, Cersus et TheTueurCity
+
 1.7.0: Florentlife, Oxykis et Ethanox
 
 1.7.1: Florentlife et Emilien52
