@@ -1,7 +1,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="robots" content="nofollow, noindex">
-  <meta name="author" content="bootstrap, pinglsdzn, craftmywebsite">
+  <meta name="author" content="CraftMyWebsite">
 
   <link rel="stylesheet" href="https://getbootstrap.com/docs/4.4/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="app/ressources/css/main.css">
