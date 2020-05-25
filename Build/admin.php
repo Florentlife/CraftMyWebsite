@@ -36,7 +36,7 @@ ini_set('display_errors', 1);
 
 	if(Permission::getInstance()->verifPerm("PermsPanel","access"))
 	{
-		require_once('controleur/json/json.php');
+		require_once('modele/json/json.php');
 		
 		$admin = true;
 

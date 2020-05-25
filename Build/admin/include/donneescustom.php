@@ -9,5 +9,5 @@ include "./include/version_distant.php";
 $req_nbrNews2 = $bddConnection->query('SELECT * FROM cmw_news'); 
 $Newstotal = $req_nbrNews2->rowCount(); 
 
-include('./controleur/json/json.php');
+include('./modele/json/json.php');
 ?>

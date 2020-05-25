@@ -30,10 +30,6 @@
 				{
 					$recupActions = $bddConnection->prepare('SELECT * FROM cmw_boutique_action WHERE id_offre = :id_offre');
 					$recupActions->execute(array('id_offre' => $_SESSION['panier']['id'][$a]));
-					for($i = 0; $i < count($lecture['Json']); $i++)
-					{
-						$jsonCon[$i]->SetConnectionBase($bddConnection);
-					}
 					$offre = $_SESSION['panier']['id'][$a];
 					require_once('modele/boutique/offres.class.php'); 
 					$offres = new OffresList($bddConnection, $jsonCon);

@@ -43,7 +43,7 @@ if ((isset($_SESSION['Player']['pseudo']) AND !empty($_SESSION['Player']['pseudo
     else
         $connection = false;
 }  else $connection = false;
-require_once ('controleur/json/json.php');
+require_once ('modele/json/json.php');
 //le fichier controle des récompenses Auto
 require('controleur/recompenseAuto.php');
 // système de Get(tout le site passe par index.php).
