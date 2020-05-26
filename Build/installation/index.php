@@ -1,5 +1,6 @@
 <?php
 error_reporting(0);
+//ini_set('display_errors', 1);
 require_once('../modele/config/yml.class.php');
 $configLecture = new Lire('../modele/config/config.yml');
 $_Serveur_ = $configLecture->GetTableau();
@@ -57,8 +58,8 @@ include '../include/version.php';
                 }
 
                 if($chmodok == "false") { 
-                    $retourchmod = DrawChmod();
-                    VerifieChmod($retourchmod);
+                    $retourchmod = VerifieChmod();
+                    DrawChmod($retourchmod);
                 }
                 if($extensionok != "true") { 		
                     echo AfficherExtension($retour);
@@ -217,7 +218,7 @@ include '../include/version.php';
                         <span class="bold">Tables:</span> 
                         (
                             <?php
-                            if(isset($_Serveur_['DataBase']['dbAdress'])){
+                            if(isset($_Serveur_['DataBase']['dbAdress']) && !empty($_Serveur_['DataBase']['dbAdress'])){
                                 $tablesretour = verifTables($_Serveur_['DataBase']['dbAdress'], $_Serveur_['DataBase']['dbName'], $_Serveur_['DataBase']['dbUser'], $_Serveur_['DataBase']['dbPassword'], $_Serveur_['DataBase']['dbPort']);
 
                             }
@@ -323,6 +324,7 @@ include '../include/version.php';
         ?>
       <?php // } ?>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="app/ressources/js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
@@ -379,15 +381,16 @@ function getPDO($hote, $nomBase, $utilisateur, $mdp, $port)
 function verifTables($hote, $nomBase, $utilisateur, $mdp, $port){
         $sql = new PDO('mysql:host='.$hote.';dbname='.$nomBase.';port='.$port, $utilisateur, $mdp);
 
-        $req = $sql->query('SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = DATABASE()');
+        $req = $sql->prepare('SELECT COUNT(*) AS tables FROM information_schema.tables WHERE table_schema = :db');
+        $req->execute(array(
+            'db' => $nomBase
+        ));
         $data = $req->fetch(PDO::FETCH_ASSOC);
-        $nbrtables = implode("=>", $data);
-    
-        $return['tables'] = $nbrtables;
-        if(isset($return['tables'])){
+
+        if(isset($data['tables'])){
             // $tablescheck = $return['tables'];
-            echo $return['tables'];
-            if($return['tables'] == "45"){
+            echo $data['tables'];
+            if($data['tables'] == "45"){
                 $dejainstaller = true;
             }
         }else{

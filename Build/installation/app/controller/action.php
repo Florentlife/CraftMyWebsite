@@ -2,7 +2,7 @@
 if (isset($_GET['action']) AND $_GET['action'] == 'setchmod'){
 	chmod("../theme/upload/", 0777);
 	chmod("../theme/upload/slider/", 0777);
-	chmod("install.yml", 0777);
+	chmod("app/data/install.yml", 0777);
 	chmod("../modele/config/accueil.yml", 0777);
 	chmod("../modele/config/config.yml", 0777);
 	chmod("../modele/config/configMenu.yml", 0777);
