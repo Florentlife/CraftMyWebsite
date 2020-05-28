@@ -15,11 +15,11 @@
 			<div class="tabbable">
 				<ul class="nav nav-tabs" style="margin-bottom:1vh;">
 				<?php
-				for($i = 0; $i < count($jsonCon); $i++)
+				foreach($lectureJSON as $serveur)
 				{
 				?>
 					<li class="nav-item">
-						<a href="#categorie-<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo 'active'; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></a>
+						<a href="#categorie-<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo 'active'; ?>"><?php echo $serveur['nom']; ?></a>
 					</li>
 				<?php 
 				} 
@@ -38,8 +38,6 @@
 							{
 								foreach($messages as $value)
 								{
-									//var_dump($value);
-
 									?>
 										<p class="username"><img class="rounded" src="<?=$_ImgProfil_->getUrlHeadByPseudo($value['player']);?>" style="width: 32px; height: 32px;" alt="avatar de l'auteur" title="<?php echo $value['player']; ?>" /> <?=($value['player'] == '') ? 'Console': $value['player'].', '.$_Forum_->gradeJoueur($value['player']);?> à <span class="font-weight-light"><?=date('H:i:s', $value['time']);?></span> -> <?=$Chat->formattage(htmlspecialchars($value['message']));?></p>
 									<?php
@@ -66,9 +64,9 @@
 						<div class="col-md-2">
 							<select name="i" class="form-control">
 								<?php 
-								for($i=0; $i < count($jsonCon); $i++)
+								foreach($lectureJSON as $serveur)
 								{
-									?><option value="<?=$i;?>"><?=$lecture['Json'][$i]['nom'];?></option><?php 
+									?><option value="<?=$i;?>"><?=$serveur['nom'];?></option><?php 
 								}
 								?>
 							</select>

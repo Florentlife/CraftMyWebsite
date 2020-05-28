@@ -26,9 +26,9 @@
 </div>
 </div>
 <?php
-for($j = 0; $j < count($lecture['Json']); $j++)
+foreach($lectureJSON as $key => $serveur)
 {
-  if($conEtablie[$j] == true)
+  if($conEtablie[$key] == true)
     { ?>
   <div class="col-lg-3 col-md-6">
    <div class="panel panel-default cmw-panel">
@@ -75,9 +75,9 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                 } ?>
               </div>
               <div class="row">
-                <?php foreach ($serveurStats[$j]['joueurs'] as $cle => $element) { ?>
-                <a href="index.php?&page=profil&profil=<?php echo $serveurStats[$j]['joueurs'][$cle]; ?>" class="icon-player">
-                  <?php echo '<img src="https://cravatar.eu/helmhead/' .$serveurStats[$j]['joueurs'][$cle]. '/56.png" title="Voir le profil de ' .$serveurStats[$j]['joueurs'][$cle]. '">'; ?></a>
+                <?php foreach ($serveurStats[$key]['joueurs'] as $cle => $element) { ?>
+                <a href="index.php?&page=profil&profil=<?php echo $element; ?>" class="icon-player">
+                  <?php echo '<img src="https://cravatar.eu/helmhead/' .$element. '/56.png" title="Voir le profil de ' .$element. '">'; ?></a>
                   <?php } ?>
                 </div>
                 <hr>
@@ -94,15 +94,15 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                   </script>
                   <?php $date = date("Y-m-d");
                   echo '<div id="console"><div style="background-color: #373737;color: #8F8F8F;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom-left-radius:5px;border-bottom-right-radius:5px;border:solid 2px #8F8F8F;overflow: hidden;">';
-                  foreach ($console[$j]['Test'] as $value) {
-                    $console[$j]['Test'] = $value["line"];
-                    $console[$j]['Test'] = str_replace($date, '', $console[$j]['Test']);
+                  foreach ($console[$key]['Test'] as $value) {
+                    $console[$key]['Test'] = $value["line"];
+                    $console[$key]['Test'] = str_replace($date, '', $console[$key]['Test']);
                     $msg_prefix = array('INFO', 'WARN', 'SEVERE', "[0;31;22m", "[0;32;22m", "[0;33;22m", "[0;34;22m", "[0;35;22m", "[0;36;22m", "[0;37;22m", "[0;30;1m", "[0;31;1m", "[0;32;1m", "[0;33;1m", "[0;34;1m", "[0;35;1m", "[0;36;1m", "[0;37;1m", "[1;31m", "[21m", "[9m", "[5m", "[3m", "[0m", "[m", "<span><span", "</span></span>");
                     $color_prefix = array('<span style="color: #5555FF;">INFO</span>', '<span style="color: #FFAA00;">WARN</span>', '<span style="color: #FF5555;">SEVERE</span>', "</span><span style=\"color:#aa0000\">", "</span><span style=\"color:#00aa00\">", "</span><span style=\"color:#ffaa00\">", "</span><span style=\"color:#0000aa\">", "</span><span style=\"color:#aa00aa\">", "</span><span style=\"color:#00aaaa\">", "</span><span style=\"color:#aaaaaa\">", "</span><span style=\"color:#555555\">", "</span><span style=\"color:#ff5555\">", "</span><span style=\"color:#55ff55\">", "</span><span style=\"color:#ffffff\">", "</span><span style=\"color:#5555ff\">", "</span><span style=\"color:#ff55ff\">", "</span><span style=\"color:#55ffff\">", "</span><span style=\"color:#ffff55\">", "", "", "", "", "", "", "</span>", "<span", "</span>");
-                    $console[$j]['Test'] = str_replace($msg_prefix, $color_prefix, $console[$j]['Test']);
+                    $console[$key]['Test'] = str_replace($msg_prefix, $color_prefix, $console[$key]['Test']);
                     echo '<div style="text-align: left;">';
                     echo '<div>';
-                    echo $console[$j]['Test'];
+                    echo $console[$key]['Test'];
                     echo '<br/></div>';
                     echo '</div>';
                   }
@@ -177,7 +177,7 @@ for($j = 0; $j < count($lecture['Json']); $j++)
                          </tr>
                        </thead>
                        <tbody>
-                         <?php foreach ($plugins[$j]['Test'] as $value) { ?>
+                         <?php foreach ($plugins[$key]['Test'] as $value) { ?>
                          <tr>
                            <td><?php echo $value['name']; ?></td>
                            <td><?php echo $value['version'] ?></td>

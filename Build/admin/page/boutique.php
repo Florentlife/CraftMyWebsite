@@ -48,8 +48,8 @@
 						<select name="serveur" class="form-control">
 							<option value="-1">Tous</option>
 							<option value="-2">Au choix (Le joueur se connecte sur le serveur voulu)</option>
-							<?php for($i = 0; $i < count($lecture['Json']); $i++) { ?>
-							<option value="<?php echo $i; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></option>
+							<?php foreach($lectureJSON as $serveur) { ?>
+							<option value="<?php echo $i; ?>"><?php echo $serveur['nom']; ?></option>
 							<?php } ?>
 						</select>
 					</div>

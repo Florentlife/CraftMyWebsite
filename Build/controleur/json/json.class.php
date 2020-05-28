@@ -417,6 +417,8 @@ class JsonCon
 	private function verifyReq($req, $time = 60)
 	{
 		$key = array_search($req.'.'.$this->id, array_column($this->cache, 'requete'));
+		if($req == "getLatestConsoleLogsWithLimit")
+			return false;
 		if($key !== false)
 		{
 			if($this->cache[$key]['temp'] < time()-$time)

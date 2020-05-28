@@ -45,8 +45,9 @@
 							$temp .="Give de ";
 							$action = explode(':', $action[1]);
 							$temp .=$action[3]. "x ".$action[1];
+							$cle = array_search($data['serveur'], array_column($lectureJSON, 'id'));
 							if($data['methode'] == 2)
-								$temp .=' sur le serveur '.$lecture['Json'][$data['serveur']]['nom'];
+								$temp .=' sur le serveur '.$lectureJSON[$cle]['nom'];
 							else
 								$temp .=' sur tout les serveurs de jeu';
 						}
@@ -98,9 +99,9 @@
                 if(!isset($jsonCon) OR empty($jsonCon))
                     echo '<p>Veuillez relier votre serveur à votre site avec JsonAPI ou Rcon depuis le panel pour avoir les liens de vote !</p>';
                 
-                for($i = 0; $i < count($jsonCon); $i++) { ?>
+                foreach($lectureJSON as $i => $serveur) { ?>
 					
-					<li class="nav-item"><a href="#voter<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo ' active'; ?>"><?php echo $lecture['Json'][$i]['nom']; ?></a></li>
+					<li class="nav-item"><a href="#voter<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo ' active'; ?>"><?php echo $serveur['nom']; ?></a></li>
 					
 				<?php } ?>
 				</ul>
@@ -122,18 +123,16 @@
 				<?php } else
 				{ ?>
 				<div class="tab-content" style="background-color:white;padding:10px;">
-				<?php for($i = 0; $i < count($jsonCon); $i++) { ?>
+				<?php foreach($lectureJSON as $i => $serveur) { ?>
 				
 					<div id="voter<?php echo $i; ?>" class="tab-pane fade <?php if($i==0) echo 'in active show';?>" <?php if($i == 0) { echo 'aria-expanded="true"'; } else echo 'aria-expanded="false"'; ?>>  
 						<div class="panel-body">
 							<div class="alert alert-dismissable alert-success">
 							<button type="button" class="close" data-dismiss="alert">×</button>
-							<center>Bienvenue dans la catégorie de vote pour le serveur : <?=$lecture['Json'][$i]['nom'];?></center>
+							<center>Bienvenue dans la catégorie de vote pour le serveur : <?=$serveur['nom'];?></center>
 							</div>
-                    
 							<?php  
-							
-							
+								$serveurStats[$key] = $serveur->GetServeurInfos();
 								$pseudo = htmlspecialchars($_GET['player']);
 								
 								$enligne = false;

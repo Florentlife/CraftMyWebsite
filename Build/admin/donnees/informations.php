@@ -24,6 +24,18 @@ if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'showPage')) {
         $lastOffrePaypal[$i] = $lastOffrePaypalDonnees;
         $i++;
     }
+
+    //DONNEES JSONAPI
+    foreach($jsonCon as $key => $serveur)
+    {
+        if($conEtablie[$key])
+        {
+            $serveurStats[$key] = $serveur->GetServeurInfos();
+            $console[$key] = $serveur->GetConsole();
+            $plugins[$key] = $serveur->getPlugins();
+        }
+    }
+
     // <!-- Statistiques des membres -->
     $membresStatsReq = $bddConnection->query('SELECT * FROM cmw_users ORDER BY id DESC LIMIT 0, 8;');
     $i = 0;

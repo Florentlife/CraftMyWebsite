@@ -1,8 +1,8 @@
 <?php
 if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'details', 'server')) {
-	for($i = 0; $i < count($lecture['Json']); $i++)
+	foreach($jsonCon as $serveur)
 	{
-		$jsonCon[$i]->restartServer();
+		$serveur->restartServer();
 	}
 }
 ?>

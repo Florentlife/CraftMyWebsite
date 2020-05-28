@@ -133,11 +133,11 @@
 					<?php
 					$enLigne = false;
 					if($infosCategories['serveurId'] == -2 OR $infosCategories['serveurId'] == -1)
-						for($i = 0; $i < count($lecture['Json']); $i++)
+						foreach($lectureJSON as $serveur)
 						{
 							if($enligne[$i])
 							{
-								echo 'Vous êtes connecté sur le serveur:<br /> "'. $lecture['Json'][$i]['nom'] .'"';
+								echo 'Vous êtes connecté sur le serveur:<br /> "'. $serveur['nom'] .'"';
 								$enLigne = true;
 							}
 							
@@ -145,7 +145,8 @@
 					else
 						if($enligne[$infosCategories['serveurId']])
 						{
-							echo 'Vous êtes connecté sur le serveur:<br /> "'. $lecture['Json'][$infosCategories['serveurId']]['nom'] .'"';
+							$cle = array_search($infosCategories['serveurId'], array_column($lectureJSON, 'id'));
+							echo 'Vous êtes connecté sur le serveur:<br /> "'. $lectureJSON[$cle]['nom'] .'"';
 							$enLigne = true;
 						}
 						

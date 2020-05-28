@@ -54,9 +54,6 @@
 
                     <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Mot de passe</label>
                     <input type="password" name="JsonMdp" class="form-control" placeholder="Exemple: Trampoline"/>
-                    
-                    <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Salt</label>
-                    <input type="password" name="JsonSalt" class="form-control" placeholder="Depuis la 1.7, merci d'ignorer ce champ !"/>
                     <br/>
                     <input type="submit" class="btn btn-success" value="Ajouter le serveur !"/>
                 </form>
@@ -71,7 +68,7 @@
                 <h3 class="panel-title"><strong>Edition du/des serveurs</strong></h3>
             </div>
             <div class="panel-body">
-        <?php if(count($lecture['Json']) == 0) { ?>
+        <?php if(count($lectureJSON) == 0) { ?>
 
             <div class="alert alert-warning">
                 <strong>Merci de bien vouloir ajouter un serveur pour pouvoir le modifier !</strong>
@@ -82,51 +79,44 @@
             <div class="alert alert-success">
                 <strong>Vous pouvez modifier les données du/des serveur(s) ajouté(s). Pour cela rien de plus simple, il vous suffit de remplir le formulaire ci-contre.</strong>
             </div>
-
-        <?php } if(!count($lecture['Json']) == 0) { ?>
-
         <form method="POST" action="?&action=serveurConfig">
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <?php for($i = 0; $i < count($lecture['Json']); $i++) { ?>
+                        <?php foreach($lectureJSON as $i => $serveur) { ?>
                         <li <?php if($i == 0) echo 'class="active"'; ?>><a href="#jsonReg<?php echo $i; ?>" data-toggle="tab">Serveur <?php echo $i + 1; ?></a></li>
                         <?php } ?>
                     </ul>
                     <div class="tab-content">
-                        <?php for($i = 0; $i < count($lecture['Json']); $i++) { ?>
+                        <?php foreach($lectureJSON as $i => $serveur) { ?>
                         <div class="tab-pane well <?php if($i == 0) echo 'active'; ?>" id="jsonReg<?php echo $i; ?>">
-                            <h4><?php echo $lecture['Json'][$i]['nom']; ?>  <a class="btn btn-danger" href="?&action=supprJson&nom=<?php echo $lecture['Json'][$i]['nom']; ?>">Supprimer ce serveur</a></h4>
+                            <h4><?php echo $serveur['nom']; ?>  <a class="btn btn-danger" href="?&action=supprJson&nom=<?php echo $serveur['id']; ?>">Supprimer ce serveur</a></h4>
                             
                             <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Nom du serveur</label>
-                            <input type="text" name="JsonNom<?php echo $i; ?>" class="form-control" placeholder="Exemple: CraftMyCube" value="<?php echo $lecture['Json'][$i]['nom']; ?>">
+                            <input type="text" name="JsonNom<?php echo $i; ?>" class="form-control" placeholder="Exemple: CraftMyCube" value="<?php echo $serveur['nom']; ?>">
                             
                             <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Ip du serveur</label>
-                            <input type="text" name="JsonAddr<?php echo $i; ?>" class="form-control" placeholder="188.165.190.180 (pas d'ip en lettre)" value="<?php echo $lecture['Json'][$i]['adresse']; ?>">
+                            <input type="text" name="JsonAddr<?php echo $i; ?>" class="form-control" placeholder="188.165.190.180 (pas d'ip en lettre)" value="<?php echo $serveur['adresse']; ?>">
 
                             <?php 
-                            if(isset($lecture['Json'][$i]['port']['query']))
+                            if($serveur['protocole'] == 1)
                             {
                                 ?><label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port Query</label>
-                                <input type="text" name="QueryPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $lecture['Json'][$i]['port']['query']; ?>">
+                                <input type="text" name="QueryPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $serveur['port']; ?>">
 
                                 <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port Rcon</label>
-                                <input type="text" name="RconPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $lecture['Json'][$i]['port']['rcon']; ?>"> <?php
+                                <input type="text" name="RconPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $serveur['port2']; ?>"> <?php
                             }
                             else
                             {
                                 ?><label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Port JsonAPI</label>
-                                <input type="text" name="JsonPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $lecture['Json'][$i]['port']; ?>">
+                                <input type="text" name="JsonPort<?php echo $i; ?>" class="form-control" placeholder="Exemple: 12548" value="<?php echo $serveur['port']; ?>">
                                 
                                 <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">User JsonAPI</label>
-                                <input type="text" name="JsonUser<?php echo $i; ?>" class="form-control" placeholder="Exemple: admin" value="<?php echo $lecture['Json'][$i]['utilisateur']; ?>"><?php 
+                                <input type="text" name="JsonUser<?php echo $i; ?>" class="form-control" placeholder="Exemple: admin" value="<?php echo $serveur['utilisateur']; ?>"><?php 
                             } ?>          
                                               
                             <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Mot de passe</label>
-                            <input type="text" name="JsonMdp<?php echo $i; ?>" class="form-control" placeholder="Exemple: Truelle" value="<?php echo $lecture['Json'][$i]['mdp']; ?>">
-                            
-                            <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Salt</label>
-                            <input type="text" name="JsonSalt<?php echo $i; ?>" class="form-control" placeholder="Exemple: MonSaltSecret" value="<?php echo $lecture['Json'][$i]['salt']; ?>">
-
+                            <input type="text" name="JsonMdp<?php echo $i; ?>" class="form-control" placeholder="Exemple: Truelle" value="<?php echo $serveur['mdp']; ?>">
                             <br/>
                             <input type="submit" class="btn btn-success" value="Valider les changements"/>
                         </div>

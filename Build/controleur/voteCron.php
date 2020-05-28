@@ -2,8 +2,9 @@
 
 if(isset($_GET['mdp']) AND isset($_Serveur_['VoteCron']['mdp']) AND $_Serveur_['VoteCron']['mdp'] == htmlspecialchars($_GET['mdp']) )
 {
-	for($i = 0; $i < count($lecture['Json']); $i++)
+	foreach($jsonCon as $i => $serveur)
 	{
+		$serveurStats[$key] = $serveur->GetServeurInfos();
 		$req_vote->execute(array('serveur' => $i));
 		$count_req->execute(array('serveur' => $i));
 		$data_count = $count_req->fetch();
@@ -19,7 +20,7 @@ if(isset($_GET['mdp']) AND isset($_Serveur_['VoteCron']['mdp']) AND $_Serveur_['
 				}
 				if(!empty($_Serveur_['VoteCron']['entete']))
 				{
-					$jsonCon[$i]->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('&','§', $_Serveur_['VoteCron']['entete'])));
+					$serveur->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('&','§', $_Serveur_['VoteCron']['entete'])));
 				}
 				while($liensVotes = $req_vote->fetch())
 				{ 
@@ -31,19 +32,19 @@ if(isset($_GET['mdp']) AND isset($_Serveur_['VoteCron']['mdp']) AND $_Serveur_['
 					
 						CreerJoueur($serveurStats[$i]['joueurs'][$cle], $id, $bddConnection);
 						$donnees = RecupJoueur($serveurStats[$i]['joueurs'][$cle], $id, $bddConnection);
-						$jsonCon[$i]->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('{LIEN}', $lien[0],str_replace('&','§', $_Serveur_['VoteCron']['msgallow']))));
+						$serveur->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('{LIEN}', $lien[0],str_replace('&','§', $_Serveur_['VoteCron']['msgallow']))));
 					}
 					else {
 						$donnees = RecupJoueur($serveurStats[$i]['joueurs'][$cle], $id, $bddConnection);
 						if(!Vote($serveurStats[$i]['joueurs'][$cle], $id, $bddConnection, $donnees, $lectureVotes['temps']))
 						{
-							$jsonCon[$i]->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('{TEMPS}',
+							$serveur->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('{TEMPS}',
 							GetTempsRestant($donnees['date_dernier'],$lectureVotes['temps'], $donnees), 
 							str_replace('&','§', str_replace('{LIEN}', $lien[0],$_Serveur_['VoteCron']['msgdeny'])))));
 						}
 						else
 						{
-							$jsonCon[$i]->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('{LIEN}', $lien[0],str_replace('&','§', $_Serveur_['VoteCron']['msgallow']))));
+							$serveur->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('{LIEN}', $lien[0],str_replace('&','§', $_Serveur_['VoteCron']['msgallow']))));
 						}
 						
 					}
@@ -52,7 +53,7 @@ if(isset($_GET['mdp']) AND isset($_Serveur_['VoteCron']['mdp']) AND $_Serveur_['
 				}
 				if(!empty($_Serveur_['VoteCron']['footer']))
 				{
-					$jsonCon[$i]->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('&','§', $_Serveur_['VoteCron']['footer'])));
+					$serveur->SendMessage(array($serveurStats[$i]['joueurs'][$cle], str_replace('&','§', $_Serveur_['VoteCron']['footer'])));
 				}
 			}
 		}
