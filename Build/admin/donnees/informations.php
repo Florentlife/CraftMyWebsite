@@ -39,7 +39,7 @@ if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'showPage')) {
 
     // Statistiques du dernier inscrit
     $lastMembreReq = $bddConnection->query('SELECT * FROM cmw_users ORDER BY id DESC LIMIT 1;');
-    $lastMembre = $lastMaintenanceReq->fetchAll(PDO::FETCH_ASSOC);
+    $lastMembre = $lastMembreReq->fetchAll(PDO::FETCH_ASSOC);
     
 
     // <!-- Statistiques du dernier Ticket -->
