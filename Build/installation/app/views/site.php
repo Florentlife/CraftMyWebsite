@@ -15,16 +15,16 @@
               </div>
 
               <div class="col-md-12 mb-6 form-group">
-                <label for="adresse">Url</label>
+                <label for="adresse">URL</label>
                 <input type="text" class="form-control" id="adresse" name="adresse" aria-describedby="adresseaide"
-                  placeholder="Ex: https://www.craftmycube.fr" required>
-                <small id="adresseaide" class="form-text text-muted">(Ne pas inclure de "/" à la fin de l'url)</small>
+                  placeholder="Ex: https://craftmycube.fr" required>
+                <small id="adresseaide" class="form-text text-muted">(Ne pas inclure de "/" à la fin de l'URL)</small>
               </div>
 
               <div class="col-md-8 mb-6 form-group">
                 <label for="ip">Adresse IP du serveur</label>
                 <input type="text" class="form-control" id="ip" name="ip" aria-describedby="ipaide" placeholder="Ex: 192.168.49.3">
-                <small id="ipaide" class="form-text text-muted">(sous forme de chiffre | sans le port)</small>
+                <small id="ipaide" class="form-text text-muted">(sous forme de chiffre & sans le port)</small>
               </div>
 
               <div class="col-md-4 mb-6 form-group">

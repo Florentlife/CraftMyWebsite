@@ -138,10 +138,10 @@ function DrawChmod($return)
                 </table>
 
             </div>
-            
-            <a onclick="ajax_chmod();" class="btn btn-primary btn-block minecraft">Tanter de modifier les chmod automatiquement</a>
-            <a href="index.php" class="btn btn-primary btn-block minecrafter">Relancer la verification</a><br/>
         </div>
+            
+            <a onclick="ajax_chmod();" class="btn btn-primary btn-block minecraft">Tenter de modifier les chmod automatiquement</a>
+            <a href="index.php" class="btn btn-primary btn-block minecrafter">Relancer la verification</a><br/>
 
      </div>
 

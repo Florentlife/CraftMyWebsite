@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-//ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 require_once('../modele/config/yml.class.php');
 $configLecture = new Lire('../modele/config/config.yml');
 $_Serveur_ = $configLecture->GetTableau();
@@ -32,8 +32,8 @@ include '../include/version.php';
                 height="94" style="border-radius: 9px;">
                     <h2>Bienvenue sur votre site !</h2>
                 <p class="lead">
-                    Merci d’avoir choisi CraftMyWebsite, Des mises à jour seront disponibles très fréquemment sur le site officiel.
-                    Il peut néanmoins y avoir des bugs ! Merci de les report sur le forum pour les corriger au plus vite.
+                    Merci d’avoir choisi CraftMyWebsite, des mises à jour seront disponibles très fréquemment sur le site officiel.
+                    Il peut néanmoins y avoir des bugs ! Merci de nous en faire part sur le forum pour les corriger au plus vite.
                 </p>
 
                 <div class="row">
@@ -41,7 +41,7 @@ include '../include/version.php';
                     <div class="col-md-12">
                         <div class="wrapper-progressBar">
                         <ul class="progressBar">
-                            <li <?php if($installEtape >= 1) echo 'class="active"'; ?>><span class="d-none d-md-block">Configuration de la base de données</span></li>
+                            <li <?php if($installEtape >= 1) echo 'class="active"'; ?>><span class="d-none d-md-block">Configuration de la base de donnée</span></li>
                             <li <?php if($installEtape >= 2) echo 'class="active"'; ?>><span class="d-none d-md-block">Paramétrage du site</span></li>
                             <li <?php if($installEtape >= 3) echo 'class="active"'; ?>><span class="d-none d-md-block">Création d'un compte Administrateur</span></li>
                         </ul>
@@ -74,7 +74,7 @@ include '../include/version.php';
             $htaccess = false;
             ?>
             <div class="pt-3">
-            <div class="alert alert-danger"><strong>ATTENTION</strong> : Erreur Critique, votre serveur est soumis aux failles htaccess. Veuillez les activez, en suivant <a href="https://www.aidoweb.com/tutoriaux/fichier-htaccess-qui-ne-fonctionne-pas-solutions-configuration-apache-648" target="_blank">ce tuto</a> ou nous contacter sur <a href="https://discord.gg/P94b7d5" target="_blank">Discord</a> <br/><a href="index.php" class="btn btn-primary btn-block minecrafter">Relancer la verification</a></div>
+            <div class="alert alert-danger"><strong>ATTENTION</strong> : Erreur Critique, votre serveur est soumis aux failles htaccess. Veuillez les activer, en suivant <a href="https://www.aidoweb.com/tutoriaux/fichier-htaccess-qui-ne-fonctionne-pas-solutions-configuration-apache-648" target="_blank">ce tuto</a> ou nous contacter sur <a href="https://discord.gg/wMVAeug" target="_blank">Discord</a> <br/><a href="index.php" class="btn btn-primary btn-block minecrafter">Relancer la verification</a></div>
             </div>
         <?php
         }
@@ -96,7 +96,7 @@ include '../include/version.php';
                         <small class="text-muted">
                         <?php 
                         if ($return['nginx']){
-                            echo '<b>NGINX <a href="#port" class="btn-outline-info" data-toggle="popover" data-placement="top" title="Aide > Nginx / Apache" data-content="Nous avons détecté que vous utiliser nginx, CraftMyWebsite ne fonctionne pas sous Nginx. <br/> Si vous êtes sur apache vous pouvez continuez l\'installation"> <i class="fas fa-info-circle"></i></a></b>';
+                            echo '<b>NGINX <a href="#port" class="btn-outline-info" data-toggle="popover" data-placement="top" title="Aide > Nginx / Apache" data-content="Nous avons détecté que vous utilisez NGINX, CraftMyWebsite ne fonctionne pas sous NGINX. <br/> Si vous êtes sur Apache vous pouvez continuez l\'installation"> <i class="fas fa-info-circle"></i></a></b>';
                             echo $serveurweb;
                         }else{
                             echo $serveurweb;
@@ -130,8 +130,8 @@ include '../include/version.php';
                     <h6 class="my-0"> <i class="fab fa-expeditedssl"></i> SSL/TLS (https)</h6>
                     <small class="text-muted">
                     <?php
-                    is_ssl(); 
-                    if ($return['ssl'] != 1){
+                    $return['ssl'] = is_ssl(); 
+                    if (!$return['ssl']){
                         echo 'non détécté';
                     }else{
                         echo 'détécté';
@@ -140,7 +140,7 @@ include '../include/version.php';
                     </small>
                     </div>
                     <?php
-                    if ($return['ssl'] != 1){ ?>
+                    if (!$return['ssl']){ ?>
                         <span class="text-warning">
                             <i class="fas fa-exclamation-circle"></i>
                         </span>
@@ -178,7 +178,7 @@ include '../include/version.php';
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
-                    <h6 class="my-0"> <i class="fas fa-microchip"></i> Extension</h6>
+                    <h6 class="my-0"> <i class="fas fa-microchip"></i> Extensions</h6>
                     <small class="text-muted">zip: détecté <span class="text-success"><i
                             class="fas fa-check-circle"></i></span> </small><br />
                     <small class="text-muted">pdo: détecté <span class="text-success"><i
@@ -192,7 +192,7 @@ include '../include/version.php';
                 </li>
                 <li class="list-group-item d-flex justify-content-between bg-light lh-condensed">
                     <div>
-                    <h6 class="my-0"> <i class="fas fa-wifi"></i> Informations autres</h6>
+                    <h6 class="my-0"> <i class="fas fa-wifi"></i> Informations supplémentaires</h6>
                     <small class="text-muted">
                         <span class="bold">IP:</span> <?=$_SERVER['SERVER_ADDR'];?>
                     </small><br />
@@ -220,13 +220,11 @@ include '../include/version.php';
                             <?php
                             if(isset($_Serveur_['DataBase']['dbAdress']) && !empty($_Serveur_['DataBase']['dbAdress'])){
                                 $tablesretour = verifTables($_Serveur_['DataBase']['dbAdress'], $_Serveur_['DataBase']['dbName'], $_Serveur_['DataBase']['dbUser'], $_Serveur_['DataBase']['dbPassword'], $_Serveur_['DataBase']['dbPort']);
-
                             }
                             else
                             {
-                                echo 'Inconnu';
+                                echo 'Inconnues';
                             }
-                            // var_dump($tables);
                             ?>
                             )
                     </small><br />
@@ -328,17 +326,6 @@ include '../include/version.php';
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
-  <script>
-    $(function () {
-      $('[data-toggle="popover"]').popover();
-      $('#modal').modal();
-    });
-
-    var infosjstable = [["Serveur Web", "<?=$serveurweb?>"], ["PHP", "<?php echo phpversion();?>"], ["IP", "<?php echo $_SERVER['SERVER_ADDR'];?>"],["Port", "<?php echo $_SERVER['SERVER_PORT'];?>"],["Root", "<?php echo $_SERVER['DOCUMENT_ROOT'];?>"],["Version du CMS", "<?=$versioncms;?>"]];
-    console.log("%cCraftMyWebsite Installation", "color: darkblue; font-family: sans-serif; font-size: 4.5em; font-weight: bolder; text-shadow: #000 1px 1px;");
-    console.table(infosjstable);
-    console.log("%cBy PinglsDzn", "color: gray; font-family: sans-serif; font-size: 12px; font-style: italic;");
-  </script>
 </body>
 </html>
 <?php
@@ -381,21 +368,17 @@ function getPDO($hote, $nomBase, $utilisateur, $mdp, $port)
 function verifTables($hote, $nomBase, $utilisateur, $mdp, $port){
         $sql = new PDO('mysql:host='.$hote.';dbname='.$nomBase.';port='.$port, $utilisateur, $mdp);
 
-        $req = $sql->prepare('SELECT COUNT(*) AS tables FROM information_schema.tables WHERE table_schema = :db');
+        $req = $sql->prepare('SELECT COUNT(*) AS tables FROM information_schema.tables WHERE table_schema = :db AND TABLE_NAME LIKE "cmw_%"');
         $req->execute(array(
             'db' => $nomBase
         ));
         $data = $req->fetch(PDO::FETCH_ASSOC);
 
         if(isset($data['tables'])){
-            // $tablescheck = $return['tables'];
             echo $data['tables'];
-            if($data['tables'] == "45"){
-                $dejainstaller = true;
-            }
+            $dejainstaller = true;
         }else{
-            echo 'Inconnu';
-            $tablescheck = 'Inconnu';
+            echo 'Inconnues';
         }
 }
 ?>

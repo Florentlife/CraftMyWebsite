@@ -68,7 +68,7 @@ function AfficherExtension($retour)
 
             </div>
             
-            <a href="index.php" class="btn btn-primary btn-block minecrafter">Relancer la verification</a><br/>
+            <a href="index.php" class="btn btn-primary btn-block minecrafter">Relancer la vérification</a><br/>
             <small style="font-style: italic;">Avant de relancer la vérification redémmarer votre serveur web</small>
 
         </div>

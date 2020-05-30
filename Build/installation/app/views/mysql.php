@@ -3,7 +3,7 @@
 	    if(isset($erreur))
 		{
 			if($erreur['type'] == 'sql_mode')
-		    	echo '<div class="alert alert-danger text-center">ATTENTION ! Votre base de donnée est mal configuré ! La configuration MySQL ne doit pas contenir de STRICT_ALL_TABLES dans son sql_mode. Si vous ne savez pas résoudre ce problème, contactez-nous sur <a href="https://discord.gg/P94b7d5" target="_blank">discord</a> en envoyant l\'information suivante : <pre>'.$erreur['data'].'</pre></div>';
+		    	echo '<div class="alert alert-danger text-center">ATTENTION ! Votre base de donnée est mal configurée ! La configuration MySQL ne doit pas contenir de STRICT_ALL_TABLES dans son sql_mode. Si vous ne savez pas résoudre ce problème, contactez-nous sur <a href="https://discord.gg/wMVAeug" target="_blank">discord</a> en envoyant l\'information suivante : <pre>'.$erreur['data'].'</pre></div>';
 		    elseif($erreur['type'] == 'pass')
 				echo '<div class="alert alert-danger text-center">ATTENTION ! Vos identifiants sont incorrects.</div>';
         }
@@ -15,14 +15,14 @@
               <div class="col-md-10 mb-6 form-group">
                 <label for="hote">Adresse de connexion</label>
                 <input type="text" class="form-control" id="hote" name="hote" aria-describedby="hoteaide"
-                  placeholder="127.0.0.1" required>
-                <small id="hoteaide" class="form-text text-muted">Ex: sql.hebergeur.fr</small>
+                  placeholder="localhost" required>
+                <small id="hoteaide" class="form-text text-muted">Ex: sql.hebergeur.fr ou 51.38.13.38</small>
               </div>
 
               <div class="col-md-2 mb-6 form-group">
                 <label for="port">Port
                   <a href="#port" class="btn-outline-info" data-toggle="popover" data-placement="top"
-                    title="Aide > Port MySQL" data-content="Le port par default de MySQL / MariaDB est 3306">
+                    title="Aide > Port MySQL" data-content="Le port par défaut de MySQL / MariaDB est 3306">
                     <i class="fas fa-info-circle"></i>
                   </a>
                 </label>

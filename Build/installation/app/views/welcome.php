@@ -17,8 +17,8 @@ if($distant == $versioncms){
                     <div class="alert alert-danger">
                         <p class="text-center" style="text-align: center !important;">
                         <center>
-                            <h2>ATTENTION:</h2> Il semble que vous essayez d'installer une version antérieur du CMS !<br/>
-                            Le support forum / discord n'est pas assuré sur les version antérieur à la <strong><?=$distant;?></strong> hors vous semblez être sur la version <strong><?=$versioncms;?></strong><br/>
+                            <h2>ATTENTION:</h2> Il semble que vous essayez d'installer une version antérieure du CMS !<br/>
+                            Le support forum / discord n'est pas assuré sur les version antérieure à la <strong><?=$distant;?></strong> hors vous semblez être sur la version <strong><?=$versioncms;?></strong><br/>
                             Continuer uniquement si vous savez ce que vous faites<br/>
                         </center>
                         </p>
@@ -48,4 +48,4 @@ if($distant == $versioncms){
 
 </div>
 <hr class="mb-4">
-            <a href="?action=cgu" class="btn btn-primary btn-lg btn-block">J'ai lu et j'accepte les conditions générales d'utilisations</a>
+            <a href="?action=cgu" class="btn btn-primary btn-lg btn-block">J'ai lu et j'accepte les conditions générales d'utilisation</a>
