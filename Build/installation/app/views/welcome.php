@@ -17,9 +17,9 @@ if($distant == $versioncms){
                     <div class="alert alert-danger">
                         <p class="text-center" style="text-align: center !important;">
                         <center>
-                            <h2>ATTENTION:</h2> Il semble que vous essayez d'installer une version antérieur du CMS !<br/>
-                            Le support forum / discord n'est pas assuré sur les version antérieur à la <strong><?=$distant;?></strong> hors vous semblez être sur la version <strong><?=$versioncms;?></strong><br/>
-                            Continuer uniquement si vous savez ce que vous faites<br/>
+                            <h2>ATTENTION:</h2> Il semble que vous essayez d'installer une version antérieure du CMS !<br/>
+                            Le support forum / discord n'est pas assuré sur les version antérieure à la <strong><?=$distant;?></strong> or vous semblez être sur la version <strong><?=$versioncms;?></strong><br/>
+                            Continuez uniquement si vous savez ce que vous faites<br/>
                         </center>
                         </p>
                 </div>
