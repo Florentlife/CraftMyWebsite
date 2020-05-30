@@ -18,8 +18,8 @@ if($distant == $versioncms){
                         <p class="text-center" style="text-align: center !important;">
                         <center>
                             <h2>ATTENTION:</h2> Il semble que vous essayez d'installer une version antérieure du CMS !<br/>
-                            Le support forum / discord n'est pas assuré sur les version antérieure à la <strong><?=$distant;?></strong> hors vous semblez être sur la version <strong><?=$versioncms;?></strong><br/>
-                            Continuer uniquement si vous savez ce que vous faites<br/>
+                            Le support forum / discord n'est pas assuré sur les version antérieure à la <strong><?=$distant;?></strong> or vous semblez être sur la version <strong><?=$versioncms;?></strong><br/>
+                            Continuez uniquement si vous savez ce que vous faites<br/>
                         </center>
                         </p>
                 </div>
@@ -32,19 +32,14 @@ if($distant == $versioncms){
 
 <div class="accordion" id="accordionExample">
 
-    <div class="card bg-light">
-
             <h2 class="mb-3">
                 <button class="btn btn-block btn-primary" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     Conditions Générales d'Utilisation
                 </button>
             </h2>
-            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample" style="margin:0px;">
-                <div class="card-body">
-                    <?php include('app/miscellaneous/cgu.php'); ?>
-                </div>
+            <div id="collapseOne" class="collapse show bg-light" aria-labelledby="headingOne" data-parent="#accordionExample" style="margin:0px;">
+                <?php include('app/miscellaneous/cgu.php'); ?>
             </div>
-    </div>
 
 </div>
 <hr class="mb-4">
