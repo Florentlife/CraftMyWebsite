@@ -70,6 +70,8 @@ class JsonCon
 			return false;
 		if(isset($c[0]['result']) && $c[0]['result'] == "success")
 			return true;
+		if(isset($c['HostName']) && !empty($c['HostName']))
+			return true;
 		return false;
 	}
 	
@@ -149,6 +151,8 @@ class JsonCon
 			$console['Test'] = $this->api->call("getLatestConsoleLogsWithLimit", array($msg));
 			$console['Test'] = $console['Test'][0]["success"];
 		}
+		else
+			$console['Test'] = "Impossible de récupérer les données de la console en RCON/QUERY";
 		$this->updateReq("getLatestConsoleLogsWithLimit", $console);
 		return $console;
 	}

@@ -7,6 +7,7 @@ if(Permission::getInstance()->verifPerm('PermsPanel', 'server', 'actions', 'edit
 
 	foreach($lecture as $key => $serveur)
 	{
+		unset($info);
 		$info['addr'] = $_POST['JsonAddr' . $key];
 		if(isset($_POST['JsonPort'.$key]))
 		{

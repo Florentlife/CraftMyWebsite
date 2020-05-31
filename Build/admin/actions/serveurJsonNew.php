@@ -19,9 +19,9 @@ if(Permission::getInstance()->verifPerm('PermsPanel', 'server', 'actions', 'addS
 	$infos['nom'] = $_POST['JsonNom'];
 
 	if($infos['protocole'] == 0)
-		$req = $bddConnection->prepare('INSERT INTO cmw_serveur (nom, adresse, protocole, port, utilisateur, mdp) VALUES (:nom, :adresse, :protocole, :port, :utilisateur, :mdp');
+		$req = $bddConnection->prepare('INSERT INTO cmw_serveur (nom, adresse, protocole, port, utilisateur, mdp) VALUES (:nom, :adresse, :protocole, :port, :utilisateur, :mdp)');
 	else
-		$req = $bddConnection->prepare('INSERT INTO cmw_serveur (nom, adresse, protocole, port, port2, mdp) VALUES (:nom, :adresse, :protocole, :query, :rcon, :mdp');
+		$req = $bddConnection->prepare('INSERT INTO cmw_serveur (nom, adresse, protocole, port, port2, mdp) VALUES (:nom, :adresse, :protocole, :query, :rcon, :mdp)');
 
 	$req->execute($infos);
 }

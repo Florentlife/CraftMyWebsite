@@ -91,6 +91,7 @@
                         <div class="tab-pane well <?php if($i == 0) echo 'active'; ?>" id="jsonReg<?php echo $i; ?>">
                             <h4><?php echo $serveur['nom']; ?>  <a class="btn btn-danger" href="?&action=supprJson&nom=<?php echo $serveur['id']; ?>">Supprimer ce serveur</a></h4>
                             
+                             <input type="hidden" name="id<?=$i;?>" value="<?=$serveur['id'];?>" />
                             <label class="control-label" style="float: left;font-size: 15px;font-weight: bold;margin-top: 5px;">Nom du serveur</label>
                             <input type="text" name="JsonNom<?php echo $i; ?>" class="form-control" placeholder="Exemple: CraftMyCube" value="<?php echo $serveur['nom']; ?>">
                             

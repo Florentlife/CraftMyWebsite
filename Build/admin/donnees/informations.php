@@ -22,15 +22,19 @@ if(Permission::getInstance()->verifPerm('PermsPanel', 'info', 'showPage')) {
         $console -> La console
         $plugins -> les plugins 
     */
-    foreach($jsonCon as $key => $serveur)
+    if(isset($jsonCon))
     {
-        if($conEtablie[$key])
+        foreach($jsonCon as $key => $serveur)
         {
-            $serveurStats[$key] = $serveur->GetServeurInfos();
-            $console[$key] = $serveur->GetConsole();
-            $plugins[$key] = $serveur->getPlugins();
+            if($conEtablie[$key])
+            {
+                $serveurStats[$key] = $serveur->GetServeurInfos();
+                $console[$key] = $serveur->GetConsole();
+                $plugins[$key] = $serveur->getPlugins();
+            }
         }
     }
+    
 
     // <!-- Statistiques des membres -->
     $membresStatsReq = $bddConnection->query('SELECT * FROM cmw_users ORDER BY id DESC LIMIT 0, 8;');

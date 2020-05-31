@@ -5,7 +5,7 @@ $reqRecup = $bddConnection->query('SELECT * FROM cmw_serveur');
 
 $lectureJSON = $reqRecup->fetchAll(PDO::FETCH_ASSOC);
 
-	foreach($lecture as $key => $serveur)
+	foreach($lectureJSON as $key => $serveur)
 	{
 		if($serveur['protocole'] == 1)
 		{

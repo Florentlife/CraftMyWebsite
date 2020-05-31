@@ -44,7 +44,8 @@ ini_set('display_errors', 1);
 			include('admin/donnees.php');
 			include('admin/action.php');
 		}else {
-			$pageadmin = $_GET['page'];
+			if(isset($_GET['page']))
+				$pageadmin = $_GET['page'];
 			include('admin/page.php');
 		}
 	}
