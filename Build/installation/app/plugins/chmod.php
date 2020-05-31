@@ -96,7 +96,7 @@ function DrawChmod($return)
     if($return['chmodDossier'] != null OR $return['chmod'] != null){ ?>
             <div class="pt-3">
         <div class="alert alert-danger">
-            Veuillez installer les extensions manquantes pour procéder à l'installation
+            Veuillez modifier les chmod des dossiers/fichiers pour procéder à l'installation
         </div>
     </div>
     <div class="block border shadow bg-texture" style="border-radius: 2% !important;">
@@ -136,12 +136,14 @@ function DrawChmod($return)
                     }?>
                     </tbody>
                 </table>
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <a onclick="ajax_chmod()" class="btn btn-primary text-white btn-block minecrafter">Tenter de modifier les chmod automatiquement</a>
+                        <a href="index.php" class="btn btn-primary btn-block minecrafter">Relancer la verification</a><br/>
+                    </div>
+                </div>
             </div>
         </div>
-            
-            <a onclick="ajax_chmod();" class="btn btn-primary btn-block minecraft">Tenter de modifier les chmod automatiquement</a>
-            <a href="index.php" class="btn btn-primary btn-block minecrafter">Relancer la verification</a><br/>
 
      </div>
 
