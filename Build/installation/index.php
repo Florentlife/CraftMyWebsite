@@ -33,7 +33,7 @@ include '../include/version.php';
                     <h2>Bienvenue sur votre site !</h2>
                 <p class="lead">
                     Merci d’avoir choisi CraftMyWebsite, des mises à jour seront disponibles très fréquemment sur le site officiel.
-                    Il peut néanmoins y avoir des bugs ! Merci de nous en faire part sur le forum pour les corriger au plus vite.
+                    Il peut néanmoins y avoir des bugs ! Merci de nous en faire part sur le forum ou sur le discord pour les corriger au plus vite.
                 </p>
 
                 <div class="row">
