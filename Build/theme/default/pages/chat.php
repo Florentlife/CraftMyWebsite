@@ -15,14 +15,14 @@
 			<div class="tabbable">
 				<ul class="nav nav-tabs" style="margin-bottom:1vh;">
 				<?php
-				foreach($lectureJSON as $serveur)
+				foreach($lectureJSON as $i => $serveur)
 				{
 				?>
 					<li class="nav-item">
 						<a href="#categorie-<?php echo $i; ?>" data-toggle="tab" class="nav-link <?php if($i == 0) echo 'active'; ?>"><?php echo $serveur['nom']; ?></a>
 					</li>
 				<?php 
-				} 
+				}
 				?>
 				</ul>
 				<div class="tab-content" id="messages">

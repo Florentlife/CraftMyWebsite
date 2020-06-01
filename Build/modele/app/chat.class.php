@@ -18,10 +18,10 @@ class Chat extends JsonCon
 		if($i < count($this->json) && $this->connecte[$i] == true)
 		{
 			$messages = $this->json[$i]->GetChat(array('20'));
+			if($messages == null)
+				return "query";
 			if(empty($messages[0]['success']))
 				return "erreur";
-			if($messages[0]['success'] == null)
-				return "query";
 			return $messages[0]['success'];
 		}
 		else
