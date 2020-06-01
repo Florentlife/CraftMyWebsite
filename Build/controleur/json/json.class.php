@@ -140,8 +140,9 @@ class JsonCon
 	public function GetChat($donnees)
 	{
 		if($this->TryMode())
-			$c = $this->api->call("streams.chat.latest", $donnees);
-		return $c;
+			return $this->api->call("streams.chat.latest", $donnees);
+		else
+			return null;
 	}
 
 	public function getPlugins()
