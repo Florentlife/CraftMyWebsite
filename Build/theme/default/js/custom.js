@@ -42,3 +42,20 @@ function bouclevote(id2, pseudo2) {
 		}
     });
 }
+
+function showFunction(showId) {
+	var x = document.getElementById(showId);
+	if (x.style.opacity === "0") {
+		x.style.height = "auto";
+		x.style.opacity = "1";
+	} else {
+		x.style.height = "0";
+		x.style.opacity = "0";
+	}
+}
+
+function getUploadFileName(target) {
+
+	document.getElementById("file-name").innerHTML = target.files[0].name;
+}
+
