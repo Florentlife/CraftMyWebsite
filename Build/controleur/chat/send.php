@@ -1,7 +1,7 @@
 <?php
 if(Permission::getInstance()->verifPerm("connect") && isset($_POST['i']) && isset($_POST['message']) && (!isset($_SESSION['chat']) OR $_SESSION['chat'] < time()))
 {
-	$_SESSION['chat'] = time()+20;
+	$_SESSION['chat'] = time()+1;
 	if(Permission::getInstance()->verifPerm('PermsDefault', 'chat', 'color'))
 		$message = str_replace('&', '§', $_POST['message']);
 	else
