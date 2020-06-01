@@ -13,7 +13,7 @@ class ImgProfil
 	}
 	//$_ImgProfil_->getUrlHeadByPseudo();
 	public function getUrlHeadByPseudo($pseudo) {
-	    if($pseudo == 'CraftMyWebsite'){
+	    if($pseudo == 'CraftMyWebsite' OR $pseudo == ""){
 	        return "https://craftmywebsite.fr/favicon.ico";
 	    } else {
 	        $info = $this->getInfoByPseudo($pseudo);
@@ -42,7 +42,7 @@ class ImgProfil
 	}
 	
 	public function getUrlBodyByPseudo($pseudo) {
-	    if($pseudo == 'CraftMyWebsite'){
+	    if($pseudo == 'CraftMyWebsite' OR $pseudo == ""){
 	        return "https://craftmywebsite.fr/favicon.ico";
 	    } else {
 	        $info = $this->getInfoByPseudo($pseudo);
