@@ -57,7 +57,7 @@
 						}
 						else
 						{
-							$temp .="Vous récupérerez une surprise :D :P";
+							$temp .="Vous récupérerez une surprise !";
 						}
 
 					for($a=0;$a<count($list); $a++) {
