@@ -386,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `cmw_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pseudo` varchar(20) NOT NULL,
   `mdp` varchar(200) NOT NULL,
-  `email` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
   `anciennete` int(11) NOT NULL,
   `newsletter` int(1) NOT NULL,
   `rang` int(2) NOT NULL DEFAULT '1',
