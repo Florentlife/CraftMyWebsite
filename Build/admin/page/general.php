@@ -80,6 +80,8 @@
     </div>
 </form>
 <div class="row">
+	<?php if(Permission::getInstance()->verifPerm('PermsPanel', 'general', 'actions', 'editFavicon'))
+	{ ?>
 	<form action="?action=ajout_favicon" method="POST" enctype="multipart/form-data">
 		<div class="col-md-6 col-xs-12">
 			<div class="panel panel-default cmw-panel">
@@ -104,6 +106,9 @@
 			</div>
 		</div>
 	</form>
+	<?php 
+	}
+	?>
 	<form action="?action=editMail" method="POST" enctype="multipart/form-data">
 		<div class="col-md-6 col-xs-12">
 			<div class="panel panel-default cmw-panel" >

@@ -59,7 +59,8 @@ const PERMS = array(
 			"page" => "Réglage site",
 			"showPage" => "Accès à la page <strong>Réglage Site</strong>",
 			"actions" => array(
-				"editGeneral" => "Edition des réglages sites (base de donnée, IP minecraft ...)"
+				"editGeneral" => "Edition des réglages sites (base de donnée, IP minecraft ...)",
+				"editFavicon" => "Edition du favicon"
 			)
 		),
 		"theme" => array(
