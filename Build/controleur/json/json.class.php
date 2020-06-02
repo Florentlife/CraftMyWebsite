@@ -122,20 +122,6 @@ class JsonCon
 				$this->api['rcon']->Rcon("say ".$message);
 		}
 	}
-
-	public function sendChat($donnees)
-	{
-		if($this->TryMode())
-		{
-			$data = $this->api->call("chat.broadcast", array($donnees));	
-		}
-		else
-		{
-			if($this->api != null)	
-				$data = $this->api['rcon']->Rcon('say '.$donnees);
-		}
-		return $data;
-	}
 	
 	public function GetChat($donnees)
 	{
