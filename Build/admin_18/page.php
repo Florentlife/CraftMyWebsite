@@ -15,7 +15,6 @@ if(isset($_GET['page']))
 		break;
 
 		case 'boutiquelist':
-			require_once('./admin/donnees/boutiquelist.php');
 			include('./admin/pages/boutiquelist.php');
 		break;
 
