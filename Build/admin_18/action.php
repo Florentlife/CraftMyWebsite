@@ -10,7 +10,12 @@ if(isset($_GET['action']) AND Permission::getInstance()->verifPerm("PermsPanel",
 	{ 
 		case 'getJsonMember':
 			require('admin/actions/getJsonMember.php');
-			exit();
+		exit();
+
+		case 'getJsonAchat':
+			require('admin/actions/getJsonAchat.php');
+		exit();
+
 		case 'changeVoteCron':
 			require('admin/actions/changeVoteCron.php');
 		break;
