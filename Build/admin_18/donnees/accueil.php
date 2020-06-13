@@ -3,20 +3,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['showPage'] == tru
     $lectureAccueil = new Lire('modele/config/accueil.yml');
     $lectureAccueil = $lectureAccueil->GetTableau();
 
-    if(isset($lectureAccueil['Infos'])) {
-        for($i = 1; $i < count($lectureAccueil['Infos']); $i++) {
-            $explode = explode('=', $lectureAccueil['Infos'][$i + 1]['lien']);
-            if($explode[0] == '?page')
-            {    
-                $typeNavRap[$i] = 1;
-                $pageActive[$i] = $explode[1];
-            }
-            else 
-            {
-                $typeNavRap[$i] = 2;
-            }
-        }
-    }
 
     $images = scandir('theme/upload/navRap/');
    // $imagesSlider = scandir('theme/upload/slider');

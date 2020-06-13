@@ -468,7 +468,7 @@
                                                 <input type="number" style="display:none;" value="<?=$message_postit['id'];?>" name="id">
                                             </a>
                                             <script>initPost("suppStaffMessage-<?=$message_postit['id'];?>", "admin.php?action=supprPostit",  
-                                            function (data) { if(data) { document.getElementById("<?=$message_postit['id'];?>").style.display = "none";} });</script>
+                                            function (data) { if(data) { document.getElementById("suppStaffMessage-<?=$message_postit['id'];?>").style.display = "none";} });</script>
                                         </p>
                                    <?php } ?>
                             </div>

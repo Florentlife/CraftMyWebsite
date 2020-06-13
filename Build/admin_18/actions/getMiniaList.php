@@ -3,23 +3,6 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['showPage'] == tru
     $lectureAccueil = new Lire('modele/config/accueil.yml');
     $lectureAccueil = $lectureAccueil->GetTableau();
 
-    if(isset($lectureAccueil['Infos'])) {
-        for($i = 1; $i < count($lectureAccueil['Infos']); $i++) {
-            $explode = explode('=', $lectureAccueil['Infos'][$i + 1]['lien']);
-            if($explode[0] == '?page')
-            {    
-                $typeNavRap[$i] = 1;
-                $pageActive[$i] = $explode[1];
-            }
-            else 
-            {
-                $typeNavRap[$i] = 2;
-            }
-        }
-    }
-
-    $images = scandir('theme/upload/navRap/');
-   // $imagesSlider = scandir('theme/upload/slider');
 
     $pagesReq = $bddConnection->query('SELECT titre FROM cmw_pages');
     $i = 0;
@@ -40,21 +23,18 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['showPage'] == tru
     ?>
 					<ul class="nav nav-tabs" id="list-minia">
                         <?php for($i = 1;$i < count($lectureAccueil['Infos']) + 1;$i++) {?>
-                            <li class="nav-item text-black <?php if($i == 1) echo 'active'; ?>" id="tabnavRap<?=$i?>"><a href="#navRap<?=$i?>" class="nav-link <?php if($i == 1) echo 'active'; ?>" data-toggle="tab">Miniature #<?=$i?></a></li>
+                            <li class="nav-item"  id="tabnavRap<?=$i?>"><a href="#navRap<?=$i?>" class="nav-link <?php if($i == 1) echo 'active'; ?>"  data-toggle="tab" style="color: black !important">Miniature #<?=$i?></a></li>
                         <?php }?>
                         </ul>
                         
                         <div class="tab-content">
-                        <script> const nextMiniaId = <?php echo count($lectureAccueil['Infos']); ?>;</script>
                         <?php for($i = 1;$i < count($lectureAccueil['Infos']) + 1;$i++) {?>
                             <div class="tab-pane well<?php if($i == 1) echo ' active'?>" id="navRap<?=$i?>" style="margin-top:10px;">
                                 <div style="width: 100%;display: inline-block">
                                     <div class="float-left">
                                         <h3>Miniature #<?=$i?></h3>
                                     </div>
-                                    <div class="float-right">
-                                        <button  onclick="sendPost('suppnavRap<?=$i?>');" class="btn btn-sm btn-outline-secondary">Supprimer</button>
-                                    </div>
+                                  
                                 </div>
                                 <div class="row">
                                     <img class="col-md-6 thumbnail" src="theme/upload/navRap/<?php echo $lectureAccueil['Infos'][$i]['image']; ?>"/>
@@ -81,34 +61,31 @@ if($_Joueur_['rang'] == 1 OR $_PGrades_['PermsPanel']['home']['showPage'] == tru
                                 </div>
                                 
                                 <br></br>   
-
+    
                                 <div class="custom-control custom-radio">
-                                    <input type="radio"  name="typeLien<?=$i?>" value="page" id="radiopage<?=$i?>" class="custom-control-input" onclick="document.getElementById('lienpage<?=$i?>').style.display='block';document.getElementById('lienurl<?=$i?>').style.display='none';" <?php if($typeNavRap[$i] == 1) echo 'checked'; ?>>
+                                    <input type="radio"  name="typeLien<?=$i?>" value="page" id="radiopage<?=$i?>" class="custom-control-input" onclick="document.getElementById('lienpage<?=$i?>').style.display='block';document.getElementById('lienurl<?=$i?>').style.display='none';" <?php if($lectureAccueil['Infos'][$i]['type'] == "page") { echo 'checked'; } ?>>
                                     <label class="custom-control-label" for="radiopage<?=$i?>">Je souhaite rediriger vers une page existante</label>
                                 </div>
 
                                 <div class="custom-control custom-radio">
-                                    <input type="radio"  name="typeLien<?=$i?>" value="lien" id="radiolien<?=$i?>" onclick="document.getElementById('lienpage<?=$i?>').style.display='none';document.getElementById('lienurl<?=$i?>').style.display='block';" class="custom-control-input" <?php if($typeNavRap[$i] == 2) echo 'checked'; ?>>
+                                    <input type="radio"  name="typeLien<?=$i?>" value="lien" id="radiolien<?=$i?>" onclick="document.getElementById('lienpage<?=$i?>').style.display='none';document.getElementById('lienurl<?=$i?>').style.display='block';" class="custom-control-input" <?php if($lectureAccueil['Infos'][$i]['type'] == "lien") { echo 'checked'; } ?>>
                                     <label class="custom-control-label" for="radiolien<?=$i?>">Je souhaite rediriger vers un lien personnalisé</label>
                                 </div>
 
                                 <hr></hr>
 
-                                <select name="page<?=$i?>" class="form-control" id="lienpage<?=$i?>" <?php if($typeNavRap[$i] == 2) echo 'style="display:none;"'; ?>>
+                                <select name="page<?=$i?>" class="form-control" id="lienpage<?=$i?>" <?php if($lectureAccueil['Infos'][$i]['type'] == "lien") { echo 'style="display:none;"'; } ?>>
                                     <?php $j = 0;
                                     while($j < count($pages)) { ?>
-                                    <option value="<?php echo $pages[$j]; ?>" <?php  if($typeNavRap[$i] == 1 && $pages[$j] == $pageActive[$i]) { echo 'selected';}?>><?php echo $pages[$j]; ?></option>
+                                    <option value="<?php echo $pages[$j]; ?>" <?php  if($lectureAccueil['Infos'][$i]['type'] == "page" && $pages[$j] == $pageActive[$i]) { echo 'selected';}?>><?php echo $pages[$j]; ?></option>
                                     <?php $j++; } ?>
                                 </select>
 
-                                <input type="text" class="form-control" id="lienurl<?=$i?>"<?php if($typeNavRap[$i] == 2) echo 'value="'.$lectureAccueil['Infos'][$i]['lien'].'"'; ?> name="lien<?=$i?>" placeholder="URL ex: https://google.com" <?php if($typeNavRap[$i] == 1) echo 'style="display:none;"'; ?> />
+                                <input type="text" class="form-control" id="lienurl<?=$i?>"<?php if($lectureAccueil['Infos'][$i]['type'] == "lien") echo 'value="'.$lectureAccueil['Infos'][$i]['lien'].'"'; ?> name="lien<?=$i?>" placeholder="URL ex: https://google.com" <?php if($lectureAccueil['Infos'][$i]['type'] == "page") { echo 'style="display:none;"'; } ?> />
 
                                
                             </div>
 
-                            <script>initPost("suppnavRap<?=$i?>", "admin.php?action=supprMini&id=<?=$i;?>",function (data) { if(data) { document.getElementById('navRap<?=$i?>').style.display='none';
-                                document.getElementById('tabnavRap<?=$i?>').style.display='none';  } });</script>
                         <?php } ?>
                         </div>
-                    <script>initPost("editRapNav", "admin.php?action=editRapNav",null);</script>
 <?php } ?>              

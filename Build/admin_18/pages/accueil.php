@@ -1,11 +1,11 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h2 class="h2 gray">
-        Miniature & Sliders
+        Miniatures & Slider
     </h2>
 </div>
 <?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'home', 'actions', 'uploadSlider') AND !Permission::getInstance()->verifPerm('PermsPanel', 'theme', 'actions', 'editBackground') AND !Permission::getInstance()->verifPerm('PermsPanel', 'home', 'actions', 'editMiniature')) { ?>
     <div class="alert alert-danger">
-        <strong>Vous avez aucune permission pour accéder aux réglages du slider et des miniatures.</strong>
+        <strong>Vous n'avez pas la permission pour accéder aux réglages du slider et des miniatures.</strong>
     </div>
 
 <?php } else {?>
@@ -161,7 +161,7 @@
         
     </div>
 
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="card">
             <div class="card-header">
                 <h4 class="card-title">

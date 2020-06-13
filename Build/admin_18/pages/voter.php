@@ -230,7 +230,7 @@
 		</script>
     <?php }
     if(Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'resetVote') OR Permission::getInstance()->verifPerm('PermsPanel', 'vote', 'actions', 'deleteVote')) { ?>
-        <div class="col-lg-12">
+        <div class="col-md-12">
             <div class="card  ">
                 <div class="card-header ">
                     <h3 class="card-title"><strong>Edition des votes</strong></h3>
@@ -246,7 +246,8 @@
                         <div class="row" style="margin-top:10px;">
                             <h3 class="text-center">Gestion des votes</h3>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row"> -->
+                        <form action="?action=modifierVote" method="post">
                             <?php $donnees = $req_donnees->fetchAll();
                             for($o=0; $o < count($donnees); $o++)
                             {
@@ -260,63 +261,101 @@
                                     <div class="col-md-12">
                                     <div class="card card-body">
 
-                                        <div class="">
-
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="nom<?=$o;?>">Nom :</label>
+                                                <input type="text" class="form-control" id="titre<?=$o;?>" name="titre<?=$o;?>" value="<?=$donnees[$o]['titre'];?>" />
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="lien<?=$o;?>">Lien :</label>
+                                                <input type="url" class="form-control" id="lien<?=$o;?>" name="lien<?=$o;?>" value="<?=$donnees[$o]['lien'];?>" />
+                                            </div>
                                         </div>
-                                            <td><input type="text" class="form-control" name="titre<?=$o;?>"
-                                                    value="<?=$donnees[$o]['titre'];?>" /></td>
-                                            <td><input type="url" value="<?=$donnees[$o]['lien'];?>"
-                                                    class="form-control" name="lien<?=$o;?>" /></td>
-                                            <td><select name="serveur<?=$o;?>" class="form-control">
+                                        <div class="form-group">
+                                            <label for="serveur<?=$o;?>">Dans la catégorie :</label>
+                                            <select name="serveur<?=$o;?>" id="serveur<?=$o;?>" class="form-control">
                                                     <?php for($i = 0; $i < count($lectureServs); $i++) {        ?>
                                                     <option value="<?php echo $i ?>"
                                                         <?=($lectureServs[$i]['nom'] == $lectureServs[intval($donnees[$o]['serveur'])]['nom']) ? 'selected' : ''; ?>>
                                                         <?php echo $lectureServs[$i]['nom']; ?> </option>
                                                     <?php } ?>
-                                                </select></td>
-                                            <td><select name="methode<?=$o;?>" class="form-control">
+                                                </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="methode<?=$o;?>">Sur :</label>
+                                            <select name="methode<?=$o;?>" id="methode<?=$o;?>" class="form-control">
                                                     <option value="1"
                                                         <?=($donnees[$o]['methode'] == 1) ? 'selected' : '';?>> Le
-                                                        serveur où il est en ligne </option>
+                                                        serveur où le joueur est en ligne </option>
                                                     <option value="2"
                                                         <?=($donnees[$o]['methode'] == 2) ? 'selected' : '';?>> Le
                                                         serveur de la catégorie </option>
-                                                </select></td>
-                                            <?php $action = explode(':', $donnees[$o]['action'], 2); ?>
-                                            <td><select name="action<?=$o;?>" class="form-control">
-                                                    <option value="1" <?=($action[0] == 'cmd') ? 'selected' : '';?>>
-                                                        Executer une commande </option>
-                                                    <option value="2" <?=($action[0] == 'give') ? 'selected' : '';?>>
-                                                        Give d'item </option>
-                                                    <option value="3" <?=($action[0] == 'jeton') ? 'selected' : '';?>>
-                                                        Give de jetons site</option>
-                                                </select></td><?php if($action[0] == "give")
-$item = explode(':', $action[1]);
-if($action[0] == "jeton")
-    $quantite = $action[1];
-elseif($action[0] == "give")
-    $quantite = $item[3];
-else
-    $quantite = '';
-?>
-                                            <td><input type="text" name="quantite<?=$o;?>" class="form-control"
-                                                    value="<?=$quantite;?>" /></td>
-                                            <td><input type="text" name="cmd<?=$o;?>" class="form-control"
-                                                    value="<?=($action[0] == 'cmd') ? $action[1] : '';?>" /></td>
-                                            <td><input type="text" name="id<?=$o;?>" class="form-control"
-                                                    value="<?=($action[0] == "give") ? $item[1] : '';?>" /></td>
-                                            <td><input type="text" name="message<?=$o;?>" class="form-control"
-                                                    value="<?=$donnees[$o]['message'];?>" /></td>
-                                            <td><input type="number" name="temps<?=$o;?>" class="form-control"
-                                                    value="<?=$donnees[$o]['temps'];?>" /></td>
-                                            <td><input type="text" name="idCustom<?=$o;?>" class="form-control"
-                                                    value="<?=$donnees[$o]['idCustom'];?>" /></td>
-                                            <td><input type="checkbox" name="enligne<?=$o;?>" class="form-control"
-                                                    value="1" <? if($donnees[$o]['enligne']==1) { echo 'checked' ; } ?>>
-                                            </td>
-                                            <td><a href="?action=supprVote&id=<?=$donnees[$o]['id'];?>"
-                                                    class="btn btn-danger">Supprimer</a></td>
-                                        </tr>
+                                            </select>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-12">
+                                                <label for="action<?=$o;?>">Action</label>
+                                                <?php $action = explode(':', $donnees[$o]['action'], 2); ?>
+                                                <select name="action<?=$o;?>" id="action<?=$o;?>" class="form-control">
+                                                        <option value="1" <?=($action[0] == 'cmd') ? 'selected' : '';?>>
+                                                            Executer une commande </option>
+                                                        <option value="2" <?=($action[0] == 'give') ? 'selected' : '';?>>
+                                                            Give d'item </option>
+                                                        <option value="3" <?=($action[0] == 'jeton') ? 'selected' : '';?>>
+                                                            Give de jetons site</option>
+                                                    </select>
+                                            </div>
+                                            <?php 
+                                            if($action[0] == "give")
+                                                    $item = explode(':', $action[1]);
+                                                    if($action[0] == "jeton")
+                                                        $quantite = $action[1];
+                                                    elseif($action[0] == "give")
+                                                        $quantite = $item[3];
+                                                    else
+                                                        $quantite = '';
+                                            ?>
+                                            <div class="form-group col-md-4 col-sm-12">
+                                                <label for="cmd<?=$o;?>">Commande à executer</label>
+                                                <input type="text" name="cmd<?=$o;?>" id="cmd<?=$o;?>" class="form-control"
+                                                    value="<?=($action[0] == 'cmd') ? $action[1] : '';?>" />
+                                            </div>
+                                            <div class="form-group col-md-2 col-sm-6">
+                                                <label for="quantite<?=$o;?>">Quantité</label>
+                                                <input type="text" name="quantite<?=$o;?>" id="quantite<?=$o;?>" class="form-control"
+                                                    value="<?=$quantite;?>" />
+                                            </div>
+                                            <div class="form-group col-md-2 col-sm-6">
+                                                <label for="iditem<?=$o;?>">ID de l'item</label>
+                                                <input type="text" name="id<?=$o;?>" name="iditem<?=$o;?>" class="form-control"
+                                                    value="<?=($action[0] == "give") ? $item[1] : '';?>" />
+                                            </div>
+                                           <div class="form-group col-md-4 col-sm-12">
+                                                <label for="msg<?=$o;?>">Message</label>
+                                                <input type="text" name="message<?=$o;?>" id="msg<?=$o;?>" class="form-control"
+                                                    value="<?=$donnees[$o]['message'];?>" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="temps<?=$o;?>">Temps entre chaque vote</label>
+                                            <input type="number" name="temps<?=$o;?>" id="temps<?=$o;?>" class="form-control"
+                                                    value="<?=$donnees[$o]['temps'];?>" />
+                                        </div> 
+                                        <div class="form-group">
+                                            <label for="idunique<?=$o;?>">ID Unique</label>
+                                            <input type="text" name="idCustom<?=$o;?>" id="idunique<?=$o;?>" class="form-control"
+                                                    value="<?=$donnees[$o]['idCustom'];?>" />
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="enligne<?=$o;?>" id="enlignecb<?=$o;?>">
+                                                <label class="form-check-label" for="enlignecb<?=$o;?>" value="1" <? if($donnees[$o]['enligne']==1) { echo 'checked' ; } ?>>
+                                                    Doit être connecté sur le serveur
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <a href="?action=supprVote&id=<?=$donnees[$o]['id'];?>"
+                                                    class="btn btn-danger btn-block w-100">Supprimer</a>
 
                                     </div>
                                     </div>
@@ -324,9 +363,15 @@ else
                             </div>
                             <?php 
                             } ?>
-                        </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="row text-center">
+                                    <input type="submit" class="btn btn-success w-100" value="Valider les changements !"/>
+                                </div>
+                            </div>
+                            </form>
                     <?php } ?>
-                </div>
+                <!-- </div> -->
             </div>
         </div>
     <?php } ?>
