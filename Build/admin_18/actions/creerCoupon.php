@@ -34,6 +34,5 @@ if(Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'actions', 'creerC
 							'fin' => $fin,
 							'expire' => $expire
 		));
-		header('Location: ?page=boutique');
 	}
 }

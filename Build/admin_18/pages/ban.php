@@ -4,15 +4,15 @@
 	</h2>
 </div>
 <?php if($_Joueur_['rang'] != 1 AND $_PGrades_['PermsPanel']['ban']['showPage'] == false)
-{
-	echo '
+{?>
+	
 	<div class="row">
 		<div class="col-md-12 text-center">
 			<div class="alert alert-danger">
-				<strong>Vous n\'avez pas la permission d''accéder aux bannissements.</strong>
+				<strong>Vous n'avez pas la permission d''accéder aux bannissements.</strong>
 			</div>
 		</div>
-	</div>';
+	</div><?php 
 }
 else
 	{

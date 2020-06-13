@@ -15,6 +15,8 @@ if(isset($_GET['page']))
 		break;
 
 		case 'boutiquelist':
+			echo '<link rel="stylesheet" href="./admin/assets/css/boutiquelist.css">';
+			require_once('./admin/donnees/boutiquelist.php');
 			include('./admin/pages/boutiquelist.php');
 		break;
 

@@ -65,15 +65,13 @@ function sendPost(idform, callback) {
         if(!Array.isArray(allForm[idform].get(key))) {
             if(allForm[idform].get(key).required && (allForm[idform].get(key).type=="checkbox" |allForm[idform].get(key).type=="text" |allForm[idform].get(key).type=="password" |allForm[idform].get(key).type=="number" |allForm[idform].get(key).type=="email" )&& (!isset(allForm[idform].get(key).value) | allForm[idform].get(key).value.replace(" ", "") == ""))
             { 
-                let o = 1;
-                errorForm[idform] = {};
+                errorForm[idform] = [];
                 let it2 = allForm[idform].keys();
                 for (let op of it2) {
                     if(allForm[idform].get(op).required && (allForm[idform].get(op).type=="text" |allForm[idform].get(op).type=="password"|allForm[idform].get(key).type=="number" |allForm[idform].get(op).type=="email" )&& (!isset(allForm[idform].get(op).value) | allForm[idform].get(op).value.replace(" ", "") == ""))
                     { 
-                        errorForm[idform][o] = allForm[idform].get(op);
+                        errorForm[idform].push(allForm[idform].get(op));
                         allForm[idform].get(op).className += " input-red";
-                        o++;
                     }
                 }
                 notif("warning", "Erreur", "Formulaire incomplet");
@@ -87,7 +85,7 @@ function sendPost(idform, callback) {
                 if((allForm[idform].get(key).type == "checkbox" && !allForm[idform].get(key).checked))
                 {
 
-                } else {
+                } else if(isset(allForm[idform].get(key).value)){
                     console.log(key+"-"+allForm[idform].get(key).value);
                     postData[key] = allForm[idform].get(key).value;
                 }
@@ -161,6 +159,13 @@ function updateCont(action, el, callback) {
     });
 }
 
+function SwitchDisplay(el) {
+    if(el.style.display == 'none') {
+        el.style.display ='block';
+    } else {
+        el.style.display ='none';
+    }
+}
 function Switch(el, el1, el2 )
 {
     if(el.innerText == el1) {
@@ -169,16 +174,27 @@ function Switch(el, el1, el2 )
         el.innerText = el1;
     }
 }
-/*
-function postCalBack(id, data) {
-    if(id == "" && data) {
-    }
+
+function hide(el) {
+    get(el).style.display = 'none';
 }
- */
+
+function show(el) {
+    get(el).style.display = 'block';
+}
+
 function notif(type, header, message)
 {
      toastr[type](message, header);
 }
 function isset(obj) {
     return typeof obj !== 'undefined' && obj !== null;
+}
+
+function initPostCallback(callback) {
+    var list = document.querySelectorAll('[data-callback]');
+    for (var i = 0; i < list.length; ++i) {
+        console.log("try callback "+list[i]);
+        initPost(list[i].getAttribute("data-callback"), list[i].getAttribute("data-url"), callback);
+    }
 }

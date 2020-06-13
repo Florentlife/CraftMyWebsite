@@ -24,3 +24,9 @@ $(document).ready(function() {
 	}, 100);
 	
 });
+
+function boutiqueUpdate() {
+	updateCont("admin.php?action=getOffreBoutique", get("allcategorie"), function(data) { if(data) { 
+		initPostCallback( function() {  boutiqueUpdate(); });
+	}});
+}
