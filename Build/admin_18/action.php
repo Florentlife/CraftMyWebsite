@@ -14,7 +14,6 @@ if(isset($_GET['action']) AND Permission::getInstance()->verifPerm("PermsPanel",
 		case 'getJsonAchat':
 			require('admin/actions/getJsonAchat.php');
 			exit();
-			
 		case 'getOffreBoutique':
 			require('admin/actions/getOffreBoutique.php');
 			exit();

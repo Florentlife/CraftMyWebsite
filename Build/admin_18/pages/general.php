@@ -6,7 +6,7 @@
 <?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'general', 'actions', 'editGeneral')) { ?>
 <div class="text-center">
     <div class="alert alert-danger">
-        <strong>Vous avez aucune permission pour accéder aux réglages généraux.</strong>
+        <strong>Vous n'avez pas la permission pour accéder aux réglages généraux.</strong>
     </div>
 </div>
 <?php } else { ?>
