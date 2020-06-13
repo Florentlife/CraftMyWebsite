@@ -182,6 +182,7 @@ function hide(el) {
 function show(el) {
     get(el).style.display = 'block';
 }
+
 function notif(type, header, message)
 {
      toastr[type](message, header);

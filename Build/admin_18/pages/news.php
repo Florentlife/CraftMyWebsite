@@ -62,7 +62,6 @@
                                 <input type="submit" class="btn btn-success w-100"
                                     onclick="sendPost('news-<?php echo $tableauNews[$i]['id']; ?>');"
                                     value="Modifer le message" />
-
                             </div>
                             <div class="col-md-4">
                                 <button type="button"

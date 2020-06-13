@@ -4,8 +4,6 @@
     </h2>
 </div>
 
-
-
 <?php if(!Permission::getInstance()->verifPerm('PermsPanel', 'shop', 'boutiqueList', 'showPage'))
 {
 	echo '
@@ -29,7 +27,6 @@ else
             <div class="card-body">
             	<div class="row" style="margin-bottom:20px;">
                     <div class="col-lg-12 col-md-12 col-xs-12">
-                    	
                         <h5>Nombre d'achat/pages: <input style="margin-top:3px;" type="number"
                                 onchange="setMaxShow('input-changemax')" id="input-changemax" min="1"
                                 max="<?php echo $data['count']; ?>" step="1" placeholder="2020 ?" class="input-disabled form-control"
@@ -97,6 +94,5 @@ else
         </div>
     </div>
 </div>
-
 	<?php  include('./admin/assets/js/boutiquelist.php');
 }

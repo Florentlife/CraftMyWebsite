@@ -22,8 +22,8 @@
 			<div class="alert alert-success">Deux possibilités s'offrent à vous pour les dons, vous pouvez payer par PayPal, soit avec votre compte PayPal soit avec votre Carte Bleu de manière sécurisée depuis le site PayPal (le payement ne s'effectue donc pas sur notre serveur/site). L'avantage de PayPal est que le joueur reçoit plus de Jetons qu'avec un payement téléphonique (qui sont surtaxés).</div>
 			<div class="row">
 				<?php
-				if(isset($offresTableau))
-					foreach($offresTableau as $tab)
+				if(isset($tableauOffres))
+					foreach($tableauOffres as $tab)
 					{ ?>
 					<div class="col-md-4 offre-boutique">
 						<div class="well offre-contenu">
