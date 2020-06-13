@@ -12,12 +12,14 @@
                     <?php } if(!empty($tableauNews)) { ?>
                                 <ul class="nav nav-tabs">
                                     <?php for($i = 0; $i < count($tableauNews); $i++) { ?>
-                                        <li class="nav-item"><a class="<?php if($i == 0) echo 'active'; ?> nav-link" href="#news<?php echo $tableauNews[$i]['id']; ?>" data-toggle="tab" style="color: black !important"><?php echo $tableauNews[$i]['titre']; ?></a></li>
+                                        <li class="nav-item" id="tabnews-<?php echo $tableauNews[$i]['id']; ?>"><a class="<?php if($i == 0) echo 'active'; ?> nav-link" href="#news<?php echo $tableauNews[$i]['id']; ?>" data-toggle="tab" style="color: black !important"><?php echo $tableauNews[$i]['titre']; ?></a></li>
                                     <?php } ?>
                                 </ul>
                                 <div class="tab-content" >
                                     <?php for($i = 0; $i < count($tableauNews); $i++) { ?>
                                         <div class="tab-pane <?php if($i == 0) echo 'active'; ?>" id="news-<?php echo $tableauNews[$i]['id']; ?>">
+
+                                            <div id="callback" post="<?php echo $tableauNews[$i]['id']; ?>"></div>
                                                         <label class="control-label">Titre de la news</label>
                                                         <input type="text" class="form-control" name="titre" value="<?php echo $tableauNews[$i]['titre']; ?>">
 
@@ -31,13 +33,13 @@
 
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <button type="button" onclick="sendDirectPost('admin?action=epingle&newsId=<?php echo $tableauNews[$i]['id']; ?>&epingle=<?=$tableauNews[$i]['epingle'];?>', function(data) { if(data){ Switch(this,'Désépingler la news','Épingler la news')}});" class="btn btn-warning w-100"><?=($tableauNews[$i]['epingle'] == 1) ? 'Désépingler' : 'Épingler';?> la news</button>
+                                                            <button type="button" onclick="sendDirectPost('admin.php?action=epingle&newsId=<?php echo $tableauNews[$i]['id']; ?>&epingle=<?=$tableauNews[$i]['epingle'];?>', function(data) { if(data){ Switch(this,'Désépingler la news','Épingler la news')}});" class="btn btn-warning w-100"><?=($tableauNews[$i]['epingle'] == 1) ? 'Désépingler' : 'Épingler';?> la news</button>
                                                         </div>
                                                         <div class="col-md-4">
-                                                              <button type="button" onclick="sendDirectPost('admin?action=supprNews&newsId=<?php echo $tableauNews[$i]['id']; ?>', function(data) { if(data) { get('news-<?php echo $tableauNews[$i]['id']; ?>').style.display = 'none';}});" class="btn btn-danger w-100">Supprimer la News</button>
+                                                              <button type="button" onclick="sendDirectPost('admin.php?action=supprNews&newsId=<?php echo $tableauNews[$i]['id']; ?>', function(data) { if(data) { get('news-<?php echo $tableauNews[$i]['id']; ?>').style.display = 'none';get('tabnews-<?php echo $tableauNews[$i]['id']; ?>').style.display = 'none';}});" class="btn btn-danger w-100">Supprimer la News</button>
                                                         </div>
                                                     </div>
-                                            <script>initPost("news-<?php echo $tableauNews[$i]['id']; ?>", "admin.php?action=editNews&id=<?php echo $tableauNews[$i]['id']; ?>",null);</script>
+
                                         </div>
                                     <?php } ?>
                                 </div>

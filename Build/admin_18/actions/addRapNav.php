@@ -15,6 +15,7 @@ if(Permission::getInstance()->verifPerm('PermsPanel', 'home', 'actions', 'editMi
   		}
 		$lectureAccueil['Infos'][$_POST["ordre"]]['message'] = $_POST['message'];
 		$lectureAccueil['Infos'][$_POST["ordre"]]['image'] = $_POST['image'];
+		$lectureAccueil['Infos'][$_POST["ordre"]]['type'] = $_POST['typeLien'];
 		if($_POST['typeLien'] == 'page')
 		{
 			$lectureAccueil['Infos'][$_POST["ordre"]]['lien'] = '?page='. urlencode($_POST['page']);
