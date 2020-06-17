@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-            	<?php $nbArticles = $_Panier_->compterArticle();
+            	<?php $nbArticles = $_Panier_->compterOffre();
                 $precedent = 0;
             	if($nbArticles == 0 )
             		echo '<tr><td colspan="6"><center>Votre panier est vide :\'( </center></td></tr>';
