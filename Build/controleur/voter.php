@@ -277,6 +277,9 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 			}else if(strpos($url, 'https://serveur-multigames.net'))  {
 				$api =file_get_contents("https://serveur-multigames.net/api/v2/vote/true/".$id."/".get_client_ip()););
 				if($api == "1"){return true;}else{return false;}
+			}else if(strpos($url, 'https://minecraft-top.com'))  {
+				$api = json_decode(file_get_contents("https://api.minecraft-top.com/v1/vote/".get_client_ip()."/".$id));
+				if($api->vote == 1){return true;}else{return false;}
 			}else {
 				return true;
 			}
