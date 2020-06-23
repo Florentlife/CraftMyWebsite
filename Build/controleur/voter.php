@@ -275,7 +275,7 @@ if(isset($_POST['id']) AND isset($_POST['pseudo']))
 				$api =file_get_contents("https://www.serveursminecraft.org/sm_api/peutVoter.php?id=".$id."&ip=".get_client_ip());
 				if($api == "true"){return true;}else{return false;}
 			}else if(strpos($url, 'https://serveur-multigames.net'))  {
-				$api =file_get_contents("https://serveur-multigames.net/api/v2/vote/true/".$id."/".get_client_ip()););
+				$api =file_get_contents("https://serveur-multigames.net/api/v2/vote/true/".$id."/".get_client_ip()));
 				if($api == "1"){return true;}else{return false;}
 			}else if(strpos($url, 'https://minecraft-top.com'))  {
 				$api = json_decode(file_get_contents("https://api.minecraft-top.com/v1/vote/".get_client_ip()."/".$id));
