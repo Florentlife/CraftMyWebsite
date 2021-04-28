@@ -2,17 +2,9 @@
 
 CraftMyWebsite est un CMS Minecraft 100% gratuit proposant des fonctionnalités de qualité parmi lesquelles:
 
--   Boutique supportant Dedipass/Paypal en validation automatique et Paysafecard en validation manuelle 
--   Des rangs temporaires
--   Système de news
--   Votes avec récompenses et systèmes de vérifications intégrés !
--   Gestion multi-serveur grâce à JSONAPI et à RCON
--   Support
--   Forum
--   Newsletter 
--   Et pleins d'autres !
-
 Une démo est disponible sur notre [site internet](http://demo.craftmywebsite.fr/).
+
+Nous n'utilisons plus ce git, retrouve nous ici >>> https://github.com/CraftMyWebsite/CMW
 
 ### Support, infos et communauté
 
@@ -37,4 +29,4 @@ Si toutefois vous vous acharnez à vouloir utiliser ce répo comme source pour v
 
 CraftMyWebsite de [Vladimir.K](http://craftmywebsite.fr/cmw-lastest-build.php) est mis à disposition selon les termes de la [licence Creative Commons Attribution - Pas d'Utilisation Commerciale - Pas de Modification 4.0 International](http://creativecommons.org/licenses/by-nc-nd/4.0/). Fondé(e) sur une œuvre à [https://craftmywebsite.fr/cmw-lastest-build.php](http://craftmywebsite.fr/cmw-lastest-build.php). Les autorisations au-delà du champ de cette licence peuvent être obtenues à [https://craftmywebsite.fr/cgu](https://craftmywebsite.fr/cgu/). 
 
-Copyright © CraftMyWebsite 2014-2020
+Copyright © CraftMyWebsite 2014-2021
